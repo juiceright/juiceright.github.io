@@ -1,0 +1,273 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>汕头大学SSO 单点登录接入实例 | Mr. Important</title>
+
+<link rel="shortcut icon" href="https://juiceright.xyz/favicon.ico?v=1743091084969">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://juiceright.xyz/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages//dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VW0CXHVZ33"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-VW0CXHVZ33');
+</script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+    
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.1/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script> 
+    
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="/">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Mr. Important
+        </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="changeNavbar">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1743091084969"
+                action="/search/">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = () => {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    汕头大学SSO 单点登录接入实例
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-03-11 ·
+                    </time>
+                    
+                        <a href="https://juiceright.xyz/tag/GbDTpq8faf/" class="post-tags">
+                            # python
+                        </a>
+                    
+                        <a href="https://juiceright.xyz/tag/b73vn-_5Ed/" class="post-tags">
+                            # 编程
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>Single Sign On System</p>
+<pre><code>import os
+url=&quot;https://sso.stu.edu.cn/login?service=http://localhost:8080&quot;
+os.system('start msedge &quot;'+url+'&quot;')
+
+import http.server
+import socketserver
+import urllib.parse
+import threading
+import requests
+import xml.etree.ElementTree as ET
+import warnings
+warnings.filterwarnings(&quot;ignore&quot;)
+
+# 定义全局变量存储ticket
+ticket = None
+username = None
+# 自定义请求处理类
+class MyHandler(http.server.SimpleHTTPRequestHandler):
+    def log_message(self, format, *args):
+        pass  # 重写方法，不执行任何操作
+
+    def do_GET(self):
+        global ticket, httpd, username
+        # 解析请求路径的参数
+        parsed_path = urllib.parse.urlparse(self.path)
+        query_params = urllib.parse.parse_qs(parsed_path.query)
+        
+        # 检查是否存在ticket参数
+        if 'ticket' in query_params:
+            ticket = query_params['ticket'][0]
+        
+        # 发送响应
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(b&quot;Ticket received...&quot;)
+        vurl=&quot;https://sso.stu.edu.cn/serviceValidate?service=http://localhost:8080&amp;ticket=&quot;+ticket
+        headers={'Connection':'close'}
+        requests.adapters.DEFAULT_RETRIES = 5
+        response = requests.get(vurl, headers=headers, verify=False)
+        root = ET.fromstring(response.text)
+        if root[0].tag.endswith('authenticationSuccess'):
+            print('Login success, you can close the browser now 登陆成功，您可以关闭浏览器了')
+            print('username:', root[0][0].text)
+            username = root[0][0].text
+            response.close()
+            threading.Thread(target=httpd.shutdown).start()
+        else:
+            print('Login failed, please try again 登陆失败，请重试')
+            print('error:', root[0][0].text)
+        # 关闭服务器
+# 启动服务器
+def run_server():
+    global httpd
+    port = 8080
+    handler = MyHandler
+    with socketserver.TCPServer((&quot;&quot;, port), handler) as httpd:
+        print(f&quot;Verifying login at https://sso.stu.edu.cn/login?service=http://localhost:8080&quot;)
+        httpd.serve_forever()
+run_server()
+
+
+Users =['用户名']
+
+if username in Users:
+    print('Login success, welcome to use this script 登陆成功，欢迎使用本脚本')
+else:
+    print('No permission to use this script 没有权限使用本脚本')
+    os.system('pause')
+    exit()
+
+
+
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://juiceright.xyz/post/HTT13GBuIe/" class="post-title gt-a-link">
+                    STU校园网自动登录脚本
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><script type="text/javascript" src="https://api.xygeng.cn/one/get/"></script>  </div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/cywd123" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+                <a href="https://orcid.org/0009-0008-3654-4997" target="_blank">
+                    <i class="fab fa-orcid gt-c-content-color-first"></i>
+                </a>
+            
+        
+    </div>
+    <div class="footer-info">
+        <script src="https://cdn.bootcdn.net/ajax/libs/instantclick/3.1.0/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>InstantClick.init('mouseover');</script>
+    </div>
+    <div>
+        Theme <a href="https://github.com/imhanjie/gridea-theme-pure" target="_blank">Pure</a>, Powered by <a
+                href="https://gridea.dev" target="_blank">Gridea</a> | <a href="https://juiceright.xyz/atom.xml" target="_blank">RSS</a>
+    </div>
+</div>
+
+<script>
+  hljs.highlightAll()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

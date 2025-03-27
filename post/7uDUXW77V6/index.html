@@ -1,0 +1,261 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>EndNote/Zotero批量添加PubMed文献脚本 | Mr. Important</title>
+
+<link rel="shortcut icon" href="https://juiceright.xyz/favicon.ico?v=1743091084969">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://juiceright.xyz/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages//dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VW0CXHVZ33"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-VW0CXHVZ33');
+</script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+    
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.1/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script> 
+    
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="/">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Mr. Important
+        </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="changeNavbar">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1743091084969"
+                action="/search/">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = () => {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    EndNote/Zotero批量添加PubMed文献脚本
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-03-14 ·
+                    </time>
+                    
+                        <a href="https://juiceright.xyz/tag/GZeMczKEs_/" class="post-tags">
+                            # 小脚本
+                        </a>
+                    
+                        <a href="https://juiceright.xyz/tag/b73vn-_5Ed/" class="post-tags">
+                            # 编程
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <p>代理使用8089端口，适配clash<br>
+使用：同目录下创建paper.txt，一行一个填写一个PMID<br>
+生成一个citation.nbib格式的文件</p>
+<pre><code>
+# %%
+###预处理，先把文章全部复制到一个paper.txt文本中
+###先获取所有PMID: 后面的数字
+import re
+import pandas as pd
+import numpy as np
+
+proxies = {&quot;http&quot;: &quot;http://127.0.0.1:8089&quot;}
+
+pm=pd.read_csv('paper.txt',header=None)
+# to list
+pm=pm[0].tolist()
+
+
+# %%
+import requests
+from concurrent.futures import ThreadPoolExecutor
+
+def fetch_pmid(pmid):
+    max_retries = 300  # 设置最大重试次数
+    for attempt in range(max_retries):
+        url = 'https://api.ncbi.nlm.nih.gov/lit/ctxp/v1/pubmed/?format=medline&amp;id={}'.format(pmid)
+        print(url)
+        print(&quot;-------requests start--------------&quot;)
+        res = requests.get(url,proxies=proxies)
+        print(&quot;-------requests end--------------&quot;)
+        print(res)
+        if res.status_code == 200:
+            res.close()
+            return res.text + &quot;\n&quot;
+
+        else:
+            print(f&quot;Request failed, retrying... (attempt {attempt + 1}/{max_retries})&quot;)
+    
+    print(f&quot;Failed to fetch PMID {pmid} after {max_retries} attempts.&quot;)
+    return &quot;&quot;
+
+cita = []
+
+# 设置线程数，这里设置为4，你可以根据需要调整
+num_threads = 32
+
+with ThreadPoolExecutor(max_workers=num_threads) as executor:
+    # 使用多线程并行处理每个pmid
+    results = list(executor.map(fetch_pmid, pm))
+
+cita.extend(results)
+
+# 替换处理
+
+# %%
+cita = [y.replace(&quot;\r&quot;, &quot;&quot;) for y in cita]
+cita = [y + &quot;\n&quot; for y in cita]
+f=open(&quot;citation.nbib&quot;,&quot;w&quot;,encoding='utf-8')
+f.writelines(cita)
+f.close()
+
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://juiceright.xyz/post/kBg4HlOG6b/" class="post-title gt-a-link">
+                    使用Hyper-V配置网卡多个虚拟网卡
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><script type="text/javascript" src="https://api.xygeng.cn/one/get/"></script>  </div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/cywd123" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+                <a href="https://orcid.org/0009-0008-3654-4997" target="_blank">
+                    <i class="fab fa-orcid gt-c-content-color-first"></i>
+                </a>
+            
+        
+    </div>
+    <div class="footer-info">
+        <script src="https://cdn.bootcdn.net/ajax/libs/instantclick/3.1.0/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>InstantClick.init('mouseover');</script>
+    </div>
+    <div>
+        Theme <a href="https://github.com/imhanjie/gridea-theme-pure" target="_blank">Pure</a>, Powered by <a
+                href="https://gridea.dev" target="_blank">Gridea</a> | <a href="https://juiceright.xyz/atom.xml" target="_blank">RSS</a>
+    </div>
+</div>
+
+<script>
+  hljs.highlightAll()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

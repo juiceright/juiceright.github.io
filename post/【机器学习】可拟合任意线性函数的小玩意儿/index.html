@@ -1,0 +1,271 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>【机器学习】可拟合任意线性函数的小玩意儿 | Mr. Important</title>
+
+<link rel="shortcut icon" href="https://juiceright.xyz/favicon.ico?v=1743091084969">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://juiceright.xyz/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages//dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VW0CXHVZ33"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-VW0CXHVZ33');
+</script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+    
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.1/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script> 
+    
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="/">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Mr. Important
+        </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="changeNavbar">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1743091084969"
+                action="/search/">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = () => {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    【机器学习】可拟合任意线性函数的小玩意儿
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2023-03-27 ·
+                    </time>
+                    
+                        <a href="https://juiceright.xyz/tag/5OmQbpYYmhh/" class="post-tags">
+                            # 机器学习
+                        </a>
+                    
+                        <a href="https://juiceright.xyz/tag/b73vn-_5Ed/" class="post-tags">
+                            # 编程
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h1 id="机器学习可拟合任意线性函数的小玩意儿">【机器学习】可拟合任意线性函数的小玩意儿</h1>
+<h3 id="先上完整代码">先上完整代码</h3>
+<pre><code>import torch as t
+import torch.nn as nn
+import torch.optim as optim
+
+def training_loop(n_epochs, optimizer, model,loss_fn, t_u, t_c):
+    for epoch in range(1, n_epochs + 1):
+        t_p = model(t_u)          #计算当前模型的预测值
+        loss = loss_fn(t_p, t_c)  #计算损失函数
+        optimizer.zero_grad()   
+        loss.backward()   #回溯累计损失
+        optimizer.step()
+        if epoch % 50 == 0:
+            print('Epoch %d, Loss %f' % (epoch, float(loss)))
+    return model
+
+
+epoches=30000  #迭代次数 一般次数适中，为防止过度拟合不建议迭代次数过多
+num=50000  #随机生成的样本数 一般越多越好，看运行配置
+
+learning_rate=1e-4   #学习率（数值越大学得越快（但不一定准确），数值越小拟合越好（时间较长））建议取 1e-2 、1e-3、1e-4、1e-5
+
+x = t.randn(num, 1)
+def f(x):
+    return 30 * x + 10
+    #待拟合的式子为 y=30*x +10  可自行修改if you like。
+
+
+y = f(x)+ t.randn(num, 1)*10  #  后面的 t.randn(num, 1)*10 是偏离值，降低训练的精确性（给你的模型更多的挑战）
+linear_model = nn.Linear(1, 1)
+optimizer = optim.SGD(linear_model.parameters(), lr=learning_rate)
+training_loop(n_epochs=epoches,optimizer=optimizer,model=linear_model,loss_fn=nn.MSELoss(),t_u=x,t_c=y)
+print('\n')
+#print(linear_model.weight)
+#print(linear_model.bias)
+
+while(1):
+    x=float(input('请输入想预测的x值：'))
+    tmp=float(linear_model(t.tensor([x]))[0])
+    print(&quot;拟合值:&quot;,tmp)
+    print(&quot;真实值:&quot;,f(x))
+    print(&quot;相对误差:&quot;,1-tmp/f(x))
+    print('\n')
+</code></pre>
+<p>这个程序可以分为两个部分(生成训练数据、机器学习模型)，其中生成训练数据部分可有可无(因为在实际应用中，一般数据为人工导入，不是系统随机生成)。</p>
+<h4 id="不得不说pytorch真香">不得不说，PyTorch真香。</h4>
+<p>下面来简单地介绍一下这个模型：<br>
+它基于PyTorch深度学习框架，实现了简单的机器学习，主体采用梯度下降法，内部调用PyTorch的SGD计算梯度函数</p>
+<p>基本功能是根据已有的训练数据，拟合出X与Y的线性对应关系</p>
+<h2 id="我们用这个模型拟合-y30-x-10-这个函数">我们用这个模型拟合 Y=30 * X + 10  这个函数</h2>
+<p><img src="/img/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%91%E5%8F%AF%E6%8B%9F%E5%90%88%E4%BB%BB%E6%84%8F%E7%BA%BF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%E5%84%BF/1.jpg" alt="" loading="lazy"><br>
+这是代码的主要配置界面，想玩的在这里配置参数</p>
+<figure data-type="image" tabindex="1"><img src="/img/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%91%E5%8F%AF%E6%8B%9F%E5%90%88%E4%BB%BB%E6%84%8F%E7%BA%BF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%E5%84%BF/2.jpg" alt="" loading="lazy"></figure>
+<p>目前随机生成50000个不太准确的训练数据(准确值+一个随机数)，进行30000轮迭代。<br>
+（普通电脑能够在3秒内完成所有训练的超小规模训练=。=）<br>
+可以看到，随着迭代次数的增加，LOSS(拟合偏离值)在不断减小。说明训练效果不错</p>
+<p><img src="/img/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%91%E5%8F%AF%E6%8B%9F%E5%90%88%E4%BB%BB%E6%84%8F%E7%BA%BF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%E5%84%BF/3.jpg" alt="" loading="lazy"><br>
+可以看到预测值与真实值非常接近，相对误差在0.3%以内。<br>
+（这个应该比较精确了，如果需要，可以加大训练数据，加深迭代次数进行更加精确的训练）</p>
+<h3 id="这个只是简单的机器学习模型甚至都没有建立人工神经网络">这个只是简单的机器学习模型，甚至都没有建立人工神经网络。。。</h3>
+<p>不过要怎么说呢，学起来！！！</p>
+<h1 id="反思">反思</h1>
+<h4 id="缺点">缺点：</h4>
+<p>或许，这个模型实用性为零。因为它只能拟合线性函数，无法拟合其它函数。<br>
+（说实话与其用这个模型，还不如用R语言分析，再不济也能用Excel计算 线性回归方程 。这样效率会高很多很多。。。。</p>
+<h4 id="前景">前景：</h4>
+<ol>
+<li>在这个模型的基础上可以编写能拟合非线性函数的模型。</li>
+<li>如果输入的参数很多，例如Y=f(x1,x2,x3...),那么回归方程不太适用的时候，这类模型依旧能拟合出Y与各个参数的关系。</li>
+<li>不需要关注目标函数的构成：在更加深层次的机器学习模型中，我们并不关注目标函数的构成（即不需要预先知道Y与X是否符合特定的关系，如Y=aX+b，Y=aX^b+c等构成式），这样能够大大减轻拟合一个函数的负担。</li>
+</ol>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://juiceright.xyz/post/【爬虫】豆瓣Top250爬取/" class="post-title gt-a-link">
+                    【爬虫】豆瓣Top250爬取
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"><script type="text/javascript" src="https://api.xygeng.cn/one/get/"></script>  </div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/cywd123" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+                <a href="https://orcid.org/0009-0008-3654-4997" target="_blank">
+                    <i class="fab fa-orcid gt-c-content-color-first"></i>
+                </a>
+            
+        
+    </div>
+    <div class="footer-info">
+        <script src="https://cdn.bootcdn.net/ajax/libs/instantclick/3.1.0/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>InstantClick.init('mouseover');</script>
+    </div>
+    <div>
+        Theme <a href="https://github.com/imhanjie/gridea-theme-pure" target="_blank">Pure</a>, Powered by <a
+                href="https://gridea.dev" target="_blank">Gridea</a> | <a href="https://juiceright.xyz/atom.xml" target="_blank">RSS</a>
+    </div>
+</div>
+
+<script>
+  hljs.highlightAll()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
