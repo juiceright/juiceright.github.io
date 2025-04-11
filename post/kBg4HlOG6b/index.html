@@ -1,0 +1,225 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>使用Hyper-V配置网卡多个虚拟网卡 | Mr. Important</title>
+
+<link rel="shortcut icon" href="https://juiceright.xyz/favicon.ico?v=1744378254808">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://juiceright.xyz/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages//dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VW0CXHVZ33"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-VW0CXHVZ33');
+</script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+    
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.1/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script> 
+    
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="/">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Mr. Important
+        </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="changeNavbar">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1744378254808"
+                action="/search/">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = () => {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    使用Hyper-V配置网卡多个虚拟网卡
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-03-14 ·
+                    </time>
+                    
+                        <a href="https://juiceright.xyz/tag/GZeMczKEs_/" class="post-tags">
+                            # 小脚本
+                        </a>
+                    
+                        <a href="https://juiceright.xyz/tag/b73vn-_5Ed/" class="post-tags">
+                            # 编程
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <h2 id="配置-hyper-v">配置 Hyper-V</h2>
+<p>首先需要启用 Hyper-V，在 <strong>管理员 Powershell</strong>输入以下命令：</p>
+<p>然后重启电脑。</p>
+<h3 id="启用-hyper-v">启用 Hyper-V</h3>
+<pre><code>Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+</code></pre>
+<h3 id="安装-hyper-v-虚拟交换机">安装 Hyper-V 虚拟交换机</h3>
+<p>在管理员 Powershell 输入以下命令。name 参数后面的 Ethernet-Virt 是虚拟交换机的名称，可以任取。 NetAdapterName 参数后面的 Ethernet 代表你要桥接的物理网卡的名称，中文版系统一般为 以太网，英文版为 Ethernet。注意 AllowManagementOS 需要为 $false，否则 Hyper-V 会创建一个和物理网卡一样 MAC 地址的虚拟网卡妨碍我们使用。</p>
+<pre><code>New-VMSwitch -name Ethernet-Virt -AllowManagementOS $false  -NetAdapterName &quot;以太网 2&quot;
+</code></pre>
+<h3 id="向宿主机添加虚拟网卡">向宿主机添加虚拟网卡</h3>
+<p>在管理员 Powershell 输入以下命令。Switch 参数后面的 Ethernet-Virt 是虚拟交换机的名称。 Name 参数后面的 Ethernet-Virt-Main 是虚拟网卡的名称，可以任取。注意要有 ManagementOS 参数，代表向宿主机添加网卡而不是某个虚拟机。StaticMacAddress 后面的 e0-00-00-00-ca-01 是虚拟网卡的 MAC 地址，可以任取，但必须唯一并且是单播地址（不懂单播、多播地址的话就无脑e0开头，然后后面的数字随便换）。</p>
+<pre><code>Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &quot;Ethernet-Virt-Main1&quot; -StaticMacAddress 38:fd:cc:7c:94:c5
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &quot;Ethernet-Virt-Main2&quot; -StaticMacAddress b0:36:c6:fa:f4:df
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &quot;Ethernet-Virt-Main3&quot; -StaticMacAddress 90:53:84:3e:9b:12
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &quot;Ethernet-Virt-Main4&quot; -StaticMacAddress 5c:1f:4b:eb:62:ad
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &quot;Ethernet-Virt-Main5&quot; -StaticMacAddress 58:d3:b1:6b:f4:97
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &quot;Ethernet-Virt-Main6&quot; -StaticMacAddress 18:9c:1a:d5:ca:a8
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &quot;Ethernet-Virt-Main7&quot; -StaticMacAddress 54:7c:bd:16:ae:0a
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &quot;Ethernet-Virt-Main8&quot; -StaticMacAddress d0:7c:6b:78:13:2f
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &quot;Ethernet-Virt-Main9&quot; -StaticMacAddress a0:05:1c:48:0b:12
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &quot;Ethernet-Virt-Main10&quot; -StaticMacAddress ec:89:10:ac:20:97
+</code></pre>
+<h3 id="使用结束删除虚拟交换机-confirm-a">使用结束，删除虚拟交换机： Confirm : A</h3>
+<pre><code>Remove-VMSwitch -name Ethernet-Virt -Force -Confirm
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://juiceright.xyz/post/BYPrSlDhIh/" class="post-title gt-a-link">
+                    python 利用curl将全部网卡适配器登录STU校园网
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/cywd123" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+                <a href="https://orcid.org/0009-0008-3654-4997" target="_blank">
+                    <i class="fab fa-orcid gt-c-content-color-first"></i>
+                </a>
+            
+        
+    </div>
+    <div class="footer-info">
+        <script src="https://cdn.bootcdn.net/ajax/libs/instantclick/3.1.0/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>InstantClick.init('mouseover');</script>
+    </div>
+    <div>
+        Theme <a href="https://github.com/imhanjie/gridea-theme-pure" target="_blank">Pure</a>, Powered by <a
+                href="https://gridea.dev" target="_blank">Gridea</a> | <a href="https://juiceright.xyz/atom.xml" target="_blank">RSS</a>
+    </div>
+</div>
+
+<script>
+  hljs.highlightAll()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
