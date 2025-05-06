@@ -1,0 +1,264 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>snakemake流程——SMR+MR+MAGMA分析 | Mr. Important</title>
+
+<link rel="shortcut icon" href="https://juiceright.xyz/favicon.ico?v=1746557972099">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://juiceright.xyz/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages//dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VW0CXHVZ33"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-VW0CXHVZ33');
+</script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+    
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.1/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script> 
+    
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="/">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Mr. Important
+        </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="changeNavbar">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1746557972099"
+                action="/search/">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = () => {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    snakemake流程——SMR+MR+MAGMA分析
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-03-14 ·
+                    </time>
+                    
+                        <a href="https://juiceright.xyz/tag/0k5oTOepBf/" class="post-tags">
+                            # 生信
+                        </a>
+                    
+                        <a href="https://juiceright.xyz/tag/b73vn-_5Ed/" class="post-tags">
+                            # 编程
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <pre><code>
+# 定义染色体列表，包含 1 到 22 号染色体
+chromosomes = list(range(1, 23))
+
+# 获取组学暴露数据文件的名称
+(MRname,) = glob_wildcards(&quot;../dataset/组学暴露数据/{file}.rds&quot;)
+
+# 获取 SMR 数据文件的名称
+GTExname = glob_wildcards(&quot;../dataset/SMR/{file}.besd&quot;).file
+
+# 获取 GWAS 数据文件的名称
+GWASfilename = glob_wildcards(&quot;../../SMR/input/{file}&quot;).file
+
+# 定义 all 规则，用于指定整个流程的最终输出文件
+rule all:
+    input:
+        expand(&quot;result/GTEx的{GTEx}之{file}.smr&quot;, GTEx=GTExname, file=GWASfilename),
+        #expand(&quot;result/MR的{file}之{MR}.csv&quot;, MR=MRname, file=GWASfilename),
+        expand(&quot;result/{file}.gsa.out.txt&quot;,file=GWASfilename),
+        #expand(&quot;result/Gene_disease_association/{file}.fusion_twas.txt&quot;,file=GWASfilename),  #TWAS 若全部49个组织非常慢10小时
+        
+
+# 定义 trans 规则，用于将输入文件转换为输出文件
+rule trans:   #OK
+    input:
+        # 输入文件路径
+        &quot;../../SMR/input/{file}&quot;
+    output:
+        # 输出文件路径
+        &quot;tmp/{file}.ma&quot;,
+        &quot;tmp/{file}.sumstats.gz&quot;,
+        &quot;tmp/{file}.mendelR.txt&quot;
+    # 规则执行时使用的线程数
+    threads: 6
+    shell:
+        # 调用 R 脚本进行文件转换
+        &quot;r -f tools/trans.R --args {wildcards.file}&quot;    
+
+rule run_GTEx:  #OK
+    input:
+        &quot;tmp/{file}.ma&quot;,
+    output:
+        &quot;result/GTEx的{GTEx}之{file}.smr&quot;
+    threads: 5
+    shell:
+        &quot;tools\\smr.exe --gwas-summary  {input}  --out  result/GTEx的{wildcards.GTEx}之{wildcards.file}  --bfile ../dataset/EUR --beqtl-summary ../dataset/SMR/{wildcards.GTEx} --maf 0.01 --thread-num 18 --diff-freq-prop 1.000000&quot;
+
+rule run_MAGMA:  #OK
+    input:
+        &quot;tmp/{file}.ma&quot;,
+    output:
+        &quot;result/{file}.gsa.out.txt&quot;,
+    shell:
+        &quot;r -f tools/run_MAGMA.R --args {wildcards.file}&quot;
+        
+rule run_MR:  #OK
+    input:
+        &quot;tmp/{file}.ma&quot;,
+    output:
+        &quot;result/MR的{file}之{MR}.csv&quot;,
+    threads: 2
+    shell:
+        &quot;r -f tools/run_MR.R --args {wildcards.file} {wildcards.MR}&quot;
+
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://juiceright.xyz/post/st6EFTEk36/" class="post-title gt-a-link">
+                    playwright自动登录STU WebVPN
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/cywd123" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+                <a href="https://orcid.org/0009-0008-3654-4997" target="_blank">
+                    <i class="fab fa-orcid gt-c-content-color-first"></i>
+                </a>
+            
+        
+    </div>
+    <div class="footer-info">
+        <script src="https://cdn.bootcdn.net/ajax/libs/instantclick/3.1.0/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>InstantClick.init('mouseover');</script>
+    </div>
+    <div>
+        Theme <a href="https://github.com/imhanjie/gridea-theme-pure" target="_blank">Pure</a>, Powered by <a
+                href="https://gridea.dev" target="_blank">Gridea</a> | <a href="https://juiceright.xyz/atom.xml" target="_blank">RSS</a>
+    </div>
+</div>
+
+<script>
+  hljs.highlightAll()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

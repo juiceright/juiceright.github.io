@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://juiceright.xyz</id>
+    <title>Mr. Important</title>
+    <updated>2025-05-06T18:59:34.850Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://juiceright.xyz"/>
+    <link rel="self" href="https://juiceright.xyz/atom.xml"/>
+    <logo>https://juiceright.xyz/images/avatar.png</logo>
+    <icon>https://juiceright.xyz/favicon.ico</icon>
+    <rights>All rights reserved 2025, Mr. Important</rights>
+    <entry>
+        <title type="html"><![CDATA[查看WebVPN的twfid]]></title>
+        <id>https://juiceright.xyz/post/lGBTFf1szi/</id>
+        <link href="https://juiceright.xyz/post/lGBTFf1szi/">
+        </link>
+        <updated>2025-04-18T08:37:12.000Z</updated>
+        <content type="html"><![CDATA[<p>务必通过<a href="http://juiceright-github-io-s.webvpn.stu.edu.cn:8118/post/lGBTFf1szi/">WebVPN</a>访问本页面，直连访问将无法获取twfid</p>
+<p><a href="http://juiceright-github-io-s.webvpn.stu.edu.cn:8118/post/lGBTFf1szi/">http://juiceright-github-io-s.webvpn.stu.edu.cn:8118/post/lGBTFf1szi/</a></p>
+<hr>
+<body>
+<button onclick="checkTwfidCookie()">查看 twfid Cookie 值</button>
+    <p id="result"></p>
+    <script>
+        function checkTwfidCookie() {
+            const cookies = document.cookie.split('; ');
+            for (let i = 0; i < cookies.length; i++) {
+                const parts = cookies[i].split('=');
+                if (parts[0] === 'TWFID') {
+                    document.getElementById('result').textContent = 'TWFID Cookie 的值为: ' + parts[1];
+                    return;
+                }
+            }
+            document.getElementById('result').textContent = '未找到 TWFID Cookie。';
+        }
+    </script>
+</body>
+<hr>
+<p>以下是源码，该工具仅在本地处理，不会上传任何数据。</p>
+<pre><code>    &lt;button onclick=&quot;checkTwfidCookie()&quot;&gt;查看 twfid Cookie 值&lt;/button&gt;
+    &lt;p id=&quot;result&quot;&gt;&lt;/p&gt;
+    &lt;script&gt;
+        function checkTwfidCookie() {
+            const cookies = document.cookie.split('; ');
+            for (let i = 0; i &lt; cookies.length; i++) {
+                const parts = cookies[i].split('=');
+                if (parts[0] === 'TWFID') {
+                    document.getElementById('result').textContent = 'TWFID Cookie 的值为: ' + parts[1];
+                    return;
+                }
+            }
+            document.getElementById('result').textContent = '未找到 TWFID Cookie。';
+        }
+    &lt;/script&gt;
+
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[将问卷星每一道题目单独截图]]></title>
+        <id>https://juiceright.xyz/post/DvVa_JuP1_/</id>
+        <link href="https://juiceright.xyz/post/DvVa_JuP1_/">
+        </link>
+        <updated>2025-04-11T12:44:56.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>
+import re
+from playwright.sync_api import Playwright, sync_playwright, expect
+
+def run(playwright: Playwright) -&gt; None:
+    browser = playwright.chromium.launch(headless=True)
+    page = browser.new_page(device_scale_factor=4)
+    page.goto(&quot;https://kaoshi.wjx.top/vm/e0bKYQs.aspx#&quot;)
+    
+    page.wait_for_timeout(2000)
+    cnt=0
+    for each in page.query_selector_all(&quot;#fieldset1 &gt; div&quot;):
+        each.screenshot(path=f&quot;img/{cnt}.png&quot;) 
+        cnt+=1
+    
+    page.close()
+    browser.close()
+
+
+with sync_playwright() as playwright:
+    run(playwright)
+
+
+
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[禁止Steam客户端自动更新（旧版Steam客户端）]]></title>
+        <id>https://juiceright.xyz/post/aaGTgW9noU/</id>
+        <link href="https://juiceright.xyz/post/aaGTgW9noU/">
+        </link>
+        <updated>2025-03-27T08:05:01.000Z</updated>
+        <content type="html"><![CDATA[<p>将代码保存为Steam.cfg，文件保存在Steam客户端根目录。</p>
+<pre><code>BootStrapperInhibitAll=Enable
+
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[【分子对接】2. 利用pymol下载蛋白质 脚本]]></title>
+        <id>https://juiceright.xyz/post/yslD_6qj2a/</id>
+        <link href="https://juiceright.xyz/post/yslD_6qj2a/">
+        </link>
+        <updated>2025-03-26T12:28:24.000Z</updated>
+        <content type="html"><![CDATA[<p>下载蛋白质，去除水分子，加H，去除配体，去除副链</p>
+<pre><code>
+# %%
+import pymol
+
+# %%
+# 使用 fetch 指令获取蛋白质结构，这里以 4FAA 为例
+pdb_id = '4FAA'
+pymol.cmd.fetch(pdb_id)
+
+# 去除水分子
+pymol.cmd.remove('solvent')
+
+# 加 H（氢原子）
+pymol.cmd.h_add()
+
+# 选择配体（这里假设配体残基名为 NAG）
+pymol.cmd.select('ligand', 'resn NAG')
+
+# 去除配体
+pymol.cmd.remove('ligand')
+
+# 显示链 A 的信息
+pymol.cmd.iterate('chain A', 'print(resi, resn)')
+
+# 去除副链（只保留主链）
+pymol.cmd.remove('sidechain')
+
+# 导出结果为 PDB 文件
+output_file = f'{pdb_id}.pymol.pdb'
+pymol.cmd.save(output_file)
+
+# 退出 PyMOL
+pymol.cmd.quit()
+
+
+
+
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[【分子对接】1. 自动从pubchem下载小分子 脚本]]></title>
+        <id>https://juiceright.xyz/post/QIn3kSdr8Z/</id>
+        <link href="https://juiceright.xyz/post/QIn3kSdr8Z/">
+        </link>
+        <updated>2025-03-26T12:25:40.000Z</updated>
+        <content type="html"><![CDATA[<p>本代码用于从pubchem下载小分子(阿司匹林)，并且自动转换成pymol的pdb格式</p>
+<pre><code>import pubchempy as pcp
+from pymol import cmd
+import os
+def download_sdf(compound_identifier, output_file):
+    try:
+        # 尝试根据标识符获取化合物
+        if isinstance(compound_identifier, int):
+            compound = pcp.Compound.from_cid(compound_identifier)
+        else:
+            results = pcp.get_compounds(compound_identifier, 'name')
+            if results:
+                compound = results[0]
+            else:
+                print(f&quot;未找到与 {compound_identifier} 匹配的化合物。&quot;)
+                return
+
+        # 下载 SDF 文件
+        sdf_content = compound.canonical_smiles
+        sdf = pcp.get_sdf(compound.cid)
+        with open(output_file, 'w') as file:
+            file.write(sdf)
+        print(f&quot;SDF 文件已成功保存到 {output_file}&quot;)
+    except Exception as e:
+        print(f&quot;下载过程中出现错误: {e}&quot;)
+
+
+if __name__ == &quot;__main__&quot;:
+    # 这里可以替换为你想要查询的化合物名称或 CID
+    compound_identifier = &quot;aspirin&quot;
+    output_file = compound_identifier + &quot;.sdf&quot;
+    download_sdf(compound_identifier, output_file)
+    # 使用 PyMOL 加载 SDF 文件并进行后续处理
+    cmd.load(output_file)
+    # 保存为 PDB 文件（可选）
+    cmd.save(compound_identifier + &quot;.pdb&quot;, state=0)
+    cmd.quit()
+    # 删除临时 SDF 文件（可选）
+    #os.remove(output_file)
+
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[问卷星自动填写脚本]]></title>
+        <id>https://juiceright.xyz/post/TRGCXIOTBS/</id>
+        <link href="https://juiceright.xyz/post/TRGCXIOTBS/">
+        </link>
+        <updated>2025-03-23T10:17:36.000Z</updated>
+        <content type="html"><![CDATA[<p>2025年3月23日测试批量填写80份正常。</p>
+<p>需要模拟鼠标操作防止被识别机器人</p>
+<pre><code>import re
+from playwright.async_api import Playwright, async_playwright
+#from playwright.sync_api import Playwright, sync_playwright, expect
+import random
+
+import asyncio
+import time
+def random_int(min=2, max=4):
+    random.seed(time.time())    
+    return str(random.randint(min, max))
+
+async def mouse_random_move(page):
+    # 模拟鼠标随机平滑移动
+    for i in range(5):
+        await page.mouse.move(random.randint(0, 1000), random.randint(0, 1000))
+        await asyncio.sleep(0.1)
+    # 模拟鼠标随机停留
+    #time.sleep(random.randint(0,1))
+    # 鼠标滚轮
+
+async def run(browser) -&gt; None:
+    
+    context = await browser.new_context()
+    page = await context.new_page()
+    await page.goto(&quot;https://www.wjx.cn/vm/Q0x3Wuq.aspx&quot;)
+    await page.get_by_text(&quot;男&quot;).click()
+    await page.get_by_text(&quot;大三&quot;).click()
+    await page.get_by_text(&quot;1000-&quot;).click()
+    await page.locator(&quot;div&quot;).filter(has_text=re.compile(r&quot;^全部来自家庭部分来自家庭，部分靠自己赚取全部靠自己赚取$&quot;)).get_by_role(&quot;link&quot;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&quot;div&quot;).filter(has_text=re.compile(r&quot;^300以下300-600600-10001000以上$&quot;)).get_by_role(&quot;link&quot;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&quot;div&quot;).filter(has_text=re.compile(r&quot;^无1-200200-500500以上$&quot;)).get_by_role(&quot;link&quot;).nth(2).click()
+    await mouse_random_move(page)
+    await page.locator(&quot;div&quot;).filter(has_text=re.compile(r&quot;^实体店网购$&quot;)).get_by_role(&quot;link&quot;).first.click()
+    await page.locator(&quot;div&quot;).filter(has_text=re.compile(r&quot;^100以下100-500500-10001000以上$&quot;)).get_by_role(&quot;link&quot;).nth(3).click()
+    await mouse_random_move(page)
+    await page.locator(&quot;div&quot;).filter(has_text=re.compile(r&quot;^无200以下200-500500-10001000以上$&quot;)).get_by_role(&quot;link&quot;).nth(2).click()
+    await page.locator(&quot;#div10&quot;).get_by_role(&quot;link&quot;).nth(2).click()
+    await mouse_random_move(page)
+    await page.locator(&quot;#div11&quot;).get_by_role(&quot;link&quot;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&quot;#div12&quot;).get_by_role(&quot;link&quot;).first.click()
+    await mouse_random_move(page)
+    await page.locator(&quot;#div13&quot;).get_by_role(&quot;link&quot;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&quot;#div14&quot;).get_by_role(&quot;link&quot;).nth(2).click()
+    await mouse_random_move(page)
+    await page.locator(&quot;#div15&quot;).get_by_role(&quot;link&quot;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&quot;#div16&quot;).get_by_role(&quot;link&quot;).nth(2).click()
+    await mouse_random_move(page)
+    await page.locator(&quot;#div17&quot;).get_by_role(&quot;link&quot;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&quot;div:nth-child(2) &gt; .jqcheckwrapper &gt; .jqcheck&quot;).first.click()
+    await mouse_random_move(page)
+    await page.locator(&quot;div:nth-child(5) &gt; .jqcheckwrapper &gt; .jqcheck&quot;).first.click()
+    await mouse_random_move(page)
+    await page.locator(&quot;div:nth-child(7) &gt; .jqcheckwrapper &gt; .jqcheck&quot;).click()
+    await mouse_random_move(page)
+    await page.locator(&quot;#div19&quot;).get_by_role(&quot;link&quot;).nth(3).click()
+    await mouse_random_move(page)
+    await page.locator(&quot;#div20&quot;).get_by_role(&quot;link&quot;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&quot;#div20&quot;).get_by_role(&quot;link&quot;).first.click()
+    await mouse_random_move(page)
+    await page.locator(&quot;#div21 &gt; .ui-controlgroup &gt; div:nth-child(2) &gt; .jqcheckwrapper &gt; .jqcheck&quot;).click()
+    await mouse_random_move(page)
+    await page.locator(&quot;#div21 &gt; .ui-controlgroup &gt; div:nth-child(4) &gt; .jqcheckwrapper &gt; .jqcheck&quot;).click()
+    await page.get_by_text(&quot;提交&quot;).click()
+    await page.wait_for_function(&quot;window.location.href !== 'https://www.wjx.cn/vm/Q0x3Wuq.aspx'&quot;)
+    await page.wait_for_timeout(3000)
+    await page.close()
+    await context.close()
+
+async def main() -&gt; None:
+    async with async_playwright() as p:
+        browser = await  p.chromium.launch(headless=True)
+        tasks = []
+        for i in range(6):
+            tasks.append(run(browser))
+        titles=await asyncio.gather(*tasks)
+        for title in titles:  
+            print(title) 
+        await browser.close()
+        
+if __name__ == &quot;__main__&quot;:
+    asyncio.run(main())
+
+
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[cmd 利用curl实现全网卡登录STU校园网]]></title>
+        <id>https://juiceright.xyz/post/lq1iWGC7E1/</id>
+        <link href="https://juiceright.xyz/post/lq1iWGC7E1/">
+        </link>
+        <updated>2025-03-17T04:38:48.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>
+@echo off
+for /f &quot;tokens=*&quot; %%i in (
+    'powershell -Command &quot;Get-NetIPAddress | Where-Object {$_.AddressFamily -eq 'IPv4' -and $_.IPAddress -ne '127.0.0.1'} | Select-Object -ExpandProperty IPAddress&quot;'
+) do (
+    echo 发现有效IP: %%i
+    curl --data &quot;opr=pwdLogin&amp;userName=账号&amp;pwd=密码&amp;rememberPwd=1&quot; http://1.1.1.2/ac_portal/login.php --interface %%i
+)
+pause
+
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[EndNote/Zotero批量添加PubMed文献脚本]]></title>
+        <id>https://juiceright.xyz/post/7uDUXW77V6/</id>
+        <link href="https://juiceright.xyz/post/7uDUXW77V6/">
+        </link>
+        <updated>2025-03-14T13:10:48.000Z</updated>
+        <content type="html"><![CDATA[<p>代理使用8089端口，适配clash<br>
+使用：同目录下创建paper.txt，一行一个填写一个PMID<br>
+生成一个citation.nbib格式的文件</p>
+<pre><code>
+# %%
+###预处理，先把文章全部复制到一个paper.txt文本中
+###先获取所有PMID: 后面的数字
+import re
+import pandas as pd
+import numpy as np
+
+proxies = {&quot;http&quot;: &quot;http://127.0.0.1:8089&quot;}
+
+pm=pd.read_csv('paper.txt',header=None)
+# to list
+pm=pm[0].tolist()
+
+
+# %%
+import requests
+from concurrent.futures import ThreadPoolExecutor
+
+def fetch_pmid(pmid):
+    max_retries = 300  # 设置最大重试次数
+    for attempt in range(max_retries):
+        url = 'https://api.ncbi.nlm.nih.gov/lit/ctxp/v1/pubmed/?format=medline&amp;id={}'.format(pmid)
+        print(url)
+        print(&quot;-------requests start--------------&quot;)
+        res = requests.get(url,proxies=proxies)
+        print(&quot;-------requests end--------------&quot;)
+        print(res)
+        if res.status_code == 200:
+            res.close()
+            return res.text + &quot;\n&quot;
+
+        else:
+            print(f&quot;Request failed, retrying... (attempt {attempt + 1}/{max_retries})&quot;)
+    
+    print(f&quot;Failed to fetch PMID {pmid} after {max_retries} attempts.&quot;)
+    return &quot;&quot;
+
+cita = []
+
+# 设置线程数，这里设置为4，你可以根据需要调整
+num_threads = 32
+
+with ThreadPoolExecutor(max_workers=num_threads) as executor:
+    # 使用多线程并行处理每个pmid
+    results = list(executor.map(fetch_pmid, pm))
+
+cita.extend(results)
+
+# 替换处理
+
+# %%
+cita = [y.replace(&quot;\r&quot;, &quot;&quot;) for y in cita]
+cita = [y + &quot;\n&quot; for y in cita]
+f=open(&quot;citation.nbib&quot;,&quot;w&quot;,encoding='utf-8')
+f.writelines(cita)
+f.close()
+
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[使用Hyper-V配置网卡多个虚拟网卡]]></title>
+        <id>https://juiceright.xyz/post/kBg4HlOG6b/</id>
+        <link href="https://juiceright.xyz/post/kBg4HlOG6b/">
+        </link>
+        <updated>2025-03-14T12:55:35.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="配置-hyper-v">配置 Hyper-V</h2>
+<p>首先需要启用 Hyper-V，在 <strong>管理员 Powershell</strong>输入以下命令：</p>
+<p>然后重启电脑。</p>
+<h3 id="启用-hyper-v">启用 Hyper-V</h3>
+<pre><code>Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+</code></pre>
+<h3 id="安装-hyper-v-虚拟交换机">安装 Hyper-V 虚拟交换机</h3>
+<p>在管理员 Powershell 输入以下命令。name 参数后面的 Ethernet-Virt 是虚拟交换机的名称，可以任取。 NetAdapterName 参数后面的 Ethernet 代表你要桥接的物理网卡的名称，中文版系统一般为 以太网，英文版为 Ethernet。注意 AllowManagementOS 需要为 $false，否则 Hyper-V 会创建一个和物理网卡一样 MAC 地址的虚拟网卡妨碍我们使用。</p>
+<pre><code>New-VMSwitch -name Ethernet-Virt -AllowManagementOS $false  -NetAdapterName &quot;以太网 2&quot;
+</code></pre>
+<h3 id="向宿主机添加虚拟网卡">向宿主机添加虚拟网卡</h3>
+<p>在管理员 Powershell 输入以下命令。Switch 参数后面的 Ethernet-Virt 是虚拟交换机的名称。 Name 参数后面的 Ethernet-Virt-Main 是虚拟网卡的名称，可以任取。注意要有 ManagementOS 参数，代表向宿主机添加网卡而不是某个虚拟机。StaticMacAddress 后面的 e0-00-00-00-ca-01 是虚拟网卡的 MAC 地址，可以任取，但必须唯一并且是单播地址（不懂单播、多播地址的话就无脑e0开头，然后后面的数字随便换）。</p>
+<pre><code>Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &quot;Ethernet-Virt-Main1&quot; -StaticMacAddress 38:fd:cc:7c:94:c5
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &quot;Ethernet-Virt-Main2&quot; -StaticMacAddress b0:36:c6:fa:f4:df
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &quot;Ethernet-Virt-Main3&quot; -StaticMacAddress 90:53:84:3e:9b:12
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &quot;Ethernet-Virt-Main4&quot; -StaticMacAddress 5c:1f:4b:eb:62:ad
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &quot;Ethernet-Virt-Main5&quot; -StaticMacAddress 58:d3:b1:6b:f4:97
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &quot;Ethernet-Virt-Main6&quot; -StaticMacAddress 18:9c:1a:d5:ca:a8
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &quot;Ethernet-Virt-Main7&quot; -StaticMacAddress 54:7c:bd:16:ae:0a
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &quot;Ethernet-Virt-Main8&quot; -StaticMacAddress d0:7c:6b:78:13:2f
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &quot;Ethernet-Virt-Main9&quot; -StaticMacAddress a0:05:1c:48:0b:12
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &quot;Ethernet-Virt-Main10&quot; -StaticMacAddress ec:89:10:ac:20:97
+</code></pre>
+<h3 id="使用结束删除虚拟交换机-confirm-a">使用结束，删除虚拟交换机： Confirm : A</h3>
+<pre><code>Remove-VMSwitch -name Ethernet-Virt -Force -Confirm
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[python 利用curl将全部网卡适配器登录STU校园网]]></title>
+        <id>https://juiceright.xyz/post/BYPrSlDhIh/</id>
+        <link href="https://juiceright.xyz/post/BYPrSlDhIh/">
+        </link>
+        <updated>2025-03-14T12:49:01.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>import netifaces
+import os
+# 获取所有网络接口
+interfaces = netifaces.interfaces()
+
+for iface in interfaces:
+    # 获取接口的地址信息
+    addresses = netifaces.ifaddresses(iface)
+    # 提取 IPv4 地址
+    if netifaces.AF_INET in addresses:
+        for addr_info in addresses[netifaces.AF_INET]:
+            ip = addr_info.get('addr')
+            if ip:
+                print(f&quot;适配器 {iface} 的IP地址: {ip}&quot;)
+                os.system('curl --data &quot;opr=pwdLogin&amp;userName=账号&amp;pwd=密码&amp;rememberPwd=1&quot; http://1.1.1.2/ac_portal/login.php  --interface ' + ip)
+
+
+</code></pre>
+]]></content>
+    </entry>
+</feed>
