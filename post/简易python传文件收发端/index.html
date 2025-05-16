@@ -1,0 +1,268 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>简易python传文件收发端(带注释) | Mr. Important</title>
+
+<link rel="shortcut icon" href="https://juiceright.xyz/favicon.ico?v=1747408989992">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://juiceright.xyz/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages//dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VW0CXHVZ33"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-VW0CXHVZ33');
+</script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+    
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.1/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script> 
+    
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="/">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Mr. Important
+        </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="changeNavbar">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1747408989992"
+                action="/search/">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = () => {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    简易python传文件收发端(带注释)
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2023-03-20 ·
+                    </time>
+                    
+                </div>
+                <div class="post-content">
+                    <h1 id="简易python传文件收发端">简易python传文件收发端</h1>
+<h3 id="发送端py">发送端.py</h3>
+<pre><code># 导入模块
+import socket
+# 创建tcp服务端socket
+tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# 绑定端口
+tcp_server_socket.bind((&quot;&quot;, 114))
+# 设置监听，把服务端socket由主动套接字改成被动套接字，只能接收客户端的连接请求
+tcp_server_socket.listen(128)
+while True:
+# 接收客户端信息
+ client_socket, client_ip = tcp_server_socket.accept()
+ print(&quot;客户端：&quot;, client_ip, &quot;连接&quot;)
+ # 接收下载信息
+ try:
+  file_name_data = client_socket.recv(65500)
+ # 解码下载信息
+  file_name = file_name_data.decode()
+ except :
+  print(&quot;客户端已断开连接&quot;)
+  continue
+ try:
+   # 数据传输
+   with open(&quot;/&quot; + file_name, &quot;rb&quot;) as file:
+    while True:
+	    # 读取文件数据
+      file_data = file.read(65500)
+ 	   # 数据长度不为0表示还有数据没有写入
+	    if file_data:
+	      client_socket.send(file_data)
+	    # 数据为0表示传输完成
+ 	   else:
+ 	     print(file_name, &quot;传输成功&quot;)
+	      break
+ except Exception as e:
+   print(&quot;客户端已断开连接&quot;)
+# 关闭客户端连接
+ client_socket.close()
+</code></pre>
+<h3 id="发送端py-2">发送端.py</h3>
+<pre><code># 导入模块
+import socket,time
+# 创建套接字
+# 绑定端口
+#   tcp_client_socket.bind((&quot;&quot;, 8080))
+while True:
+# 连接IP地址和端口
+	tcp_client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	tcp_client_socket.connect((input(&quot;请输入IP：\n&quot;), 114))
+ file_name = input(&quot;请输入要下载的文件：\n&quot;)
+	time_start=time.time() 
+	# 文件名编码
+	tcp_client_socket.send(file_name.encode())
+ try:
+	# 文件传输
+	with open(file_name, &quot;wb&quot;) as file:
+    	while True:
+  	# 接收数据
+        	file_data = tcp_client_socket.recv(65500)
+  	# 数据长度不为0写入文件
+        	if file_data:
+            	file.write(file_data)
+  	# 数据长度为0表示下载完成
+        	else:
+            	break
+# 下载出现异常时捕获异常
+ except Exception as e:
+    	print(&quot;下载异常&quot;, e)
+    	# 无异常则下载成功
+	else:
+    	print(file_name, &quot;下载成功&quot;)
+    	time_end=time.time() 
+    	print('总计',time_end-time_start,'秒') 
+# 关闭客户端
+ tcp_client_socket.close()
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://juiceright.xyz/post/简单头像/" class="post-title gt-a-link">
+                    简单头像
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/cywd123" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+                <a href="https://orcid.org/0009-0008-3654-4997" target="_blank">
+                    <i class="fab fa-orcid gt-c-content-color-first"></i>
+                </a>
+            
+        
+    </div>
+    <div class="footer-info">
+        <script src="https://cdn.bootcdn.net/ajax/libs/instantclick/3.1.0/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>InstantClick.init('mouseover');</script>
+    </div>
+    <div>
+        Theme <a href="https://github.com/imhanjie/gridea-theme-pure" target="_blank">Pure</a>, Powered by <a
+                href="https://gridea.dev" target="_blank">Gridea</a> | <a href="https://juiceright.xyz/atom.xml" target="_blank">RSS</a>
+    </div>
+</div>
+
+<script>
+  hljs.highlightAll()
+</script>
+
+    </div>
+</div>
+</body>
+</html>

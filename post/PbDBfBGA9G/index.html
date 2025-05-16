@@ -1,0 +1,269 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>雨课堂习题监控 | Mr. Important</title>
+
+<link rel="shortcut icon" href="https://juiceright.xyz/favicon.ico?v=1747408989992">
+
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://juiceright.xyz/styles/main.css">
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"> -->
+
+<script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages/dockerfile.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/9.12.0/languages//dart.min.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script> -->
+<!-- DEMO JS -->
+<!--<script src="media/scripts/index.js"></script>-->
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VW0CXHVZ33"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'G-VW0CXHVZ33');
+</script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.css">
+    
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.1/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script> 
+    
+</head>
+<body>
+<div class="main gt-bg-theme-color-first">
+    <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="/">
+        <img class="user-avatar" src="/images/avatar.png" alt="头像">
+        <div class="site-name gt-c-content-color-first">
+            Mr. Important
+        </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="changeNavbar">
+        <i class="fas fa-bars gt-c-content-color-first" style="font-size: 18px"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto" style="text-align: center">
+            
+            <div class="nav-item">
+                
+                <a href="/" class="menu gt-a-link">
+                    首页
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/archives" class="menu gt-a-link">
+                    归档
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/tags" class="menu gt-a-link">
+                    标签
+                </a>
+                
+            </div>
+            
+            <div class="nav-item">
+                
+                <a href="/about" class="menu gt-a-link">
+                    关于
+                </a>
+                
+            </div>
+            
+        </div>
+        <div style="text-align: center">
+            <form id="gridea-search-form" style="position: relative" data-update="1747408989992"
+                action="/search/">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
+                <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
+            </form>
+        </div>
+    </div>
+</nav>
+<script>
+    /* 移动端导航栏展开/收起切换 */
+    document.getElementById('changeNavbar').onclick = () => {
+        var element = document.getElementById('navbarSupportedContent');
+        if (element.style.display === 'none' || element.style.display === '') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+</script>
+
+    <div class="post-container">
+        <div class="post-detail gt-bg-theme-color-second">
+            <article class="gt-post-content">
+                <h2 class="post-title">
+                    雨课堂习题监控
+                </h2>
+                <div class="post-info">
+                    <time class="post-time gt-c-content-color-first">
+                        · 2025-03-11 ·
+                    </time>
+                    
+                        <a href="https://juiceright.xyz/tag/GbDTpq8faf/" class="post-tags">
+                            # python
+                        </a>
+                    
+                        <a href="https://juiceright.xyz/tag/GZeMczKEs_/" class="post-tags">
+                            # 小脚本
+                        </a>
+                    
+                        <a href="https://juiceright.xyz/tag/b73vn-_5Ed/" class="post-tags">
+                            # 编程
+                        </a>
+                    
+                </div>
+                <div class="post-content">
+                    <pre><code>原理：雨课堂每次切换PPT时url也会跟着改变。在检测到ppt切换后，获取ppt的图片，并且进行OCR检测，如果出现‘单选’、‘多选’、‘判断’、‘填空’、‘投票’等词汇，就认定该ppt是习题，就会发出警告提醒。
+</code></pre>
+<p>使用前需要配置state.json保存登录记录。</p>
+<pre><code>import asyncio
+from playwright.async_api import async_playwright
+import requests
+import threading
+import winsound
+from plyer import notification
+import easyocr
+url=&quot;&quot;
+# 初始化 EasyOCR
+reader = easyocr.Reader(['ch_sim', 'en'])
+
+async def notice_ti(page):
+    # 尝试查找图片元素
+    elementimg = await page.query_selector_all('//*[@id=&quot;app&quot;]/section/section[1]/section[2]/section/section/section/section[1]/section/div/section/section/img')
+    if len(elementimg) == 0:
+        elementimg = await page.query_selector_all('//*[@id=&quot;app&quot;]/section/section[1]/section[2]/section/section/section/section[1]/section/section/section/section/img')
+
+    # 发送新页面通知
+    notification.notify(title='新的一页', message='新的一页', app_icon=None, timeout=0.5)
+
+    if elementimg:
+        # 获取图片地址
+        img_url = await elementimg[0].get_attribute('src')
+        # 直接下载图片
+        tmp = requests.get(img_url)
+        with open('tmp.png', 'wb') as f:
+            f.write(tmp.content)
+
+        # 使用 EasyOCR 识别图片文字
+        result = reader.readtext('tmp.png')
+        # 如果 result 中含有‘单选’、‘多选’、‘判断’、‘填空’、‘投票’、‘问答’、‘作业’、‘讨论’、‘实验’、‘课件’、‘课程’、‘提交’等关键词，就发送通知
+        keywords = ['单选', '多选', '判断', '填空', '投票', '问答', '作业', '讨论', '实验', '提交']
+        #keywords = ['电解']
+        if any(x in str(result) for x in keywords):
+            print(img_url)
+            threading.Thread(target=lambda: winsound.Beep(440, 3000)).start()
+            notification.notify(title='有题！', message='有题！', app_icon=None, timeout=0.5)
+            # ai(result)
+            # clear_page()
+
+async def main():
+    async with async_playwright() as p:
+        # 配置浏览器选项
+        browser = await p.chromium.launch(headless=True)
+        context = await browser.new_context(storage_state='state.json')
+        page = await context.new_page()
+        # 打开指定页面
+        await page.goto(url)
+
+        current_url = page.url
+        while True:
+            # 等待 URL 变化
+            await page.wait_for_url(lambda url: url != current_url, timeout=10000000)
+            current_url = page.url
+            await notice_ti(page)
+            #await print(&quot;已到达新页面&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    url=input(&quot;请输入网址：&quot;)
+    asyncio.run(main())
+
+
+</code></pre>
+
+                </div>
+            </article>
+        </div>
+
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://juiceright.xyz/post/nuWhdRSyql/" class="post-title gt-a-link">
+                    第二篇SCI！！！
+                </a>
+            </div>
+        
+
+        
+
+        
+
+        
+
+        <div class="site-footer gt-c-content-color-first">
+    <div class="slogan gt-c-content-color-first"></div>
+    <div class="social-container">
+        
+            
+                <a href="https://github.com/cywd123" target="_blank">
+                    <i class="fab fa-github gt-c-content-color-first"></i>
+                </a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+                <a href="https://orcid.org/0009-0008-3654-4997" target="_blank">
+                    <i class="fab fa-orcid gt-c-content-color-first"></i>
+                </a>
+            
+        
+    </div>
+    <div class="footer-info">
+        <script src="https://cdn.bootcdn.net/ajax/libs/instantclick/3.1.0/instantclick.min.js" data-no-instant></script>
+<script data-no-instant>InstantClick.init('mouseover');</script>
+    </div>
+    <div>
+        Theme <a href="https://github.com/imhanjie/gridea-theme-pure" target="_blank">Pure</a>, Powered by <a
+                href="https://gridea.dev" target="_blank">Gridea</a> | <a href="https://juiceright.xyz/atom.xml" target="_blank">RSS</a>
+    </div>
+</div>
+
+<script>
+  hljs.highlightAll()
+</script>
+
+    </div>
+</div>
+</body>
+</html>
