@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://juiceright.xyz</id>
+    <title>Juiceright</title>
+    <updated>2025-11-26T03:13:28.630Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://juiceright.xyz"/>
+    <link rel="self" href="https://juiceright.xyz/atom.xml"/>
+    <subtitle>一个医学生的小破站</subtitle>
+    <logo>https://juiceright.xyz/images/avatar.png</logo>
+    <icon>https://juiceright.xyz/favicon.ico</icon>
+    <rights>All rights reserved 2025, Juiceright</rights>
+    <entry>
+        <title type="html"><![CDATA[tesseract.JS OCR]]></title>
+        <id>https://juiceright.xyz/post/25SRXbxLNp/</id>
+        <link href="https://juiceright.xyz/post/25SRXbxLNp/">
+        </link>
+        <updated>2025-11-26T03:11:27.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[前端JS内容加密]]></title>
+        <id>https://juiceright.xyz/post/A-U98Ujs54/</id>
+        <link href="https://juiceright.xyz/post/A-U98Ujs54/">
+        </link>
+        <updated>2025-11-25T15:15:45.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[极简AES无盐加密]]></title>
+        <id>https://juiceright.xyz/post/YOmLsybO06/</id>
+        <link href="https://juiceright.xyz/post/YOmLsybO06/">
+        </link>
+        <updated>2025-11-25T14:58:25.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Doro！！]]></title>
+        <id>https://juiceright.xyz/post/7Sfq5Ao4D_/</id>
+        <link href="https://juiceright.xyz/post/7Sfq5Ao4D_/">
+        </link>
+        <updated>2025-11-25T13:21:57.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[python将PDF每一页导出为600DPI的超清JPG]]></title>
+        <id>https://juiceright.xyz/post/9yFLKRB4Jw/</id>
+        <link href="https://juiceright.xyz/post/9yFLKRB4Jw/">
+        </link>
+        <updated>2025-10-03T12:26:53.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ppt word快速转换PDF小脚本]]></title>
+        <id>https://juiceright.xyz/post/VhuLVQwMJM/</id>
+        <link href="https://juiceright.xyz/post/VhuLVQwMJM/">
+        </link>
+        <updated>2025-08-31T16:11:31.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[考科目三（偶遇车祸版）]]></title>
+        <id>https://juiceright.xyz/post/izLK01iOiy/</id>
+        <link href="https://juiceright.xyz/post/izLK01iOiy/">
+        </link>
+        <updated>2025-07-19T11:18:18.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[？？？]]></title>
+        <id>https://juiceright.xyz/post/ihW34o3yzc/</id>
+        <link href="https://juiceright.xyz/post/ihW34o3yzc/">
+        </link>
+        <updated>2025-05-08T11:13:07.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[查看WebVPN的twfid]]></title>
+        <id>https://juiceright.xyz/post/lGBTFf1szi/</id>
+        <link href="https://juiceright.xyz/post/lGBTFf1szi/">
+        </link>
+        <updated>2025-04-18T08:37:12.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[将问卷星每一道题目单独截图]]></title>
+        <id>https://juiceright.xyz/post/DvVa_JuP1_/</id>
+        <link href="https://juiceright.xyz/post/DvVa_JuP1_/">
+        </link>
+        <updated>2025-04-11T12:44:56.000Z</updated>
+    </entry>
+</feed>
