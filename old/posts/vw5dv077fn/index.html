@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>snakemake流程——SMR&#43;MR&#43;MAGMA分析 | Juiceright</title>
+<meta name="keywords" content="编程, 生信, old">
+<meta name="description" content="
+# 定义染色体列表，包含 1 到 22 号染色体
+chromosomes = list(range(1, 23))
+
+# 获取组学暴露数据文件的名称
+(MRname,) = glob_wildcards(&#34;../dataset/组学暴露数据/{file}.rds&#34;)
+
+# 获取 SMR 数据文件的名称
+GTExname = glob_wildcards(&#34;../dataset/SMR/{file}.besd&#34;).file
+
+# 获取 GWAS 数据文件的名称
+GWASfilename = glob_wildcards(&#34;../../SMR/input/{file}&#34;).file
+
+# 定义 all 规则，用于指定整个流程的最终输出文件
+rule all:
+    input:
+        expand(&#34;result/GTEx的{GTEx}之{file}.smr&#34;, GTEx=GTExname, file=GWASfilename),
+        #expand(&#34;result/MR的{file}之{MR}.csv&#34;, MR=MRname, file=GWASfilename),
+        expand(&#34;result/{file}.gsa.out.txt&#34;,file=GWASfilename),
+        #expand(&#34;result/Gene_disease_association/{file}.fusion_twas.txt&#34;,file=GWASfilename),  #TWAS 若全部49个组织非常慢10小时
+        
+
+# 定义 trans 规则，用于将输入文件转换为输出文件
+rule trans:   #OK
+    input:
+        # 输入文件路径
+        &#34;../../SMR/input/{file}&#34;
+    output:
+        # 输出文件路径
+        &#34;tmp/{file}.ma&#34;,
+        &#34;tmp/{file}.sumstats.gz&#34;,
+        &#34;tmp/{file}.mendelR.txt&#34;
+    # 规则执行时使用的线程数
+    threads: 6
+    shell:
+        # 调用 R 脚本进行文件转换
+        &#34;r -f tools/trans.R --args {wildcards.file}&#34;    
+
+rule run_GTEx:  #OK
+    input:
+        &#34;tmp/{file}.ma&#34;,
+    output:
+        &#34;result/GTEx的{GTEx}之{file}.smr&#34;
+    threads: 5
+    shell:
+        &#34;tools\\smr.exe --gwas-summary  {input}  --out  result/GTEx的{wildcards.GTEx}之{wildcards.file}  --bfile ../dataset/EUR --beqtl-summary ../dataset/SMR/{wildcards.GTEx} --maf 0.01 --thread-num 18 --diff-freq-prop 1.000000&#34;
+
+rule run_MAGMA:  #OK
+    input:
+        &#34;tmp/{file}.ma&#34;,
+    output:
+        &#34;result/{file}.gsa.out.txt&#34;,
+    shell:
+        &#34;r -f tools/run_MAGMA.R --args {wildcards.file}&#34;
+        
+rule run_MR:  #OK
+    input:
+        &#34;tmp/{file}.ma&#34;,
+    output:
+        &#34;result/MR的{file}之{MR}.csv&#34;,
+    threads: 2
+    shell:
+        &#34;r -f tools/run_MR.R --args {wildcards.file} {wildcards.MR}&#34;
+">
+<meta name="author" content="">
+<link rel="canonical" href="https://juiceright.xyz/old/posts/vw5dv077fn/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://juiceright.xyz/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://juiceright.xyz/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://juiceright.xyz/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://juiceright.xyz/apple-touch-icon.png">
+<link rel="mask-icon" href="https://juiceright.xyz/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://juiceright.xyz/old/posts/vw5dv077fn/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://juiceright.xyz/old/posts/vw5dv077fn/">
+  <meta property="og:site_name" content="Juiceright">
+  <meta property="og:title" content="snakemake流程——SMR&#43;MR&#43;MAGMA分析">
+  <meta property="og:description" content=" # 定义染色体列表，包含 1 到 22 号染色体 chromosomes = list(range(1, 23)) # 获取组学暴露数据文件的名称 (MRname,) = glob_wildcards(&#34;../dataset/组学暴露数据/{file}.rds&#34;) # 获取 SMR 数据文件的名称 GTExname = glob_wildcards(&#34;../dataset/SMR/{file}.besd&#34;).file # 获取 GWAS 数据文件的名称 GWASfilename = glob_wildcards(&#34;../../SMR/input/{file}&#34;).file # 定义 all 规则，用于指定整个流程的最终输出文件 rule all: input: expand(&#34;result/GTEx的{GTEx}之{file}.smr&#34;, GTEx=GTExname, file=GWASfilename), #expand(&#34;result/MR的{file}之{MR}.csv&#34;, MR=MRname, file=GWASfilename), expand(&#34;result/{file}.gsa.out.txt&#34;,file=GWASfilename), #expand(&#34;result/Gene_disease_association/{file}.fusion_twas.txt&#34;,file=GWASfilename), #TWAS 若全部49个组织非常慢10小时 # 定义 trans 规则，用于将输入文件转换为输出文件 rule trans: #OK input: # 输入文件路径 &#34;../../SMR/input/{file}&#34; output: # 输出文件路径 &#34;tmp/{file}.ma&#34;, &#34;tmp/{file}.sumstats.gz&#34;, &#34;tmp/{file}.mendelR.txt&#34; # 规则执行时使用的线程数 threads: 6 shell: # 调用 R 脚本进行文件转换 &#34;r -f tools/trans.R --args {wildcards.file}&#34; rule run_GTEx: #OK input: &#34;tmp/{file}.ma&#34;, output: &#34;result/GTEx的{GTEx}之{file}.smr&#34; threads: 5 shell: &#34;tools\\smr.exe --gwas-summary {input} --out result/GTEx的{wildcards.GTEx}之{wildcards.file} --bfile ../dataset/EUR --beqtl-summary ../dataset/SMR/{wildcards.GTEx} --maf 0.01 --thread-num 18 --diff-freq-prop 1.000000&#34; rule run_MAGMA: #OK input: &#34;tmp/{file}.ma&#34;, output: &#34;result/{file}.gsa.out.txt&#34;, shell: &#34;r -f tools/run_MAGMA.R --args {wildcards.file}&#34; rule run_MR: #OK input: &#34;tmp/{file}.ma&#34;, output: &#34;result/MR的{file}之{MR}.csv&#34;, threads: 2 shell: &#34;r -f tools/run_MR.R --args {wildcards.file} {wildcards.MR}&#34; ">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="old">
+    <meta property="article:published_time" content="2025-03-14T20:46:52+00:00">
+    <meta property="article:modified_time" content="2025-12-04T10:18:33+00:00">
+    <meta property="article:tag" content="编程">
+    <meta property="article:tag" content="生信">
+    <meta property="article:tag" content="Old">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="snakemake流程——SMR&#43;MR&#43;MAGMA分析">
+<meta name="twitter:description" content="
+# 定义染色体列表，包含 1 到 22 号染色体
+chromosomes = list(range(1, 23))
+
+# 获取组学暴露数据文件的名称
+(MRname,) = glob_wildcards(&#34;../dataset/组学暴露数据/{file}.rds&#34;)
+
+# 获取 SMR 数据文件的名称
+GTExname = glob_wildcards(&#34;../dataset/SMR/{file}.besd&#34;).file
+
+# 获取 GWAS 数据文件的名称
+GWASfilename = glob_wildcards(&#34;../../SMR/input/{file}&#34;).file
+
+# 定义 all 规则，用于指定整个流程的最终输出文件
+rule all:
+    input:
+        expand(&#34;result/GTEx的{GTEx}之{file}.smr&#34;, GTEx=GTExname, file=GWASfilename),
+        #expand(&#34;result/MR的{file}之{MR}.csv&#34;, MR=MRname, file=GWASfilename),
+        expand(&#34;result/{file}.gsa.out.txt&#34;,file=GWASfilename),
+        #expand(&#34;result/Gene_disease_association/{file}.fusion_twas.txt&#34;,file=GWASfilename),  #TWAS 若全部49个组织非常慢10小时
+        
+
+# 定义 trans 规则，用于将输入文件转换为输出文件
+rule trans:   #OK
+    input:
+        # 输入文件路径
+        &#34;../../SMR/input/{file}&#34;
+    output:
+        # 输出文件路径
+        &#34;tmp/{file}.ma&#34;,
+        &#34;tmp/{file}.sumstats.gz&#34;,
+        &#34;tmp/{file}.mendelR.txt&#34;
+    # 规则执行时使用的线程数
+    threads: 6
+    shell:
+        # 调用 R 脚本进行文件转换
+        &#34;r -f tools/trans.R --args {wildcards.file}&#34;    
+
+rule run_GTEx:  #OK
+    input:
+        &#34;tmp/{file}.ma&#34;,
+    output:
+        &#34;result/GTEx的{GTEx}之{file}.smr&#34;
+    threads: 5
+    shell:
+        &#34;tools\\smr.exe --gwas-summary  {input}  --out  result/GTEx的{wildcards.GTEx}之{wildcards.file}  --bfile ../dataset/EUR --beqtl-summary ../dataset/SMR/{wildcards.GTEx} --maf 0.01 --thread-num 18 --diff-freq-prop 1.000000&#34;
+
+rule run_MAGMA:  #OK
+    input:
+        &#34;tmp/{file}.ma&#34;,
+    output:
+        &#34;result/{file}.gsa.out.txt&#34;,
+    shell:
+        &#34;r -f tools/run_MAGMA.R --args {wildcards.file}&#34;
+        
+rule run_MR:  #OK
+    input:
+        &#34;tmp/{file}.ma&#34;,
+    output:
+        &#34;result/MR的{file}之{MR}.csv&#34;,
+    threads: 2
+    shell:
+        &#34;r -f tools/run_MR.R --args {wildcards.file} {wildcards.MR}&#34;
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Olds",
+      "item": "https://juiceright.xyz/old/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "snakemake流程——SMR+MR+MAGMA分析",
+      "item": "https://juiceright.xyz/old/posts/vw5dv077fn/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "snakemake流程——SMR+MR+MAGMA分析",
+  "name": "snakemake流程——SMR\u002bMR\u002bMAGMA分析",
+  "description": " # 定义染色体列表，包含 1 到 22 号染色体 chromosomes = list(range(1, 23)) # 获取组学暴露数据文件的名称 (MRname,) = glob_wildcards(\u0026#34;../dataset/组学暴露数据/{file}.rds\u0026#34;) # 获取 SMR 数据文件的名称 GTExname = glob_wildcards(\u0026#34;../dataset/SMR/{file}.besd\u0026#34;).file # 获取 GWAS 数据文件的名称 GWASfilename = glob_wildcards(\u0026#34;../../SMR/input/{file}\u0026#34;).file # 定义 all 规则，用于指定整个流程的最终输出文件 rule all: input: expand(\u0026#34;result/GTEx的{GTEx}之{file}.smr\u0026#34;, GTEx=GTExname, file=GWASfilename), #expand(\u0026#34;result/MR的{file}之{MR}.csv\u0026#34;, MR=MRname, file=GWASfilename), expand(\u0026#34;result/{file}.gsa.out.txt\u0026#34;,file=GWASfilename), #expand(\u0026#34;result/Gene_disease_association/{file}.fusion_twas.txt\u0026#34;,file=GWASfilename), #TWAS 若全部49个组织非常慢10小时 # 定义 trans 规则，用于将输入文件转换为输出文件 rule trans: #OK input: # 输入文件路径 \u0026#34;../../SMR/input/{file}\u0026#34; output: # 输出文件路径 \u0026#34;tmp/{file}.ma\u0026#34;, \u0026#34;tmp/{file}.sumstats.gz\u0026#34;, \u0026#34;tmp/{file}.mendelR.txt\u0026#34; # 规则执行时使用的线程数 threads: 6 shell: # 调用 R 脚本进行文件转换 \u0026#34;r -f tools/trans.R --args {wildcards.file}\u0026#34; rule run_GTEx: #OK input: \u0026#34;tmp/{file}.ma\u0026#34;, output: \u0026#34;result/GTEx的{GTEx}之{file}.smr\u0026#34; threads: 5 shell: \u0026#34;tools\\\\smr.exe --gwas-summary {input} --out result/GTEx的{wildcards.GTEx}之{wildcards.file} --bfile ../dataset/EUR --beqtl-summary ../dataset/SMR/{wildcards.GTEx} --maf 0.01 --thread-num 18 --diff-freq-prop 1.000000\u0026#34; rule run_MAGMA: #OK input: \u0026#34;tmp/{file}.ma\u0026#34;, output: \u0026#34;result/{file}.gsa.out.txt\u0026#34;, shell: \u0026#34;r -f tools/run_MAGMA.R --args {wildcards.file}\u0026#34; rule run_MR: #OK input: \u0026#34;tmp/{file}.ma\u0026#34;, output: \u0026#34;result/MR的{file}之{MR}.csv\u0026#34;, threads: 2 shell: \u0026#34;r -f tools/run_MR.R --args {wildcards.file} {wildcards.MR}\u0026#34; ",
+  "keywords": [
+    "编程", "生信", "old"
+  ],
+  "articleBody": " # 定义染色体列表，包含 1 到 22 号染色体 chromosomes = list(range(1, 23)) # 获取组学暴露数据文件的名称 (MRname,) = glob_wildcards(\"../dataset/组学暴露数据/{file}.rds\") # 获取 SMR 数据文件的名称 GTExname = glob_wildcards(\"../dataset/SMR/{file}.besd\").file # 获取 GWAS 数据文件的名称 GWASfilename = glob_wildcards(\"../../SMR/input/{file}\").file # 定义 all 规则，用于指定整个流程的最终输出文件 rule all: input: expand(\"result/GTEx的{GTEx}之{file}.smr\", GTEx=GTExname, file=GWASfilename), #expand(\"result/MR的{file}之{MR}.csv\", MR=MRname, file=GWASfilename), expand(\"result/{file}.gsa.out.txt\",file=GWASfilename), #expand(\"result/Gene_disease_association/{file}.fusion_twas.txt\",file=GWASfilename), #TWAS 若全部49个组织非常慢10小时 # 定义 trans 规则，用于将输入文件转换为输出文件 rule trans: #OK input: # 输入文件路径 \"../../SMR/input/{file}\" output: # 输出文件路径 \"tmp/{file}.ma\", \"tmp/{file}.sumstats.gz\", \"tmp/{file}.mendelR.txt\" # 规则执行时使用的线程数 threads: 6 shell: # 调用 R 脚本进行文件转换 \"r -f tools/trans.R --args {wildcards.file}\" rule run_GTEx: #OK input: \"tmp/{file}.ma\", output: \"result/GTEx的{GTEx}之{file}.smr\" threads: 5 shell: \"tools\\\\smr.exe --gwas-summary {input} --out result/GTEx的{wildcards.GTEx}之{wildcards.file} --bfile ../dataset/EUR --beqtl-summary ../dataset/SMR/{wildcards.GTEx} --maf 0.01 --thread-num 18 --diff-freq-prop 1.000000\" rule run_MAGMA: #OK input: \"tmp/{file}.ma\", output: \"result/{file}.gsa.out.txt\", shell: \"r -f tools/run_MAGMA.R --args {wildcards.file}\" rule run_MR: #OK input: \"tmp/{file}.ma\", output: \"result/MR的{file}之{MR}.csv\", threads: 2 shell: \"r -f tools/run_MR.R --args {wildcards.file} {wildcards.MR}\" ",
+  "wordCount" : "131",
+  "inLanguage": "en",
+  "datePublished": "2025-03-14T20:46:52Z",
+  "dateModified": "2025-12-04T10:18:33.114Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://juiceright.xyz/old/posts/vw5dv077fn/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Juiceright",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://juiceright.xyz/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://juiceright.xyz/" accesskey="h" title="Juiceright (Alt + H)">Juiceright</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://juiceright.xyz/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/archives/" title="Archives">
+                    <span>Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      snakemake流程——SMR&#43;MR&#43;MAGMA分析
+    </h1>
+    <div class="post-meta"><span title='2025-03-14 20:46:52 +0000 UTC'>March 14, 2025</span>&nbsp;·&nbsp;<span>1 min</span>
+
+</div>
+  </header> 
+  <div class="post-content"><pre tabindex="0"><code>
+# 定义染色体列表，包含 1 到 22 号染色体
+chromosomes = list(range(1, 23))
+
+# 获取组学暴露数据文件的名称
+(MRname,) = glob_wildcards(&#34;../dataset/组学暴露数据/{file}.rds&#34;)
+
+# 获取 SMR 数据文件的名称
+GTExname = glob_wildcards(&#34;../dataset/SMR/{file}.besd&#34;).file
+
+# 获取 GWAS 数据文件的名称
+GWASfilename = glob_wildcards(&#34;../../SMR/input/{file}&#34;).file
+
+# 定义 all 规则，用于指定整个流程的最终输出文件
+rule all:
+    input:
+        expand(&#34;result/GTEx的{GTEx}之{file}.smr&#34;, GTEx=GTExname, file=GWASfilename),
+        #expand(&#34;result/MR的{file}之{MR}.csv&#34;, MR=MRname, file=GWASfilename),
+        expand(&#34;result/{file}.gsa.out.txt&#34;,file=GWASfilename),
+        #expand(&#34;result/Gene_disease_association/{file}.fusion_twas.txt&#34;,file=GWASfilename),  #TWAS 若全部49个组织非常慢10小时
+        
+
+# 定义 trans 规则，用于将输入文件转换为输出文件
+rule trans:   #OK
+    input:
+        # 输入文件路径
+        &#34;../../SMR/input/{file}&#34;
+    output:
+        # 输出文件路径
+        &#34;tmp/{file}.ma&#34;,
+        &#34;tmp/{file}.sumstats.gz&#34;,
+        &#34;tmp/{file}.mendelR.txt&#34;
+    # 规则执行时使用的线程数
+    threads: 6
+    shell:
+        # 调用 R 脚本进行文件转换
+        &#34;r -f tools/trans.R --args {wildcards.file}&#34;    
+
+rule run_GTEx:  #OK
+    input:
+        &#34;tmp/{file}.ma&#34;,
+    output:
+        &#34;result/GTEx的{GTEx}之{file}.smr&#34;
+    threads: 5
+    shell:
+        &#34;tools\\smr.exe --gwas-summary  {input}  --out  result/GTEx的{wildcards.GTEx}之{wildcards.file}  --bfile ../dataset/EUR --beqtl-summary ../dataset/SMR/{wildcards.GTEx} --maf 0.01 --thread-num 18 --diff-freq-prop 1.000000&#34;
+
+rule run_MAGMA:  #OK
+    input:
+        &#34;tmp/{file}.ma&#34;,
+    output:
+        &#34;result/{file}.gsa.out.txt&#34;,
+    shell:
+        &#34;r -f tools/run_MAGMA.R --args {wildcards.file}&#34;
+        
+rule run_MR:  #OK
+    input:
+        &#34;tmp/{file}.ma&#34;,
+    output:
+        &#34;result/MR的{file}之{MR}.csv&#34;,
+    threads: 2
+    shell:
+        &#34;r -f tools/run_MR.R --args {wildcards.file} {wildcards.MR}&#34;
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://juiceright.xyz/tags/%E7%BC%96%E7%A8%8B/">编程</a></li>
+      <li><a href="https://juiceright.xyz/tags/%E7%94%9F%E4%BF%A1/">生信</a></li>
+      <li><a href="https://juiceright.xyz/tags/old/">Old</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://juiceright.xyz/">Juiceright</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

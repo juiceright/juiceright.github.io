@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on Juiceright</title>
+    <link>https://juiceright.xyz/posts/</link>
+    <description>Recent content in Posts on Juiceright</description>
+    <generator>Hugo -- 0.152.2</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 04 Dec 2025 10:10:31 +0000</lastBuildDate>
+    <atom:link href="https://juiceright.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>大四期末20250721（转载学长资料）</title>
+      <link>https://juiceright.xyz/posts/2025/%E5%A4%A7%E5%9B%9B%E6%9C%9F%E6%9C%AB20250721%E8%BD%AC%E8%BD%BD%E5%AD%A6%E9%95%BF%E8%B5%84%E6%96%99/</link>
+      <pubDate>Thu, 04 Dec 2025 01:20:50 +0000</pubDate>
+      <guid>https://juiceright.xyz/posts/2025/%E5%A4%A7%E5%9B%9B%E6%9C%9F%E6%9C%AB20250721%E8%BD%AC%E8%BD%BD%E5%AD%A6%E9%95%BF%E8%B5%84%E6%96%99/</guid>
+      <description>&lt;h2 id=&#34;转载学长资料&#34;&gt;转载学长资料&lt;/h2&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E5%A4%A7%E5%9B%9B%E6%9C%9F%E6%9C%AB20250721%EF%BC%88%E8%BD%AC%E8%BD%BD%E5%AD%A6%E9%95%BF%E8%B5%84%E6%96%99%EF%BC%89/%E5%A4%A7%E5%9B%9B%E6%9C%9F%E6%9C%AB20250721%EF%BC%88%E8%BD%AC%E8%BD%BD%E5%AD%A6%E9%95%BF%E8%B5%84%E6%96%99%EF%BC%89-20251204181030050.pdf&#34;&gt;&lt;/p&gt;
+&lt;p&gt;下载&lt;a href=&#34;https://juiceright.xyz/images/202512/%E5%A4%A7%E5%9B%9B%E6%9C%9F%E6%9C%AB20250721%EF%BC%88%E8%BD%AC%E8%BD%BD%E5%AD%A6%E9%95%BF%E8%B5%84%E6%96%99%EF%BC%89/%E5%A4%A7%E5%9B%9B%E6%9C%9F%E6%9C%AB20250721%EF%BC%88%E8%BD%AC%E8%BD%BD%E5%AD%A6%E9%95%BF%E8%B5%84%E6%96%99%EF%BC%89-20251204181030050.pdf&#34;&gt;大四期末20250721.pdf&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>听歌2</title>
+      <link>https://juiceright.xyz/posts/2025/%E5%90%AC%E6%AD%8C2/</link>
+      <pubDate>Wed, 03 Dec 2025 02:30:56 +0000</pubDate>
+      <guid>https://juiceright.xyz/posts/2025/%E5%90%AC%E6%AD%8C2/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E5%90%AC%E6%AD%8C2/%E5%90%AC%E6%AD%8C2-20251204181030082.jpg&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Anki本地服务器</title>
+      <link>https://juiceright.xyz/posts/2025/anki%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Wed, 03 Dec 2025 00:11:03 +0000</pubDate>
+      <guid>https://juiceright.xyz/posts/2025/anki%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <description>&lt;h1 id=&#34;anki本地服务器&#34;&gt;Anki本地服务器&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; off
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;setlocal&lt;/span&gt; enabledelayedexpansion
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;:&lt;span style=&#34;color:#75715e&#34;&gt;: --- 配置区域 ---&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SYNC_USER1=admin:1234&amp;#34;&lt;/span&gt;    :: 格式: “用户名:密码”
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SYNC_HOST=&amp;#34;&lt;/span&gt;                   :: 服务器局域网IP，留空则绑定所有接口
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SYNC_PORT=8080&amp;#34;&lt;/span&gt;               :: 监听端口
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SYNC_BASE=F:\SoftwareData\AnkiServer&amp;#34;&lt;/span&gt;  :: 数据存储目录
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;PROCESS_NAME=python.exe&amp;#34;&lt;/span&gt;      :: 进程名称
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;PROCESS_ARG=anki.syncserver&amp;#34;&lt;/span&gt;  :: 进程特征参数
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;:&lt;span style=&#34;color:#75715e&#34;&gt;: 显示配置信息&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; ==============================================
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; Anki 同步服务器配置
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; ==============================================
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 用户配置:    !SYNC_USER1!
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 服务器地址:  !SYNC_HOST!
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 监听端口:    !SYNC_PORT!
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 数据存储目录:!SYNC_BASE!
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; ==============================================
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;:&lt;span style=&#34;color:#75715e&#34;&gt;: 检测服务器状态：同时检查端口和进程信息&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SERVER_PID=&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;/f&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;tokens=5&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;%%&lt;/span&gt;a &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;netstat -ano ^| findstr /i &amp;#34;:!SYNC_PORT! LISTENING&amp;#34;&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;do&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    :&lt;span style=&#34;color:#75715e&#34;&gt;: 检查该PID是否为python进程且包含指定参数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;/f&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;delims=&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;%%&lt;/span&gt;b &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;wmic process where &amp;#34;ProcessId=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;%%&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;a&amp;#34; get CommandLine /value ^| findstr /i &amp;#34;!PROCESS_NAME! !PROCESS_ARG!&amp;#34;&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;do&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SERVER_PID=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;%%&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;a&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;:&lt;span style=&#34;color:#75715e&#34;&gt;: 如果找到匹配的进程PID&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;defined&lt;/span&gt; SERVER_PID (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 检测到Anki服务器已在运行（PID:!SERVER_PID!，端口:!SYNC_PORT!）
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 请选择操作:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt;  按下 C 键并回车 - 关闭服务器
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt;  按下其他键并回车 - 取消操作
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    :&lt;span style=&#34;color:#75715e&#34;&gt;: 读取用户输入&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;/p&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;CHOICE=请输入选择: &amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    :&lt;span style=&#34;color:#75715e&#34;&gt;: 判断用户输入是否为c或C&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;/i&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;!CHOICE!&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;equ&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;C&amp;#34;&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 正在关闭服务器...
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        :&lt;span style=&#34;color:#75715e&#34;&gt;: 杀死找到的服务器进程&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        taskkill /F /PID !SERVER_PID! &amp;gt;nul &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&amp;gt;&amp;amp;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; !errorlevel! &lt;span style=&#34;color:#f92672&#34;&gt;equ&lt;/span&gt; 0 (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 服务器已成功关闭（PID:!SERVER_PID!）
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ) &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 关闭服务器失败，请手动结束进程（PID:!SERVER_PID!）
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ) &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 已取消关闭操作，服务器继续运行
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;pause&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;goto&lt;/span&gt; end
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;:&lt;span style=&#34;color:#75715e&#34;&gt;: 启动服务器（未运行时）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 未检测到运行中的Anki服务器
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 正在启动 Anki 同步服务器...
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 服务器将在后台运行，关闭此窗口不影响服务
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; ==============================================
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;:&lt;span style=&#34;color:#75715e&#34;&gt;: 使用VBScript创建隐藏窗口启动服务器&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; Set objShell = CreateObject(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;WScript.Shell&amp;#34;&lt;/span&gt;) &amp;gt; temp.vbs
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; objShell.Run &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;cmd /c python -m anki.syncserver&amp;#34;&lt;/span&gt;, 0, False &amp;gt;&amp;gt; temp.vbs
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cscript //nologo temp.vbs
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;del&lt;/span&gt; temp.vbs
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 服务器已在后台启动（端口:!SYNC_PORT!）
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 可以关闭此窗口
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 再次运行本脚本将提供关闭选项
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; ==============================================
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 3秒后自动关闭此窗口...
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;timeout /t 3 /nobreak &amp;gt;nul
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;goto&lt;/span&gt; end
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;:end
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;endlocal&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+  </channel>
+</rss>
