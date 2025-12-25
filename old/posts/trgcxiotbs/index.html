@@ -487,7 +487,27 @@ if __name__ == &#34;__main__&#34;:
       <li><a href="https://juiceright.xyz/tags/%E7%88%AC%E8%99%AB/">爬虫</a></li>
       <li><a href="https://juiceright.xyz/tags/old/">Old</a></li>
     </ul>
-  </footer>
+  </footer><div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: 'Ov23liuWJuk8S1oC4VRp',
+    clientSecret: 'dd9a460fc89c99acdf580410cffacf5f1e9aa032',
+    repo: 'juiceright.github.io',
+    owner: 'juiceright',
+    admin: ['juiceright'],
+    id: location.pathname, 
+    distractionFreeMode: false 
+  });
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+      return;
+    }
+    gitalk.render('gitalk-container');
+  })();
+</script>
 </article>
     </main>
     

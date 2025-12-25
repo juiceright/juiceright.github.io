@@ -218,7 +218,27 @@
       <li><a href="https://juiceright.xyz/tags/%E6%9C%9F%E6%9C%AB/">期末</a></li>
       <li><a href="https://juiceright.xyz/tags/%E5%8C%BB%E5%AD%A6%E8%B5%84%E6%96%99/">医学资料</a></li>
     </ul>
-  </footer>
+  </footer><div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: 'Ov23liuWJuk8S1oC4VRp',
+    clientSecret: 'dd9a460fc89c99acdf580410cffacf5f1e9aa032',
+    repo: 'juiceright.github.io',
+    owner: 'juiceright',
+    admin: ['juiceright'],
+    id: location.pathname, 
+    distractionFreeMode: false 
+  });
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+      return;
+    }
+    gitalk.render('gitalk-container');
+  })();
+</script>
 </article>
     </main>
     
