@@ -389,7 +389,7 @@ with sync_playwright() as playwright:
     repo: 'juiceright.github.io',
     owner: 'juiceright',
     admin: ['juiceright'],
-    id: location.pathname, 
+    id: decodeURI(location.pathname), 
     distractionFreeMode: true 
   });
   (function() {

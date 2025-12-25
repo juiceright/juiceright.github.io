@@ -256,7 +256,7 @@ Test set labels: t10k-labels-idx1-ubyte.gz (5KB, 解压后 10 KB, 包含 10,000 
     repo: 'juiceright.github.io',
     owner: 'juiceright',
     admin: ['juiceright'],
-    id: location.pathname, 
+    id: decodeURI(location.pathname), 
     distractionFreeMode: true 
   });
   (function() {
