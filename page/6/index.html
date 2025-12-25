@@ -12,9 +12,9 @@
 <meta name="author" content="">
 <link rel="canonical" href="https://juiceright.xyz/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://juiceright.xyz/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://juiceright.xyz/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://juiceright.xyz/favicon-32x32.png">
+<link rel="icon" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a?s=16">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a?s=32">
 <link rel="apple-touch-icon" href="https://juiceright.xyz/apple-touch-icon.png">
 <link rel="mask-icon" href="https://juiceright.xyz/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
@@ -89,7 +89,7 @@
   "name": "Juiceright",
   "url": "https://juiceright.xyz/",
   "description": "",
-  "logo": "https://juiceright.xyz/favicon.ico",
+  "logo": "https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a",
   "sameAs": [
       
   ]
@@ -152,158 +152,6 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">GO和KEGG分析
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>GO和KEGG分析 功能富集分析对于解释转录组学数据至关重要。转录组鉴定了差异表达基因后，通常会进行GO或KEGG富集分析，识别这些差异基因的功能或参与调控的通路，来说明关键基因表达上调/或下调后可能会导致哪功能或通路被激活/或抑制，进而与表型进行联系。
-(其实就是用DEG结果的进行的分析)
-为什么要做GO和KEGG分析 经过差异表达分析，我们得到了在对照组与实验组中差异表达的基因，说明改变的条件对这些基因的表达产生了影响，但是这样还不够，我们希望进一步知道具体是对哪些生物学功能/通路产生了影响，于是需要进行GO分析。
-GO、KEGG结果解读 富集分析，看完这篇就够
-别搜啦！关于富集分析你想知道的这里都有！
-使用R包clusterProfiler进行GO/KEGG富集分析（有参/无参）
-输入数据格式 一个表格，分别是Gene_Symbol和logFC，如下图所示：
-主要结果图 library(&#34;clusterProfiler&#34;) library(&#34;enrichplot&#34;) library(&#34;ggplot2&#34;) library(&#34;org.Hs.eg.db&#34;) library(&#34;GOplot&#34;) #转换ID rt=read.table(&#34;input.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T) genes=as.vector(rt[,1]) entrezIDs &lt;- mget(genes, org.Hs.egSYMBOL2EG, ifnotfound=NA) #找出基因对应的id entrezIDs &lt;- as.character(entrezIDs) out=cbind(rt,entrezID=entrezIDs) write.table(out,file=&#34;GO-id.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names=F) #输出结果 ####GO分析#### rt=read.table(&#34;GO-id.txt&#34;,sep=&#34;\t&#34;,header=T,check.names=F) rt=rt[is.na(rt[,&#34;entrezID&#34;])==F,] gene=rt$entrezID #GO富集分析 kk &lt;- enrichGO(gene = gene,OrgDb = org.Hs.eg.db, pvalueCutoff =0.05, qvalueCutoff = 0.05,ont=&#34;all&#34;,readable =T) write.table(kk,file=&#34;GO.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names = F) # #可视化 ##条形图 pdf(file=&#34;GO-barplot.pdf&#34;,width = 10,height = 15) barplot(kk, drop = TRUE, showCategory =10,label_format=100,split=&#34;ONTOLOGY&#34;) &#43; facet_grid(ONTOLOGY~., scale=&#39;free&#39;) dev.off() ##气泡图 pdf(file=&#34;GO-bubble.pdf&#34;,width = 10,height = 15) dotplot(kk,showCategory = 10,label_format=100,split=&#34;ONTOLOGY&#34;) &#43; facet_grid(ONTOLOGY~., scale=&#39;free&#39;) dev.off() ##圈图 ego&lt;-read.table(&#34;GO.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T) go=data.frame(Category =&#34;ALL&#34;,ID = ego$ID,Term = ego$Description, Genes = gsub(&#34;/&#34;, &#34;, &#34;, ego$geneID), adj_pval = ego$pvalue) id.fc=rt genelist &lt;- data.frame(ID = id.fc$gene, logFC = id.fc$logFC) row.names(genelist)=genelist[,1] circ &lt;- circle_dat(go, genelist) termNum = 5 #限定term数目 geneNum = nrow(genelist) #限定基因数目可以改为数字 chord &lt;- chord_dat(circ, genelist[1:geneNum,], go$Term[1:termNum]) pdf(file=&#34;GO_circ.pdf&#34;,width = 12,height = 11) GOChord(chord, space = 0.001, #基因之间的间距 gene.order = &#39;logFC&#39;, #按照logFC值对基因排序 gene.space = 0.25, #基因名跟圆圈的相对距离 gene.size = 5, #基因名字体大小 border.size = 0.1, #线条粗细 process.label = 9) #term字体大小 dev.off() ####KEGG#### rt=read.table(&#34;input.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T) #读取文件 genes=as.vector(rt[,1]) entrezIDs &lt;- mget(genes, org.Hs.egSYMBOL2EG, ifnotfound=NA) #找出基因对应的id entrezIDs &lt;- as.character(entrezIDs) out=cbind(rt,entrezID=entrezIDs) write.table(out,file=&#34;KEGG-id.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names=F) #输出结果 rt=read.table(&#34;KEGG-id.txt&#34;,sep=&#34;\t&#34;,header=T,check.names=F) rt=rt[is.na(rt[,&#34;entrezID&#34;])==F,] gene=rt$entrezID #kegg分析 kk &lt;- enrichKEGG(gene = gene,keyType = &#34;kegg&#34;,organism = &#34;hsa&#34;, pvalueCutoff =0.05, qvalueCutoff =0.05, pAdjustMethod = &#34;fdr&#34;) write.table(kk,file=&#34;KEGG.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names = F) #可视化 ##条形图 pdf(file=&#34;KEGG-barplot.pdf&#34;,width = 10,height = 13) barplot(kk, drop = TRUE, showCategory = 15,label_format=100) dev.off() ##气泡图 pdf(file=&#34;KEGG-bubble.pdf&#34;,width = 10,height = 13) dotplot(kk, showCategory = 15,label_format=100) dev.off() #圈图 ego&lt;-read.table(&#34;KEGG.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T) go=data.frame(Category =&#34;ALL&#34;,ID = ego$ID,Term = ego$Description, Genes = gsub(&#34;/&#34;, &#34;, &#34;, ego$geneID), adj_pval = ego$p.adjust) id.fc=rt genelist &lt;- data.frame(ID = id.fc$entrezID, logFC = id.fc$logFC) row.names(genelist)=genelist[,1] row.names(rt)=rt[,3] circ &lt;- circle_dat(go, genelist) termNum = 5 #限定term数目 geneNum = nrow(genelist) #限定基因数目可以改为数字 chord &lt;- chord_dat(circ, genelist[1:geneNum,], go$Term[1:termNum]) sameSample=intersect(row.names(chord), row.names(rt)) rt=rt[sameSample,,drop=F] geneIDs=rt$gene row.names(chord)=geneIDs pdf(file=&#34;KEGG_circ.pdf&#34;,width = 12,height = 11) GOChord(chord, space = 0.001, #基因之间的间距 gene.order = &#39;logFC&#39;, #按照logFC值对基因排序 gene.space = 0.25, #基因名跟圆圈的相对距离 gene.size = 5, #基因名字体大小 border.size = 0.1, #线条粗细 process.label = 9) #term字体大小 dev.off() </p>
-  </div>
-  <footer class="entry-footer"><span title='2023-08-06 18:39:29 +0000 UTC'>August 6, 2023</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to GO和KEGG分析" href="https://juiceright.xyz/old/posts/go%E5%92%8Ckegg%E5%88%86%E6%9E%90/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">孟德尔随机化笔记（四）——药物靶点MR分析
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>用于药物开发与效应预测的药物孟德尔随机化（Drug-MR）,基于靶蛋白的下游产物（biomarker），以靶蛋白编码基因附近的对biomarker有显著效应的SNP（pQTL或者eQTL）作为工具变量，以biomarker浓度作为暴露，以疾病作为结局，进行孟德尔随机化，以验证蛋白靶对于所研究疾病的影响。
-参考资料
-资料建议剔除连锁不平衡： R^2 = 0.60
-下面是分别用easyMR和MendelR包进行的分析代码
-library(easyMR) dat=get_drug_target_data( id = &#34;ieu-b-110&#34;,　#暴露GWAS ID gene_name=&#34;HMGCR&#34;, #药靶蛋白编码基因 kb=100, #基因附近的SNP范围 clump_kb = 100, #clump的范围 clump_local = FALSE, r2=0.3, #clump的r2阈值 pval=0.05, MAF = 0.01, #次等位基因频率 阈值 build = &#34;GRch38&#34;, chr = NULL, pos_start = NULL, pos_end = NULL ) drug_MR( target_gene_data=dat, outcome_id =&#34;finn-b-I9_AF&#34;, #疾病GWAS ID outcome_name=&#34;atrial fibrillation&#34;, inhibitor = FALSE, after_trans_inhibitor = FALSE, pval = 0.05, action = 2, out_type = &#34;binary&#34;, save_path=&#34;e:&#34; ) library(MendelR) mr_common( id_exposure = &#34;ieu-b-110&#34;, #暴露GWAS ID id_outcome = &#34;finn-b-I9_AF&#34;, #疾病GWAS ID p1 = 0.05, p2 = 0.05, write_csv = TRUE, write_ppt = FALSE, method_list = c(&#34;mr_ivw&#34;, &#34;mr_egger_regression&#34;, &#34;mr_weighted_median&#34;, &#34;mr_weighted_mode&#34;), rm_snps = NULL, r2 = 0.3, #clump的r2阈值 kb = 100, #clump的范围 build_version = &#34;hg19&#34;, gene = &#34;HMGCR&#34;, #药靶蛋白编码基因 chr = NULL, pos_start = NULL, pos_end = NULL, eaf_threshold = NULL, run_presso = T, gene_win = 100, #基因附近的SNP范围 NbDistribution = 3000, find_proxy = T, local_clump = F, r2_cal_mode = 1, steiger = T, #是否进行Steiger方向性检验 auto_ivw = T, pop = &#34;EUR&#34;, no_clump = F, out_dir = NULL, exposure_samplesize = NULL, outcome_samplesize = NULL ) </p>
-  </div>
-  <footer class="entry-footer"><span title='2023-08-05 05:13:50 +0000 UTC'>August 5, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 孟德尔随机化笔记（四）——药物靶点MR分析" href="https://juiceright.xyz/old/posts/%E5%AD%9F%E5%BE%B7%E5%B0%94%E9%9A%8F%E6%9C%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">机器学习12种分类模型的性能对比
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>接上回，我们已经知道了机器学习分类的本质，那么接下来就是要介绍机器学习中的分类模型的各种性能了。
-简介 我们将采用12种分类模型，分别是：GaussianNB、MultinomialNB、KNNeighbors、SVC、DecisionTree、RandomForest、GradientBoosting、LGBM、XGB、CatBoost、AdaBoost、MLP，用这些模型对数据集进行训练，然后对测试集进行预测，最后将预测结果与真实结果进行对比，得到各个模型的性能。
-数据集 我们采用以下代码生成随机分类数据：
-x,y = make_classification(n_samples=100000,n_features=3,n_classes=4,n_informative=3,n_redundant=0,random_state=50,n_clusters_per_class=1) x_train,x_test,y_train,y_test = train_test_split(x,y,test_size=0.1) 这里能够生成100000个样本，每个样本有3个特征，4个类别，3个特征是有效特征，0个冗余特征，随机种子为50，每个类别有1个簇。然后我们将数据集分为训练集和测试集，测试集占10%.
-由于每个样本都是一个3维向量，所以我们将数据取前2维数据将数据集可视化，如下图所示：
-评估函数 我们采用准确率(Accuracy)、精确率(Precision)、召回率(Recall)、F1值(F1-score)、R2值(R2-score)，这5个指标来评估模型的性能。
-准确率(Accuracy) 准确率是指分类正确的样本数占总样本数的比例，即：
-$Accuracy = \frac{TP&#43;TN}{TP&#43;TN&#43;FP&#43;FN}$
-其中，TP是真正例，TN是真负例，FP是假正例，FN是假负例。
-精确率(Precision) 精确率是指分类正确的正例数占分类为正例的样本数的比例，即：
-$$ Precision = \frac{TP}{TP&#43;FP} $$ 其中，TP是真正例，FP是假正例。
-召回率(Recall) 召回率是指分类正确的正例数占真正例的比例，即：
-$Recall = \frac{TP}{TP&#43;FN}$
-其中，TP是真正例，FN是假负例。
-F1值(F1-score) F1值是精确率和召回率的调和平均数，即：
-$$ F1 = \frac{2*Precision*Recall}{Precision&#43;Recall} $$ F1值越接近1，表明模型的性能越好。
-R2值(R2-score) R2值是指预测值与真实值的相关系数，即：
-$$ R2 = 1-\frac{\sum_{i=1}^{n}(y_i-\hat{y_i})^2}{\sum_{i=1}^{n}(y_i-\bar{y})^2} $$ 其中，$y_i$是真实值，$\hat{y_i}$是预测值，$\bar{y}$是真实值的均值。
-R2值越接近1，表明模型的性能越好。
-各模型表现 1. GaussianNB 其中GaussianNB的参数priors为None，var_smoothing为1e-09，表明我们没有对先验概率进行设置，而且我们对方差进行了平滑处理。
-2. MultinomialNB 其中MultinomialNB的参数alpha为1.0，fit_prior为True，class_prior为None，表明我们对先验概率进行了设置，而且我们对先验概率进行了平滑处理。
-3. KNNeighbors 其中KNNeighbors的参数n_neighbors为30，表明我们对最近邻的个数为30。
-4. SVC 5. DecisionTree 6. RandomForest ...</p>
-  </div>
-  <footer class="entry-footer"><span title='2023-06-19 22:42:48 +0000 UTC'>June 19, 2023</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to 机器学习12种分类模型的性能对比" href="https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A012%E7%A7%8D%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">机器学习分类的本质
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>机器学习分类的本质 引入 机器学习中，基本的任务可以分为三类：分类、回归和聚类。
-分类和回归的区别在于，分类的输出是离散的，而回归的输出是连续的。聚类的任务是将数据集中的样本分成若干个类别，每个类别称为一个簇，簇内的样本相似度较高，而簇间的样本相似度较低。其中，分类和回归的任务是有监督学习，而聚类的任务是无监督学习。
-分类问题 本次主要介绍分类问题，它属于监督学习的范畴。
-分类的本质是学习一个分类函数，将输入空间映射到输出空间，即：$f: \mathcal{X} \rightarrow \mathcal{Y}$，其中，$\mathcal{X}$是输入空间，$\mathcal{Y}$是输出空间。
-一般来说，输入空间是由特征向量构成的，即：$\mathcal{X} = \mathbb{R}^n$，输出空间是离散的，即：$\mathcal{Y} = {c_1, c_2, \cdots, c_k}$，其中，$c_i$是类别标签。
-特征向量是由特征构成的，就是对样本的描述，是样本的某个属性。
-这里面就可以构建给出两个特征向量：
-（5.1，3.5，1.4，0.2）、（4.9，3，1.4，0.2）
-特征的选择对分类的性能有很大的影响，特征的选择应该具有以下几个特点：
-特征应该能够很好地区分不同类别的样本。
-特征应该具有可解释性，即：特征应该能够很好地解释样本的类别。
-特征应该具有鲁棒性。（泛化能力）
-特征应该具有可扩展性，能够很好地扩展到新的样本。
-特征应该具有可计算性。
-特征应该具有低维性。
-输出空间是离散的，即：$\mathcal{Y} = {c_1, c_2, \cdots, c_k}$，其中，$c_i$是类别标签。
-在我接触的的深度学习分类中，一般将输出空间定义为独热编码（One-Hot Encoding）的形式，即：$\mathcal{Y} = {[1, 0, \cdots, 0], [0, 1, \cdots, 0], \cdots, [0, 0, \cdots, 1]}$，其中，$[1, 0, \cdots, 0]$表示类别$c_1$，$[0, 1, \cdots, 0]$表示类别$c_2$，以此类推。
-独热编码是一种常用的编码方式，它将离散的类别标签转换为离散的向量，其中，向量的维度等于类别的个数，向量的值等于类别的索引。独热编码的好处是，它能够很好地表示类别之间的关系，而且它的值是离散的，不会产生类别之间的大小关系。
-通常机器学习中输出的结果一般不是只有0和1，而是在0~1之间的小数，这个小数表示样本属于某个类别的概率，即：$P(Y=c_i|X)$，其中，$c_i$是类别标签，$X$是特征向量。
-分类的方法 分类的方法主要分为两类：生成方法和判别方法。
-生成方法 生成方法是通过学习联合概率分布$P(X, Y)$来进行分类的，即：$P(Y|X) = \frac{P(X, Y)}{P(X)}$，其中，$P(Y|X)$是后验概率，$P(X)$是先验概率，$P(X, Y)$是联合概率分布。
-朴素贝叶斯 朴素贝叶斯是一种生成方法，它假设特征之间相互独立，即：$P(X|Y) = \prod_{i=1}^n P(x_i|Y)$，其中，$x_i$是特征向量的第$i$个特征。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2023-05-21 18:57:29 +0000 UTC'>May 21, 2023</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to 机器学习分类的本质" href="https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E7%9A%84%E6%9C%AC%E8%B4%A8/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">论文📃你好，论文📃再见。
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>论文📃你好，论文📃再见。
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2023-04-15 09:36:30 +0000 UTC'>April 15, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 论文📃你好，论文📃再见。" href="https://juiceright.xyz/old/posts/%E8%AE%BA%E6%96%87%E4%BD%A0%E5%A5%BD%E8%AE%BA%E6%96%87%E5%86%8D%E8%A7%81/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">【深度学习】手写数字图像识别分类（MNIST数据集）
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>卷积神经网络 MNIST介绍 MNIST 数据集可在 http://yann.lecun.com/exdb/mnist/ 获取, 它包含了四个部分:
-Training set images: train-images-idx3-ubyte.gz (9.9 MB, 解压后 47 MB, 包含 60,000 个样本)
-Training set labels: train-labels-idx1-ubyte.gz (29 KB, 解压后 60 KB, 包含 60,000 个标签)
-Test set images: t10k-images-idx3-ubyte.gz (1.6 MB, 解压后 7.8 MB, 包含 10,000 个样本)
-Test set labels: t10k-labels-idx1-ubyte.gz (5KB, 解压后 10 KB, 包含 10,000 个标签)
-MNIST 数据集来自美国国家标准与技术研究所, National Institute of Standards and Technology (NIST). 训练集 (training set) 由来自 250 个不同人手写的数字构成, 其中 50% 是高中学生, 50% 来自人口普查局 (the Census Bureau) 的工作人员. 测试集(test set) 也是同样比例的手写数字数据.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2023-04-01 20:09:50 +0000 UTC'>April 1, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 【深度学习】手写数字图像识别分类（MNIST数据集）" href="https://juiceright.xyz/old/posts/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB%E5%88%86%E7%B1%BBmnist%E6%95%B0%E6%8D%AE%E9%9B%86/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">【机器学习】四层人工神经网络拟合二元二次函数
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>四层人工神经网络拟合二元二次函数 如果想了解人工神经网络，请认真阅读每个字，字字珠玑。😂
-核心代码:
-、、、、、、、、、、 class Net(nn.Module): def __init__(self): super(Net, self).__init__() self.fc1 = nn.Linear(2, 40) self.fc2 = nn.Linear(40, 40) self.fc3 =nn.Linear(40, 24) self.fc4 =nn.Linear(24, 1) def forward(self,x): return self.fc4(t.relu(self.fc3(t.relu(self.fc2(t.relu(self.fc1(x))))))) def train(epoch,model,opt,lossfn,tu,tc): for i in range(1,epoch&#43;1): tp=model(tu) loss=lossfn(tp,tc) opt.zero_grad() loss.backward() opt.step() if i % 10 == 0 or i == 1: print(&#39;Epoch %d, Loss %f&#39; % (i, float(loss))) return model def f(x,x2): return x**2&#43;x2 PATH = &#34;cyNN.pt&#34; cyNN=t.load(PATH) cyNN.eval() opt=optim.Adam(cyNN.parameters(),lr=1e-7) 、、、、、、、、、、 我们这个模型拟合的函数是：f(x,x2)=x^2&#43;x2
-最最重要的核心调用框架 神经网络解释 这是一个四层人工神经网络，拟合二元二次函数。
-输入层有两个神经元，输出层有一个神经元，中间两层各有40个神经元，最后一层有24个神经元。激活函数使用的是ReLU，优化器使用的是Adam，学习率为1e-7，损失函数使用的是MSELoss。
-输入层：2个神经元 （表示两个自变量） 隐藏层1：40个神经元 隐藏层2：40个神经元 隐藏层3：24个神经元 输出层：1个神经元 （表示一个因变量） 激活函数：ReLU （线性整流函数） 优化器：Adam 学习率：1e-7 损失函数：MSELoss(即均方误差，也就是绝对误差的平方) 结构图 (一目了然这个属于是=。=）
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2023-03-29 17:54:00 +0000 UTC'>March 29, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 【机器学习】四层人工神经网络拟合二元二次函数" href="https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9B%9B%E5%B1%82%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%8B%9F%E5%90%88%E4%BA%8C%E5%85%83%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
     <h2 class="entry-hint-parent">【机器学习】可拟合任意线性函数的小玩意儿
     </h2>
   </header>
@@ -311,7 +159,7 @@ MNIST 数据集来自美国国家标准与技术研究所, National Institute of
     <p>【机器学习】可拟合任意线性函数的小玩意儿 先上完整代码 import torch as t import torch.nn as nn import torch.optim as optim def training_loop(n_epochs, optimizer, model,loss_fn, t_u, t_c): for epoch in range(1, n_epochs &#43; 1): t_p = model(t_u) #计算当前模型的预测值 loss = loss_fn(t_p, t_c) #计算损失函数 optimizer.zero_grad() loss.backward() #回溯累计损失 optimizer.step() if epoch % 50 == 0: print(&#39;Epoch %d, Loss %f&#39; % (epoch, float(loss))) return model epoches=30000 #迭代次数 一般次数适中，为防止过度拟合不建议迭代次数过多 num=50000 #随机生成的样本数 一般越多越好，看运行配置 learning_rate=1e-4 #学习率（数值越大学得越快（但不一定准确），数值越小拟合越好（时间较长））建议取 1e-2 、1e-3、1e-4、1e-5 x = t.randn(num, 1) def f(x): return 30 * x &#43; 10 #待拟合的式子为 y=30*x &#43;10 可自行修改if you like。 y = f(x)&#43; t.randn(num, 1)*10 # 后面的 t.randn(num, 1)*10 是偏离值，降低训练的精确性（给你的模型更多的挑战） linear_model = nn.Linear(1, 1) optimizer = optim.SGD(linear_model.parameters(), lr=learning_rate) training_loop(n_epochs=epoches,optimizer=optimizer,model=linear_model,loss_fn=nn.MSELoss(),t_u=x,t_c=y) print(&#39;\n&#39;) #print(linear_model.weight) #print(linear_model.bias) while(1): x=float(input(&#39;请输入想预测的x值：&#39;)) tmp=float(linear_model(t.tensor([x]))[0]) print(&#34;拟合值:&#34;,tmp) print(&#34;真实值:&#34;,f(x)) print(&#34;相对误差:&#34;,1-tmp/f(x)) print(&#39;\n&#39;) 这个程序可以分为两个部分(生成训练数据、机器学习模型)，其中生成训练数据部分可有可无(因为在实际应用中，一般数据为人工导入，不是系统随机生成)。
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2023-03-27 22:27:23 +0000 UTC'>March 27, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <footer class="entry-footer"><span title='2023-03-27 22:27:23 +0000 UTC'>March 27, 2023</span></footer>
   <a class="entry-link" aria-label="post link to 【机器学习】可拟合任意线性函数的小玩意儿" href="https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8F%AF%E6%8B%9F%E5%90%88%E4%BB%BB%E6%84%8F%E7%BA%BF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%E5%84%BF/"></a>
 </article>
 
@@ -323,7 +171,7 @@ MNIST 数据集来自美国国家标准与技术研究所, National Institute of
   <div class="entry-content">
     <p>豆瓣Top250爬取 这里是简单的代码 这里是不断修改UA的过程，每次请求都会随机生成一个UA，这样就可以绕过豆瓣的反爬虫机制了 这里是爬虫的结果 结果被豆瓣网站检测到了，不过我们的爬虫已经圆满的完成了任务，我们可以看到豆瓣网站的反爬虫机制是通过检测请求头中的User-Agent来判断是否是爬虫，所以我们可以通过修改请求头中的User-Agent来绕过反爬虫机制。 </p>
   </div>
-  <footer class="entry-footer"><span title='2023-03-26 23:44:33 +0000 UTC'>March 26, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <footer class="entry-footer"><span title='2023-03-26 23:44:33 +0000 UTC'>March 26, 2023</span></footer>
   <a class="entry-link" aria-label="post link to 【爬虫】豆瓣Top250爬取" href="https://juiceright.xyz/old/posts/%E7%88%AC%E8%99%AB%E8%B1%86%E7%93%A3top250%E7%88%AC%E5%8F%96/"></a>
 </article>
 
@@ -337,8 +185,99 @@ MNIST 数据集来自美国国家标准与技术研究所, National Institute of
 学起来！
 </p>
   </div>
-  <footer class="entry-footer"><span title='2023-03-21 18:49:02 +0000 UTC'>March 21, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <footer class="entry-footer"><span title='2023-03-21 18:49:02 +0000 UTC'>March 21, 2023</span></footer>
   <a class="entry-link" aria-label="post link to 买书学习喽" href="https://juiceright.xyz/old/posts/%E4%B9%B0%E4%B9%A6%E5%AD%A6%E4%B9%A0%E5%96%BD/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">python代理
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>#!/usr/bin/env python #coding:utf-8 import socket import sys import re import os import time import select import threading HEADER_SIZE = 4096 host = &#39;0.0.0.0&#39; port = 8000 #子进程进行socket 网络请求 def http_socket(client, addr): #创建 select 检测 fd 列表 inputs = [client] outputs = [] remote_socket = 0 print(&#34;client connent:{0}:{1}&#34;.format(addr[0], addr[1])) while True: readable, writable, exceptional = select.select(inputs, outputs, inputs) try: for s in readable: if s is client: #读取 http 请求头信息 request_header = s.recv(HEADER_SIZE) if remote_socket is 0: #拆分头信息 host_addr = request_header.split(&#34;\r\n&#34;)[1].split(&#34;:&#34;) #如果未指定端口则为默认 80 if 2 == len(host_addr): host_addr.append(&#34;80&#34;) name, host, port = map(lambda x: x.strip(), host_addr) #建立 socket tcp 连接 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) sock.connect((host, int(port))) remote_socket = sock inputs.append(sock) #发送原始请求头 remote_socket.sendall(request_header) else: #接收数据并发送给浏览器 while(True): resp = s.recv(512) if resp: client.sendall(resp) else: break except Exception as e: print(&#34;http socket error {0}&#34;.format(e)) #创建socket对象 http_server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) try: http_server.bind((host, port)) except: sys.exit(&#34;python proxy bind error &#34;) print(&#34;python proxy start&#34;) http_server.listen(1024) while True: client, addr = http_server.accept() http_thread = threading.Thread(target=http_socket, args=(client, addr)) http_thread.start() time.sleep(1) #关闭所有连接 http_server.close() print(&#34;python proxy close&#34;) </p>
+  </div>
+  <footer class="entry-footer"><span title='2023-03-21 15:54:17 +0000 UTC'>March 21, 2023</span></footer>
+  <a class="entry-link" aria-label="post link to python代理" href="https://juiceright.xyz/old/posts/python%E4%BB%A3%E7%90%86/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">简易python传文件收发端(带注释)
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>简易python传文件收发端 发送端.py # 导入模块 import socket # 创建tcp服务端socket tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # 绑定端口 tcp_server_socket.bind((&#34;&#34;, 114)) # 设置监听，把服务端socket由主动套接字改成被动套接字，只能接收客户端的连接请求 tcp_server_socket.listen(128) while True: # 接收客户端信息 client_socket, client_ip = tcp_server_socket.accept() print(&#34;客户端：&#34;, client_ip, &#34;连接&#34;) # 接收下载信息 try: file_name_data = client_socket.recv(65500) # 解码下载信息 file_name = file_name_data.decode() except : print(&#34;客户端已断开连接&#34;) continue try: # 数据传输 with open(&#34;/&#34; &#43; file_name, &#34;rb&#34;) as file: while True: # 读取文件数据 file_data = file.read(65500) # 数据长度不为0表示还有数据没有写入 if file_data: client_socket.send(file_data) # 数据为0表示传输完成 else: print(file_name, &#34;传输成功&#34;) break except Exception as e: print(&#34;客户端已断开连接&#34;) # 关闭客户端连接 client_socket.close() 发送端.py # 导入模块 import socket,time # 创建套接字 # 绑定端口 # tcp_client_socket.bind((&#34;&#34;, 8080)) while True: # 连接IP地址和端口 tcp_client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) tcp_client_socket.connect((input(&#34;请输入IP：\n&#34;), 114)) file_name = input(&#34;请输入要下载的文件：\n&#34;) time_start=time.time() # 文件名编码 tcp_client_socket.send(file_name.encode()) try: # 文件传输 with open(file_name, &#34;wb&#34;) as file: while True: # 接收数据 file_data = tcp_client_socket.recv(65500) # 数据长度不为0写入文件 if file_data: file.write(file_data) # 数据长度为0表示下载完成 else: break # 下载出现异常时捕获异常 except Exception as e: print(&#34;下载异常&#34;, e) # 无异常则下载成功 else: print(file_name, &#34;下载成功&#34;) time_end=time.time() print(&#39;总计&#39;,time_end-time_start,&#39;秒&#39;) # 关闭客户端 tcp_client_socket.close() </p>
+  </div>
+  <footer class="entry-footer"><span title='2023-03-20 23:45:23 +0000 UTC'>March 20, 2023</span></footer>
+  <a class="entry-link" aria-label="post link to 简易python传文件收发端(带注释)" href="https://juiceright.xyz/old/posts/%E7%AE%80%E6%98%93python%E4%BC%A0%E6%96%87%E4%BB%B6%E6%94%B6%E5%8F%91%E7%AB%AF/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">简单头像
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2023-03-18 21:41:49 +0000 UTC'>March 18, 2023</span></footer>
+  <a class="entry-link" aria-label="post link to 简单头像" href="https://juiceright.xyz/old/posts/%E7%AE%80%E5%8D%95%E5%A4%B4%E5%83%8F/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">【爬虫】FitGirl-Repack的Scrapy爬虫代码
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>今天花了一点时间，写了一个FitGirl Repacks游戏网站的自动爬虫脚本 用的是scrapy的爬虫框架
+items.py 作用：确定需要爬取的内容 import scrapy class Fg1Item(scrapy.Item): # define the fields for your item here like: # name = scrapy.Field() tle = scrapy.Field() info = scrapy.Field() pass 在这里，我选择爬取两样信息：title 和 info ，分别对应各个游戏的标题名称 和 下载地址
+FG.py 作用：爬虫的逻辑结构 import scrapy from FG1.items import Fg1Item class FgSpider(scrapy.Spider): name = &#34;FG&#34; allowed_domains = [&#34;fitgirl-repacks.site&#34;] start_urls = [&#34;http://fitgirl-repacks.site/&#34;] def parse(self, response): for i in range(1,350): yield scrapy.Request(&#34;https://fitgirl-repacks.site/page/&#34;&#43;str(i)&#43;&#39;/&#39;,callback=self.parse_page) pass def parse_page(self, response): for each in response.xpath(&#34;//article&#34;): item=Fg1Item() item[&#39;tle&#39;]=each.xpath(&#34;header/h1/a/text()&#34;).extract() item[&#39;info&#39;]=each.xpath(&#34;div/ul[1]&#34;).extract() yield item 逻辑结构分为两层：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2023-03-15 15:53:25 +0000 UTC'>March 15, 2023</span></footer>
+  <a class="entry-link" aria-label="post link to 【爬虫】FitGirl-Repack的Scrapy爬虫代码" href="https://juiceright.xyz/old/posts/fitgirl-repack%E6%B8%B8%E6%88%8F%E7%BD%91%E7%AB%99scrapy%E7%88%AC%E8%99%AB%E4%BB%A3%E7%A0%81/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">简单骑行
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2023-03-15 15:24:03 +0000 UTC'>March 15, 2023</span></footer>
+  <a class="entry-link" aria-label="post link to 简单骑行" href="https://juiceright.xyz/old/posts/%E7%AE%80%E5%8D%95%E9%AA%91%E8%A1%8C/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">脑瘫想法
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>下面有请我和我的大脑🧠用朴素的语言为大家概括今晚普逻课程：
+从前山上有一处虎穴，虎穴内有虎子。由 “不入虎穴焉得虎子”可推导出 “得虎子必入虎穴”、“不得虎子不一定入虎穴”、“入虎穴不一定得虎子”、“不入虎穴必不得虎子”。他们依次符合有之则必然、无之未必不然、有之未必然、无之必不然的简单逻辑结构。其中有之则必然 无之未必不然可以组成充分条件假言命题，有之未必然 无之必不然可以组成必要条件假言命题，有之则必然 无之必不然可以组成充要条件假言命题。三种结构非常简洁明了，但是我们要注意的是一个假言命题的真假与否取决于p→q中的p、q两个条件的真假与否，而不取决于p、q内容之间的关联性。我们回到虎穴得虎子。在“不入虎穴焉得虎子”一系列推导式中，假如你进入的虎穴里可能根本就没有虎子（你闯了一个空门），但是这并不妨碍你得到虎子（因为你已经闯入了虎穴），闯了空虎穴之后你可以在任意的地方（森林，羊村，米奇妙妙屋等）找虎子，最终你得到了虎子。这一系列操作下来，你闯了虎穴，即便里面没有虎子，你得到了虎子，即便跟虎穴半毛钱关系没有。但是你依旧可以自豪地对外宣称我进入虎穴得到虎子，你也证明了“得虎子必入虎穴”的正确性。此时“不入虎穴焉得虎子”命题变成了奇奇怪怪但又没什么问题的假言命题，你也陷入一个了名叫“蕴涵怪论”的怪圈。紧接着充分条件假言命题 必要条件假言命题 充要条件假言命题，我们推出了第四种：有之未必然 无之未必不然 的废话命题。最后衷心的劝告选了普逻的男学生、选了普逻的女学生、没选普逻的男女学生 ，如果你想要一只老虎幼崽（不管你是买的捉的收到的），恳请先往虎穴内跑一趟，以免造成损失。
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2023-03-10 00:09:51 +0000 UTC'>March 10, 2023</span></footer>
+  <a class="entry-link" aria-label="post link to 脑瘫想法" href="https://juiceright.xyz/old/posts/%E8%84%91%E7%98%AB%E6%83%B3%E6%B3%95/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">可爱医学楼
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>可爱医学楼 四点五十起床爬五点四十的山，第一次这么早 </p>
+  </div>
+  <footer class="entry-footer"><span title='2023-03-04 06:51:57 +0000 UTC'>March 4, 2023</span></footer>
+  <a class="entry-link" aria-label="post link to 可爱医学楼" href="https://juiceright.xyz/old/posts/%E5%8F%AF%E7%88%B1%E5%8C%BB%E5%AD%A6%E6%A5%BC/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
