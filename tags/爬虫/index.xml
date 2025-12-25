@@ -10,9 +10,9 @@
     <atom:link href="https://juiceright.xyz/tags/%E7%88%AC%E8%99%AB/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>问卷星自动填写脚本</title>
-      <link>https://juiceright.xyz/old/posts/trgcxiotbs/</link>
+      <link>https://juiceright.xyz/old/old/trgcxiotbs/</link>
       <pubDate>Sun, 23 Mar 2025 18:17:36 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/trgcxiotbs/</guid>
+      <guid>https://juiceright.xyz/old/old/trgcxiotbs/</guid>
       <description>&lt;p&gt;2025年3月23日测试批量填写80份正常。&lt;/p&gt;
 &lt;p&gt;需要模拟鼠标操作防止被识别机器人&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import re
@@ -107,9 +107,9 @@ if __name__ == &amp;#34;__main__&amp;#34;:
     </item>
     <item>
       <title>【爬虫】豆瓣Top250爬取</title>
-      <link>https://juiceright.xyz/old/posts/%E7%88%AC%E8%99%AB%E8%B1%86%E7%93%A3top250%E7%88%AC%E5%8F%96/</link>
+      <link>https://juiceright.xyz/old/old/%E7%88%AC%E8%99%AB%E8%B1%86%E7%93%A3top250%E7%88%AC%E5%8F%96/</link>
       <pubDate>Sun, 26 Mar 2023 23:44:33 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/%E7%88%AC%E8%99%AB%E8%B1%86%E7%93%A3top250%E7%88%AC%E5%8F%96/</guid>
+      <guid>https://juiceright.xyz/old/old/%E7%88%AC%E8%99%AB%E8%B1%86%E7%93%A3top250%E7%88%AC%E5%8F%96/</guid>
       <description>&lt;h1 id=&#34;豆瓣top250爬取&#34;&gt;豆瓣Top250爬取&lt;/h1&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E3%80%90%E7%88%AC%E8%99%AB%E3%80%91%E8%B1%86%E7%93%A3Top250%E7%88%AC%E5%8F%96/%E3%80%90%E7%88%AC%E8%99%AB%E3%80%91%E8%B1%86%E7%93%A3Top250%E7%88%AC%E5%8F%96-20251209171042492.jpg&#34;&gt;&lt;/p&gt;
 &lt;h5 id=&#34;这里是简单的代码&#34;&gt;这里是简单的代码&lt;/h5&gt;
@@ -123,9 +123,9 @@ if __name__ == &amp;#34;__main__&amp;#34;:
     </item>
     <item>
       <title>【爬虫】FitGirl-Repack的Scrapy爬虫代码</title>
-      <link>https://juiceright.xyz/old/posts/fitgirl-repack%E6%B8%B8%E6%88%8F%E7%BD%91%E7%AB%99scrapy%E7%88%AC%E8%99%AB%E4%BB%A3%E7%A0%81/</link>
+      <link>https://juiceright.xyz/old/old/fitgirl-repack%E6%B8%B8%E6%88%8F%E7%BD%91%E7%AB%99scrapy%E7%88%AC%E8%99%AB%E4%BB%A3%E7%A0%81/</link>
       <pubDate>Wed, 15 Mar 2023 15:53:25 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/fitgirl-repack%E6%B8%B8%E6%88%8F%E7%BD%91%E7%AB%99scrapy%E7%88%AC%E8%99%AB%E4%BB%A3%E7%A0%81/</guid>
+      <guid>https://juiceright.xyz/old/old/fitgirl-repack%E6%B8%B8%E6%88%8F%E7%BD%91%E7%AB%99scrapy%E7%88%AC%E8%99%AB%E4%BB%A3%E7%A0%81/</guid>
       <description>&lt;h2 id=&#34;今天花了一点时间写了一个fitgirl-repacks游戏网站的自动爬虫脚本&#34;&gt;今天花了一点时间，写了一个&lt;a href=&#34;https://fitgirl-repacks.site/&#34; title=&#34;FitGirl Repacks&#34;&gt;FitGirl Repacks&lt;/a&gt;游戏网站的自动爬虫脚本&lt;/h2&gt;
 &lt;p&gt;用的是scrapy的爬虫框架&lt;/p&gt;
 &lt;h4 id=&#34;itemspy-作用确定需要爬取的内容&#34;&gt;items.py 作用：确定需要爬取的内容&lt;/h4&gt;

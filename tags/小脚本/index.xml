@@ -10,9 +10,9 @@
     <atom:link href="https://juiceright.xyz/tags/%E5%B0%8F%E8%84%9A%E6%9C%AC/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ppt word快速转换PDF小脚本</title>
-      <link>https://juiceright.xyz/old/posts/vhulvqwmjm/</link>
+      <link>https://juiceright.xyz/old/old/vhulvqwmjm/</link>
       <pubDate>Mon, 01 Sep 2025 00:11:31 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/vhulvqwmjm/</guid>
+      <guid>https://juiceright.xyz/old/old/vhulvqwmjm/</guid>
       <description>&lt;h2 id=&#34;ppt-word快速转换pdf小脚本&#34;&gt;ppt word快速转换PDF小脚本&lt;/h2&gt;
 &lt;p&gt;这个vbs小脚本可以快速将同一目录下的ppt、pptx、doc、docx文件转换成PDF，即点即用，非常方便。&lt;/p&gt;
 &lt;h3 id=&#34;office----ppt-word快速转换pdf-officevbs-&#34;&gt;Office   （ ppt word快速转换PDF-Office.vbs ）&lt;/h3&gt;
@@ -191,9 +191,9 @@ MsgBox &amp;#34;PPT和Word文件已成功转换为PDF格式！&amp;#34;
     </item>
     <item>
       <title>问卷星自动填写脚本</title>
-      <link>https://juiceright.xyz/old/posts/trgcxiotbs/</link>
+      <link>https://juiceright.xyz/old/old/trgcxiotbs/</link>
       <pubDate>Sun, 23 Mar 2025 18:17:36 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/trgcxiotbs/</guid>
+      <guid>https://juiceright.xyz/old/old/trgcxiotbs/</guid>
       <description>&lt;p&gt;2025年3月23日测试批量填写80份正常。&lt;/p&gt;
 &lt;p&gt;需要模拟鼠标操作防止被识别机器人&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import re
@@ -288,9 +288,9 @@ if __name__ == &amp;#34;__main__&amp;#34;:
     </item>
     <item>
       <title>cmd 利用curl实现全网卡登录STU校园网</title>
-      <link>https://juiceright.xyz/old/posts/lq1iwgc7e1/</link>
+      <link>https://juiceright.xyz/old/old/lq1iwgc7e1/</link>
       <pubDate>Mon, 17 Mar 2025 12:38:48 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/lq1iwgc7e1/</guid>
+      <guid>https://juiceright.xyz/old/old/lq1iwgc7e1/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 @echo off
 for /f &amp;#34;tokens=*&amp;#34; %%i in (
@@ -304,9 +304,9 @@ pause
     </item>
     <item>
       <title>EndNote/Zotero批量添加PubMed文献脚本</title>
-      <link>https://juiceright.xyz/old/posts/7uduxw77v6/</link>
+      <link>https://juiceright.xyz/old/old/7uduxw77v6/</link>
       <pubDate>Fri, 14 Mar 2025 21:10:48 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/7uduxw77v6/</guid>
+      <guid>https://juiceright.xyz/old/old/7uduxw77v6/</guid>
       <description>&lt;p&gt;代理使用8089端口，适配clash&lt;br&gt;
 使用：同目录下创建paper.txt，一行一个填写一个PMID&lt;br&gt;
 生成一个citation.nbib格式的文件&lt;/p&gt;
@@ -371,9 +371,9 @@ f.close()
     </item>
     <item>
       <title>使用Hyper-V配置网卡多个虚拟网卡</title>
-      <link>https://juiceright.xyz/old/posts/kbg4hlog6b/</link>
+      <link>https://juiceright.xyz/old/old/kbg4hlog6b/</link>
       <pubDate>Fri, 14 Mar 2025 20:55:35 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/kbg4hlog6b/</guid>
+      <guid>https://juiceright.xyz/old/old/kbg4hlog6b/</guid>
       <description>&lt;h2 id=&#34;配置-hyper-v&#34;&gt;配置 Hyper-V&lt;/h2&gt;
 &lt;p&gt;首先需要启用 Hyper-V，在 &lt;strong&gt;管理员 Powershell&lt;/strong&gt;输入以下命令：&lt;/p&gt;
 &lt;p&gt;然后重启电脑。&lt;/p&gt;
@@ -400,9 +400,9 @@ Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &amp;#34;Ethernet
     </item>
     <item>
       <title>python 利用curl将全部网卡适配器登录STU校园网</title>
-      <link>https://juiceright.xyz/old/posts/byprsldhih/</link>
+      <link>https://juiceright.xyz/old/old/byprsldhih/</link>
       <pubDate>Fri, 14 Mar 2025 20:49:01 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/byprsldhih/</guid>
+      <guid>https://juiceright.xyz/old/old/byprsldhih/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import netifaces
 import os
 # 获取所有网络接口
@@ -422,9 +422,9 @@ for iface in interfaces:
     </item>
     <item>
       <title>ECDSA实例</title>
-      <link>https://juiceright.xyz/old/posts/22bskm0nwq/</link>
+      <link>https://juiceright.xyz/old/old/22bskm0nwq/</link>
       <pubDate>Tue, 11 Mar 2025 01:05:02 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/22bskm0nwq/</guid>
+      <guid>https://juiceright.xyz/old/old/22bskm0nwq/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 import os
 import ecdsa
@@ -463,9 +463,9 @@ print(verify_signature(public_key, message, signature))   #验证签名
     </item>
     <item>
       <title>STU校园网自动登录脚本</title>
-      <link>https://juiceright.xyz/old/posts/htt13gbuie/</link>
+      <link>https://juiceright.xyz/old/old/htt13gbuie/</link>
       <pubDate>Tue, 11 Mar 2025 00:52:49 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/htt13gbuie/</guid>
+      <guid>https://juiceright.xyz/old/old/htt13gbuie/</guid>
       <description>&lt;p&gt;cmd, ???处分别改称用户名和校园网密码&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 @ECHO OFF
@@ -491,9 +491,9 @@ endlocal
     </item>
     <item>
       <title>vbs脚本 快速将ppt word文档转换成pdf</title>
-      <link>https://juiceright.xyz/old/posts/92gfku-5zk/</link>
+      <link>https://juiceright.xyz/old/old/92gfku-5zk/</link>
       <pubDate>Tue, 11 Mar 2025 00:48:44 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/92gfku-5zk/</guid>
+      <guid>https://juiceright.xyz/old/old/92gfku-5zk/</guid>
       <description>&lt;p&gt;保存为vbs脚本，可以将同目录下的ppt、word转成PDF，非常方便&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;On Error Resume Next
     Const wdExportFormatPDF = 17
@@ -526,9 +526,9 @@ End If
     </item>
     <item>
       <title>雨课堂习题监控</title>
-      <link>https://juiceright.xyz/old/posts/pbdbfbga9g/</link>
+      <link>https://juiceright.xyz/old/old/pbdbfbga9g/</link>
       <pubDate>Tue, 11 Mar 2025 00:41:06 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/pbdbfbga9g/</guid>
+      <guid>https://juiceright.xyz/old/old/pbdbfbga9g/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;原理：雨课堂每次切换PPT时url也会跟着改变。在检测到ppt切换后，获取ppt的图片，并且进行OCR检测，如果出现‘单选’、‘多选’、‘判断’、‘填空’、‘投票’等词汇，就认定该ppt是习题，就会发出警告提醒。
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;使用前需要配置state.json保存登录记录。&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import asyncio

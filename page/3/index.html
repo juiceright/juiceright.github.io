@@ -152,14 +152,110 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">禁止Steam客户端自动更新（旧版Steam客户端）
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>将代码保存为Steam.cfg，文件保存在Steam客户端根目录。
+BootStrapperInhibitAll=Enable </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-27 16:05:01 +0000 UTC'>March 27, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 禁止Steam客户端自动更新（旧版Steam客户端）" href="https://juiceright.xyz/old/old/aagtgw9nou/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">【分子对接】2. 利用pymol下载蛋白质 脚本
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>下载蛋白质，去除水分子，加H，去除配体，去除副链
+# %% import pymol # %% # 使用 fetch 指令获取蛋白质结构，这里以 4FAA 为例 pdb_id = &#39;4FAA&#39; pymol.cmd.fetch(pdb_id) # 去除水分子 pymol.cmd.remove(&#39;solvent&#39;) # 加 H（氢原子） pymol.cmd.h_add() # 选择配体（这里假设配体残基名为 NAG） pymol.cmd.select(&#39;ligand&#39;, &#39;resn NAG&#39;) # 去除配体 pymol.cmd.remove(&#39;ligand&#39;) # 显示链 A 的信息 pymol.cmd.iterate(&#39;chain A&#39;, &#39;print(resi, resn)&#39;) # 去除副链（只保留主链） pymol.cmd.remove(&#39;sidechain&#39;) # 导出结果为 PDB 文件 output_file = f&#39;{pdb_id}.pymol.pdb&#39; pymol.cmd.save(output_file) # 退出 PyMOL pymol.cmd.quit() </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-26 20:28:24 +0000 UTC'>March 26, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 【分子对接】2. 利用pymol下载蛋白质 脚本" href="https://juiceright.xyz/old/old/ysld_6qj2a/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">【分子对接】1. 自动从pubchem下载小分子 脚本
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>本代码用于从pubchem下载小分子(阿司匹林)，并且自动转换成pymol的pdb格式
+import pubchempy as pcp from pymol import cmd import os def download_sdf(compound_identifier, output_file): try: # 尝试根据标识符获取化合物 if isinstance(compound_identifier, int): compound = pcp.Compound.from_cid(compound_identifier) else: results = pcp.get_compounds(compound_identifier, &#39;name&#39;) if results: compound = results[0] else: print(f&#34;未找到与 {compound_identifier} 匹配的化合物。&#34;) return # 下载 SDF 文件 sdf_content = compound.canonical_smiles sdf = pcp.get_sdf(compound.cid) with open(output_file, &#39;w&#39;) as file: file.write(sdf) print(f&#34;SDF 文件已成功保存到 {output_file}&#34;) except Exception as e: print(f&#34;下载过程中出现错误: {e}&#34;) if __name__ == &#34;__main__&#34;: # 这里可以替换为你想要查询的化合物名称或 CID compound_identifier = &#34;aspirin&#34; output_file = compound_identifier &#43; &#34;.sdf&#34; download_sdf(compound_identifier, output_file) # 使用 PyMOL 加载 SDF 文件并进行后续处理 cmd.load(output_file) # 保存为 PDB 文件（可选） cmd.save(compound_identifier &#43; &#34;.pdb&#34;, state=0) cmd.quit() # 删除临时 SDF 文件（可选） #os.remove(output_file) </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-26 20:25:40 +0000 UTC'>March 26, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 【分子对接】1. 自动从pubchem下载小分子 脚本" href="https://juiceright.xyz/old/old/qin3ksdr8z/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">问卷星自动填写脚本
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>2025年3月23日测试批量填写80份正常。
+需要模拟鼠标操作防止被识别机器人
+import re from playwright.async_api import Playwright, async_playwright #from playwright.sync_api import Playwright, sync_playwright, expect import random import asyncio import time def random_int(min=2, max=4): random.seed(time.time()) return str(random.randint(min, max)) async def mouse_random_move(page): # 模拟鼠标随机平滑移动 for i in range(5): await page.mouse.move(random.randint(0, 1000), random.randint(0, 1000)) await asyncio.sleep(0.1) # 模拟鼠标随机停留 #time.sleep(random.randint(0,1)) # 鼠标滚轮 async def run(browser) -&gt; None: context = await browser.new_context() page = await context.new_page() await page.goto(&#34;https://www.wjx.cn/vm/Q0x3Wuq.aspx&#34;) await page.get_by_text(&#34;男&#34;).click() await page.get_by_text(&#34;大三&#34;).click() await page.get_by_text(&#34;1000-&#34;).click() await page.locator(&#34;div&#34;).filter(has_text=re.compile(r&#34;^全部来自家庭部分来自家庭，部分靠自己赚取全部靠自己赚取$&#34;)).get_by_role(&#34;link&#34;).nth(1).click() await mouse_random_move(page) await page.locator(&#34;div&#34;).filter(has_text=re.compile(r&#34;^300以下300-600600-10001000以上$&#34;)).get_by_role(&#34;link&#34;).nth(1).click() await mouse_random_move(page) await page.locator(&#34;div&#34;).filter(has_text=re.compile(r&#34;^无1-200200-500500以上$&#34;)).get_by_role(&#34;link&#34;).nth(2).click() await mouse_random_move(page) await page.locator(&#34;div&#34;).filter(has_text=re.compile(r&#34;^实体店网购$&#34;)).get_by_role(&#34;link&#34;).first.click() await page.locator(&#34;div&#34;).filter(has_text=re.compile(r&#34;^100以下100-500500-10001000以上$&#34;)).get_by_role(&#34;link&#34;).nth(3).click() await mouse_random_move(page) await page.locator(&#34;div&#34;).filter(has_text=re.compile(r&#34;^无200以下200-500500-10001000以上$&#34;)).get_by_role(&#34;link&#34;).nth(2).click() await page.locator(&#34;#div10&#34;).get_by_role(&#34;link&#34;).nth(2).click() await mouse_random_move(page) await page.locator(&#34;#div11&#34;).get_by_role(&#34;link&#34;).nth(1).click() await mouse_random_move(page) await page.locator(&#34;#div12&#34;).get_by_role(&#34;link&#34;).first.click() await mouse_random_move(page) await page.locator(&#34;#div13&#34;).get_by_role(&#34;link&#34;).nth(1).click() await mouse_random_move(page) await page.locator(&#34;#div14&#34;).get_by_role(&#34;link&#34;).nth(2).click() await mouse_random_move(page) await page.locator(&#34;#div15&#34;).get_by_role(&#34;link&#34;).nth(1).click() await mouse_random_move(page) await page.locator(&#34;#div16&#34;).get_by_role(&#34;link&#34;).nth(2).click() await mouse_random_move(page) await page.locator(&#34;#div17&#34;).get_by_role(&#34;link&#34;).nth(1).click() await mouse_random_move(page) await page.locator(&#34;div:nth-child(2) &gt; .jqcheckwrapper &gt; .jqcheck&#34;).first.click() await mouse_random_move(page) await page.locator(&#34;div:nth-child(5) &gt; .jqcheckwrapper &gt; .jqcheck&#34;).first.click() await mouse_random_move(page) await page.locator(&#34;div:nth-child(7) &gt; .jqcheckwrapper &gt; .jqcheck&#34;).click() await mouse_random_move(page) await page.locator(&#34;#div19&#34;).get_by_role(&#34;link&#34;).nth(3).click() await mouse_random_move(page) await page.locator(&#34;#div20&#34;).get_by_role(&#34;link&#34;).nth(1).click() await mouse_random_move(page) await page.locator(&#34;#div20&#34;).get_by_role(&#34;link&#34;).first.click() await mouse_random_move(page) await page.locator(&#34;#div21 &gt; .ui-controlgroup &gt; div:nth-child(2) &gt; .jqcheckwrapper &gt; .jqcheck&#34;).click() await mouse_random_move(page) await page.locator(&#34;#div21 &gt; .ui-controlgroup &gt; div:nth-child(4) &gt; .jqcheckwrapper &gt; .jqcheck&#34;).click() await page.get_by_text(&#34;提交&#34;).click() await page.wait_for_function(&#34;window.location.href !== &#39;https://www.wjx.cn/vm/Q0x3Wuq.aspx&#39;&#34;) await page.wait_for_timeout(3000) await page.close() await context.close() async def main() -&gt; None: async with async_playwright() as p: browser = await p.chromium.launch(headless=True) tasks = [] for i in range(6): tasks.append(run(browser)) titles=await asyncio.gather(*tasks) for title in titles: print(title) await browser.close() if __name__ == &#34;__main__&#34;: asyncio.run(main()) </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-23 18:17:36 +0000 UTC'>March 23, 2025</span>&nbsp;·&nbsp;<span>2 min</span></footer>
+  <a class="entry-link" aria-label="post link to 问卷星自动填写脚本" href="https://juiceright.xyz/old/old/trgcxiotbs/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">cmd 利用curl实现全网卡登录STU校园网
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> @echo off for /f &#34;tokens=*&#34; %%i in ( &#39;powershell -Command &#34;Get-NetIPAddress | Where-Object {$_.AddressFamily -eq &#39;IPv4&#39; -and $_.IPAddress -ne &#39;127.0.0.1&#39;} | Select-Object -ExpandProperty IPAddress&#34;&#39; ) do ( echo 发现有效IP: %%i curl --data &#34;opr=pwdLogin&amp;userName=账号&amp;pwd=密码&amp;rememberPwd=1&#34; http://1.1.1.2/ac_portal/login.php --interface %%i ) pause </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-17 12:38:48 +0000 UTC'>March 17, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to cmd 利用curl实现全网卡登录STU校园网" href="https://juiceright.xyz/old/old/lq1iwgc7e1/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">EndNote/Zotero批量添加PubMed文献脚本
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>代理使用8089端口，适配clash
+使用：同目录下创建paper.txt，一行一个填写一个PMID
+生成一个citation.nbib格式的文件
+# %% ###预处理，先把文章全部复制到一个paper.txt文本中 ###先获取所有PMID: 后面的数字 import re import pandas as pd import numpy as np proxies = {&#34;http&#34;: &#34;http://127.0.0.1:8089&#34;} pm=pd.read_csv(&#39;paper.txt&#39;,header=None) # to list pm=pm[0].tolist() # %% import requests from concurrent.futures import ThreadPoolExecutor def fetch_pmid(pmid): max_retries = 300 # 设置最大重试次数 for attempt in range(max_retries): url = &#39;https://api.ncbi.nlm.nih.gov/lit/ctxp/v1/pubmed/?format=medline&amp;id={}&#39;.format(pmid) print(url) print(&#34;-------requests start--------------&#34;) res = requests.get(url,proxies=proxies) print(&#34;-------requests end--------------&#34;) print(res) if res.status_code == 200: res.close() return res.text &#43; &#34;\n&#34; else: print(f&#34;Request failed, retrying... (attempt {attempt &#43; 1}/{max_retries})&#34;) print(f&#34;Failed to fetch PMID {pmid} after {max_retries} attempts.&#34;) return &#34;&#34; cita = [] # 设置线程数，这里设置为4，你可以根据需要调整 num_threads = 32 with ThreadPoolExecutor(max_workers=num_threads) as executor: # 使用多线程并行处理每个pmid results = list(executor.map(fetch_pmid, pm)) cita.extend(results) # 替换处理 # %% cita = [y.replace(&#34;\r&#34;, &#34;&#34;) for y in cita] cita = [y &#43; &#34;\n&#34; for y in cita] f=open(&#34;citation.nbib&#34;,&#34;w&#34;,encoding=&#39;utf-8&#39;) f.writelines(cita) f.close() </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-14 21:10:48 +0000 UTC'>March 14, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to EndNote/Zotero批量添加PubMed文献脚本" href="https://juiceright.xyz/old/old/7uduxw77v6/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">使用Hyper-V配置网卡多个虚拟网卡
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>配置 Hyper-V 首先需要启用 Hyper-V，在 管理员 Powershell输入以下命令：
+然后重启电脑。
+启用 Hyper-V Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All 安装 Hyper-V 虚拟交换机 在管理员 Powershell 输入以下命令。name 参数后面的 Ethernet-Virt 是虚拟交换机的名称，可以任取。 NetAdapterName 参数后面的 Ethernet 代表你要桥接的物理网卡的名称，中文版系统一般为 以太网，英文版为 Ethernet。注意 AllowManagementOS 需要为 $false，否则 Hyper-V 会创建一个和物理网卡一样 MAC 地址的虚拟网卡妨碍我们使用。
+New-VMSwitch -name Ethernet-Virt -AllowManagementOS $false -NetAdapterName &#34;以太网 2&#34; 向宿主机添加虚拟网卡 在管理员 Powershell 输入以下命令。Switch 参数后面的 Ethernet-Virt 是虚拟交换机的名称。 Name 参数后面的 Ethernet-Virt-Main 是虚拟网卡的名称，可以任取。注意要有 ManagementOS 参数，代表向宿主机添加网卡而不是某个虚拟机。StaticMacAddress 后面的 e0-00-00-00-ca-01 是虚拟网卡的 MAC 地址，可以任取，但必须唯一并且是单播地址（不懂单播、多播地址的话就无脑e0开头，然后后面的数字随便换）。
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &#34;Ethernet-Virt-Main1&#34; -StaticMacAddress 38:fd:cc:7c:94:c5 Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &#34;Ethernet-Virt-Main2&#34; -StaticMacAddress b0:36:c6:fa:f4:df Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &#34;Ethernet-Virt-Main3&#34; -StaticMacAddress 90:53:84:3e:9b:12 Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &#34;Ethernet-Virt-Main4&#34; -StaticMacAddress 5c:1f:4b:eb:62:ad Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &#34;Ethernet-Virt-Main5&#34; -StaticMacAddress 58:d3:b1:6b:f4:97 Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &#34;Ethernet-Virt-Main6&#34; -StaticMacAddress 18:9c:1a:d5:ca:a8 Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &#34;Ethernet-Virt-Main7&#34; -StaticMacAddress 54:7c:bd:16:ae:0a Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &#34;Ethernet-Virt-Main8&#34; -StaticMacAddress d0:7c:6b:78:13:2f Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &#34;Ethernet-Virt-Main9&#34; -StaticMacAddress a0:05:1c:48:0b:12 Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &#34;Ethernet-Virt-Main10&#34; -StaticMacAddress ec:89:10:ac:20:97 使用结束，删除虚拟交换机： Confirm : A Remove-VMSwitch -name Ethernet-Virt -Force -Confirm </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-14 20:55:35 +0000 UTC'>March 14, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 使用Hyper-V配置网卡多个虚拟网卡" href="https://juiceright.xyz/old/old/kbg4hlog6b/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">python 利用curl将全部网卡适配器登录STU校园网
     </h2>
   </header>
   <div class="entry-content">
     <p>import netifaces import os # 获取所有网络接口 interfaces = netifaces.interfaces() for iface in interfaces: # 获取接口的地址信息 addresses = netifaces.ifaddresses(iface) # 提取 IPv4 地址 if netifaces.AF_INET in addresses: for addr_info in addresses[netifaces.AF_INET]: ip = addr_info.get(&#39;addr&#39;) if ip: print(f&#34;适配器 {iface} 的IP地址: {ip}&#34;) os.system(&#39;curl --data &#34;opr=pwdLogin&amp;userName=账号&amp;pwd=密码&amp;rememberPwd=1&#34; http://1.1.1.2/ac_portal/login.php --interface &#39; &#43; ip) </p>
   </div>
-  <footer class="entry-footer"><span title='2025-03-14 20:49:01 +0000 UTC'>March 14, 2025</span></footer>
-  <a class="entry-link" aria-label="post link to python 利用curl将全部网卡适配器登录STU校园网" href="https://juiceright.xyz/old/posts/byprsldhih/"></a>
+  <footer class="entry-footer"><span title='2025-03-14 20:49:01 +0000 UTC'>March 14, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to python 利用curl将全部网卡适配器登录STU校园网" href="https://juiceright.xyz/old/old/byprsldhih/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -170,8 +266,8 @@
   <div class="entry-content">
     <p> # 定义染色体列表，包含 1 到 22 号染色体 chromosomes = list(range(1, 23)) # 获取组学暴露数据文件的名称 (MRname,) = glob_wildcards(&#34;../dataset/组学暴露数据/{file}.rds&#34;) # 获取 SMR 数据文件的名称 GTExname = glob_wildcards(&#34;../dataset/SMR/{file}.besd&#34;).file # 获取 GWAS 数据文件的名称 GWASfilename = glob_wildcards(&#34;../../SMR/input/{file}&#34;).file # 定义 all 规则，用于指定整个流程的最终输出文件 rule all: input: expand(&#34;result/GTEx的{GTEx}之{file}.smr&#34;, GTEx=GTExname, file=GWASfilename), #expand(&#34;result/MR的{file}之{MR}.csv&#34;, MR=MRname, file=GWASfilename), expand(&#34;result/{file}.gsa.out.txt&#34;,file=GWASfilename), #expand(&#34;result/Gene_disease_association/{file}.fusion_twas.txt&#34;,file=GWASfilename), #TWAS 若全部49个组织非常慢10小时 # 定义 trans 规则，用于将输入文件转换为输出文件 rule trans: #OK input: # 输入文件路径 &#34;../../SMR/input/{file}&#34; output: # 输出文件路径 &#34;tmp/{file}.ma&#34;, &#34;tmp/{file}.sumstats.gz&#34;, &#34;tmp/{file}.mendelR.txt&#34; # 规则执行时使用的线程数 threads: 6 shell: # 调用 R 脚本进行文件转换 &#34;r -f tools/trans.R --args {wildcards.file}&#34; rule run_GTEx: #OK input: &#34;tmp/{file}.ma&#34;, output: &#34;result/GTEx的{GTEx}之{file}.smr&#34; threads: 5 shell: &#34;tools\\smr.exe --gwas-summary {input} --out result/GTEx的{wildcards.GTEx}之{wildcards.file} --bfile ../dataset/EUR --beqtl-summary ../dataset/SMR/{wildcards.GTEx} --maf 0.01 --thread-num 18 --diff-freq-prop 1.000000&#34; rule run_MAGMA: #OK input: &#34;tmp/{file}.ma&#34;, output: &#34;result/{file}.gsa.out.txt&#34;, shell: &#34;r -f tools/run_MAGMA.R --args {wildcards.file}&#34; rule run_MR: #OK input: &#34;tmp/{file}.ma&#34;, output: &#34;result/MR的{file}之{MR}.csv&#34;, threads: 2 shell: &#34;r -f tools/run_MR.R --args {wildcards.file} {wildcards.MR}&#34; </p>
   </div>
-  <footer class="entry-footer"><span title='2025-03-14 20:46:52 +0000 UTC'>March 14, 2025</span></footer>
-  <a class="entry-link" aria-label="post link to snakemake流程——SMR&#43;MR&#43;MAGMA分析" href="https://juiceright.xyz/old/posts/vw5dv077fn/"></a>
+  <footer class="entry-footer"><span title='2025-03-14 20:46:52 +0000 UTC'>March 14, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to snakemake流程——SMR&#43;MR&#43;MAGMA分析" href="https://juiceright.xyz/old/old/vw5dv077fn/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -182,98 +278,8 @@
   <div class="entry-content">
     <p> import re from playwright.sync_api import Playwright, sync_playwright, expect import time import os import hmac import hashlib def totp(key, t, digits=6): step = 30 t = int(t / step) key = key.encode() counter = t.to_bytes(8, &#39;big&#39;) h = hmac.new(key, counter, hashlib.sha1).digest() offset = h[-1] &amp; 0x0f truncated = h[offset:offset &#43; 4] code = int.from_bytes(truncated, &#39;big&#39;) &amp; 0x7fffffff code = str(code % 10 ** digits).zfill(digits) return code # %% def run(playwright: Playwright) -&gt; None: browser = playwright.chromium.launch(headless=True) context = browser.new_context() page = context.new_page() page.goto(&#34;https://webvpn.stu.edu.cn/portal/#!/login&#34;) page.locator(&#34;#Calc input[type=\&#34;text\&#34;]&#34;).fill(&#34;校园网账号&#34;) page.locator(&#34;#loginPwd&#34;).click() page.locator(&#34;#loginPwd&#34;).fill(&#34;校园网密码&#34;) page.locator(&#34;span&#34;).filter(has_text=&#34;我已阅读并同意&#34;).locator(&#34;div&#34;).first.click() page.get_by_role(&#34;button&#34;, name=&#34;登录&#34;).click() page.locator(&#34;#app_dialog_container&#34;).get_by_role(&#34;textbox&#34;).fill(str(totp(&#34;填写你的TOTP密钥&#34;, time.time()))) page.get_by_role(&#34;button&#34;, name=&#34;确定&#34;).click() # --------------------- # 获取cookie值 cookies = page.context.cookies() for cookie in cookies: print(f&#34;{cookie[&#39;name&#39;]}: {cookie[&#39;value&#39;]}&#34;) if cookie[&#39;name&#39;] == &#34;TWFID&#34;: TWFID = cookie[&#39;value&#39;] url=&#34;https://webvpn.stu.edu.cn/portal/shortcut.html?twfid=&#34;&#43;TWFID&#43;&#34;&amp;url=http://bilibili-com-s.webvpn.stu.edu.cn%3A8118&#34; os.system(&#39;start msedge &#34;&#39;&#43;url&#43;&#39;&#34;&#39;) # --------------------- context.close() browser.close() with sync_playwright() as playwright: run(playwright) </p>
   </div>
-  <footer class="entry-footer"><span title='2025-03-11 09:55:00 +0000 UTC'>March 11, 2025</span></footer>
-  <a class="entry-link" aria-label="post link to playwright自动登录STU WebVPN" href="https://juiceright.xyz/old/posts/st6eftek36/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">ECDSA实例
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p> import os import ecdsa # 生成私钥和公钥 def generate_keys(): # 使用secp256k1曲线生成密钥对 sk = ecdsa.SigningKey.generate(curve=ecdsa.SECP256k1) vk = sk.get_verifying_key() return sk, vk # 对消息进行签名 def sign_message(private_key, message): return private_key.sign(message) # 验证签名 def verify_signature(public_key, message, signature): return public_key.verify(signature, message) # %% private_key, public_key = generate_keys() # 简单消息 message = b&#34;Hello, ECDSA!&#34; # 签名消息 signature = sign_message(private_key, message) print(f&#34;Signature: {signature.hex()}&#34;) # %% sig=&#39;adee313bebf78c1bd4a9719e0ad9aa871ff8195788ad2d7510f35e1ef0ce00a6cbfea518e4ea1716a729c7313a52da8b0c57ff0e0f97251ea604beef3890f699&#39; message = b&#34;Hello, ECDSA!&#34; signature = bytes.fromhex(sig) print(verify_signature(public_key, message, signature)) #验证签名 </p>
-  </div>
-  <footer class="entry-footer"><span title='2025-03-11 01:05:02 +0000 UTC'>March 11, 2025</span></footer>
-  <a class="entry-link" aria-label="post link to ECDSA实例" href="https://juiceright.xyz/old/posts/22bskm0nwq/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">汕头大学SSO 单点登录接入实例
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Single Sign On System
-import os url=&#34;https://sso.stu.edu.cn/login?service=http://localhost:8080&#34; os.system(&#39;start msedge &#34;&#39;&#43;url&#43;&#39;&#34;&#39;) import http.server import socketserver import urllib.parse import threading import requests import xml.etree.ElementTree as ET import warnings warnings.filterwarnings(&#34;ignore&#34;) # 定义全局变量存储ticket ticket = None username = None # 自定义请求处理类 class MyHandler(http.server.SimpleHTTPRequestHandler): def log_message(self, format, *args): pass # 重写方法，不执行任何操作 def do_GET(self): global ticket, httpd, username # 解析请求路径的参数 parsed_path = urllib.parse.urlparse(self.path) query_params = urllib.parse.parse_qs(parsed_path.query) # 检查是否存在ticket参数 if &#39;ticket&#39; in query_params: ticket = query_params[&#39;ticket&#39;][0] # 发送响应 self.send_response(200) self.end_headers() self.wfile.write(b&#34;Ticket received...&#34;) vurl=&#34;https://sso.stu.edu.cn/serviceValidate?service=http://localhost:8080&amp;ticket=&#34;&#43;ticket headers={&#39;Connection&#39;:&#39;close&#39;} requests.adapters.DEFAULT_RETRIES = 5 response = requests.get(vurl, headers=headers, verify=False) root = ET.fromstring(response.text) if root[0].tag.endswith(&#39;authenticationSuccess&#39;): print(&#39;Login success, you can close the browser now 登陆成功，您可以关闭浏览器了&#39;) print(&#39;username:&#39;, root[0][0].text) username = root[0][0].text response.close() threading.Thread(target=httpd.shutdown).start() else: print(&#39;Login failed, please try again 登陆失败，请重试&#39;) print(&#39;error:&#39;, root[0][0].text) # 关闭服务器 # 启动服务器 def run_server(): global httpd port = 8080 handler = MyHandler with socketserver.TCPServer((&#34;&#34;, port), handler) as httpd: print(f&#34;Verifying login at https://sso.stu.edu.cn/login?service=http://localhost:8080&#34;) httpd.serve_forever() run_server() Users =[&#39;用户名&#39;] if username in Users: print(&#39;Login success, welcome to use this script 登陆成功，欢迎使用本脚本&#39;) else: print(&#39;No permission to use this script 没有权限使用本脚本&#39;) os.system(&#39;pause&#39;) exit() </p>
-  </div>
-  <footer class="entry-footer"><span title='2025-03-11 01:00:18 +0000 UTC'>March 11, 2025</span></footer>
-  <a class="entry-link" aria-label="post link to 汕头大学SSO 单点登录接入实例" href="https://juiceright.xyz/old/posts/40qvh8raw6/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">STU校园网自动登录脚本
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>cmd, ???处分别改称用户名和校园网密码
-@ECHO OFF REM 启动延时变量 setlocal enabledelayedexpansion :LoginCheck for /F %%i in ( &#39;curl -I -m 10 -o /dev/null -s -w %%{http_code} www.baidu.com&#39; ) do ( set http_code=%%i ) if /i %http_code% neq 200 ( curl --data &#34;opr=pwdLogin&amp;userName=???&amp;pwd=???&amp;rememberPwd=1&#34; http://1.1.1.2/ac_portal/login.php&gt;result.txt	set /p result=&lt;result.txt set result=!result:~11,4! if !result! equ true ( echo Login Success ) else ( echo Login Failed, Try Again choice /t 10 /d y /n &gt;nul goto LoginCheck ) del result.txt ) endlocal </p>
-  </div>
-  <footer class="entry-footer"><span title='2025-03-11 00:52:49 +0000 UTC'>March 11, 2025</span></footer>
-  <a class="entry-link" aria-label="post link to STU校园网自动登录脚本" href="https://juiceright.xyz/old/posts/htt13gbuie/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">vbs脚本 快速将ppt word文档转换成pdf
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>保存为vbs脚本，可以将同目录下的ppt、word转成PDF，非常方便
-On Error Resume Next Const wdExportFormatPDF = 17 Set oWord = WScript.CreateObject(&#34;Word.Application&#34;) Set ppt = CreateObject(&#34;PowerPoint.application&#34;) Set fso = WScript.CreateObject(&#34;Scripting.Filesystemobject&#34;) Set fds=fso.GetFolder(&#34;.&#34;) Set ffs=fds.Files For Each ff In ffs If (LCase(Right(ff.Name,4))=&#34;.doc&#34; Or LCase(Right(ff.Name,4))=&#34;docx&#34; ) And Left(ff.Name,1)&lt;&gt;&#34;~&#34; Then Set oDoc=oWord.Documents.Open(ff.Path) odoc.ExportAsFixedFormat Left(ff.Path,InStrRev(ff.Path,&#34;.&#34;))&amp;&#34;pdf&#34;,wdExportFormatPDF End If If (LCase(Right(ff.Name,4))=&#34;.ppt&#34; Or LCase(Right(ff.Name,4))=&#34;pptx&#34; ) And Left(ff.Name,1)&lt;&gt;&#34;~&#34; Then Set pptfile = ppt.Presentations.Open(ff.Path,false,false,false) pptfile.Saveas Left(ff.Path,InStrRev(ff.Path,&#34;.&#34;))&amp;&#34;pdf&#34;,32,false End If Next odoc.Close oword.Quit pptfiles.Close ppt.Quit Set oDoc=Nothing Set oWord =Nothing Set pptfile = Nothing Set ppt = Nothing MsgBox &#34;PPT和Word全部转换为PDF啦!&#34; </p>
-  </div>
-  <footer class="entry-footer"><span title='2025-03-11 00:48:44 +0000 UTC'>March 11, 2025</span></footer>
-  <a class="entry-link" aria-label="post link to vbs脚本 快速将ppt word文档转换成pdf" href="https://juiceright.xyz/old/posts/92gfku-5zk/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">雨课堂习题监控
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>原理：雨课堂每次切换PPT时url也会跟着改变。在检测到ppt切换后，获取ppt的图片，并且进行OCR检测，如果出现‘单选’、‘多选’、‘判断’、‘填空’、‘投票’等词汇，就认定该ppt是习题，就会发出警告提醒。 使用前需要配置state.json保存登录记录。
-import asyncio from playwright.async_api import async_playwright import requests import threading import winsound from plyer import notification import easyocr url=&#34;&#34; # 初始化 EasyOCR reader = easyocr.Reader([&#39;ch_sim&#39;, &#39;en&#39;]) async def notice_ti(page): # 尝试查找图片元素 elementimg = await page.query_selector_all(&#39;//*[@id=&#34;app&#34;]/section/section[1]/section[2]/section/section/section/section[1]/section/div/section/section/img&#39;) if len(elementimg) == 0: elementimg = await page.query_selector_all(&#39;//*[@id=&#34;app&#34;]/section/section[1]/section[2]/section/section/section/section[1]/section/section/section/section/img&#39;) # 发送新页面通知 notification.notify(title=&#39;新的一页&#39;, message=&#39;新的一页&#39;, app_icon=None, timeout=0.5) if elementimg: # 获取图片地址 img_url = await elementimg[0].get_attribute(&#39;src&#39;) # 直接下载图片 tmp = requests.get(img_url) with open(&#39;tmp.png&#39;, &#39;wb&#39;) as f: f.write(tmp.content) # 使用 EasyOCR 识别图片文字 result = reader.readtext(&#39;tmp.png&#39;) # 如果 result 中含有‘单选’、‘多选’、‘判断’、‘填空’、‘投票’、‘问答’、‘作业’、‘讨论’、‘实验’、‘课件’、‘课程’、‘提交’等关键词，就发送通知 keywords = [&#39;单选&#39;, &#39;多选&#39;, &#39;判断&#39;, &#39;填空&#39;, &#39;投票&#39;, &#39;问答&#39;, &#39;作业&#39;, &#39;讨论&#39;, &#39;实验&#39;, &#39;提交&#39;] #keywords = [&#39;电解&#39;] if any(x in str(result) for x in keywords): print(img_url) threading.Thread(target=lambda: winsound.Beep(440, 3000)).start() notification.notify(title=&#39;有题！&#39;, message=&#39;有题！&#39;, app_icon=None, timeout=0.5) # ai(result) # clear_page() async def main(): async with async_playwright() as p: # 配置浏览器选项 browser = await p.chromium.launch(headless=True) context = await browser.new_context(storage_state=&#39;state.json&#39;) page = await context.new_page() # 打开指定页面 await page.goto(url) current_url = page.url while True: # 等待 URL 变化 await page.wait_for_url(lambda url: url != current_url, timeout=10000000) current_url = page.url await notice_ti(page) #await print(&#34;已到达新页面&#34;) if __name__ == &#34;__main__&#34;: url=input(&#34;请输入网址：&#34;) asyncio.run(main()) </p>
-  </div>
-  <footer class="entry-footer"><span title='2025-03-11 00:41:06 +0000 UTC'>March 11, 2025</span></footer>
-  <a class="entry-link" aria-label="post link to 雨课堂习题监控" href="https://juiceright.xyz/old/posts/pbdbfbga9g/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">第二篇SCI！！！
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>这是鼠鼠我本科的第二篇SCI，第一位共同一作！！
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-03-11 00:31:00 +0000 UTC'>March 11, 2025</span></footer>
-  <a class="entry-link" aria-label="post link to 第二篇SCI！！！" href="https://juiceright.xyz/old/posts/nuwhdrsyql/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">壁纸图片
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-03-10 13:38:44 +0000 UTC'>March 10, 2025</span></footer>
-  <a class="entry-link" aria-label="post link to 壁纸图片" href="https://juiceright.xyz/old/posts/6hna3dlrjh/"></a>
+  <footer class="entry-footer"><span title='2025-03-11 09:55:00 +0000 UTC'>March 11, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to playwright自动登录STU WebVPN" href="https://juiceright.xyz/old/old/st6eftek36/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

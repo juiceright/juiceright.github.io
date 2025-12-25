@@ -368,7 +368,7 @@ endlocal
     <h1 class="post-title entry-hint-parent">
       Anki本地服务器
     </h1>
-    <div class="post-meta"><span title='2025-12-03 00:11:03 +0000 UTC'>December 3, 2025</span>
+    <div class="post-meta"><span title='2025-12-03 00:11:03 +0000 UTC'>December 3, 2025</span>&nbsp;·&nbsp;<span>2 min</span>
 
 </div>
   </header> 
@@ -466,7 +466,28 @@ endlocal
   <footer class="post-footer">
     <ul class="post-tags">
     </ul>
-  </footer>
+  </footer><div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: 'Ov23liuWJuk8S1oC4VRp',
+    clientSecret: 'dd9a460fc89c99acdf580410cffacf5f1e9aa032',
+    repo: 'juiceright.github.io',
+    owner: 'juiceright',
+    admin: ['juiceright'],
+    id: decodeURI(location.pathname), 
+    distractionFreeMode: true 
+  });
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+      return;
+    }
+    gitalk.render('gitalk-container');
+  })();
+</script>
+
 </article>
     </main>
     
@@ -545,6 +566,53 @@ endlocal
         }
     })
 
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
 </script>
 </body>
 
