@@ -322,7 +322,7 @@ $tag = urldecode($_POST[&#39;tag&#39;]); //获得POST参数，URL解码 if (strp
     owner: 'juiceright',
     admin: ['juiceright'],
     id: location.pathname, 
-    distractionFreeMode: false 
+    distractionFreeMode: true 
   });
   (function() {
     if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
@@ -332,6 +332,7 @@ $tag = urldecode($_POST[&#39;tag&#39;]); //获得POST参数，URL解码 if (strp
     gitalk.render('gitalk-container');
   })();
 </script>
+
 </article>
     </main>
     

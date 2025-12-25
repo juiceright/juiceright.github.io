@@ -281,7 +281,7 @@ with sync_playwright() as playwright:
     owner: 'juiceright',
     admin: ['juiceright'],
     id: location.pathname, 
-    distractionFreeMode: false 
+    distractionFreeMode: true 
   });
   (function() {
     if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
@@ -291,6 +291,7 @@ with sync_playwright() as playwright:
     gitalk.render('gitalk-container');
   })();
 </script>
+
 </article>
     </main>
     
