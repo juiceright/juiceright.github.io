@@ -10,9 +10,9 @@
     <atom:link href="https://juiceright.xyz/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【深度学习】手写数字图像识别分类（MNIST数据集）</title>
-      <link>https://juiceright.xyz/old/old/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB%E5%88%86%E7%B1%BBmnist%E6%95%B0%E6%8D%AE%E9%9B%86/</link>
+      <link>https://juiceright.xyz/old/posts/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB%E5%88%86%E7%B1%BBmnist%E6%95%B0%E6%8D%AE%E9%9B%86/</link>
       <pubDate>Sat, 01 Apr 2023 20:09:50 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB%E5%88%86%E7%B1%BBmnist%E6%95%B0%E6%8D%AE%E9%9B%86/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB%E5%88%86%E7%B1%BBmnist%E6%95%B0%E6%8D%AE%E9%9B%86/</guid>
       <description>&lt;h1 id=&#34;卷积神经网络&#34;&gt;卷积神经网络&lt;/h1&gt;
 &lt;h2 id=&#34;mnist介绍&#34;&gt;MNIST介绍&lt;/h2&gt;
 &lt;p&gt;MNIST 数据集可在 &lt;a href=&#34;http://yann.lecun.com/exdb/mnist/&#34;&gt;http://yann.lecun.com/exdb/mnist/&lt;/a&gt; 获取, 它包含了四个部分:&lt;/p&gt;

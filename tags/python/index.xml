@@ -10,9 +10,9 @@
     <atom:link href="https://juiceright.xyz/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【分子对接】2. 利用pymol下载蛋白质 脚本</title>
-      <link>https://juiceright.xyz/old/old/ysld_6qj2a/</link>
+      <link>https://juiceright.xyz/old/posts/ysld_6qj2a/</link>
       <pubDate>Wed, 26 Mar 2025 20:28:24 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/ysld_6qj2a/</guid>
+      <guid>https://juiceright.xyz/old/posts/ysld_6qj2a/</guid>
       <description>&lt;p&gt;下载蛋白质，去除水分子，加H，去除配体，去除副链&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 # %%
@@ -51,9 +51,9 @@ pymol.cmd.quit()
     </item>
     <item>
       <title>问卷星自动填写脚本</title>
-      <link>https://juiceright.xyz/old/old/trgcxiotbs/</link>
+      <link>https://juiceright.xyz/old/posts/trgcxiotbs/</link>
       <pubDate>Sun, 23 Mar 2025 18:17:36 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/trgcxiotbs/</guid>
+      <guid>https://juiceright.xyz/old/posts/trgcxiotbs/</guid>
       <description>&lt;p&gt;2025年3月23日测试批量填写80份正常。&lt;/p&gt;
 &lt;p&gt;需要模拟鼠标操作防止被识别机器人&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import re
@@ -148,9 +148,9 @@ if __name__ == &amp;#34;__main__&amp;#34;:
     </item>
     <item>
       <title>python 利用curl将全部网卡适配器登录STU校园网</title>
-      <link>https://juiceright.xyz/old/old/byprsldhih/</link>
+      <link>https://juiceright.xyz/old/posts/byprsldhih/</link>
       <pubDate>Fri, 14 Mar 2025 20:49:01 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/byprsldhih/</guid>
+      <guid>https://juiceright.xyz/old/posts/byprsldhih/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import netifaces
 import os
 # 获取所有网络接口
@@ -170,9 +170,9 @@ for iface in interfaces:
     </item>
     <item>
       <title>playwright自动登录STU WebVPN</title>
-      <link>https://juiceright.xyz/old/old/st6eftek36/</link>
+      <link>https://juiceright.xyz/old/posts/st6eftek36/</link>
       <pubDate>Tue, 11 Mar 2025 09:55:00 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/st6eftek36/</guid>
+      <guid>https://juiceright.xyz/old/posts/st6eftek36/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 import re
 from playwright.sync_api import Playwright, sync_playwright, expect
@@ -233,9 +233,9 @@ with sync_playwright() as playwright:
     </item>
     <item>
       <title>ECDSA实例</title>
-      <link>https://juiceright.xyz/old/old/22bskm0nwq/</link>
+      <link>https://juiceright.xyz/old/posts/22bskm0nwq/</link>
       <pubDate>Tue, 11 Mar 2025 01:05:02 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/22bskm0nwq/</guid>
+      <guid>https://juiceright.xyz/old/posts/22bskm0nwq/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 import os
 import ecdsa
@@ -274,9 +274,9 @@ print(verify_signature(public_key, message, signature))   #验证签名
     </item>
     <item>
       <title>汕头大学SSO 单点登录接入实例</title>
-      <link>https://juiceright.xyz/old/old/40qvh8raw6/</link>
+      <link>https://juiceright.xyz/old/posts/40qvh8raw6/</link>
       <pubDate>Tue, 11 Mar 2025 01:00:18 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/40qvh8raw6/</guid>
+      <guid>https://juiceright.xyz/old/posts/40qvh8raw6/</guid>
       <description>&lt;p&gt;Single Sign On System&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import os
 url=&amp;#34;https://sso.stu.edu.cn/login?service=http://localhost:8080&amp;#34;
@@ -351,9 +351,9 @@ else:
     </item>
     <item>
       <title>雨课堂习题监控</title>
-      <link>https://juiceright.xyz/old/old/pbdbfbga9g/</link>
+      <link>https://juiceright.xyz/old/posts/pbdbfbga9g/</link>
       <pubDate>Tue, 11 Mar 2025 00:41:06 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/pbdbfbga9g/</guid>
+      <guid>https://juiceright.xyz/old/posts/pbdbfbga9g/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;原理：雨课堂每次切换PPT时url也会跟着改变。在检测到ppt切换后，获取ppt的图片，并且进行OCR检测，如果出现‘单选’、‘多选’、‘判断’、‘填空’、‘投票’等词汇，就认定该ppt是习题，就会发出警告提醒。
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;使用前需要配置state.json保存登录记录。&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import asyncio

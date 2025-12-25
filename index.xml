@@ -164,32 +164,32 @@
     </item>
     <item>
       <title>科研人日常</title>
-      <link>https://juiceright.xyz/old/old/%E7%A7%91%E7%A0%94%E4%BA%BA%E6%97%A5%E5%B8%B8/</link>
+      <link>https://juiceright.xyz/old/posts/%E7%A7%91%E7%A0%94%E4%BA%BA%E6%97%A5%E5%B8%B8/</link>
       <pubDate>Tue, 02 Dec 2025 18:23:18 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E7%A7%91%E7%A0%94%E4%BA%BA%E6%97%A5%E5%B8%B8/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E7%A7%91%E7%A0%94%E4%BA%BA%E6%97%A5%E5%B8%B8/</guid>
       <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E7%A7%91%E7%A0%94%E4%BA%BA%E6%97%A5%E5%B8%B8/%E7%A7%91%E7%A0%94%E4%BA%BA%E6%97%A5%E5%B8%B8-20251209171043180.jpg&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>听歌</title>
-      <link>https://juiceright.xyz/old/old/%E5%90%AC%E6%AD%8C/</link>
+      <link>https://juiceright.xyz/old/posts/%E5%90%AC%E6%AD%8C/</link>
       <pubDate>Mon, 01 Dec 2025 22:49:17 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E5%90%AC%E6%AD%8C/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E5%90%AC%E6%AD%8C/</guid>
       <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E5%90%AC%E6%AD%8C/%E5%90%AC%E6%AD%8C-20251209171043473.jpg&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>试一试Hugo</title>
-      <link>https://juiceright.xyz/old/old/%E8%AF%95%E4%B8%80%E8%AF%95hugo/</link>
+      <link>https://juiceright.xyz/old/posts/%E8%AF%95%E4%B8%80%E8%AF%95hugo/</link>
       <pubDate>Mon, 01 Dec 2025 21:33:12 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E8%AF%95%E4%B8%80%E8%AF%95hugo/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E8%AF%95%E4%B8%80%E8%AF%95hugo/</guid>
       <description>&lt;h1 id=&#34;hugo&#34;&gt;Hugo&lt;/h1&gt;
 &lt;p&gt;只是试一试，之前都是用Gridea写的，往后试一试Hugo来构建博客&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E8%AF%95%E4%B8%80%E8%AF%95Hugo/%E8%AF%95%E4%B8%80%E8%AF%95Hugo-20251209171043453.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>tesseract.JS OCR</title>
-      <link>https://juiceright.xyz/old/old/25srxbxlnp/</link>
+      <link>https://juiceright.xyz/old/posts/25srxbxlnp/</link>
       <pubDate>Wed, 26 Nov 2025 11:11:27 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/25srxbxlnp/</guid>
+      <guid>https://juiceright.xyz/old/posts/25srxbxlnp/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 &amp;lt;!DOCTYPE html&amp;gt;
 &amp;lt;html lang=&amp;#34;zh-CN&amp;#34;&amp;gt;
@@ -399,9 +399,9 @@
     </item>
     <item>
       <title>前端JS内容加密</title>
-      <link>https://juiceright.xyz/old/old/a-u98ujs54/</link>
+      <link>https://juiceright.xyz/old/posts/a-u98ujs54/</link>
       <pubDate>Tue, 25 Nov 2025 23:15:45 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/a-u98ujs54/</guid>
+      <guid>https://juiceright.xyz/old/posts/a-u98ujs54/</guid>
       <description>&lt;div id=&#34;decryptBox&#34;&gt;
   &lt;input type=&#34;password&#34; id=&#34;p&#34; placeholder=&#34;密码&#34; autocomplete=&#34;off&#34;&gt;
   &lt;button onclick=&#34;u()&#34;&gt;解锁&lt;/button&gt;
@@ -435,9 +435,9 @@ function u(){
     </item>
     <item>
       <title>极简AES无盐加密</title>
-      <link>https://juiceright.xyz/old/old/yomlsybo06/</link>
+      <link>https://juiceright.xyz/old/posts/yomlsybo06/</link>
       <pubDate>Tue, 25 Nov 2025 22:58:25 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/yomlsybo06/</guid>
+      <guid>https://juiceright.xyz/old/posts/yomlsybo06/</guid>
       <description>&lt;textarea id=t placeholder=&#34;原文&#34; style=&#34;width:100%;height:100px&#34;&gt;&lt;/textarea&gt;
 &lt;input id=p type=password placeholder=&#34;密码&#34; style=&#34;width:100%;margin:8px 0&#34;&gt;
 &lt;button onclick=e()&gt;加密&lt;/button&gt;
@@ -460,9 +460,9 @@ document.getElementById(&#39;p&#39;).addEventListener(&#39;keypress&#39;,e=&gt;e
     </item>
     <item>
       <title>Doro！！</title>
-      <link>https://juiceright.xyz/old/old/7sfq5ao4d_/</link>
+      <link>https://juiceright.xyz/old/posts/7sfq5ao4d_/</link>
       <pubDate>Tue, 25 Nov 2025 21:21:57 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/7sfq5ao4d_/</guid>
+      <guid>https://juiceright.xyz/old/posts/7sfq5ao4d_/</guid>
       <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/7Sfq5Ao4D_/7Sfq5Ao4D_-20251209171042778.webp&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/7Sfq5Ao4D_/7Sfq5Ao4D_-20251209171042786.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/7Sfq5Ao4D_/7Sfq5Ao4D_-20251209171042797.jpg&#34;&gt;&lt;/p&gt;
@@ -470,9 +470,9 @@ document.getElementById(&#39;p&#39;).addEventListener(&#39;keypress&#39;,e=&gt;e
     </item>
     <item>
       <title>python将PDF每一页导出为600DPI的超清JPG</title>
-      <link>https://juiceright.xyz/old/old/9yflkrb4jw/</link>
+      <link>https://juiceright.xyz/old/posts/9yflkrb4jw/</link>
       <pubDate>Fri, 03 Oct 2025 20:26:53 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/9yflkrb4jw/</guid>
+      <guid>https://juiceright.xyz/old/posts/9yflkrb4jw/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import fitz  # PyMuPDF库
 import os
 
@@ -534,9 +534,9 @@ if __name__ == &amp;#34;__main__&amp;#34;:
     </item>
     <item>
       <title>ppt word快速转换PDF小脚本</title>
-      <link>https://juiceright.xyz/old/old/vhulvqwmjm/</link>
+      <link>https://juiceright.xyz/old/posts/vhulvqwmjm/</link>
       <pubDate>Mon, 01 Sep 2025 00:11:31 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/vhulvqwmjm/</guid>
+      <guid>https://juiceright.xyz/old/posts/vhulvqwmjm/</guid>
       <description>&lt;h2 id=&#34;ppt-word快速转换pdf小脚本&#34;&gt;ppt word快速转换PDF小脚本&lt;/h2&gt;
 &lt;p&gt;这个vbs小脚本可以快速将同一目录下的ppt、pptx、doc、docx文件转换成PDF，即点即用，非常方便。&lt;/p&gt;
 &lt;h3 id=&#34;office----ppt-word快速转换pdf-officevbs-&#34;&gt;Office   （ ppt word快速转换PDF-Office.vbs ）&lt;/h3&gt;
@@ -715,9 +715,9 @@ MsgBox &amp;#34;PPT和Word文件已成功转换为PDF格式！&amp;#34;
     </item>
     <item>
       <title>考科目三（偶遇车祸版）</title>
-      <link>https://juiceright.xyz/old/old/izlk01ioiy/</link>
+      <link>https://juiceright.xyz/old/posts/izlk01ioiy/</link>
       <pubDate>Sat, 19 Jul 2025 19:18:18 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/izlk01ioiy/</guid>
+      <guid>https://juiceright.xyz/old/posts/izlk01ioiy/</guid>
       <description>&lt;p&gt;汕头大学路科目三考场，刚到考场就看到车祸，厄运走开🙏🙏&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/izLK01iOiy/izLK01iOiy-20251209171043661.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/izLK01iOiy/izLK01iOiy-20251209171043675.jpg&#34;&gt;&lt;/p&gt;
@@ -725,17 +725,17 @@ MsgBox &amp;#34;PPT和Word文件已成功转换为PDF格式！&amp;#34;
     </item>
     <item>
       <title>？？？</title>
-      <link>https://juiceright.xyz/old/old/ihw34o3yzc/</link>
+      <link>https://juiceright.xyz/old/posts/ihw34o3yzc/</link>
       <pubDate>Thu, 08 May 2025 19:13:07 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/ihw34o3yzc/</guid>
+      <guid>https://juiceright.xyz/old/posts/ihw34o3yzc/</guid>
       <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/ihW34o3yzc/ihW34o3yzc-20251209171043618.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/ihW34o3yzc/ihW34o3yzc-20251209171043629.jpg&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>查看WebVPN的twfid</title>
-      <link>https://juiceright.xyz/old/old/lgbtff1szi/</link>
+      <link>https://juiceright.xyz/old/posts/lgbtff1szi/</link>
       <pubDate>Fri, 18 Apr 2025 16:37:12 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/lgbtff1szi/</guid>
+      <guid>https://juiceright.xyz/old/posts/lgbtff1szi/</guid>
       <description>&lt;p&gt;务必通过&lt;a href=&#34;http://juiceright-github-io-s.webvpn.stu.edu.cn:8118/post/lGBTFf1szi/&#34;&gt;WebVPN&lt;/a&gt;访问本页面，直连访问将无法获取twfid&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;http://juiceright-github-io-s.webvpn.stu.edu.cn:8118/post/lGBTFf1szi/&#34;&gt;http://juiceright-github-io-s.webvpn.stu.edu.cn:8118/post/lGBTFf1szi/&lt;/a&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -777,9 +777,9 @@ MsgBox &amp;#34;PPT和Word文件已成功转换为PDF格式！&amp;#34;
     </item>
     <item>
       <title>将问卷星每一道题目单独截图</title>
-      <link>https://juiceright.xyz/old/old/dvva_jup1_/</link>
+      <link>https://juiceright.xyz/old/posts/dvva_jup1_/</link>
       <pubDate>Fri, 11 Apr 2025 20:44:56 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/dvva_jup1_/</guid>
+      <guid>https://juiceright.xyz/old/posts/dvva_jup1_/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 import re
 from playwright.sync_api import Playwright, sync_playwright, expect
@@ -805,18 +805,18 @@ with sync_playwright() as playwright:
     </item>
     <item>
       <title>禁止Steam客户端自动更新（旧版Steam客户端）</title>
-      <link>https://juiceright.xyz/old/old/aagtgw9nou/</link>
+      <link>https://juiceright.xyz/old/posts/aagtgw9nou/</link>
       <pubDate>Thu, 27 Mar 2025 16:05:01 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/aagtgw9nou/</guid>
+      <guid>https://juiceright.xyz/old/posts/aagtgw9nou/</guid>
       <description>&lt;p&gt;将代码保存为Steam.cfg，文件保存在Steam客户端根目录。&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;BootStrapperInhibitAll=Enable
 &lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     <item>
       <title>【分子对接】2. 利用pymol下载蛋白质 脚本</title>
-      <link>https://juiceright.xyz/old/old/ysld_6qj2a/</link>
+      <link>https://juiceright.xyz/old/posts/ysld_6qj2a/</link>
       <pubDate>Wed, 26 Mar 2025 20:28:24 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/ysld_6qj2a/</guid>
+      <guid>https://juiceright.xyz/old/posts/ysld_6qj2a/</guid>
       <description>&lt;p&gt;下载蛋白质，去除水分子，加H，去除配体，去除副链&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 # %%
@@ -855,9 +855,9 @@ pymol.cmd.quit()
     </item>
     <item>
       <title>【分子对接】1. 自动从pubchem下载小分子 脚本</title>
-      <link>https://juiceright.xyz/old/old/qin3ksdr8z/</link>
+      <link>https://juiceright.xyz/old/posts/qin3ksdr8z/</link>
       <pubDate>Wed, 26 Mar 2025 20:25:40 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/qin3ksdr8z/</guid>
+      <guid>https://juiceright.xyz/old/posts/qin3ksdr8z/</guid>
       <description>&lt;p&gt;本代码用于从pubchem下载小分子(阿司匹林)，并且自动转换成pymol的pdb格式&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import pubchempy as pcp
 from pymol import cmd
@@ -901,9 +901,9 @@ if __name__ == &amp;#34;__main__&amp;#34;:
     </item>
     <item>
       <title>问卷星自动填写脚本</title>
-      <link>https://juiceright.xyz/old/old/trgcxiotbs/</link>
+      <link>https://juiceright.xyz/old/posts/trgcxiotbs/</link>
       <pubDate>Sun, 23 Mar 2025 18:17:36 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/trgcxiotbs/</guid>
+      <guid>https://juiceright.xyz/old/posts/trgcxiotbs/</guid>
       <description>&lt;p&gt;2025年3月23日测试批量填写80份正常。&lt;/p&gt;
 &lt;p&gt;需要模拟鼠标操作防止被识别机器人&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import re
@@ -998,9 +998,9 @@ if __name__ == &amp;#34;__main__&amp;#34;:
     </item>
     <item>
       <title>cmd 利用curl实现全网卡登录STU校园网</title>
-      <link>https://juiceright.xyz/old/old/lq1iwgc7e1/</link>
+      <link>https://juiceright.xyz/old/posts/lq1iwgc7e1/</link>
       <pubDate>Mon, 17 Mar 2025 12:38:48 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/lq1iwgc7e1/</guid>
+      <guid>https://juiceright.xyz/old/posts/lq1iwgc7e1/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 @echo off
 for /f &amp;#34;tokens=*&amp;#34; %%i in (
@@ -1014,9 +1014,9 @@ pause
     </item>
     <item>
       <title>EndNote/Zotero批量添加PubMed文献脚本</title>
-      <link>https://juiceright.xyz/old/old/7uduxw77v6/</link>
+      <link>https://juiceright.xyz/old/posts/7uduxw77v6/</link>
       <pubDate>Fri, 14 Mar 2025 21:10:48 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/7uduxw77v6/</guid>
+      <guid>https://juiceright.xyz/old/posts/7uduxw77v6/</guid>
       <description>&lt;p&gt;代理使用8089端口，适配clash&lt;br&gt;
 使用：同目录下创建paper.txt，一行一个填写一个PMID&lt;br&gt;
 生成一个citation.nbib格式的文件&lt;/p&gt;
@@ -1081,9 +1081,9 @@ f.close()
     </item>
     <item>
       <title>使用Hyper-V配置网卡多个虚拟网卡</title>
-      <link>https://juiceright.xyz/old/old/kbg4hlog6b/</link>
+      <link>https://juiceright.xyz/old/posts/kbg4hlog6b/</link>
       <pubDate>Fri, 14 Mar 2025 20:55:35 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/kbg4hlog6b/</guid>
+      <guid>https://juiceright.xyz/old/posts/kbg4hlog6b/</guid>
       <description>&lt;h2 id=&#34;配置-hyper-v&#34;&gt;配置 Hyper-V&lt;/h2&gt;
 &lt;p&gt;首先需要启用 Hyper-V，在 &lt;strong&gt;管理员 Powershell&lt;/strong&gt;输入以下命令：&lt;/p&gt;
 &lt;p&gt;然后重启电脑。&lt;/p&gt;
@@ -1110,9 +1110,9 @@ Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &amp;#34;Ethernet
     </item>
     <item>
       <title>python 利用curl将全部网卡适配器登录STU校园网</title>
-      <link>https://juiceright.xyz/old/old/byprsldhih/</link>
+      <link>https://juiceright.xyz/old/posts/byprsldhih/</link>
       <pubDate>Fri, 14 Mar 2025 20:49:01 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/byprsldhih/</guid>
+      <guid>https://juiceright.xyz/old/posts/byprsldhih/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import netifaces
 import os
 # 获取所有网络接口
@@ -1132,9 +1132,9 @@ for iface in interfaces:
     </item>
     <item>
       <title>snakemake流程——SMR&#43;MR&#43;MAGMA分析</title>
-      <link>https://juiceright.xyz/old/old/vw5dv077fn/</link>
+      <link>https://juiceright.xyz/old/posts/vw5dv077fn/</link>
       <pubDate>Fri, 14 Mar 2025 20:46:52 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/vw5dv077fn/</guid>
+      <guid>https://juiceright.xyz/old/posts/vw5dv077fn/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 # 定义染色体列表，包含 1 到 22 号染色体
 chromosomes = list(range(1, 23))
@@ -1202,9 +1202,9 @@ rule run_MR:  #OK
     </item>
     <item>
       <title>playwright自动登录STU WebVPN</title>
-      <link>https://juiceright.xyz/old/old/st6eftek36/</link>
+      <link>https://juiceright.xyz/old/posts/st6eftek36/</link>
       <pubDate>Tue, 11 Mar 2025 09:55:00 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/st6eftek36/</guid>
+      <guid>https://juiceright.xyz/old/posts/st6eftek36/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 import re
 from playwright.sync_api import Playwright, sync_playwright, expect
@@ -1265,9 +1265,9 @@ with sync_playwright() as playwright:
     </item>
     <item>
       <title>ECDSA实例</title>
-      <link>https://juiceright.xyz/old/old/22bskm0nwq/</link>
+      <link>https://juiceright.xyz/old/posts/22bskm0nwq/</link>
       <pubDate>Tue, 11 Mar 2025 01:05:02 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/22bskm0nwq/</guid>
+      <guid>https://juiceright.xyz/old/posts/22bskm0nwq/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 import os
 import ecdsa
@@ -1306,9 +1306,9 @@ print(verify_signature(public_key, message, signature))   #验证签名
     </item>
     <item>
       <title>汕头大学SSO 单点登录接入实例</title>
-      <link>https://juiceright.xyz/old/old/40qvh8raw6/</link>
+      <link>https://juiceright.xyz/old/posts/40qvh8raw6/</link>
       <pubDate>Tue, 11 Mar 2025 01:00:18 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/40qvh8raw6/</guid>
+      <guid>https://juiceright.xyz/old/posts/40qvh8raw6/</guid>
       <description>&lt;p&gt;Single Sign On System&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import os
 url=&amp;#34;https://sso.stu.edu.cn/login?service=http://localhost:8080&amp;#34;
@@ -1383,9 +1383,9 @@ else:
     </item>
     <item>
       <title>STU校园网自动登录脚本</title>
-      <link>https://juiceright.xyz/old/old/htt13gbuie/</link>
+      <link>https://juiceright.xyz/old/posts/htt13gbuie/</link>
       <pubDate>Tue, 11 Mar 2025 00:52:49 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/htt13gbuie/</guid>
+      <guid>https://juiceright.xyz/old/posts/htt13gbuie/</guid>
       <description>&lt;p&gt;cmd, ???处分别改称用户名和校园网密码&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 @ECHO OFF
@@ -1411,9 +1411,9 @@ endlocal
     </item>
     <item>
       <title>vbs脚本 快速将ppt word文档转换成pdf</title>
-      <link>https://juiceright.xyz/old/old/92gfku-5zk/</link>
+      <link>https://juiceright.xyz/old/posts/92gfku-5zk/</link>
       <pubDate>Tue, 11 Mar 2025 00:48:44 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/92gfku-5zk/</guid>
+      <guid>https://juiceright.xyz/old/posts/92gfku-5zk/</guid>
       <description>&lt;p&gt;保存为vbs脚本，可以将同目录下的ppt、word转成PDF，非常方便&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;On Error Resume Next
     Const wdExportFormatPDF = 17
@@ -1446,9 +1446,9 @@ End If
     </item>
     <item>
       <title>雨课堂习题监控</title>
-      <link>https://juiceright.xyz/old/old/pbdbfbga9g/</link>
+      <link>https://juiceright.xyz/old/posts/pbdbfbga9g/</link>
       <pubDate>Tue, 11 Mar 2025 00:41:06 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/pbdbfbga9g/</guid>
+      <guid>https://juiceright.xyz/old/posts/pbdbfbga9g/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;原理：雨课堂每次切换PPT时url也会跟着改变。在检测到ppt切换后，获取ppt的图片，并且进行OCR检测，如果出现‘单选’、‘多选’、‘判断’、‘填空’、‘投票’等词汇，就认定该ppt是习题，就会发出警告提醒。
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;使用前需要配置state.json保存登录记录。&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import asyncio
@@ -1515,17 +1515,17 @@ if __name__ == &amp;#34;__main__&amp;#34;:
     </item>
     <item>
       <title>第二篇SCI！！！</title>
-      <link>https://juiceright.xyz/old/old/nuwhdrsyql/</link>
+      <link>https://juiceright.xyz/old/posts/nuwhdrsyql/</link>
       <pubDate>Tue, 11 Mar 2025 00:31:00 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/nuwhdrsyql/</guid>
+      <guid>https://juiceright.xyz/old/posts/nuwhdrsyql/</guid>
       <description>&lt;p&gt;&lt;strong&gt;这是鼠鼠我本科的第二篇SCI，第一位共同一作！！&lt;/strong&gt;&lt;br&gt;
 &lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/nuWhdRSyql/nuWhdRSyql-20251209171043726.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>壁纸图片</title>
-      <link>https://juiceright.xyz/old/old/6hna3dlrjh/</link>
+      <link>https://juiceright.xyz/old/posts/6hna3dlrjh/</link>
       <pubDate>Mon, 10 Mar 2025 13:38:44 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/6hna3dlrjh/</guid>
+      <guid>https://juiceright.xyz/old/posts/6hna3dlrjh/</guid>
       <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/6hnA3DlrJh/6hnA3DlrJh-20251209171042618.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/6hnA3DlrJh/6hnA3DlrJh-20251209171042628.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/6hnA3DlrJh/6hnA3DlrJh-20251209171042640.jpg&#34;&gt;&lt;/p&gt;
@@ -1543,9 +1543,9 @@ if __name__ == &amp;#34;__main__&amp;#34;:
     </item>
     <item>
       <title>zkw线段树</title>
-      <link>https://juiceright.xyz/old/old/uljgqekoo3/</link>
+      <link>https://juiceright.xyz/old/posts/uljgqekoo3/</link>
       <pubDate>Mon, 10 Mar 2025 13:28:55 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/uljgqekoo3/</guid>
+      <guid>https://juiceright.xyz/old/posts/uljgqekoo3/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 #include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
@@ -1596,9 +1596,9 @@ while(q--){
     </item>
     <item>
       <title>ST表</title>
-      <link>https://juiceright.xyz/old/old/6jfataceqh/</link>
+      <link>https://juiceright.xyz/old/posts/6jfataceqh/</link>
       <pubDate>Mon, 10 Mar 2025 13:28:40 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/6jfataceqh/</guid>
+      <guid>https://juiceright.xyz/old/posts/6jfataceqh/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 #include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
@@ -1629,9 +1629,9 @@ int main(){
     </item>
     <item>
       <title>SPFA算法</title>
-      <link>https://juiceright.xyz/old/old/ldovg2gc2p/</link>
+      <link>https://juiceright.xyz/old/posts/ldovg2gc2p/</link>
       <pubDate>Mon, 10 Mar 2025 13:28:27 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/ldovg2gc2p/</guid>
+      <guid>https://juiceright.xyz/old/posts/ldovg2gc2p/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
 const long long   N=100010,M=200011;
@@ -1687,9 +1687,9 @@ cout&amp;lt;&amp;lt;d[i]&amp;lt;&amp;lt;&amp;#34; &amp;#34;;
     </item>
     <item>
       <title>Prim算法</title>
-      <link>https://juiceright.xyz/old/old/f481dm04tj/</link>
+      <link>https://juiceright.xyz/old/posts/f481dm04tj/</link>
       <pubDate>Mon, 10 Mar 2025 13:28:15 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/f481dm04tj/</guid>
+      <guid>https://juiceright.xyz/old/posts/f481dm04tj/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 #include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
@@ -1743,9 +1743,9 @@ int main() {
     </item>
     <item>
       <title>Prim堆优化版</title>
-      <link>https://juiceright.xyz/old/old/ibw-bmba9u/</link>
+      <link>https://juiceright.xyz/old/posts/ibw-bmba9u/</link>
       <pubDate>Mon, 10 Mar 2025 13:27:52 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/ibw-bmba9u/</guid>
+      <guid>https://juiceright.xyz/old/posts/ibw-bmba9u/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
 priority_queue&amp;lt;pair&amp;lt;long long,long long&amp;gt; &amp;gt;q;
@@ -1805,9 +1805,9 @@ work();
     </item>
     <item>
       <title>LCA算法</title>
-      <link>https://juiceright.xyz/old/old/5ipfk_eghq/</link>
+      <link>https://juiceright.xyz/old/posts/5ipfk_eghq/</link>
       <pubDate>Mon, 10 Mar 2025 13:27:39 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/5ipfk_eghq/</guid>
+      <guid>https://juiceright.xyz/old/posts/5ipfk_eghq/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// luogu-judger-enable-o2
 #include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
@@ -1870,9 +1870,9 @@ int main(){
     </item>
     <item>
       <title>匈牙利算法</title>
-      <link>https://juiceright.xyz/old/old/rnbllzkklq/</link>
+      <link>https://juiceright.xyz/old/posts/rnbllzkklq/</link>
       <pubDate>Mon, 10 Mar 2025 13:27:28 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/rnbllzkklq/</guid>
+      <guid>https://juiceright.xyz/old/posts/rnbllzkklq/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
 bool ver[1001][1001],v[1001];
@@ -1912,9 +1912,9 @@ init();
     </item>
     <item>
       <title>线段树</title>
-      <link>https://juiceright.xyz/old/old/cse8xfl8mp/</link>
+      <link>https://juiceright.xyz/old/posts/cse8xfl8mp/</link>
       <pubDate>Mon, 10 Mar 2025 13:26:55 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/cse8xfl8mp/</guid>
+      <guid>https://juiceright.xyz/old/posts/cse8xfl8mp/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
 struct pl{
@@ -1982,9 +1982,9 @@ while(m--){
     </item>
     <item>
       <title>树状数组</title>
-      <link>https://juiceright.xyz/old/old/hl1binzfbh/</link>
+      <link>https://juiceright.xyz/old/posts/hl1binzfbh/</link>
       <pubDate>Mon, 10 Mar 2025 13:26:42 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/hl1binzfbh/</guid>
+      <guid>https://juiceright.xyz/old/posts/hl1binzfbh/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 #include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
@@ -2032,9 +2032,9 @@ int main(){
     </item>
     <item>
       <title>kruskal算法（克鲁斯卡尔算法）</title>
-      <link>https://juiceright.xyz/old/old/y1ekvamzmi/</link>
+      <link>https://juiceright.xyz/old/posts/y1ekvamzmi/</link>
       <pubDate>Mon, 10 Mar 2025 13:26:19 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/y1ekvamzmi/</guid>
+      <guid>https://juiceright.xyz/old/posts/y1ekvamzmi/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#include&amp;lt;bits/stdc++.h&amp;gt;
 #define ll long long
 using namespace std;
@@ -2071,9 +2071,9 @@ else cout&amp;lt;&amp;lt;&amp;#34;orz&amp;#34;;
     </item>
     <item>
       <title>带lazy标记的zkw线段树</title>
-      <link>https://juiceright.xyz/old/old/wwlgapb2j1/</link>
+      <link>https://juiceright.xyz/old/posts/wwlgapb2j1/</link>
       <pubDate>Mon, 10 Mar 2025 13:25:58 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/wwlgapb2j1/</guid>
+      <guid>https://juiceright.xyz/old/posts/wwlgapb2j1/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 #include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
@@ -2132,9 +2132,9 @@ while(q--){
     </item>
     <item>
       <title>排序时间复杂度</title>
-      <link>https://juiceright.xyz/old/old/3ilwt_ogfy/</link>
+      <link>https://juiceright.xyz/old/posts/3ilwt_ogfy/</link>
       <pubDate>Mon, 10 Mar 2025 13:21:35 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/3ilwt_ogfy/</guid>
+      <guid>https://juiceright.xyz/old/posts/3ilwt_ogfy/</guid>
       <description>&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -2225,9 +2225,9 @@ while(q--){
     </item>
     <item>
       <title>Realising the full potential of MR-PHeWAS in cancer</title>
-      <link>https://juiceright.xyz/old/old/%E7%AC%94%E8%AE%B0realising-the-full-potential-of-mr-phewas-in-cancer/</link>
+      <link>https://juiceright.xyz/old/posts/%E7%AC%94%E8%AE%B0realising-the-full-potential-of-mr-phewas-in-cancer/</link>
       <pubDate>Sat, 20 Jan 2024 11:28:52 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E7%AC%94%E8%AE%B0realising-the-full-potential-of-mr-phewas-in-cancer/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E7%AC%94%E8%AE%B0realising-the-full-potential-of-mr-phewas-in-cancer/</guid>
       <description>&lt;h1 id=&#34;realising-the-full-potential-of-mr-phewas-in-cancer&#34;&gt;&lt;strong&gt;&lt;span style=&#34;color: #7CB342&#34;&gt;笔记&lt;/span&gt;&lt;/strong&gt;&lt;span style=&#34;color: #7CB342&#34;&gt;Realising the full potential of MR-PHeWAS in cancer.&lt;/span&gt;&lt;/h1&gt;
 &lt;hr&gt;
 &lt;p&gt;&lt;strong&gt;&lt;span style=&#34;color: #1976D2&#34;&gt;️ 出版年份: &lt;/span&gt;2021\ &lt;span style=&#34;color: #1976D2&#34;&gt; 出版期刊: &lt;/span&gt;British journal of cancer\ &lt;span style=&#34;color: #1976D2&#34;&gt; 影响因子: &lt;/span&gt;8.8\ &lt;span style=&#34;color: #1976D2&#34;&gt; JCR分区: &lt;/span&gt;1\ &lt;span style=&#34;color: #1976D2&#34;&gt; DOI:10.1038/s41416-020-01165-0&lt;br&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
@@ -2241,9 +2241,9 @@ while(q--){
     </item>
     <item>
       <title>GO和KEGG分析</title>
-      <link>https://juiceright.xyz/old/old/go%E5%92%8Ckegg%E5%88%86%E6%9E%90/</link>
+      <link>https://juiceright.xyz/old/posts/go%E5%92%8Ckegg%E5%88%86%E6%9E%90/</link>
       <pubDate>Sun, 06 Aug 2023 18:39:29 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/go%E5%92%8Ckegg%E5%88%86%E6%9E%90/</guid>
+      <guid>https://juiceright.xyz/old/posts/go%E5%92%8Ckegg%E5%88%86%E6%9E%90/</guid>
       <description>&lt;h1 id=&#34;go和kegg分析&#34;&gt;GO和KEGG分析&lt;/h1&gt;
 &lt;p&gt;功能富集分析对于解释转录组学数据至关重要。转录组鉴定了&lt;strong&gt;差异表达基因&lt;/strong&gt;后，通常会进行GO或KEGG富集分析，识别这些差异基因的功能或参与调控的通路，来说明&lt;strong&gt;关键基因表达上调/或下调后可能会导致哪功能或通路被激活/或抑制&lt;/strong&gt;，进而与表型进行联系。&lt;/p&gt;
 &lt;p&gt;(其实就是用DEG结果的进行的分析)&lt;/p&gt;
@@ -2372,9 +2372,9 @@ while(q--){
     </item>
     <item>
       <title>孟德尔随机化笔记（四）——药物靶点MR分析</title>
-      <link>https://juiceright.xyz/old/old/%E5%AD%9F%E5%BE%B7%E5%B0%94%E9%9A%8F%E6%9C%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</link>
+      <link>https://juiceright.xyz/old/posts/%E5%AD%9F%E5%BE%B7%E5%B0%94%E9%9A%8F%E6%9C%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</link>
       <pubDate>Sat, 05 Aug 2023 05:13:50 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E5%AD%9F%E5%BE%B7%E5%B0%94%E9%9A%8F%E6%9C%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E5%AD%9F%E5%BE%B7%E5%B0%94%E9%9A%8F%E6%9C%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/</guid>
       <description>&lt;p&gt;用于药物开发与效应预测的药物孟德尔随机化（Drug-MR）,基于靶蛋白的下游产物（biomarker），以靶蛋白编码基因附近的对biomarker有显著效应的SNP（pQTL或者eQTL）作为工具变量，以biomarker浓度作为暴露，以疾病作为结局，进行孟德尔随机化，以验证蛋白靶对于所研究疾病的影响。&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/548337552&#34;&gt;参考资料&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;资料建议剔除连锁不平衡： R^2 = 0.60&lt;/p&gt;
@@ -2446,9 +2446,9 @@ while(q--){
     </item>
     <item>
       <title>机器学习12种分类模型的性能对比</title>
-      <link>https://juiceright.xyz/old/old/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A012%E7%A7%8D%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/</link>
+      <link>https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A012%E7%A7%8D%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/</link>
       <pubDate>Mon, 19 Jun 2023 22:42:48 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A012%E7%A7%8D%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A012%E7%A7%8D%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/</guid>
       <description>&lt;p&gt;接上回，我们已经知道了&lt;a href=&#34;https://juiceright.xyz/2023/05/21/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E7%9A%84%E6%9C%AC%E8%B4%A8/&#34;&gt;机器学习分类的本质&lt;/a&gt;，那么接下来就是要介绍机器学习中的分类模型的各种性能了。&lt;/p&gt;
 &lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;我们将采用12种分类模型，分别是：GaussianNB、MultinomialNB、KNNeighbors、SVC、DecisionTree、RandomForest、GradientBoosting、LGBM、XGB、CatBoost、AdaBoost、MLP，用这些模型对数据集进行训练，然后对测试集进行预测，最后将预测结果与真实结果进行对比，得到各个模型的性能。&lt;/p&gt;
@@ -2513,9 +2513,9 @@ $$
     </item>
     <item>
       <title>机器学习分类的本质</title>
-      <link>https://juiceright.xyz/old/old/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E7%9A%84%E6%9C%AC%E8%B4%A8/</link>
+      <link>https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E7%9A%84%E6%9C%AC%E8%B4%A8/</link>
       <pubDate>Sun, 21 May 2023 18:57:29 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E7%9A%84%E6%9C%AC%E8%B4%A8/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E7%9A%84%E6%9C%AC%E8%B4%A8/</guid>
       <description>&lt;h1 id=&#34;机器学习分类的本质&#34;&gt;机器学习分类的本质&lt;/h1&gt;
 &lt;h2 id=&#34;引入&#34;&gt;引入&lt;/h2&gt;
 &lt;p&gt;机器学习中，基本的任务可以分为三类：分类、回归和聚类。&lt;/p&gt;
@@ -2569,17 +2569,17 @@ $$
     </item>
     <item>
       <title>论文📃你好，论文📃再见。</title>
-      <link>https://juiceright.xyz/old/old/%E8%AE%BA%E6%96%87%E4%BD%A0%E5%A5%BD%E8%AE%BA%E6%96%87%E5%86%8D%E8%A7%81/</link>
+      <link>https://juiceright.xyz/old/posts/%E8%AE%BA%E6%96%87%E4%BD%A0%E5%A5%BD%E8%AE%BA%E6%96%87%E5%86%8D%E8%A7%81/</link>
       <pubDate>Sat, 15 Apr 2023 09:36:30 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E8%AE%BA%E6%96%87%E4%BD%A0%E5%A5%BD%E8%AE%BA%E6%96%87%E5%86%8D%E8%A7%81/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E8%AE%BA%E6%96%87%E4%BD%A0%E5%A5%BD%E8%AE%BA%E6%96%87%E5%86%8D%E8%A7%81/</guid>
       <description>&lt;p&gt;论文📃你好，论文📃再见。&lt;br&gt;
 &lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E8%AE%BA%E6%96%87%E4%BD%A0%E5%A5%BD%EF%BC%8C%E8%AE%BA%E6%96%87%E5%86%8D%E8%A7%81/%E8%AE%BA%E6%96%87%E4%BD%A0%E5%A5%BD%EF%BC%8C%E8%AE%BA%E6%96%87%E5%86%8D%E8%A7%81-20251209171043409.jpg&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>【深度学习】手写数字图像识别分类（MNIST数据集）</title>
-      <link>https://juiceright.xyz/old/old/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB%E5%88%86%E7%B1%BBmnist%E6%95%B0%E6%8D%AE%E9%9B%86/</link>
+      <link>https://juiceright.xyz/old/posts/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB%E5%88%86%E7%B1%BBmnist%E6%95%B0%E6%8D%AE%E9%9B%86/</link>
       <pubDate>Sat, 01 Apr 2023 20:09:50 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB%E5%88%86%E7%B1%BBmnist%E6%95%B0%E6%8D%AE%E9%9B%86/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB%E5%88%86%E7%B1%BBmnist%E6%95%B0%E6%8D%AE%E9%9B%86/</guid>
       <description>&lt;h1 id=&#34;卷积神经网络&#34;&gt;卷积神经网络&lt;/h1&gt;
 &lt;h2 id=&#34;mnist介绍&#34;&gt;MNIST介绍&lt;/h2&gt;
 &lt;p&gt;MNIST 数据集可在 &lt;a href=&#34;http://yann.lecun.com/exdb/mnist/&#34;&gt;http://yann.lecun.com/exdb/mnist/&lt;/a&gt; 获取, 它包含了四个部分:&lt;/p&gt;
@@ -2591,9 +2591,9 @@ Test set labels: t10k-labels-idx1-ubyte.gz (5KB, 解压后 10 KB, 包含 10,000 
     </item>
     <item>
       <title>【机器学习】四层人工神经网络拟合二元二次函数</title>
-      <link>https://juiceright.xyz/old/old/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9B%9B%E5%B1%82%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%8B%9F%E5%90%88%E4%BA%8C%E5%85%83%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0/</link>
+      <link>https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9B%9B%E5%B1%82%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%8B%9F%E5%90%88%E4%BA%8C%E5%85%83%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0/</link>
       <pubDate>Wed, 29 Mar 2023 17:54:00 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9B%9B%E5%B1%82%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%8B%9F%E5%90%88%E4%BA%8C%E5%85%83%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9B%9B%E5%B1%82%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%8B%9F%E5%90%88%E4%BA%8C%E5%85%83%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0/</guid>
       <description>&lt;h1 id=&#34;四层人工神经网络拟合二元二次函数&#34;&gt;四层人工神经网络拟合二元二次函数&lt;/h1&gt;
 &lt;p&gt;如果想了解人工神经网络，请认真阅读每个字，字字珠玑。😂&lt;/p&gt;
 &lt;p&gt;核心代码:&lt;/p&gt;
@@ -2648,9 +2648,9 @@ Test set labels: t10k-labels-idx1-ubyte.gz (5KB, 解压后 10 KB, 包含 10,000 
     </item>
     <item>
       <title>【机器学习】可拟合任意线性函数的小玩意儿</title>
-      <link>https://juiceright.xyz/old/old/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8F%AF%E6%8B%9F%E5%90%88%E4%BB%BB%E6%84%8F%E7%BA%BF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%E5%84%BF/</link>
+      <link>https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8F%AF%E6%8B%9F%E5%90%88%E4%BB%BB%E6%84%8F%E7%BA%BF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%E5%84%BF/</link>
       <pubDate>Mon, 27 Mar 2023 22:27:23 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8F%AF%E6%8B%9F%E5%90%88%E4%BB%BB%E6%84%8F%E7%BA%BF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%E5%84%BF/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8F%AF%E6%8B%9F%E5%90%88%E4%BB%BB%E6%84%8F%E7%BA%BF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%E5%84%BF/</guid>
       <description>&lt;h1 id=&#34;机器学习可拟合任意线性函数的小玩意儿&#34;&gt;【机器学习】可拟合任意线性函数的小玩意儿&lt;/h1&gt;
 &lt;h3 id=&#34;先上完整代码&#34;&gt;先上完整代码&lt;/h3&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import torch as t
@@ -2699,9 +2699,9 @@ while(1):
     </item>
     <item>
       <title>【爬虫】豆瓣Top250爬取</title>
-      <link>https://juiceright.xyz/old/old/%E7%88%AC%E8%99%AB%E8%B1%86%E7%93%A3top250%E7%88%AC%E5%8F%96/</link>
+      <link>https://juiceright.xyz/old/posts/%E7%88%AC%E8%99%AB%E8%B1%86%E7%93%A3top250%E7%88%AC%E5%8F%96/</link>
       <pubDate>Sun, 26 Mar 2023 23:44:33 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E7%88%AC%E8%99%AB%E8%B1%86%E7%93%A3top250%E7%88%AC%E5%8F%96/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E7%88%AC%E8%99%AB%E8%B1%86%E7%93%A3top250%E7%88%AC%E5%8F%96/</guid>
       <description>&lt;h1 id=&#34;豆瓣top250爬取&#34;&gt;豆瓣Top250爬取&lt;/h1&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E3%80%90%E7%88%AC%E8%99%AB%E3%80%91%E8%B1%86%E7%93%A3Top250%E7%88%AC%E5%8F%96/%E3%80%90%E7%88%AC%E8%99%AB%E3%80%91%E8%B1%86%E7%93%A3Top250%E7%88%AC%E5%8F%96-20251209171042492.jpg&#34;&gt;&lt;/p&gt;
 &lt;h5 id=&#34;这里是简单的代码&#34;&gt;这里是简单的代码&lt;/h5&gt;
@@ -2715,17 +2715,17 @@ while(1):
     </item>
     <item>
       <title>买书学习喽</title>
-      <link>https://juiceright.xyz/old/old/%E4%B9%B0%E4%B9%A6%E5%AD%A6%E4%B9%A0%E5%96%BD/</link>
+      <link>https://juiceright.xyz/old/posts/%E4%B9%B0%E4%B9%A6%E5%AD%A6%E4%B9%A0%E5%96%BD/</link>
       <pubDate>Tue, 21 Mar 2023 18:49:02 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E4%B9%B0%E4%B9%A6%E5%AD%A6%E4%B9%A0%E5%96%BD/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E4%B9%B0%E4%B9%A6%E5%AD%A6%E4%B9%A0%E5%96%BD/</guid>
       <description>&lt;p&gt;从此时此刻起便是我故事开始的序章！&lt;br&gt;
 学起来！&lt;/p&gt;</description>
     </item>
     <item>
       <title>python代理</title>
-      <link>https://juiceright.xyz/old/old/python%E4%BB%A3%E7%90%86/</link>
+      <link>https://juiceright.xyz/old/posts/python%E4%BB%A3%E7%90%86/</link>
       <pubDate>Tue, 21 Mar 2023 15:54:17 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/python%E4%BB%A3%E7%90%86/</guid>
+      <guid>https://juiceright.xyz/old/posts/python%E4%BB%A3%E7%90%86/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#!/usr/bin/env python
 #coding:utf-8
 import socket
@@ -2804,9 +2804,9 @@ print(&amp;#34;python proxy close&amp;#34;)
     </item>
     <item>
       <title>简易python传文件收发端(带注释)</title>
-      <link>https://juiceright.xyz/old/old/%E7%AE%80%E6%98%93python%E4%BC%A0%E6%96%87%E4%BB%B6%E6%94%B6%E5%8F%91%E7%AB%AF/</link>
+      <link>https://juiceright.xyz/old/posts/%E7%AE%80%E6%98%93python%E4%BC%A0%E6%96%87%E4%BB%B6%E6%94%B6%E5%8F%91%E7%AB%AF/</link>
       <pubDate>Mon, 20 Mar 2023 23:45:23 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E7%AE%80%E6%98%93python%E4%BC%A0%E6%96%87%E4%BB%B6%E6%94%B6%E5%8F%91%E7%AB%AF/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E7%AE%80%E6%98%93python%E4%BC%A0%E6%96%87%E4%BB%B6%E6%94%B6%E5%8F%91%E7%AB%AF/</guid>
       <description>&lt;h1 id=&#34;简易python传文件收发端&#34;&gt;简易python传文件收发端&lt;/h1&gt;
 &lt;h3 id=&#34;发送端py&#34;&gt;发送端.py&lt;/h3&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;# 导入模块
@@ -2886,9 +2886,9 @@ while True:
     </item>
     <item>
       <title>简单头像</title>
-      <link>https://juiceright.xyz/old/old/%E7%AE%80%E5%8D%95%E5%A4%B4%E5%83%8F/</link>
+      <link>https://juiceright.xyz/old/posts/%E7%AE%80%E5%8D%95%E5%A4%B4%E5%83%8F/</link>
       <pubDate>Sat, 18 Mar 2023 21:41:49 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E7%AE%80%E5%8D%95%E5%A4%B4%E5%83%8F/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E7%AE%80%E5%8D%95%E5%A4%B4%E5%83%8F/</guid>
       <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E7%AE%80%E5%8D%95%E5%A4%B4%E5%83%8F/%E7%AE%80%E5%8D%95%E5%A4%B4%E5%83%8F-20251209171043108.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E7%AE%80%E5%8D%95%E5%A4%B4%E5%83%8F/%E7%AE%80%E5%8D%95%E5%A4%B4%E5%83%8F-20251209171043115.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E7%AE%80%E5%8D%95%E5%A4%B4%E5%83%8F/%E7%AE%80%E5%8D%95%E5%A4%B4%E5%83%8F-20251209171043130.jpg&#34;&gt;&lt;/p&gt;
@@ -2898,9 +2898,9 @@ while True:
     </item>
     <item>
       <title>【爬虫】FitGirl-Repack的Scrapy爬虫代码</title>
-      <link>https://juiceright.xyz/old/old/fitgirl-repack%E6%B8%B8%E6%88%8F%E7%BD%91%E7%AB%99scrapy%E7%88%AC%E8%99%AB%E4%BB%A3%E7%A0%81/</link>
+      <link>https://juiceright.xyz/old/posts/fitgirl-repack%E6%B8%B8%E6%88%8F%E7%BD%91%E7%AB%99scrapy%E7%88%AC%E8%99%AB%E4%BB%A3%E7%A0%81/</link>
       <pubDate>Wed, 15 Mar 2023 15:53:25 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/fitgirl-repack%E6%B8%B8%E6%88%8F%E7%BD%91%E7%AB%99scrapy%E7%88%AC%E8%99%AB%E4%BB%A3%E7%A0%81/</guid>
+      <guid>https://juiceright.xyz/old/posts/fitgirl-repack%E6%B8%B8%E6%88%8F%E7%BD%91%E7%AB%99scrapy%E7%88%AC%E8%99%AB%E4%BB%A3%E7%A0%81/</guid>
       <description>&lt;h2 id=&#34;今天花了一点时间写了一个fitgirl-repacks游戏网站的自动爬虫脚本&#34;&gt;今天花了一点时间，写了一个&lt;a href=&#34;https://fitgirl-repacks.site/&#34; title=&#34;FitGirl Repacks&#34;&gt;FitGirl Repacks&lt;/a&gt;游戏网站的自动爬虫脚本&lt;/h2&gt;
 &lt;p&gt;用的是scrapy的爬虫框架&lt;/p&gt;
 &lt;h4 id=&#34;itemspy-作用确定需要爬取的内容&#34;&gt;items.py 作用：确定需要爬取的内容&lt;/h4&gt;
@@ -2937,9 +2937,9 @@ class FgSpider(scrapy.Spider):
     </item>
     <item>
       <title>简单骑行</title>
-      <link>https://juiceright.xyz/old/old/%E7%AE%80%E5%8D%95%E9%AA%91%E8%A1%8C/</link>
+      <link>https://juiceright.xyz/old/posts/%E7%AE%80%E5%8D%95%E9%AA%91%E8%A1%8C/</link>
       <pubDate>Wed, 15 Mar 2023 15:24:03 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E7%AE%80%E5%8D%95%E9%AA%91%E8%A1%8C/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E7%AE%80%E5%8D%95%E9%AA%91%E8%A1%8C/</guid>
       <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E7%AE%80%E5%8D%95%E9%AA%91%E8%A1%8C/%E7%AE%80%E5%8D%95%E9%AA%91%E8%A1%8C-20251209171043044.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E7%AE%80%E5%8D%95%E9%AA%91%E8%A1%8C/%E7%AE%80%E5%8D%95%E9%AA%91%E8%A1%8C-20251209171043054.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E7%AE%80%E5%8D%95%E9%AA%91%E8%A1%8C/%E7%AE%80%E5%8D%95%E9%AA%91%E8%A1%8C-20251209171043076.jpg&#34;&gt;&lt;/p&gt;
@@ -2948,17 +2948,17 @@ class FgSpider(scrapy.Spider):
     </item>
     <item>
       <title>脑瘫想法</title>
-      <link>https://juiceright.xyz/old/old/%E8%84%91%E7%98%AB%E6%83%B3%E6%B3%95/</link>
+      <link>https://juiceright.xyz/old/posts/%E8%84%91%E7%98%AB%E6%83%B3%E6%B3%95/</link>
       <pubDate>Fri, 10 Mar 2023 00:09:51 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E8%84%91%E7%98%AB%E6%83%B3%E6%B3%95/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E8%84%91%E7%98%AB%E6%83%B3%E6%B3%95/</guid>
       <description>&lt;p&gt;下面有请我和我的大脑🧠用朴素的语言为大家概括今晚普逻课程：&lt;br&gt;
 从前山上有一处虎穴，虎穴内有虎子。由 “不入虎穴焉得虎子”可推导出 “得虎子必入虎穴”、“不得虎子不一定入虎穴”、“入虎穴不一定得虎子”、“不入虎穴必不得虎子”。他们依次符合有之则必然、无之未必不然、有之未必然、无之必不然的简单逻辑结构。其中有之则必然 无之未必不然可以组成充分条件假言命题，有之未必然 无之必不然可以组成必要条件假言命题，有之则必然 无之必不然可以组成充要条件假言命题。三种结构非常简洁明了，但是我们要注意的是一个假言命题的真假与否取决于p→q中的p、q两个条件的真假与否，而不取决于p、q内容之间的关联性。我们回到虎穴得虎子。在“不入虎穴焉得虎子”一系列推导式中，假如你进入的虎穴里可能根本就没有虎子（你闯了一个空门），但是这并不妨碍你得到虎子（因为你已经闯入了虎穴），闯了空虎穴之后你可以在任意的地方（森林，羊村，米奇妙妙屋等）找虎子，最终你得到了虎子。这一系列操作下来，你闯了虎穴，即便里面没有虎子，你得到了虎子，即便跟虎穴半毛钱关系没有。但是你依旧可以自豪地对外宣称我进入虎穴得到虎子，你也证明了“得虎子必入虎穴”的正确性。此时“不入虎穴焉得虎子”命题变成了奇奇怪怪但又没什么问题的假言命题，你也陷入一个了名叫“蕴涵怪论”的怪圈。紧接着充分条件假言命题 必要条件假言命题 充要条件假言命题，我们推出了第四种：有之未必然 无之未必不然 的废话命题。最后衷心的劝告选了普逻的男学生、选了普逻的女学生、没选普逻的男女学生 ，如果你想要一只老虎幼崽（不管你是买的捉的收到的），恳请先往虎穴内跑一趟，以免造成损失。&lt;/p&gt;</description>
     </item>
     <item>
       <title>可爱医学楼</title>
-      <link>https://juiceright.xyz/old/old/%E5%8F%AF%E7%88%B1%E5%8C%BB%E5%AD%A6%E6%A5%BC/</link>
+      <link>https://juiceright.xyz/old/posts/%E5%8F%AF%E7%88%B1%E5%8C%BB%E5%AD%A6%E6%A5%BC/</link>
       <pubDate>Sat, 04 Mar 2023 06:51:57 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E5%8F%AF%E7%88%B1%E5%8C%BB%E5%AD%A6%E6%A5%BC/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E5%8F%AF%E7%88%B1%E5%8C%BB%E5%AD%A6%E6%A5%BC/</guid>
       <description>&lt;h1 id=&#34;可爱医学楼&#34;&gt;可爱医学楼&lt;/h1&gt;
 &lt;h2 id=&#34;四点五十起床爬五点四十的山第一次这么早&#34;&gt;四点五十起床爬五点四十的山，第一次这么早&lt;/h2&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E5%8F%AF%E7%88%B1%E5%8C%BB%E5%AD%A6%E6%A5%BC/%E5%8F%AF%E7%88%B1%E5%8C%BB%E5%AD%A6%E6%A5%BC-20251209171043201.jpg&#34;&gt;&lt;/p&gt;
@@ -2973,9 +2973,9 @@ class FgSpider(scrapy.Spider):
     </item>
     <item>
       <title>TinyWebDB的简单思考</title>
-      <link>https://juiceright.xyz/old/old/tinywebdb%E7%9A%84%E7%AE%80%E5%8D%95%E6%80%9D%E8%80%83/</link>
+      <link>https://juiceright.xyz/old/posts/tinywebdb%E7%9A%84%E7%AE%80%E5%8D%95%E6%80%9D%E8%80%83/</link>
       <pubDate>Wed, 21 Dec 2022 22:10:55 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/tinywebdb%E7%9A%84%E7%AE%80%E5%8D%95%E6%80%9D%E8%80%83/</guid>
+      <guid>https://juiceright.xyz/old/posts/tinywebdb%E7%9A%84%E7%AE%80%E5%8D%95%E6%80%9D%E8%80%83/</guid>
       <description>&lt;p&gt;部分核心代码：&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 	$tag = urldecode($_POST[&amp;#39;tag&amp;#39;]);            //获得POST参数，URL解码
@@ -3013,40 +3013,40 @@ class FgSpider(scrapy.Spider):
     </item>
     <item>
       <title>有事没事种种树</title>
-      <link>https://juiceright.xyz/old/old/%E6%9C%89%E4%BA%8B%E6%B2%A1%E4%BA%8B%E7%A7%8D%E7%A7%8D%E6%A0%91/</link>
+      <link>https://juiceright.xyz/old/posts/%E6%9C%89%E4%BA%8B%E6%B2%A1%E4%BA%8B%E7%A7%8D%E7%A7%8D%E6%A0%91/</link>
       <pubDate>Thu, 13 Oct 2022 16:11:06 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E6%9C%89%E4%BA%8B%E6%B2%A1%E4%BA%8B%E7%A7%8D%E7%A7%8D%E6%A0%91/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E6%9C%89%E4%BA%8B%E6%B2%A1%E4%BA%8B%E7%A7%8D%E7%A7%8D%E6%A0%91/</guid>
       <description>&lt;h1 id=&#34;有事没事种种树&#34;&gt;有事没事种种树&lt;/h1&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E6%9C%89%E4%BA%8B%E6%B2%A1%E4%BA%8B%E7%A7%8D%E7%A7%8D%E6%A0%91/%E6%9C%89%E4%BA%8B%E6%B2%A1%E4%BA%8B%E7%A7%8D%E7%A7%8D%E6%A0%91-20251209171043531.jpg&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>初逛 头大新校区</title>
-      <link>https://juiceright.xyz/old/old/%E5%88%9D%E9%80%9B-%E5%A4%B4%E5%A4%A7%E6%96%B0%E6%A0%A1%E5%8C%BA/</link>
+      <link>https://juiceright.xyz/old/posts/%E5%88%9D%E9%80%9B-%E5%A4%B4%E5%A4%A7%E6%96%B0%E6%A0%A1%E5%8C%BA/</link>
       <pubDate>Wed, 05 Oct 2022 12:54:00 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E5%88%9D%E9%80%9B-%E5%A4%B4%E5%A4%A7%E6%96%B0%E6%A0%A1%E5%8C%BA/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E5%88%9D%E9%80%9B-%E5%A4%B4%E5%A4%A7%E6%96%B0%E6%A0%A1%E5%8C%BA/</guid>
       <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E5%88%9D%E9%80%9B-%E5%A4%B4%E5%A4%A7%E6%96%B0%E6%A0%A1%E5%8C%BA/%E5%88%9D%E9%80%9B-%E5%A4%B4%E5%A4%A7%E6%96%B0%E6%A0%A1%E5%8C%BA-20251209171042892.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E5%88%9D%E9%80%9B-%E5%A4%B4%E5%A4%A7%E6%96%B0%E6%A0%A1%E5%8C%BA/%E5%88%9D%E9%80%9B-%E5%A4%B4%E5%A4%A7%E6%96%B0%E6%A0%A1%E5%8C%BA-20251209171042900.jpg&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>有趣的OI游戏</title>
-      <link>https://juiceright.xyz/old/old/%E6%9C%89%E8%B6%A3%E7%9A%84oi%E6%B8%B8%E6%88%8F/</link>
+      <link>https://juiceright.xyz/old/posts/%E6%9C%89%E8%B6%A3%E7%9A%84oi%E6%B8%B8%E6%88%8F/</link>
       <pubDate>Mon, 26 Aug 2019 11:37:00 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E6%9C%89%E8%B6%A3%E7%9A%84oi%E6%B8%B8%E6%88%8F/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E6%9C%89%E8%B6%A3%E7%9A%84oi%E6%B8%B8%E6%88%8F/</guid>
       <description>&lt;p&gt;一些颓废专用的Games\ &lt;a href=&#34;https://foes.io&#34;&gt;多人联机吃鸡小游戏&lt;/a&gt;\ &lt;a href=&#34;http://pie.ai&#34;&gt;多人联机跳跳大作战&lt;/a&gt;\ &lt;a href=&#34;http://spinz.io&#34;&gt;多人联机碰碰大作战&lt;/a&gt;\ &lt;a href=&#34;http://bloble.io&#34;&gt;多人联机领地大作战&lt;/a&gt;\ &lt;a href=&#34;http://starblast.io&#34;&gt;多人联机星爆大作战&lt;/a&gt;\ &lt;a href=&#34;https://slay.one&#34;&gt;多人联机巷口大作战&lt;/a&gt;\ &lt;a href=&#34;http://zlap.io&#34;&gt;多人在线摆锤大作战&lt;/a&gt;\ &lt;a href=&#34;http://junqi.io&#34;&gt;多人联机策略大作战&lt;/a&gt;\ &lt;a href=&#34;http://krew.io&#34;&gt;多人联机海盗大作战&lt;/a&gt;\ &lt;a href=&#34;http://mope.io&#34;&gt;多人联机动物大作战&lt;/a&gt;\ &lt;a href=&#34;http://doblons.io&#34;&gt;多人联机战舰大作战&lt;/a&gt;\ &lt;a href=&#34;http://bonk.io&#34;&gt;多人联机物理大作战&lt;/a&gt;\ &lt;a href=&#34;http://braains.io&#34;&gt;多人联机僵尸大作战&lt;/a&gt;\ &lt;a href=&#34;http://narwhale.io&#34;&gt;多人联机切菜大作战&lt;/a&gt;\ &lt;a href=&#34;http://kartwars.io&#34;&gt;多人联机飚车大作战&lt;/a&gt;\ &lt;a href=&#34;http://splix.io&#34;&gt;多人联机圈地大作战&lt;/a&gt;\ &lt;a href=&#34;http://tankwars.io&#34;&gt;多人联机坦克大作战&lt;/a&gt;\ &lt;a href=&#34;http://supersnake.io&#34;&gt;多人联机撞击大作战&lt;/a&gt;\ &lt;a href=&#34;http://vertix.io&#34;&gt;多人联机突突大作战&lt;/a&gt;\ &lt;a href=&#34;http://limax.io&#34;&gt;多人联机冲冲大作战&lt;/a&gt;\ &lt;a href=&#34;https://massivematch.io&#34;&gt;多人联机消除大作战&lt;/a&gt;\ &lt;a href=&#34;http://wings.io&#34;&gt;多人联机空中大作战&lt;/a&gt;\ &lt;a href=&#34;http://wilds.io&#34;&gt;多人联机斧头大作战&lt;/a&gt;\ &lt;a href=&#34;http://diep.io&#34;&gt;多人联机坦克大作战&lt;/a&gt;\ &lt;a href=&#34;http://slither.io&#34;&gt;多人联机蛇蛇大作战&lt;/a&gt;\ &lt;a href=&#34;http://agar.io&#34;&gt;多人联机曲线大对战&lt;/a&gt;\ &lt;a href=&#34;http://warin.space&#34;&gt;红蓝对抗太空大作战&lt;/a&gt;\ &lt;a href=&#34;http://agar.io&#34;&gt;多人联机大鱼吃小鱼&lt;/a&gt;\ &lt;a href=&#34;http://cursors.io&#34;&gt;多人联机鼠标大作战&lt;/a&gt;\ &lt;a href=&#34;http://nettank.nrg-media.de&#34;&gt;多人联机坦克大作战&lt;/a&gt;\ &lt;a href=&#34;http://www.jellybattle.com&#34;&gt;多人联机果冻人大战&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>暑假将结束，新的生活将来到</title>
-      <link>https://juiceright.xyz/old/old/%E6%9A%91%E5%81%87%E5%B0%86%E7%BB%93%E6%9D%9F%E6%96%B0%E7%9A%84%E7%94%9F%E6%B4%BB%E5%B0%86%E6%9D%A5%E5%88%B0/</link>
+      <link>https://juiceright.xyz/old/posts/%E6%9A%91%E5%81%87%E5%B0%86%E7%BB%93%E6%9D%9F%E6%96%B0%E7%9A%84%E7%94%9F%E6%B4%BB%E5%B0%86%E6%9D%A5%E5%88%B0/</link>
       <pubDate>Mon, 26 Aug 2019 11:02:00 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E6%9A%91%E5%81%87%E5%B0%86%E7%BB%93%E6%9D%9F%E6%96%B0%E7%9A%84%E7%94%9F%E6%B4%BB%E5%B0%86%E6%9D%A5%E5%88%B0/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E6%9A%91%E5%81%87%E5%B0%86%E7%BB%93%E6%9D%9F%E6%96%B0%E7%9A%84%E7%94%9F%E6%B4%BB%E5%B0%86%E6%9D%A5%E5%88%B0/</guid>
       <description>&lt;h2 id=&#34;暑假将结束新的生活将来到&#34;&gt;&lt;strong&gt;暑假将结束，新的生活将来到&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;金中，我来了。&lt;/p&gt;</description>
     </item>
     <item>
       <title>进入金中，感觉很棒！</title>
-      <link>https://juiceright.xyz/old/old/%E8%BF%9B%E5%85%A5%E9%87%91%E4%B8%AD%E6%84%9F%E8%A7%89%E5%BE%88%E6%A3%92/</link>
+      <link>https://juiceright.xyz/old/posts/%E8%BF%9B%E5%85%A5%E9%87%91%E4%B8%AD%E6%84%9F%E8%A7%89%E5%BE%88%E6%A3%92/</link>
       <pubDate>Fri, 12 Jul 2019 13:53:00 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E8%BF%9B%E5%85%A5%E9%87%91%E4%B8%AD%E6%84%9F%E8%A7%89%E5%BE%88%E6%A3%92/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E8%BF%9B%E5%85%A5%E9%87%91%E4%B8%AD%E6%84%9F%E8%A7%89%E5%BE%88%E6%A3%92/</guid>
       <description>&lt;h1 id=&#34;进了金中也就那样了高兴&#34;&gt;进了金中，也就那样了，高兴！&lt;/h1&gt;
 &lt;p&gt;我很开心，但也有点悲伤。&lt;/p&gt;
 &lt;p&gt;这次中考出题不行，平时成绩好的同学都不习惯中考题，最后以悲剧结尾。&lt;/p&gt;
@@ -3054,9 +3054,9 @@ class FgSpider(scrapy.Spider):
     </item>
     <item>
       <title>模考加油</title>
-      <link>https://juiceright.xyz/old/old/%E6%A8%A1%E8%80%83%E5%8A%A0%E6%B2%B9/</link>
+      <link>https://juiceright.xyz/old/posts/%E6%A8%A1%E8%80%83%E5%8A%A0%E6%B2%B9/</link>
       <pubDate>Thu, 02 May 2019 17:41:00 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/%E6%A8%A1%E8%80%83%E5%8A%A0%E6%B2%B9/</guid>
+      <guid>https://juiceright.xyz/old/posts/%E6%A8%A1%E8%80%83%E5%8A%A0%E6%B2%B9/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;模考加油。     愿自己取得胜利。    
 &lt;/code&gt;&lt;/pre&gt;&lt;blockquote&gt;
 &lt;p&gt;加油喝彩。   你可以。&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E6%A8%A1%E8%80%83%E5%8A%A0%E6%B2%B9/%E6%A8%A1%E8%80%83%E5%8A%A0%E6%B2%B9-20251209171043436.png&#34;&gt;&lt;/p&gt;

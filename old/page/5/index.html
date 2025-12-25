@@ -164,7 +164,7 @@
     <p> #include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; long long d[500000&lt;&lt;2],laz[500000&lt;&lt;2],n,m=1;; void build(){ while(m&lt;=n)m&lt;&lt;=1; for(long long i=m&#43;1;i&lt;=m&#43;n;i&#43;&#43;)cin&gt;&gt;d[i]; for(long long i=m-1;i&gt;=1;i--)d[i]=d[i&lt;&lt;1]&#43;d[i&lt;&lt;1|1]; } long long get(long long x,long long y){ long long ans=0,lc=0,rc=0,cnt=1;//cnt=1 for(x&#43;=m-1,y&#43;=m&#43;1; x^y^1; x&gt;&gt;=1,y&gt;&gt;=1,cnt&lt;&lt;=1){ if(laz[x])ans&#43;=laz[x]*lc; if(laz[y])ans&#43;=laz[y]*rc; if(~x&amp;1)ans&#43;=d[x^1],lc&#43;=cnt; if(y&amp;1)ans&#43;=d[y^1],rc&#43;=cnt; } for(;x;x&gt;&gt;=1,y&gt;&gt;=1)ans&#43;=laz[x]*lc,ans&#43;=laz[y]*rc; return ans; } void add(long long x,long long y,long long v){ long long ans=0,lc=0,rc=0,cnt=1;//cnt=1 for(x&#43;=m-1,y&#43;=m&#43;1; x^y^1; x&gt;&gt;=1,y&gt;&gt;=1,cnt&lt;&lt;=1){ d[x]&#43;=v*lc;d[y]&#43;=v*rc; if(~x&amp;1) laz[x^1]&#43;=v,d[x^1]&#43;=v*cnt,lc&#43;=cnt; if(y&amp;1) laz[y^1]&#43;=v,d[y^1]&#43;=v*cnt,rc&#43;=cnt;	} for(;x;x&gt;&gt;=1,y&gt;&gt;=1)d[x]&#43;=v*lc,d[y]&#43;=v*rc; } int main(){ long long q; cin&gt;&gt;n&gt;&gt;q; build(); while(q--){ long long a,b,op,c; cin&gt;&gt;op&gt;&gt;a&gt;&gt;b; if(op==1){ cin&gt;&gt;c; add(a,b,c); }else{ cout&lt;&lt;get(a,b)&lt;&lt;endl; } } } </p>
   </div>
   <footer class="entry-footer"><span title='2025-03-10 13:25:58 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 带lazy标记的zkw线段树" href="https://juiceright.xyz/old/old/wwlgapb2j1/"></a>
+  <a class="entry-link" aria-label="post link to 带lazy标记的zkw线段树" href="https://juiceright.xyz/old/posts/wwlgapb2j1/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -176,7 +176,7 @@
     <p> 排序方法 时间复杂度（平均） 时间复杂度（最坏) 时间复杂度（最好) 空间复杂度 稳定性 复杂性 直接插入排序 O(n2) O(n2) O(n) O(1) 稳定 简单 希尔排序 O(nlog2n) O(n2) O(n) O(1) 不稳定 较复杂 直接选择排序 O(n2) O(n2) O(n2) O(1) 不稳定 简单 堆排序 O(nlog2n) O(nlog2n) O(nlog2n) O(1) 不稳定 较复杂 冒泡排序 O(n2) O(n2) O(n) O(1) 稳定 简单 快速排序 O(nlog2n) O(n2) O(nlog2n) O(nlog2n) 不稳定 较复杂 归并排序 O(nlog2n) O(nlog2n) O(nlog2n) O(n) 稳定 较复杂 基数排序 O(d(n&#43;r)) O(d(n&#43;r)) O(d(n&#43;r)) O(n&#43;r) 稳定 较复杂 </p>
   </div>
   <footer class="entry-footer"><span title='2025-03-10 13:21:35 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 排序时间复杂度" href="https://juiceright.xyz/old/old/3ilwt_ogfy/"></a>
+  <a class="entry-link" aria-label="post link to 排序时间复杂度" href="https://juiceright.xyz/old/posts/3ilwt_ogfy/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -191,7 +191,7 @@
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-01-20 11:28:52 +0000 UTC'>January 20, 2024</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to Realising the full potential of MR-PHeWAS in cancer" href="https://juiceright.xyz/old/old/%E7%AC%94%E8%AE%B0realising-the-full-potential-of-mr-phewas-in-cancer/"></a>
+  <a class="entry-link" aria-label="post link to Realising the full potential of MR-PHeWAS in cancer" href="https://juiceright.xyz/old/posts/%E7%AC%94%E8%AE%B0realising-the-full-potential-of-mr-phewas-in-cancer/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -210,7 +210,7 @@ GO、KEGG结果解读 富集分析，看完这篇就够
 主要结果图 library(&#34;clusterProfiler&#34;) library(&#34;enrichplot&#34;) library(&#34;ggplot2&#34;) library(&#34;org.Hs.eg.db&#34;) library(&#34;GOplot&#34;) #转换ID rt=read.table(&#34;input.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T) genes=as.vector(rt[,1]) entrezIDs &lt;- mget(genes, org.Hs.egSYMBOL2EG, ifnotfound=NA) #找出基因对应的id entrezIDs &lt;- as.character(entrezIDs) out=cbind(rt,entrezID=entrezIDs) write.table(out,file=&#34;GO-id.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names=F) #输出结果 ####GO分析#### rt=read.table(&#34;GO-id.txt&#34;,sep=&#34;\t&#34;,header=T,check.names=F) rt=rt[is.na(rt[,&#34;entrezID&#34;])==F,] gene=rt$entrezID #GO富集分析 kk &lt;- enrichGO(gene = gene,OrgDb = org.Hs.eg.db, pvalueCutoff =0.05, qvalueCutoff = 0.05,ont=&#34;all&#34;,readable =T) write.table(kk,file=&#34;GO.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names = F) # #可视化 ##条形图 pdf(file=&#34;GO-barplot.pdf&#34;,width = 10,height = 15) barplot(kk, drop = TRUE, showCategory =10,label_format=100,split=&#34;ONTOLOGY&#34;) &#43; facet_grid(ONTOLOGY~., scale=&#39;free&#39;) dev.off() ##气泡图 pdf(file=&#34;GO-bubble.pdf&#34;,width = 10,height = 15) dotplot(kk,showCategory = 10,label_format=100,split=&#34;ONTOLOGY&#34;) &#43; facet_grid(ONTOLOGY~., scale=&#39;free&#39;) dev.off() ##圈图 ego&lt;-read.table(&#34;GO.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T) go=data.frame(Category =&#34;ALL&#34;,ID = ego$ID,Term = ego$Description, Genes = gsub(&#34;/&#34;, &#34;, &#34;, ego$geneID), adj_pval = ego$pvalue) id.fc=rt genelist &lt;- data.frame(ID = id.fc$gene, logFC = id.fc$logFC) row.names(genelist)=genelist[,1] circ &lt;- circle_dat(go, genelist) termNum = 5 #限定term数目 geneNum = nrow(genelist) #限定基因数目可以改为数字 chord &lt;- chord_dat(circ, genelist[1:geneNum,], go$Term[1:termNum]) pdf(file=&#34;GO_circ.pdf&#34;,width = 12,height = 11) GOChord(chord, space = 0.001, #基因之间的间距 gene.order = &#39;logFC&#39;, #按照logFC值对基因排序 gene.space = 0.25, #基因名跟圆圈的相对距离 gene.size = 5, #基因名字体大小 border.size = 0.1, #线条粗细 process.label = 9) #term字体大小 dev.off() ####KEGG#### rt=read.table(&#34;input.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T) #读取文件 genes=as.vector(rt[,1]) entrezIDs &lt;- mget(genes, org.Hs.egSYMBOL2EG, ifnotfound=NA) #找出基因对应的id entrezIDs &lt;- as.character(entrezIDs) out=cbind(rt,entrezID=entrezIDs) write.table(out,file=&#34;KEGG-id.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names=F) #输出结果 rt=read.table(&#34;KEGG-id.txt&#34;,sep=&#34;\t&#34;,header=T,check.names=F) rt=rt[is.na(rt[,&#34;entrezID&#34;])==F,] gene=rt$entrezID #kegg分析 kk &lt;- enrichKEGG(gene = gene,keyType = &#34;kegg&#34;,organism = &#34;hsa&#34;, pvalueCutoff =0.05, qvalueCutoff =0.05, pAdjustMethod = &#34;fdr&#34;) write.table(kk,file=&#34;KEGG.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names = F) #可视化 ##条形图 pdf(file=&#34;KEGG-barplot.pdf&#34;,width = 10,height = 13) barplot(kk, drop = TRUE, showCategory = 15,label_format=100) dev.off() ##气泡图 pdf(file=&#34;KEGG-bubble.pdf&#34;,width = 10,height = 13) dotplot(kk, showCategory = 15,label_format=100) dev.off() #圈图 ego&lt;-read.table(&#34;KEGG.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T) go=data.frame(Category =&#34;ALL&#34;,ID = ego$ID,Term = ego$Description, Genes = gsub(&#34;/&#34;, &#34;, &#34;, ego$geneID), adj_pval = ego$p.adjust) id.fc=rt genelist &lt;- data.frame(ID = id.fc$entrezID, logFC = id.fc$logFC) row.names(genelist)=genelist[,1] row.names(rt)=rt[,3] circ &lt;- circle_dat(go, genelist) termNum = 5 #限定term数目 geneNum = nrow(genelist) #限定基因数目可以改为数字 chord &lt;- chord_dat(circ, genelist[1:geneNum,], go$Term[1:termNum]) sameSample=intersect(row.names(chord), row.names(rt)) rt=rt[sameSample,,drop=F] geneIDs=rt$gene row.names(chord)=geneIDs pdf(file=&#34;KEGG_circ.pdf&#34;,width = 12,height = 11) GOChord(chord, space = 0.001, #基因之间的间距 gene.order = &#39;logFC&#39;, #按照logFC值对基因排序 gene.space = 0.25, #基因名跟圆圈的相对距离 gene.size = 5, #基因名字体大小 border.size = 0.1, #线条粗细 process.label = 9) #term字体大小 dev.off() </p>
   </div>
   <footer class="entry-footer"><span title='2023-08-06 18:39:29 +0000 UTC'>August 6, 2023</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to GO和KEGG分析" href="https://juiceright.xyz/old/old/go%E5%92%8Ckegg%E5%88%86%E6%9E%90/"></a>
+  <a class="entry-link" aria-label="post link to GO和KEGG分析" href="https://juiceright.xyz/old/posts/go%E5%92%8Ckegg%E5%88%86%E6%9E%90/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -226,7 +226,7 @@ GO、KEGG结果解读 富集分析，看完这篇就够
 library(easyMR) dat=get_drug_target_data( id = &#34;ieu-b-110&#34;,　#暴露GWAS ID gene_name=&#34;HMGCR&#34;, #药靶蛋白编码基因 kb=100, #基因附近的SNP范围 clump_kb = 100, #clump的范围 clump_local = FALSE, r2=0.3, #clump的r2阈值 pval=0.05, MAF = 0.01, #次等位基因频率 阈值 build = &#34;GRch38&#34;, chr = NULL, pos_start = NULL, pos_end = NULL ) drug_MR( target_gene_data=dat, outcome_id =&#34;finn-b-I9_AF&#34;, #疾病GWAS ID outcome_name=&#34;atrial fibrillation&#34;, inhibitor = FALSE, after_trans_inhibitor = FALSE, pval = 0.05, action = 2, out_type = &#34;binary&#34;, save_path=&#34;e:&#34; ) library(MendelR) mr_common( id_exposure = &#34;ieu-b-110&#34;, #暴露GWAS ID id_outcome = &#34;finn-b-I9_AF&#34;, #疾病GWAS ID p1 = 0.05, p2 = 0.05, write_csv = TRUE, write_ppt = FALSE, method_list = c(&#34;mr_ivw&#34;, &#34;mr_egger_regression&#34;, &#34;mr_weighted_median&#34;, &#34;mr_weighted_mode&#34;), rm_snps = NULL, r2 = 0.3, #clump的r2阈值 kb = 100, #clump的范围 build_version = &#34;hg19&#34;, gene = &#34;HMGCR&#34;, #药靶蛋白编码基因 chr = NULL, pos_start = NULL, pos_end = NULL, eaf_threshold = NULL, run_presso = T, gene_win = 100, #基因附近的SNP范围 NbDistribution = 3000, find_proxy = T, local_clump = F, r2_cal_mode = 1, steiger = T, #是否进行Steiger方向性检验 auto_ivw = T, pop = &#34;EUR&#34;, no_clump = F, out_dir = NULL, exposure_samplesize = NULL, outcome_samplesize = NULL ) </p>
   </div>
   <footer class="entry-footer"><span title='2023-08-05 05:13:50 +0000 UTC'>August 5, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 孟德尔随机化笔记（四）——药物靶点MR分析" href="https://juiceright.xyz/old/old/%E5%AD%9F%E5%BE%B7%E5%B0%94%E9%9A%8F%E6%9C%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/"></a>
+  <a class="entry-link" aria-label="post link to 孟德尔随机化笔记（四）——药物靶点MR分析" href="https://juiceright.xyz/old/posts/%E5%AD%9F%E5%BE%B7%E5%B0%94%E9%9A%8F%E6%9C%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -260,7 +260,7 @@ R2值越接近1，表明模型的性能越好。
 4. SVC 5. DecisionTree 6. RandomForest ...</p>
   </div>
   <footer class="entry-footer"><span title='2023-06-19 22:42:48 +0000 UTC'>June 19, 2023</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to 机器学习12种分类模型的性能对比" href="https://juiceright.xyz/old/old/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A012%E7%A7%8D%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/"></a>
+  <a class="entry-link" aria-label="post link to 机器学习12种分类模型的性能对比" href="https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A012%E7%A7%8D%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -294,7 +294,7 @@ R2值越接近1，表明模型的性能越好。
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2023-05-21 18:57:29 +0000 UTC'>May 21, 2023</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to 机器学习分类的本质" href="https://juiceright.xyz/old/old/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E7%9A%84%E6%9C%AC%E8%B4%A8/"></a>
+  <a class="entry-link" aria-label="post link to 机器学习分类的本质" href="https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E7%9A%84%E6%9C%AC%E8%B4%A8/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -307,7 +307,7 @@ R2值越接近1，表明模型的性能越好。
 </p>
   </div>
   <footer class="entry-footer"><span title='2023-04-15 09:36:30 +0000 UTC'>April 15, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 论文📃你好，论文📃再见。" href="https://juiceright.xyz/old/old/%E8%AE%BA%E6%96%87%E4%BD%A0%E5%A5%BD%E8%AE%BA%E6%96%87%E5%86%8D%E8%A7%81/"></a>
+  <a class="entry-link" aria-label="post link to 论文📃你好，论文📃再见。" href="https://juiceright.xyz/old/posts/%E8%AE%BA%E6%96%87%E4%BD%A0%E5%A5%BD%E8%AE%BA%E6%96%87%E5%86%8D%E8%A7%81/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -325,7 +325,7 @@ MNIST 数据集来自美国国家标准与技术研究所, National Institute of
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2023-04-01 20:09:50 +0000 UTC'>April 1, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 【深度学习】手写数字图像识别分类（MNIST数据集）" href="https://juiceright.xyz/old/old/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB%E5%88%86%E7%B1%BBmnist%E6%95%B0%E6%8D%AE%E9%9B%86/"></a>
+  <a class="entry-link" aria-label="post link to 【深度学习】手写数字图像识别分类（MNIST数据集）" href="https://juiceright.xyz/old/posts/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB%E5%88%86%E7%B1%BBmnist%E6%95%B0%E6%8D%AE%E9%9B%86/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -343,7 +343,7 @@ MNIST 数据集来自美国国家标准与技术研究所, National Institute of
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2023-03-29 17:54:00 +0000 UTC'>March 29, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 【机器学习】四层人工神经网络拟合二元二次函数" href="https://juiceright.xyz/old/old/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9B%9B%E5%B1%82%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%8B%9F%E5%90%88%E4%BA%8C%E5%85%83%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0/"></a>
+  <a class="entry-link" aria-label="post link to 【机器学习】四层人工神经网络拟合二元二次函数" href="https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9B%9B%E5%B1%82%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%8B%9F%E5%90%88%E4%BA%8C%E5%85%83%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

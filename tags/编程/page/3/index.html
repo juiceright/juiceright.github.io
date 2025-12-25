@@ -149,7 +149,7 @@
     <p>#include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; struct pl{ long long l,r,v,add,tim; #define l(x) tree[x].l #define r(x) tree[x].r #define v(x) tree[x].v #define add(x) tree[x].add }tree[4*100000]; long long a[100001]; void build(long long p,long long l,long long r){ l(p)=l;r(p)=r; if(l==r){ v(p)=a[l];return; } long long mid=(l&#43;r)&gt;&gt;1; build(p&lt;&lt;1,l,mid); build((p&lt;&lt;1)&#43;1,mid&#43;1,r); v(p)=v(p*2)&#43;v(p*2&#43;1); } void spread(long long p){ if(add(p)==0)return; v(p*2)&#43;=add(p)*(r(p*2)-l(p*2)&#43;1); v(p*2&#43;1)&#43;=add(p)*(r(p*2&#43;1)-l(p*2&#43;1)&#43;1); add(p*2)&#43;=add(p); add(p*2&#43;1)&#43;=add(p); add(p)=0; } void chg(long long p,long long l,long long r,long long d){ if(l&lt;=l(p)&amp;&amp;r&gt;=r(p)){ v(p)&#43;=d*(r(p)-l(p)&#43;1); add(p)&#43;=d; return; } spread(p); long long mid=(l(p)&#43;r(p))&gt;&gt;1; if(l&lt;=mid)chg(p*2,l,r,d); if(r&gt;mid)chg(p*2&#43;1,l,r,d); v(p)=v(p*2)&#43;v(p*2&#43;1); } long long ask(long long p,long long l,long long r){ if(l&lt;=l(p)&amp;&amp;r&gt;=r(p))return v(p); spread(p); long long mid=(l(p)&#43;r(p))&gt;&gt;1; long long ans=0; if(l&lt;=mid)ans&#43;=ask(p*2,l,r); if(r&gt;mid)ans&#43;=ask(p*2&#43;1,l,r); return ans; } int main(){ long long i,j,n,m,t,k; cin&gt;&gt;n&gt;&gt;m; for(i=1;i&lt;=n;i&#43;&#43;)cin&gt;&gt;a[i]; build(1,1,n); while(m--){ long long op,l,r,k; cin&gt;&gt;op&gt;&gt;l&gt;&gt;r; if(op==1){ cin&gt;&gt;k; chg(1,l,r,k); }else cout&lt;&lt;ask(1,l,r)&lt;&lt;endl;	} } </p>
   </div>
   <footer class="entry-footer"><span title='2025-03-10 13:26:55 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 线段树" href="https://juiceright.xyz/old/old/cse8xfl8mp/"></a>
+  <a class="entry-link" aria-label="post link to 线段树" href="https://juiceright.xyz/old/posts/cse8xfl8mp/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -161,7 +161,7 @@
     <p> #include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; long long c[500001]; long long i,j,n,m,t,k; long long lb(long long x) {return x&amp;(-x); } long long get(long long x) { long long ans=0; for(;x;x-=lb(x)) ans&#43;=c[x]; return ans; } void add(long long x,long long y){ for(long long i=x;i&lt;=n;i&#43;=lb(i)) c[i]&#43;=y; } int main(){ cin&gt;&gt;n&gt;&gt;m; for(i=1;i&lt;=n;i&#43;&#43;) {scanf(&#34;%lld&#34;,&amp;t); add(i,t); } while(m--){ cin&gt;&gt;t; if(t==1){ cin&gt;&gt;j&gt;&gt;k; add(j,k); } else { cin&gt;&gt;j&gt;&gt;k; cout&lt;&lt;get(k)-get(j-1)&lt;&lt;endl; } } } </p>
   </div>
   <footer class="entry-footer"><span title='2025-03-10 13:26:42 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 树状数组" href="https://juiceright.xyz/old/old/hl1binzfbh/"></a>
+  <a class="entry-link" aria-label="post link to 树状数组" href="https://juiceright.xyz/old/posts/hl1binzfbh/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -173,7 +173,7 @@
     <p>#include&lt;bits/stdc&#43;&#43;.h&gt; #define ll long long using namespace std; ll fa[5010]; ll get(ll x) { return x==fa[x]?x:fa[x]=get(fa[x]); } void mrg(ll a,ll b) { fa[get(a)]=get(b); } struct pl{ ll x,y,z; bool operator&lt;(const pl &amp;a){ return z&lt;a.z; } }mp[200001]; int main() { ll i,j,n,m,t=0,k=0; cin&gt;&gt;n&gt;&gt;m; for(i=1;i&lt;=m;i&#43;&#43;) { cin&gt;&gt;mp[i].x&gt;&gt;mp[i].y&gt;&gt;mp[i].z; } sort(mp&#43;1,mp&#43;1&#43;m); for(i=1;i&lt;=n;i&#43;&#43;)fa[i]=i; for(i=1;i&lt;=m&amp;&amp;t&lt;n;i&#43;&#43;){ if(get(mp[i].x)!=get(mp[i].y))mrg(mp[i].x,mp[i].y),t&#43;&#43;,k&#43;=mp[i].z;	} if(t==n-1) cout&lt;&lt;k; else cout&lt;&lt;&#34;orz&#34;; } </p>
   </div>
   <footer class="entry-footer"><span title='2025-03-10 13:26:19 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to kruskal算法（克鲁斯卡尔算法）" href="https://juiceright.xyz/old/old/y1ekvamzmi/"></a>
+  <a class="entry-link" aria-label="post link to kruskal算法（克鲁斯卡尔算法）" href="https://juiceright.xyz/old/posts/y1ekvamzmi/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -185,7 +185,7 @@
     <p> #include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; long long d[500000&lt;&lt;2],laz[500000&lt;&lt;2],n,m=1;; void build(){ while(m&lt;=n)m&lt;&lt;=1; for(long long i=m&#43;1;i&lt;=m&#43;n;i&#43;&#43;)cin&gt;&gt;d[i]; for(long long i=m-1;i&gt;=1;i--)d[i]=d[i&lt;&lt;1]&#43;d[i&lt;&lt;1|1]; } long long get(long long x,long long y){ long long ans=0,lc=0,rc=0,cnt=1;//cnt=1 for(x&#43;=m-1,y&#43;=m&#43;1; x^y^1; x&gt;&gt;=1,y&gt;&gt;=1,cnt&lt;&lt;=1){ if(laz[x])ans&#43;=laz[x]*lc; if(laz[y])ans&#43;=laz[y]*rc; if(~x&amp;1)ans&#43;=d[x^1],lc&#43;=cnt; if(y&amp;1)ans&#43;=d[y^1],rc&#43;=cnt; } for(;x;x&gt;&gt;=1,y&gt;&gt;=1)ans&#43;=laz[x]*lc,ans&#43;=laz[y]*rc; return ans; } void add(long long x,long long y,long long v){ long long ans=0,lc=0,rc=0,cnt=1;//cnt=1 for(x&#43;=m-1,y&#43;=m&#43;1; x^y^1; x&gt;&gt;=1,y&gt;&gt;=1,cnt&lt;&lt;=1){ d[x]&#43;=v*lc;d[y]&#43;=v*rc; if(~x&amp;1) laz[x^1]&#43;=v,d[x^1]&#43;=v*cnt,lc&#43;=cnt; if(y&amp;1) laz[y^1]&#43;=v,d[y^1]&#43;=v*cnt,rc&#43;=cnt;	} for(;x;x&gt;&gt;=1,y&gt;&gt;=1)d[x]&#43;=v*lc,d[y]&#43;=v*rc; } int main(){ long long q; cin&gt;&gt;n&gt;&gt;q; build(); while(q--){ long long a,b,op,c; cin&gt;&gt;op&gt;&gt;a&gt;&gt;b; if(op==1){ cin&gt;&gt;c; add(a,b,c); }else{ cout&lt;&lt;get(a,b)&lt;&lt;endl; } } } </p>
   </div>
   <footer class="entry-footer"><span title='2025-03-10 13:25:58 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 带lazy标记的zkw线段树" href="https://juiceright.xyz/old/old/wwlgapb2j1/"></a>
+  <a class="entry-link" aria-label="post link to 带lazy标记的zkw线段树" href="https://juiceright.xyz/old/posts/wwlgapb2j1/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -197,7 +197,7 @@
     <p> 排序方法 时间复杂度（平均） 时间复杂度（最坏) 时间复杂度（最好) 空间复杂度 稳定性 复杂性 直接插入排序 O(n2) O(n2) O(n) O(1) 稳定 简单 希尔排序 O(nlog2n) O(n2) O(n) O(1) 不稳定 较复杂 直接选择排序 O(n2) O(n2) O(n2) O(1) 不稳定 简单 堆排序 O(nlog2n) O(nlog2n) O(nlog2n) O(1) 不稳定 较复杂 冒泡排序 O(n2) O(n2) O(n) O(1) 稳定 简单 快速排序 O(nlog2n) O(n2) O(nlog2n) O(nlog2n) 不稳定 较复杂 归并排序 O(nlog2n) O(nlog2n) O(nlog2n) O(n) 稳定 较复杂 基数排序 O(d(n&#43;r)) O(d(n&#43;r)) O(d(n&#43;r)) O(n&#43;r) 稳定 较复杂 </p>
   </div>
   <footer class="entry-footer"><span title='2025-03-10 13:21:35 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 排序时间复杂度" href="https://juiceright.xyz/old/old/3ilwt_ogfy/"></a>
+  <a class="entry-link" aria-label="post link to 排序时间复杂度" href="https://juiceright.xyz/old/posts/3ilwt_ogfy/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -215,7 +215,7 @@ MNIST 数据集来自美国国家标准与技术研究所, National Institute of
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2023-04-01 20:09:50 +0000 UTC'>April 1, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 【深度学习】手写数字图像识别分类（MNIST数据集）" href="https://juiceright.xyz/old/old/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB%E5%88%86%E7%B1%BBmnist%E6%95%B0%E6%8D%AE%E9%9B%86/"></a>
+  <a class="entry-link" aria-label="post link to 【深度学习】手写数字图像识别分类（MNIST数据集）" href="https://juiceright.xyz/old/posts/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB%E5%88%86%E7%B1%BBmnist%E6%95%B0%E6%8D%AE%E9%9B%86/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -233,7 +233,7 @@ MNIST 数据集来自美国国家标准与技术研究所, National Institute of
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2023-03-29 17:54:00 +0000 UTC'>March 29, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 【机器学习】四层人工神经网络拟合二元二次函数" href="https://juiceright.xyz/old/old/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9B%9B%E5%B1%82%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%8B%9F%E5%90%88%E4%BA%8C%E5%85%83%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0/"></a>
+  <a class="entry-link" aria-label="post link to 【机器学习】四层人工神经网络拟合二元二次函数" href="https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9B%9B%E5%B1%82%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%8B%9F%E5%90%88%E4%BA%8C%E5%85%83%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -246,7 +246,7 @@ MNIST 数据集来自美国国家标准与技术研究所, National Institute of
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2023-03-27 22:27:23 +0000 UTC'>March 27, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 【机器学习】可拟合任意线性函数的小玩意儿" href="https://juiceright.xyz/old/old/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8F%AF%E6%8B%9F%E5%90%88%E4%BB%BB%E6%84%8F%E7%BA%BF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%E5%84%BF/"></a>
+  <a class="entry-link" aria-label="post link to 【机器学习】可拟合任意线性函数的小玩意儿" href="https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8F%AF%E6%8B%9F%E5%90%88%E4%BB%BB%E6%84%8F%E7%BA%BF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%E5%84%BF/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -258,7 +258,7 @@ MNIST 数据集来自美国国家标准与技术研究所, National Institute of
     <p>豆瓣Top250爬取 这里是简单的代码 这里是不断修改UA的过程，每次请求都会随机生成一个UA，这样就可以绕过豆瓣的反爬虫机制了 这里是爬虫的结果 结果被豆瓣网站检测到了，不过我们的爬虫已经圆满的完成了任务，我们可以看到豆瓣网站的反爬虫机制是通过检测请求头中的User-Agent来判断是否是爬虫，所以我们可以通过修改请求头中的User-Agent来绕过反爬虫机制。 </p>
   </div>
   <footer class="entry-footer"><span title='2023-03-26 23:44:33 +0000 UTC'>March 26, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 【爬虫】豆瓣Top250爬取" href="https://juiceright.xyz/old/old/%E7%88%AC%E8%99%AB%E8%B1%86%E7%93%A3top250%E7%88%AC%E5%8F%96/"></a>
+  <a class="entry-link" aria-label="post link to 【爬虫】豆瓣Top250爬取" href="https://juiceright.xyz/old/posts/%E7%88%AC%E8%99%AB%E8%B1%86%E7%93%A3top250%E7%88%AC%E5%8F%96/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -273,7 +273,7 @@ FG.py 作用：爬虫的逻辑结构 import scrapy from FG1.items import Fg1Item
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2023-03-15 15:53:25 +0000 UTC'>March 15, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 【爬虫】FitGirl-Repack的Scrapy爬虫代码" href="https://juiceright.xyz/old/old/fitgirl-repack%E6%B8%B8%E6%88%8F%E7%BD%91%E7%AB%99scrapy%E7%88%AC%E8%99%AB%E4%BB%A3%E7%A0%81/"></a>
+  <a class="entry-link" aria-label="post link to 【爬虫】FitGirl-Repack的Scrapy爬虫代码" href="https://juiceright.xyz/old/posts/fitgirl-repack%E6%B8%B8%E6%88%8F%E7%BD%91%E7%AB%99scrapy%E7%88%AC%E8%99%AB%E4%BB%A3%E7%A0%81/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

@@ -10,9 +10,9 @@
     <atom:link href="https://juiceright.xyz/tags/%E7%94%9F%E4%BF%A1/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>【分子对接】2. 利用pymol下载蛋白质 脚本</title>
-      <link>https://juiceright.xyz/old/old/ysld_6qj2a/</link>
+      <link>https://juiceright.xyz/old/posts/ysld_6qj2a/</link>
       <pubDate>Wed, 26 Mar 2025 20:28:24 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/ysld_6qj2a/</guid>
+      <guid>https://juiceright.xyz/old/posts/ysld_6qj2a/</guid>
       <description>&lt;p&gt;下载蛋白质，去除水分子，加H，去除配体，去除副链&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 # %%
@@ -51,9 +51,9 @@ pymol.cmd.quit()
     </item>
     <item>
       <title>【分子对接】1. 自动从pubchem下载小分子 脚本</title>
-      <link>https://juiceright.xyz/old/old/qin3ksdr8z/</link>
+      <link>https://juiceright.xyz/old/posts/qin3ksdr8z/</link>
       <pubDate>Wed, 26 Mar 2025 20:25:40 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/qin3ksdr8z/</guid>
+      <guid>https://juiceright.xyz/old/posts/qin3ksdr8z/</guid>
       <description>&lt;p&gt;本代码用于从pubchem下载小分子(阿司匹林)，并且自动转换成pymol的pdb格式&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import pubchempy as pcp
 from pymol import cmd
@@ -97,9 +97,9 @@ if __name__ == &amp;#34;__main__&amp;#34;:
     </item>
     <item>
       <title>snakemake流程——SMR&#43;MR&#43;MAGMA分析</title>
-      <link>https://juiceright.xyz/old/old/vw5dv077fn/</link>
+      <link>https://juiceright.xyz/old/posts/vw5dv077fn/</link>
       <pubDate>Fri, 14 Mar 2025 20:46:52 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/old/vw5dv077fn/</guid>
+      <guid>https://juiceright.xyz/old/posts/vw5dv077fn/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 # 定义染色体列表，包含 1 到 22 号染色体
 chromosomes = list(range(1, 23))

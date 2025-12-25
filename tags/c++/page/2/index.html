@@ -149,7 +149,7 @@
     <p> #include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; long long d[500000&lt;&lt;2],laz[500000&lt;&lt;2],n,m=1;; void build(){ while(m&lt;=n)m&lt;&lt;=1; for(long long i=m&#43;1;i&lt;=m&#43;n;i&#43;&#43;)cin&gt;&gt;d[i]; for(long long i=m-1;i&gt;=1;i--)d[i]=d[i&lt;&lt;1]&#43;d[i&lt;&lt;1|1]; } long long get(long long x,long long y){ long long ans=0,lc=0,rc=0,cnt=1;//cnt=1 for(x&#43;=m-1,y&#43;=m&#43;1; x^y^1; x&gt;&gt;=1,y&gt;&gt;=1,cnt&lt;&lt;=1){ if(laz[x])ans&#43;=laz[x]*lc; if(laz[y])ans&#43;=laz[y]*rc; if(~x&amp;1)ans&#43;=d[x^1],lc&#43;=cnt; if(y&amp;1)ans&#43;=d[y^1],rc&#43;=cnt; } for(;x;x&gt;&gt;=1,y&gt;&gt;=1)ans&#43;=laz[x]*lc,ans&#43;=laz[y]*rc; return ans; } void add(long long x,long long y,long long v){ long long ans=0,lc=0,rc=0,cnt=1;//cnt=1 for(x&#43;=m-1,y&#43;=m&#43;1; x^y^1; x&gt;&gt;=1,y&gt;&gt;=1,cnt&lt;&lt;=1){ d[x]&#43;=v*lc;d[y]&#43;=v*rc; if(~x&amp;1) laz[x^1]&#43;=v,d[x^1]&#43;=v*cnt,lc&#43;=cnt; if(y&amp;1) laz[y^1]&#43;=v,d[y^1]&#43;=v*cnt,rc&#43;=cnt;	} for(;x;x&gt;&gt;=1,y&gt;&gt;=1)d[x]&#43;=v*lc,d[y]&#43;=v*rc; } int main(){ long long q; cin&gt;&gt;n&gt;&gt;q; build(); while(q--){ long long a,b,op,c; cin&gt;&gt;op&gt;&gt;a&gt;&gt;b; if(op==1){ cin&gt;&gt;c; add(a,b,c); }else{ cout&lt;&lt;get(a,b)&lt;&lt;endl; } } } </p>
   </div>
   <footer class="entry-footer"><span title='2025-03-10 13:25:58 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 带lazy标记的zkw线段树" href="https://juiceright.xyz/old/old/wwlgapb2j1/"></a>
+  <a class="entry-link" aria-label="post link to 带lazy标记的zkw线段树" href="https://juiceright.xyz/old/posts/wwlgapb2j1/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -161,7 +161,7 @@
     <p> 排序方法 时间复杂度（平均） 时间复杂度（最坏) 时间复杂度（最好) 空间复杂度 稳定性 复杂性 直接插入排序 O(n2) O(n2) O(n) O(1) 稳定 简单 希尔排序 O(nlog2n) O(n2) O(n) O(1) 不稳定 较复杂 直接选择排序 O(n2) O(n2) O(n2) O(1) 不稳定 简单 堆排序 O(nlog2n) O(nlog2n) O(nlog2n) O(1) 不稳定 较复杂 冒泡排序 O(n2) O(n2) O(n) O(1) 稳定 简单 快速排序 O(nlog2n) O(n2) O(nlog2n) O(nlog2n) 不稳定 较复杂 归并排序 O(nlog2n) O(nlog2n) O(nlog2n) O(n) 稳定 较复杂 基数排序 O(d(n&#43;r)) O(d(n&#43;r)) O(d(n&#43;r)) O(n&#43;r) 稳定 较复杂 </p>
   </div>
   <footer class="entry-footer"><span title='2025-03-10 13:21:35 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 排序时间复杂度" href="https://juiceright.xyz/old/old/3ilwt_ogfy/"></a>
+  <a class="entry-link" aria-label="post link to 排序时间复杂度" href="https://juiceright.xyz/old/posts/3ilwt_ogfy/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
