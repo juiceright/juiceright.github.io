@@ -152,6 +152,18 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">将问卷星每一道题目单独截图
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> import re from playwright.sync_api import Playwright, sync_playwright, expect def run(playwright: Playwright) -&gt; None: browser = playwright.chromium.launch(headless=True) page = browser.new_page(device_scale_factor=4) page.goto(&#34;https://kaoshi.wjx.top/vm/e0bKYQs.aspx#&#34;) page.wait_for_timeout(2000) cnt=0 for each in page.query_selector_all(&#34;#fieldset1 &gt; div&#34;): each.screenshot(path=f&#34;img/{cnt}.png&#34;) cnt&#43;=1 page.close() browser.close() with sync_playwright() as playwright: run(playwright) </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-11 20:44:56 +0000 UTC'>April 11, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 将问卷星每一道题目单独截图" href="https://juiceright.xyz/old/posts/dvva_jup1_/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">禁止Steam客户端自动更新（旧版Steam客户端）
     </h2>
   </header>
@@ -268,18 +280,6 @@ Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &#34;Ethernet-Vir
   </div>
   <footer class="entry-footer"><span title='2025-03-14 20:46:52 +0000 UTC'>March 14, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
   <a class="entry-link" aria-label="post link to snakemake流程——SMR&#43;MR&#43;MAGMA分析" href="https://juiceright.xyz/old/posts/vw5dv077fn/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">playwright自动登录STU WebVPN
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p> import re from playwright.sync_api import Playwright, sync_playwright, expect import time import os import hmac import hashlib def totp(key, t, digits=6): step = 30 t = int(t / step) key = key.encode() counter = t.to_bytes(8, &#39;big&#39;) h = hmac.new(key, counter, hashlib.sha1).digest() offset = h[-1] &amp; 0x0f truncated = h[offset:offset &#43; 4] code = int.from_bytes(truncated, &#39;big&#39;) &amp; 0x7fffffff code = str(code % 10 ** digits).zfill(digits) return code # %% def run(playwright: Playwright) -&gt; None: browser = playwright.chromium.launch(headless=True) context = browser.new_context() page = context.new_page() page.goto(&#34;https://webvpn.stu.edu.cn/portal/#!/login&#34;) page.locator(&#34;#Calc input[type=\&#34;text\&#34;]&#34;).fill(&#34;校园网账号&#34;) page.locator(&#34;#loginPwd&#34;).click() page.locator(&#34;#loginPwd&#34;).fill(&#34;校园网密码&#34;) page.locator(&#34;span&#34;).filter(has_text=&#34;我已阅读并同意&#34;).locator(&#34;div&#34;).first.click() page.get_by_role(&#34;button&#34;, name=&#34;登录&#34;).click() page.locator(&#34;#app_dialog_container&#34;).get_by_role(&#34;textbox&#34;).fill(str(totp(&#34;填写你的TOTP密钥&#34;, time.time()))) page.get_by_role(&#34;button&#34;, name=&#34;确定&#34;).click() # --------------------- # 获取cookie值 cookies = page.context.cookies() for cookie in cookies: print(f&#34;{cookie[&#39;name&#39;]}: {cookie[&#39;value&#39;]}&#34;) if cookie[&#39;name&#39;] == &#34;TWFID&#34;: TWFID = cookie[&#39;value&#39;] url=&#34;https://webvpn.stu.edu.cn/portal/shortcut.html?twfid=&#34;&#43;TWFID&#43;&#34;&amp;url=http://bilibili-com-s.webvpn.stu.edu.cn%3A8118&#34; os.system(&#39;start msedge &#34;&#39;&#43;url&#43;&#39;&#34;&#39;) # --------------------- context.close() browser.close() with sync_playwright() as playwright: run(playwright) </p>
-  </div>
-  <footer class="entry-footer"><span title='2025-03-11 09:55:00 +0000 UTC'>March 11, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to playwright自动登录STU WebVPN" href="https://juiceright.xyz/old/posts/st6eftek36/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
