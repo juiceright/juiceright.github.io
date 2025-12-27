@@ -2,23 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://juiceright.xyz/categories/</loc>
+    <lastmod>2025-12-27T15:51:35+00:00</lastmod>
+  </url><url>
     <loc>https://juiceright.xyz/</loc>
-    <lastmod>2025-12-26T13:21:42+00:00</lastmod>
+    <lastmod>2025-12-27T15:51:35+00:00</lastmod>
   </url><url>
     <loc>https://juiceright.xyz/posts/</loc>
-    <lastmod>2025-12-26T13:21:42+00:00</lastmod>
+    <lastmod>2025-12-27T15:51:35+00:00</lastmod>
   </url><url>
     <loc>https://juiceright.xyz/tags/</loc>
-    <lastmod>2025-12-26T13:21:42+00:00</lastmod>
+    <lastmod>2025-12-27T15:51:35+00:00</lastmod>
+  </url><url>
+    <loc>https://juiceright.xyz/tags/%E5%90%AC%E6%AD%8C/</loc>
+    <lastmod>2025-12-27T15:51:35+00:00</lastmod>
+  </url><url>
+    <loc>https://juiceright.xyz/categories/%E6%97%A5%E5%B8%B8/</loc>
+    <lastmod>2025-12-27T15:51:35+00:00</lastmod>
+  </url><url>
+    <loc>https://juiceright.xyz/posts/2025/%E6%9C%80%E6%96%B0%E5%9C%A8%E5%90%AC%E5%8F%A4%E9%A3%8Edj/</loc>
+    <lastmod>2025-12-27T15:51:35+00:00</lastmod>
+  </url><url>
+    <loc>https://juiceright.xyz/tags/%E7%94%9F%E6%B4%BB/</loc>
+    <lastmod>2025-12-27T15:51:35+00:00</lastmod>
   </url><url>
     <loc>https://juiceright.xyz/posts/2025/%E4%B8%8D%E7%AE%97%E5%AD%90%E8%AE%A1%E6%95%B0/</loc>
     <lastmod>2025-12-26T13:21:42+00:00</lastmod>
   </url><url>
     <loc>https://juiceright.xyz/tags/%E7%BC%96%E7%A8%8B/</loc>
     <lastmod>2025-12-26T13:21:42+00:00</lastmod>
-  </url><url>
-    <loc>https://juiceright.xyz/categories/</loc>
-    <lastmod>2025-12-26T13:14:36+00:00</lastmod>
   </url><url>
     <loc>https://juiceright.xyz/tags/sumc/</loc>
     <lastmod>2025-12-26T13:14:36+00:00</lastmod>
@@ -29,13 +41,7 @@
     <loc>https://juiceright.xyz/tags/%E6%97%A0%E8%81%8A/</loc>
     <lastmod>2025-12-26T13:14:36+00:00</lastmod>
   </url><url>
-    <loc>https://juiceright.xyz/categories/%E6%97%A5%E5%B8%B8/</loc>
-    <lastmod>2025-12-26T13:14:36+00:00</lastmod>
-  </url><url>
     <loc>https://juiceright.xyz/tags/%E6%9C%9F%E6%9C%AB/</loc>
-    <lastmod>2025-12-26T13:14:36+00:00</lastmod>
-  </url><url>
-    <loc>https://juiceright.xyz/tags/%E7%94%9F%E6%B4%BB/</loc>
     <lastmod>2025-12-26T13:14:36+00:00</lastmod>
   </url><url>
     <loc>https://juiceright.xyz/posts/2025/%E5%BE%88%E5%A4%9A%E8%A1%A8%E6%83%85%E5%8C%85/</loc>
