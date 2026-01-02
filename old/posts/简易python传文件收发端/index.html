@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>简易python传文件收发端(带注释) | Juiceright</title>
+<meta name="keywords" content="old">
+<meta name="description" content="简易python传文件收发端
+发送端.py
+# 导入模块
+import socket
+# 创建tcp服务端socket
+tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# 绑定端口
+tcp_server_socket.bind((&#34;&#34;, 114))
+# 设置监听，把服务端socket由主动套接字改成被动套接字，只能接收客户端的连接请求
+tcp_server_socket.listen(128)
+while True:
+# 接收客户端信息
+ client_socket, client_ip = tcp_server_socket.accept()
+ print(&#34;客户端：&#34;, client_ip, &#34;连接&#34;)
+ # 接收下载信息
+ try:
+  file_name_data = client_socket.recv(65500)
+ # 解码下载信息
+  file_name = file_name_data.decode()
+ except :
+  print(&#34;客户端已断开连接&#34;)
+  continue
+ try:
+   # 数据传输
+   with open(&#34;/&#34; &#43; file_name, &#34;rb&#34;) as file:
+    while True:
+	    # 读取文件数据
+      file_data = file.read(65500)
+ 	   # 数据长度不为0表示还有数据没有写入
+	    if file_data:
+	      client_socket.send(file_data)
+	    # 数据为0表示传输完成
+ 	   else:
+ 	     print(file_name, &#34;传输成功&#34;)
+	      break
+ except Exception as e:
+   print(&#34;客户端已断开连接&#34;)
+# 关闭客户端连接
+ client_socket.close()
+发送端.py
+# 导入模块
+import socket,time
+# 创建套接字
+# 绑定端口
+#   tcp_client_socket.bind((&#34;&#34;, 8080))
+while True:
+# 连接IP地址和端口
+	tcp_client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	tcp_client_socket.connect((input(&#34;请输入IP：\n&#34;), 114))
+ file_name = input(&#34;请输入要下载的文件：\n&#34;)
+	time_start=time.time() 
+	# 文件名编码
+	tcp_client_socket.send(file_name.encode())
+ try:
+	# 文件传输
+	with open(file_name, &#34;wb&#34;) as file:
+    	while True:
+  	# 接收数据
+        	file_data = tcp_client_socket.recv(65500)
+  	# 数据长度不为0写入文件
+        	if file_data:
+            	file.write(file_data)
+  	# 数据长度为0表示下载完成
+        	else:
+            	break
+# 下载出现异常时捕获异常
+ except Exception as e:
+    	print(&#34;下载异常&#34;, e)
+    	# 无异常则下载成功
+	else:
+    	print(file_name, &#34;下载成功&#34;)
+    	time_end=time.time() 
+    	print(&#39;总计&#39;,time_end-time_start,&#39;秒&#39;) 
+# 关闭客户端
+ tcp_client_socket.close()
+">
+<meta name="author" content="">
+<link rel="canonical" href="https://juiceright.xyz/old/posts/%E7%AE%80%E6%98%93python%E4%BC%A0%E6%96%87%E4%BB%B6%E6%94%B6%E5%8F%91%E7%AB%AF/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a?s=16">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a?s=32">
+<link rel="apple-touch-icon" href="https://juiceright.xyz/apple-touch-icon.png">
+<link rel="mask-icon" href="https://juiceright.xyz/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://juiceright.xyz/old/posts/%E7%AE%80%E6%98%93python%E4%BC%A0%E6%96%87%E4%BB%B6%E6%94%B6%E5%8F%91%E7%AB%AF/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://juiceright.xyz/old/posts/%E7%AE%80%E6%98%93python%E4%BC%A0%E6%96%87%E4%BB%B6%E6%94%B6%E5%8F%91%E7%AB%AF/">
+  <meta property="og:site_name" content="Juiceright">
+  <meta property="og:title" content="简易python传文件收发端(带注释)">
+  <meta property="og:description" content="简易python传文件收发端 发送端.py # 导入模块 import socket # 创建tcp服务端socket tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # 绑定端口 tcp_server_socket.bind((&#34;&#34;, 114)) # 设置监听，把服务端socket由主动套接字改成被动套接字，只能接收客户端的连接请求 tcp_server_socket.listen(128) while True: # 接收客户端信息 client_socket, client_ip = tcp_server_socket.accept() print(&#34;客户端：&#34;, client_ip, &#34;连接&#34;) # 接收下载信息 try: file_name_data = client_socket.recv(65500) # 解码下载信息 file_name = file_name_data.decode() except : print(&#34;客户端已断开连接&#34;) continue try: # 数据传输 with open(&#34;/&#34; &#43; file_name, &#34;rb&#34;) as file: while True: # 读取文件数据 file_data = file.read(65500) # 数据长度不为0表示还有数据没有写入 if file_data: client_socket.send(file_data) # 数据为0表示传输完成 else: print(file_name, &#34;传输成功&#34;) break except Exception as e: print(&#34;客户端已断开连接&#34;) # 关闭客户端连接 client_socket.close() 发送端.py # 导入模块 import socket,time # 创建套接字 # 绑定端口 # tcp_client_socket.bind((&#34;&#34;, 8080)) while True: # 连接IP地址和端口 tcp_client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) tcp_client_socket.connect((input(&#34;请输入IP：\n&#34;), 114)) file_name = input(&#34;请输入要下载的文件：\n&#34;) time_start=time.time() # 文件名编码 tcp_client_socket.send(file_name.encode()) try: # 文件传输 with open(file_name, &#34;wb&#34;) as file: while True: # 接收数据 file_data = tcp_client_socket.recv(65500) # 数据长度不为0写入文件 if file_data: file.write(file_data) # 数据长度为0表示下载完成 else: break # 下载出现异常时捕获异常 except Exception as e: print(&#34;下载异常&#34;, e) # 无异常则下载成功 else: print(file_name, &#34;下载成功&#34;) time_end=time.time() print(&#39;总计&#39;,time_end-time_start,&#39;秒&#39;) # 关闭客户端 tcp_client_socket.close() ">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="old">
+    <meta property="article:published_time" content="2023-03-20T23:45:23+00:00">
+    <meta property="article:modified_time" content="2025-12-04T10:18:33+00:00">
+    <meta property="article:tag" content="Old">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简易python传文件收发端(带注释)">
+<meta name="twitter:description" content="简易python传文件收发端
+发送端.py
+# 导入模块
+import socket
+# 创建tcp服务端socket
+tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# 绑定端口
+tcp_server_socket.bind((&#34;&#34;, 114))
+# 设置监听，把服务端socket由主动套接字改成被动套接字，只能接收客户端的连接请求
+tcp_server_socket.listen(128)
+while True:
+# 接收客户端信息
+ client_socket, client_ip = tcp_server_socket.accept()
+ print(&#34;客户端：&#34;, client_ip, &#34;连接&#34;)
+ # 接收下载信息
+ try:
+  file_name_data = client_socket.recv(65500)
+ # 解码下载信息
+  file_name = file_name_data.decode()
+ except :
+  print(&#34;客户端已断开连接&#34;)
+  continue
+ try:
+   # 数据传输
+   with open(&#34;/&#34; &#43; file_name, &#34;rb&#34;) as file:
+    while True:
+	    # 读取文件数据
+      file_data = file.read(65500)
+ 	   # 数据长度不为0表示还有数据没有写入
+	    if file_data:
+	      client_socket.send(file_data)
+	    # 数据为0表示传输完成
+ 	   else:
+ 	     print(file_name, &#34;传输成功&#34;)
+	      break
+ except Exception as e:
+   print(&#34;客户端已断开连接&#34;)
+# 关闭客户端连接
+ client_socket.close()
+发送端.py
+# 导入模块
+import socket,time
+# 创建套接字
+# 绑定端口
+#   tcp_client_socket.bind((&#34;&#34;, 8080))
+while True:
+# 连接IP地址和端口
+	tcp_client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	tcp_client_socket.connect((input(&#34;请输入IP：\n&#34;), 114))
+ file_name = input(&#34;请输入要下载的文件：\n&#34;)
+	time_start=time.time() 
+	# 文件名编码
+	tcp_client_socket.send(file_name.encode())
+ try:
+	# 文件传输
+	with open(file_name, &#34;wb&#34;) as file:
+    	while True:
+  	# 接收数据
+        	file_data = tcp_client_socket.recv(65500)
+  	# 数据长度不为0写入文件
+        	if file_data:
+            	file.write(file_data)
+  	# 数据长度为0表示下载完成
+        	else:
+            	break
+# 下载出现异常时捕获异常
+ except Exception as e:
+    	print(&#34;下载异常&#34;, e)
+    	# 无异常则下载成功
+	else:
+    	print(file_name, &#34;下载成功&#34;)
+    	time_end=time.time() 
+    	print(&#39;总计&#39;,time_end-time_start,&#39;秒&#39;) 
+# 关闭客户端
+ tcp_client_socket.close()
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Olds",
+      "item": "https://juiceright.xyz/old/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "简易python传文件收发端(带注释)",
+      "item": "https://juiceright.xyz/old/posts/%E7%AE%80%E6%98%93python%E4%BC%A0%E6%96%87%E4%BB%B6%E6%94%B6%E5%8F%91%E7%AB%AF/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "简易python传文件收发端(带注释)",
+  "name": "简易python传文件收发端(带注释)",
+  "description": "简易python传文件收发端 发送端.py # 导入模块 import socket # 创建tcp服务端socket tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # 绑定端口 tcp_server_socket.bind((\u0026#34;\u0026#34;, 114)) # 设置监听，把服务端socket由主动套接字改成被动套接字，只能接收客户端的连接请求 tcp_server_socket.listen(128) while True: # 接收客户端信息 client_socket, client_ip = tcp_server_socket.accept() print(\u0026#34;客户端：\u0026#34;, client_ip, \u0026#34;连接\u0026#34;) # 接收下载信息 try: file_name_data = client_socket.recv(65500) # 解码下载信息 file_name = file_name_data.decode() except : print(\u0026#34;客户端已断开连接\u0026#34;) continue try: # 数据传输 with open(\u0026#34;/\u0026#34; + file_name, \u0026#34;rb\u0026#34;) as file: while True: # 读取文件数据 file_data = file.read(65500) # 数据长度不为0表示还有数据没有写入 if file_data: client_socket.send(file_data) # 数据为0表示传输完成 else: print(file_name, \u0026#34;传输成功\u0026#34;) break except Exception as e: print(\u0026#34;客户端已断开连接\u0026#34;) # 关闭客户端连接 client_socket.close() 发送端.py # 导入模块 import socket,time # 创建套接字 # 绑定端口 # tcp_client_socket.bind((\u0026#34;\u0026#34;, 8080)) while True: # 连接IP地址和端口 tcp_client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) tcp_client_socket.connect((input(\u0026#34;请输入IP：\\n\u0026#34;), 114)) file_name = input(\u0026#34;请输入要下载的文件：\\n\u0026#34;) time_start=time.time() # 文件名编码 tcp_client_socket.send(file_name.encode()) try: # 文件传输 with open(file_name, \u0026#34;wb\u0026#34;) as file: while True: # 接收数据 file_data = tcp_client_socket.recv(65500) # 数据长度不为0写入文件 if file_data: file.write(file_data) # 数据长度为0表示下载完成 else: break # 下载出现异常时捕获异常 except Exception as e: print(\u0026#34;下载异常\u0026#34;, e) # 无异常则下载成功 else: print(file_name, \u0026#34;下载成功\u0026#34;) time_end=time.time() print(\u0026#39;总计\u0026#39;,time_end-time_start,\u0026#39;秒\u0026#39;) # 关闭客户端 tcp_client_socket.close() ",
+  "keywords": [
+    "old"
+  ],
+  "articleBody": "简易python传文件收发端 发送端.py # 导入模块 import socket # 创建tcp服务端socket tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # 绑定端口 tcp_server_socket.bind((\"\", 114)) # 设置监听，把服务端socket由主动套接字改成被动套接字，只能接收客户端的连接请求 tcp_server_socket.listen(128) while True: # 接收客户端信息 client_socket, client_ip = tcp_server_socket.accept() print(\"客户端：\", client_ip, \"连接\") # 接收下载信息 try: file_name_data = client_socket.recv(65500) # 解码下载信息 file_name = file_name_data.decode() except : print(\"客户端已断开连接\") continue try: # 数据传输 with open(\"/\" + file_name, \"rb\") as file: while True: # 读取文件数据 file_data = file.read(65500) # 数据长度不为0表示还有数据没有写入 if file_data: client_socket.send(file_data) # 数据为0表示传输完成 else: print(file_name, \"传输成功\") break except Exception as e: print(\"客户端已断开连接\") # 关闭客户端连接 client_socket.close() 发送端.py # 导入模块 import socket,time # 创建套接字 # 绑定端口 # tcp_client_socket.bind((\"\", 8080)) while True: # 连接IP地址和端口 tcp_client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) tcp_client_socket.connect((input(\"请输入IP：\\n\"), 114)) file_name = input(\"请输入要下载的文件：\\n\") time_start=time.time() # 文件名编码 tcp_client_socket.send(file_name.encode()) try: # 文件传输 with open(file_name, \"wb\") as file: while True: # 接收数据 file_data = tcp_client_socket.recv(65500) # 数据长度不为0写入文件 if file_data: file.write(file_data) # 数据长度为0表示下载完成 else: break # 下载出现异常时捕获异常 except Exception as e: print(\"下载异常\", e) # 无异常则下载成功 else: print(file_name, \"下载成功\") time_end=time.time() print('总计',time_end-time_start,'秒') # 关闭客户端 tcp_client_socket.close() ",
+  "wordCount" : "152",
+  "inLanguage": "en",
+  "datePublished": "2023-03-20T23:45:23Z",
+  "dateModified": "2025-12-04T10:18:33.156Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://juiceright.xyz/old/posts/%E7%AE%80%E6%98%93python%E4%BC%A0%E6%96%87%E4%BB%B6%E6%94%B6%E5%8F%91%E7%AB%AF/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Juiceright",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://juiceright.xyz/" accesskey="h" title="Juiceright (Alt + H)">Juiceright</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://juiceright.xyz/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/archives/" title="Archives">
+                    <span>Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      简易python传文件收发端(带注释)
+    </h1>
+    <div class="post-meta"><span title='2023-03-20 23:45:23 +0000 UTC'>March 20, 2023</span>&nbsp;·&nbsp;<span>1 min</span>
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="简易python传文件收发端">简易python传文件收发端<a hidden class="anchor" aria-hidden="true" href="#简易python传文件收发端">#</a></h1>
+<h3 id="发送端py">发送端.py<a hidden class="anchor" aria-hidden="true" href="#发送端py">#</a></h3>
+<pre tabindex="0"><code># 导入模块
+import socket
+# 创建tcp服务端socket
+tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# 绑定端口
+tcp_server_socket.bind((&#34;&#34;, 114))
+# 设置监听，把服务端socket由主动套接字改成被动套接字，只能接收客户端的连接请求
+tcp_server_socket.listen(128)
+while True:
+# 接收客户端信息
+ client_socket, client_ip = tcp_server_socket.accept()
+ print(&#34;客户端：&#34;, client_ip, &#34;连接&#34;)
+ # 接收下载信息
+ try:
+  file_name_data = client_socket.recv(65500)
+ # 解码下载信息
+  file_name = file_name_data.decode()
+ except :
+  print(&#34;客户端已断开连接&#34;)
+  continue
+ try:
+   # 数据传输
+   with open(&#34;/&#34; + file_name, &#34;rb&#34;) as file:
+    while True:
+	    # 读取文件数据
+      file_data = file.read(65500)
+ 	   # 数据长度不为0表示还有数据没有写入
+	    if file_data:
+	      client_socket.send(file_data)
+	    # 数据为0表示传输完成
+ 	   else:
+ 	     print(file_name, &#34;传输成功&#34;)
+	      break
+ except Exception as e:
+   print(&#34;客户端已断开连接&#34;)
+# 关闭客户端连接
+ client_socket.close()
+</code></pre><h3 id="发送端py-1">发送端.py<a hidden class="anchor" aria-hidden="true" href="#发送端py-1">#</a></h3>
+<pre tabindex="0"><code># 导入模块
+import socket,time
+# 创建套接字
+# 绑定端口
+#   tcp_client_socket.bind((&#34;&#34;, 8080))
+while True:
+# 连接IP地址和端口
+	tcp_client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	tcp_client_socket.connect((input(&#34;请输入IP：\n&#34;), 114))
+ file_name = input(&#34;请输入要下载的文件：\n&#34;)
+	time_start=time.time() 
+	# 文件名编码
+	tcp_client_socket.send(file_name.encode())
+ try:
+	# 文件传输
+	with open(file_name, &#34;wb&#34;) as file:
+    	while True:
+  	# 接收数据
+        	file_data = tcp_client_socket.recv(65500)
+  	# 数据长度不为0写入文件
+        	if file_data:
+            	file.write(file_data)
+  	# 数据长度为0表示下载完成
+        	else:
+            	break
+# 下载出现异常时捕获异常
+ except Exception as e:
+    	print(&#34;下载异常&#34;, e)
+    	# 无异常则下载成功
+	else:
+    	print(file_name, &#34;下载成功&#34;)
+    	time_end=time.time() 
+    	print(&#39;总计&#39;,time_end-time_start,&#39;秒&#39;) 
+# 关闭客户端
+ tcp_client_socket.close()
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://juiceright.xyz/tags/old/">Old</a></li>
+    </ul>
+  </footer><div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: 'Ov23liuWJuk8S1oC4VRp',
+    clientSecret: 'dd9a460fc89c99acdf580410cffacf5f1e9aa032',
+    repo: 'juiceright.github.io',
+    owner: 'juiceright',
+    admin: ['juiceright'],
+    id: decodeURI(location.pathname), 
+    distractionFreeMode: true 
+  });
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+      return;
+    }
+    gitalk.render('gitalk-container');
+  })();
+</script>
+
+</article>
+    </main>
+    
+
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://juiceright.xyz/">Juiceright</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+        
+        <div id="busuanzi_stats" style="display:none;"> ·  <span>👥 <span id="busuanzi_value_site_uv"></span></span> <span>|</span> <span>🌐 <span id="busuanzi_value_site_pv"></span></span> <span>|</span> <span>📖 <span id="busuanzi_value_page_pv"></span></span> </div> 
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a><script> let s = document.createElement('script'); s.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'; s.onload = () => document.getElementById('busuanzi_stats').style.display = 'inline-block'; document.head.appendChild(s); </script>
+
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

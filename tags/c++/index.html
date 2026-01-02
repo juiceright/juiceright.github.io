@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>C&#43;&#43; | Juiceright</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="https://juiceright.xyz/tags/c&#43;&#43;/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a?s=16">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a?s=32">
+<link rel="apple-touch-icon" href="https://juiceright.xyz/apple-touch-icon.png">
+<link rel="mask-icon" href="https://juiceright.xyz/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://juiceright.xyz/tags/c&#43;&#43;/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="https://juiceright.xyz/tags/c&#43;&#43;/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://juiceright.xyz/tags/c&#43;&#43;/">
+  <meta property="og:site_name" content="Juiceright">
+  <meta property="og:title" content="C&#43;&#43;">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C&#43;&#43;">
+<meta name="twitter:description" content="">
+
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://juiceright.xyz/" accesskey="h" title="Juiceright (Alt + H)">Juiceright</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://juiceright.xyz/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/archives/" title="Archives">
+                    <span>Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header">
+  <h1>
+    C&#43;&#43;
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">zkw线段树
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> #include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int d[500000*4],n,m=1; inline void build(int n){ while(m&lt;=n)m&lt;&lt;=1; for(int i=m&#43;1;i&lt;=m&#43;n;i&#43;&#43;) cin&gt;&gt;d[i]; for(int i=m-1;i;--i) d[i]=d[i&lt;&lt;1]&#43;d[i&lt;&lt;1|1]; } void chg(int x,int v){ d[x=m&#43;x]&#43;=v; while(x) d[x&gt;&gt;=1]=d[x&lt;&lt;1]&#43;d[x&lt;&lt;1|1]; } int add(int x,int v){ for(int i=x&#43;m;i;i&gt;&gt;=1)d[i]&#43;=v; } int ask(int l,int r){ int ans=0; for(l=m&#43;l-1,r=m&#43;r&#43;1 ; l^r^1 ; l&gt;&gt;=1,r&gt;&gt;=1){ if(~l&amp;1)ans&#43;=d[l^1]; if(r&amp;1)ans&#43;=d[r^1]; } return ans; } void debug(){ for(int i=m&#43;1;i&lt;=m&#43;n;i&#43;&#43;)cout&lt;&lt;d[i]&lt;&lt;&#34; &#34;; cout&lt;&lt;m&lt;&lt;endl; } int main(){ int q; cin&gt;&gt;n&gt;&gt;q; build(n); while(q--){ int op,a,b; cin&gt;&gt;op&gt;&gt;a&gt;&gt;b; if(op==1)add(a,b); else cout&lt;&lt;ask(a,b)&lt;&lt;endl; } } </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-10 13:28:55 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to zkw线段树" href="https://juiceright.xyz/old/posts/uljgqekoo3/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">ST表
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> #include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int f[2000010][24],n; int get(int x,int y){ int k=log(y-x&#43;1)/log(2); return max(f[x][k],f[y-(1&lt;&lt;k)&#43;1][k]); } int main(){ int i,j,m,t,k; scanf(&#34;%d %d&#34;,&amp;n,&amp;m); for(i=1;i&lt;=n;i&#43;&#43;) scanf(&#34;%d&#34;,&amp;f[i][0]); int x=log(n)/log(2)&#43;1; for(int j=1;j&lt;x;j&#43;&#43;) for(int i=1;i&lt;=n-(1&lt;&lt;j)&#43;1;i&#43;&#43;) f[i][j]=max(f[i][j-1],f[i&#43;(1&lt;&lt;(j-1))][j-1]); while(m--){ int a,b; scanf(&#34;%d %d&#34;,&amp;a,&amp;b); printf(&#34;%d\n&#34;,get(a,b)); } } </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-10 13:28:40 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to ST表" href="https://juiceright.xyz/old/posts/6jfataceqh/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">SPFA算法
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>#include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; const long long N=100010,M=200011; long long head[N],ver[M],edge[M],Next[M],d[N]; long long n,m,tot=0; queue&lt;long long &gt;q; bool v[N]; void add(long long x,long long y,long long z){ ver[&#43;&#43;tot]=y;edge[tot]=z;Next[tot]=head[x]; head[x]=tot; } int main(){ long long i,j,n,m,a,b,c,s; scanf(&#34;%lld %lld %lld&#34;,&amp;n,&amp;m,&amp;s); while(m--){ scanf(&#34;%lld %lld %lld&#34;,&amp;a,&amp;b,&amp;c); add(a,b,c); //	add(b,a,c); } memset(d,0x3f,sizeof(d)); memset(v,0,sizeof(v)); d[s]=0; v[s]=1; q.push(1); while(q.size()) { long long x=q.front(); q.pop(); v[x]=0; for(long long i=head[x];i;i=Next[i]) {long long y=ver[i],z=edge[i]; if(d[y]&gt;d[x]&#43;z){ d[y]=d[x]&#43;z; if(!v[y]) { q.push(y); v[y]=1; } } } } for(i=1;i&lt;=n;i&#43;&#43;) cout&lt;&lt;d[i]&lt;&lt;&#34; &#34;; } </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-10 13:28:27 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to SPFA算法" href="https://juiceright.xyz/old/posts/ldovg2gc2p/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Prim算法
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> #include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; typedef int ll; ll d[5010],mp[5010][5010]; bool v[5010]; ll i,j,n,m,t,k; int main() { cin&gt;&gt;n&gt;&gt;m; memset(mp,0x3f,sizeof(mp)); memset(d,0x3f,sizeof(d)); memset(v,0,sizeof(v)); ll a,b,c; for(i=1; i&lt;=m; i&#43;&#43;) { cin&gt;&gt;a&gt;&gt;b&gt;&gt;c; mp[a][b]=min(mp[a][b],c); mp[b][a]=mp[a][b]; } d[1]=0; for(i=1; i&lt;n; i&#43;&#43;) { ll x=0; for(j=1; j&lt;=n; j&#43;&#43;) if(!v[j]&amp;&amp;(x==0||d[j]&lt;d[x]))x=j; v[x]=1; for(j=1; j&lt;=n; j&#43;&#43;) if(!v[j])d[j]=min(d[j],mp[x][j]); } ll ans=0; for(i=2; i&lt;=n; i&#43;&#43;) ans&#43;=d[i]; if(ans&gt;99999999)cout&lt;&lt;&#34;orz&#34;; else cout&lt;&lt;ans; } </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-10 13:28:15 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to Prim算法" href="https://juiceright.xyz/old/posts/f481dm04tj/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Prim堆优化版
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>#include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; priority_queue&lt;pair&lt;long long,long long&gt; &gt;q; vector&lt;long long&gt;ver[5010],edge[5010]; bool v[5010]; long long d[5010]; long long n,m; void add(long long x,long long y,long long z){ ver[x].push_back(y);edge[x].push_back(z); } void init(){ cin&gt;&gt;n&gt;&gt;m; for(long long i=1;i&lt;=m;i&#43;&#43;){ long long a,b,c; cin&gt;&gt;a&gt;&gt;b&gt;&gt;c; add(a,b,c);add(b,a,c); } } void work(){ memset(d,0x3f,sizeof(d)); memset(v,0,sizeof(v)); long long ans=0; d[1]=0; q.push(make_pair(0,1)); int cnt=0; while(q.size()){ long long x=q.top().second; q.pop(); if(v[x])continue; v[x]=1; cnt&#43;&#43;; for(int i=ver[x].size()-1;i&gt;=0;i--){ int y=ver[x][i],z=edge[x][i]; if(!v[y] &amp;&amp;(z&lt;d[y])){ d[y]=z; q.push(make_pair(-d[y],y)); } } } for(int i=2;i&lt;=n;i&#43;&#43;)ans&#43;=d[i]; if(cnt==n)cout&lt;&lt;ans; else cout&lt;&lt;&#34;orz&#34;; } int main(){ init(); work(); } </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-10 13:27:52 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to Prim堆优化版" href="https://juiceright.xyz/old/posts/ibw-bmba9u/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">LCA算法
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>// luogu-judger-enable-o2 #include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int ver[2*500000],nex[2*500000],head[2*500000],d[2*500000],p[2*500000][23],tot; void add(int x,int y){ ver[&#43;&#43;tot]=y;nex[tot]=head[x];head[x]=tot; } int read(){ int x=0; char ch; while(ch&lt;&#39;0&#39;||ch&gt;&#39;9&#39;)ch=getchar(); while(ch&gt;&#39;0&#39;&amp;&amp;ch&lt;&#39;9&#39;){ x=x*10&#43;ch-&#39;0&#39;; ch=getchar(); } return x; } void dfs(int x,int fa){ d[x]=d[fa]&#43;1; p[x][0]=fa; for(int i=1;(1&lt;&lt;i)&lt;=d[x];i&#43;&#43;) p[x][i]=p[p[x][i-1]][i-1]; for(int i=head[x];i;i=nex[i]){ if(ver[i]!=fa) dfs(ver[i],x);	} } int lca(int a,int b){ if(d[a]&gt;d[b])swap(a,b); for(int i=20;i&gt;=0;i--) if(d[a]&lt;=d[b]-(1&lt;&lt;i)) b=p[b][i]; if(a==b) return a; for(int i=20;i&gt;=0;i--) if(p[a][i]==p[b][i])continue; else a=p[a][i],b=p[b][i]; return p[a][0]; } int main(){ int i,j,n,m,t,k,s; scanf(&#34;%d %d %d&#34;,&amp;n,&amp;m,&amp;s); for(int i=1;i&lt;n;i&#43;&#43;) { int a,b; scanf(&#34;%d %d&#34;,&amp;a,&amp;b); add(a,b); add(b,a); } dfs(s,0); for(i=1;i&lt;=m;i&#43;&#43;) { int a,b; scanf(&#34;%d %d&#34;,&amp;a,&amp;b); cout&lt;&lt;lca(a,b)&lt;&lt;endl; } } </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-10 13:27:39 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to LCA算法" href="https://juiceright.xyz/old/posts/5ipfk_eghq/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">匈牙利算法
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>#include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; bool ver[1001][1001],v[1001]; int d[1001],n,m,e; bool dfs(int x){ for(int i=1;i&lt;=m;i&#43;&#43;){ if(ver[x][i]&amp;&amp;!v[i]){ v[i]=1; if(!d[i]||dfs(d[i])){ d[i]=x;return 1; } } } return 0; } void init(){ cin&gt;&gt;n&gt;&gt;m&gt;&gt;e; for(int i=1;i&lt;=e;i&#43;&#43;){ int a,b; cin&gt;&gt;a&gt;&gt;b; if(b&gt;m||a&gt;n)continue; ver[a][b]=1; } int ans=0; for(int i=1;i&lt;=n;i&#43;&#43;){memset(v,0,sizeof(v)); ans&#43;=dfs(i); } cout&lt;&lt;ans; } int main(){ init(); } </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-10 13:27:28 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 匈牙利算法" href="https://juiceright.xyz/old/posts/rnbllzkklq/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">线段树
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>#include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; struct pl{ long long l,r,v,add,tim; #define l(x) tree[x].l #define r(x) tree[x].r #define v(x) tree[x].v #define add(x) tree[x].add }tree[4*100000]; long long a[100001]; void build(long long p,long long l,long long r){ l(p)=l;r(p)=r; if(l==r){ v(p)=a[l];return; } long long mid=(l&#43;r)&gt;&gt;1; build(p&lt;&lt;1,l,mid); build((p&lt;&lt;1)&#43;1,mid&#43;1,r); v(p)=v(p*2)&#43;v(p*2&#43;1); } void spread(long long p){ if(add(p)==0)return; v(p*2)&#43;=add(p)*(r(p*2)-l(p*2)&#43;1); v(p*2&#43;1)&#43;=add(p)*(r(p*2&#43;1)-l(p*2&#43;1)&#43;1); add(p*2)&#43;=add(p); add(p*2&#43;1)&#43;=add(p); add(p)=0; } void chg(long long p,long long l,long long r,long long d){ if(l&lt;=l(p)&amp;&amp;r&gt;=r(p)){ v(p)&#43;=d*(r(p)-l(p)&#43;1); add(p)&#43;=d; return; } spread(p); long long mid=(l(p)&#43;r(p))&gt;&gt;1; if(l&lt;=mid)chg(p*2,l,r,d); if(r&gt;mid)chg(p*2&#43;1,l,r,d); v(p)=v(p*2)&#43;v(p*2&#43;1); } long long ask(long long p,long long l,long long r){ if(l&lt;=l(p)&amp;&amp;r&gt;=r(p))return v(p); spread(p); long long mid=(l(p)&#43;r(p))&gt;&gt;1; long long ans=0; if(l&lt;=mid)ans&#43;=ask(p*2,l,r); if(r&gt;mid)ans&#43;=ask(p*2&#43;1,l,r); return ans; } int main(){ long long i,j,n,m,t,k; cin&gt;&gt;n&gt;&gt;m; for(i=1;i&lt;=n;i&#43;&#43;)cin&gt;&gt;a[i]; build(1,1,n); while(m--){ long long op,l,r,k; cin&gt;&gt;op&gt;&gt;l&gt;&gt;r; if(op==1){ cin&gt;&gt;k; chg(1,l,r,k); }else cout&lt;&lt;ask(1,l,r)&lt;&lt;endl;	} } </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-10 13:26:55 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 线段树" href="https://juiceright.xyz/old/posts/cse8xfl8mp/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">树状数组
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> #include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; long long c[500001]; long long i,j,n,m,t,k; long long lb(long long x) {return x&amp;(-x); } long long get(long long x) { long long ans=0; for(;x;x-=lb(x)) ans&#43;=c[x]; return ans; } void add(long long x,long long y){ for(long long i=x;i&lt;=n;i&#43;=lb(i)) c[i]&#43;=y; } int main(){ cin&gt;&gt;n&gt;&gt;m; for(i=1;i&lt;=n;i&#43;&#43;) {scanf(&#34;%lld&#34;,&amp;t); add(i,t); } while(m--){ cin&gt;&gt;t; if(t==1){ cin&gt;&gt;j&gt;&gt;k; add(j,k); } else { cin&gt;&gt;j&gt;&gt;k; cout&lt;&lt;get(k)-get(j-1)&lt;&lt;endl; } } } </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-10 13:26:42 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 树状数组" href="https://juiceright.xyz/old/posts/hl1binzfbh/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">kruskal算法（克鲁斯卡尔算法）
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>#include&lt;bits/stdc&#43;&#43;.h&gt; #define ll long long using namespace std; ll fa[5010]; ll get(ll x) { return x==fa[x]?x:fa[x]=get(fa[x]); } void mrg(ll a,ll b) { fa[get(a)]=get(b); } struct pl{ ll x,y,z; bool operator&lt;(const pl &amp;a){ return z&lt;a.z; } }mp[200001]; int main() { ll i,j,n,m,t=0,k=0; cin&gt;&gt;n&gt;&gt;m; for(i=1;i&lt;=m;i&#43;&#43;) { cin&gt;&gt;mp[i].x&gt;&gt;mp[i].y&gt;&gt;mp[i].z; } sort(mp&#43;1,mp&#43;1&#43;m); for(i=1;i&lt;=n;i&#43;&#43;)fa[i]=i; for(i=1;i&lt;=m&amp;&amp;t&lt;n;i&#43;&#43;){ if(get(mp[i].x)!=get(mp[i].y))mrg(mp[i].x,mp[i].y),t&#43;&#43;,k&#43;=mp[i].z;	} if(t==n-1) cout&lt;&lt;k; else cout&lt;&lt;&#34;orz&#34;; } </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-10 13:26:19 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to kruskal算法（克鲁斯卡尔算法）" href="https://juiceright.xyz/old/posts/y1ekvamzmi/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="https://juiceright.xyz/tags/c&#43;&#43;/page/2/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://juiceright.xyz/">Juiceright</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+        
+        <div id="busuanzi_stats" style="display:none;"> ·  <span>👥 <span id="busuanzi_value_site_uv"></span></span> <span>|</span> <span>🌐 <span id="busuanzi_value_site_pv"></span></span> <span>|</span> <span>📖 <span id="busuanzi_value_page_pv"></span></span> </div> 
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a><script> let s = document.createElement('script'); s.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'; s.onload = () => document.getElementById('busuanzi_stats').style.display = 'inline-block'; document.head.appendChild(s); </script>
+
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

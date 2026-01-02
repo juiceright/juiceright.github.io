@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>python将PDF每一页导出为600DPI的超清JPG | Juiceright</title>
+<meta name="keywords" content="old">
+<meta name="description" content="import fitz  # PyMuPDF库
+import os
+
+def pdf_to_high_res_jpg(pdf_path, output_folder, dpi=600):
+    &#34;&#34;&#34;
+    将PDF文件的每一页转换为高分辨率JPG图片
+    
+    参数:
+        pdf_path (str): PDF文件路径
+        output_folder (str): 输出图片的文件夹
+        dpi (int): 图片分辨率，默认为600
+    &#34;&#34;&#34;
+    # 创建输出文件夹（如果不存在）
+    os.makedirs(output_folder, exist_ok=True)
+    
+    try:
+        # 打开PDF文件
+        pdf_document = fitz.open(pdf_path)
+        print(f&#34;成功打开PDF文件，共{len(pdf_document)}页&#34;)
+        
+        # 遍历每一页
+        for page_number in range(len(pdf_document)):
+            # 获取当前页
+            page = pdf_document[page_number]
+            
+            # 设置缩放因子，72DPI是默认值，要得到600DPI需要缩放600/72倍
+            zoom = dpi / 72
+            mat = fitz.Matrix(zoom, zoom)
+            
+            # 将页面转换为像素图
+            pix = page.get_pixmap(matrix=mat)
+            
+            # 生成输出文件名（例如：page_001.jpg）
+            output_filename = f&#34;page_{page_number &#43; 1:03d}.jpg&#34;
+            output_path = os.path.join(output_folder, output_filename)
+            
+            # 保存为JPG
+            pix.save(output_path)
+            print(f&#34;已保存: {output_path}&#34;)
+        
+        # 关闭PDF文件
+        pdf_document.close()
+        print(&#34;转换完成！&#34;)
+        
+    except Exception as e:
+        print(f&#34;转换过程中出错: {str(e)}&#34;)
+
+# 使用示例
+if __name__ == &#34;__main__&#34;:
+    # 输入PDF文件路径
+    input_pdf =     pdf_file_path = &#34;First Aid Cases For The USMLE Step 1 (Tao Le, Richard Giovane) (Z-Library).pdf&#34;  # 替换为你的PDF文件路径
+
+    # 输出文件夹路径
+    output_dir = &#34;pdf_pages_jpg&#34;
+    
+    # 转换为600DPI的JPG
+    pdf_to_high_res_jpg(input_pdf, output_dir, dpi=600)
+">
+<meta name="author" content="">
+<link rel="canonical" href="https://juiceright.xyz/old/posts/9yflkrb4jw/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a?s=16">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a?s=32">
+<link rel="apple-touch-icon" href="https://juiceright.xyz/apple-touch-icon.png">
+<link rel="mask-icon" href="https://juiceright.xyz/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://juiceright.xyz/old/posts/9yflkrb4jw/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://juiceright.xyz/old/posts/9yflkrb4jw/">
+  <meta property="og:site_name" content="Juiceright">
+  <meta property="og:title" content="python将PDF每一页导出为600DPI的超清JPG">
+  <meta property="og:description" content="import fitz # PyMuPDF库 import os def pdf_to_high_res_jpg(pdf_path, output_folder, dpi=600): &#34;&#34;&#34; 将PDF文件的每一页转换为高分辨率JPG图片 参数: pdf_path (str): PDF文件路径 output_folder (str): 输出图片的文件夹 dpi (int): 图片分辨率，默认为600 &#34;&#34;&#34; # 创建输出文件夹（如果不存在） os.makedirs(output_folder, exist_ok=True) try: # 打开PDF文件 pdf_document = fitz.open(pdf_path) print(f&#34;成功打开PDF文件，共{len(pdf_document)}页&#34;) # 遍历每一页 for page_number in range(len(pdf_document)): # 获取当前页 page = pdf_document[page_number] # 设置缩放因子，72DPI是默认值，要得到600DPI需要缩放600/72倍 zoom = dpi / 72 mat = fitz.Matrix(zoom, zoom) # 将页面转换为像素图 pix = page.get_pixmap(matrix=mat) # 生成输出文件名（例如：page_001.jpg） output_filename = f&#34;page_{page_number &#43; 1:03d}.jpg&#34; output_path = os.path.join(output_folder, output_filename) # 保存为JPG pix.save(output_path) print(f&#34;已保存: {output_path}&#34;) # 关闭PDF文件 pdf_document.close() print(&#34;转换完成！&#34;) except Exception as e: print(f&#34;转换过程中出错: {str(e)}&#34;) # 使用示例 if __name__ == &#34;__main__&#34;: # 输入PDF文件路径 input_pdf = pdf_file_path = &#34;First Aid Cases For The USMLE Step 1 (Tao Le, Richard Giovane) (Z-Library).pdf&#34; # 替换为你的PDF文件路径 # 输出文件夹路径 output_dir = &#34;pdf_pages_jpg&#34; # 转换为600DPI的JPG pdf_to_high_res_jpg(input_pdf, output_dir, dpi=600) ">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="old">
+    <meta property="article:published_time" content="2025-10-03T20:26:53+00:00">
+    <meta property="article:modified_time" content="2025-12-04T10:18:33+00:00">
+    <meta property="article:tag" content="Old">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python将PDF每一页导出为600DPI的超清JPG">
+<meta name="twitter:description" content="import fitz  # PyMuPDF库
+import os
+
+def pdf_to_high_res_jpg(pdf_path, output_folder, dpi=600):
+    &#34;&#34;&#34;
+    将PDF文件的每一页转换为高分辨率JPG图片
+    
+    参数:
+        pdf_path (str): PDF文件路径
+        output_folder (str): 输出图片的文件夹
+        dpi (int): 图片分辨率，默认为600
+    &#34;&#34;&#34;
+    # 创建输出文件夹（如果不存在）
+    os.makedirs(output_folder, exist_ok=True)
+    
+    try:
+        # 打开PDF文件
+        pdf_document = fitz.open(pdf_path)
+        print(f&#34;成功打开PDF文件，共{len(pdf_document)}页&#34;)
+        
+        # 遍历每一页
+        for page_number in range(len(pdf_document)):
+            # 获取当前页
+            page = pdf_document[page_number]
+            
+            # 设置缩放因子，72DPI是默认值，要得到600DPI需要缩放600/72倍
+            zoom = dpi / 72
+            mat = fitz.Matrix(zoom, zoom)
+            
+            # 将页面转换为像素图
+            pix = page.get_pixmap(matrix=mat)
+            
+            # 生成输出文件名（例如：page_001.jpg）
+            output_filename = f&#34;page_{page_number &#43; 1:03d}.jpg&#34;
+            output_path = os.path.join(output_folder, output_filename)
+            
+            # 保存为JPG
+            pix.save(output_path)
+            print(f&#34;已保存: {output_path}&#34;)
+        
+        # 关闭PDF文件
+        pdf_document.close()
+        print(&#34;转换完成！&#34;)
+        
+    except Exception as e:
+        print(f&#34;转换过程中出错: {str(e)}&#34;)
+
+# 使用示例
+if __name__ == &#34;__main__&#34;:
+    # 输入PDF文件路径
+    input_pdf =     pdf_file_path = &#34;First Aid Cases For The USMLE Step 1 (Tao Le, Richard Giovane) (Z-Library).pdf&#34;  # 替换为你的PDF文件路径
+
+    # 输出文件夹路径
+    output_dir = &#34;pdf_pages_jpg&#34;
+    
+    # 转换为600DPI的JPG
+    pdf_to_high_res_jpg(input_pdf, output_dir, dpi=600)
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Olds",
+      "item": "https://juiceright.xyz/old/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "python将PDF每一页导出为600DPI的超清JPG",
+      "item": "https://juiceright.xyz/old/posts/9yflkrb4jw/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "python将PDF每一页导出为600DPI的超清JPG",
+  "name": "python将PDF每一页导出为600DPI的超清JPG",
+  "description": "import fitz # PyMuPDF库 import os def pdf_to_high_res_jpg(pdf_path, output_folder, dpi=600): \u0026#34;\u0026#34;\u0026#34; 将PDF文件的每一页转换为高分辨率JPG图片 参数: pdf_path (str): PDF文件路径 output_folder (str): 输出图片的文件夹 dpi (int): 图片分辨率，默认为600 \u0026#34;\u0026#34;\u0026#34; # 创建输出文件夹（如果不存在） os.makedirs(output_folder, exist_ok=True) try: # 打开PDF文件 pdf_document = fitz.open(pdf_path) print(f\u0026#34;成功打开PDF文件，共{len(pdf_document)}页\u0026#34;) # 遍历每一页 for page_number in range(len(pdf_document)): # 获取当前页 page = pdf_document[page_number] # 设置缩放因子，72DPI是默认值，要得到600DPI需要缩放600/72倍 zoom = dpi / 72 mat = fitz.Matrix(zoom, zoom) # 将页面转换为像素图 pix = page.get_pixmap(matrix=mat) # 生成输出文件名（例如：page_001.jpg） output_filename = f\u0026#34;page_{page_number + 1:03d}.jpg\u0026#34; output_path = os.path.join(output_folder, output_filename) # 保存为JPG pix.save(output_path) print(f\u0026#34;已保存: {output_path}\u0026#34;) # 关闭PDF文件 pdf_document.close() print(\u0026#34;转换完成！\u0026#34;) except Exception as e: print(f\u0026#34;转换过程中出错: {str(e)}\u0026#34;) # 使用示例 if __name__ == \u0026#34;__main__\u0026#34;: # 输入PDF文件路径 input_pdf = pdf_file_path = \u0026#34;First Aid Cases For The USMLE Step 1 (Tao Le, Richard Giovane) (Z-Library).pdf\u0026#34; # 替换为你的PDF文件路径 # 输出文件夹路径 output_dir = \u0026#34;pdf_pages_jpg\u0026#34; # 转换为600DPI的JPG pdf_to_high_res_jpg(input_pdf, output_dir, dpi=600) ",
+  "keywords": [
+    "old"
+  ],
+  "articleBody": "import fitz # PyMuPDF库 import os def pdf_to_high_res_jpg(pdf_path, output_folder, dpi=600): \"\"\" 将PDF文件的每一页转换为高分辨率JPG图片 参数: pdf_path (str): PDF文件路径 output_folder (str): 输出图片的文件夹 dpi (int): 图片分辨率，默认为600 \"\"\" # 创建输出文件夹（如果不存在） os.makedirs(output_folder, exist_ok=True) try: # 打开PDF文件 pdf_document = fitz.open(pdf_path) print(f\"成功打开PDF文件，共{len(pdf_document)}页\") # 遍历每一页 for page_number in range(len(pdf_document)): # 获取当前页 page = pdf_document[page_number] # 设置缩放因子，72DPI是默认值，要得到600DPI需要缩放600/72倍 zoom = dpi / 72 mat = fitz.Matrix(zoom, zoom) # 将页面转换为像素图 pix = page.get_pixmap(matrix=mat) # 生成输出文件名（例如：page_001.jpg） output_filename = f\"page_{page_number + 1:03d}.jpg\" output_path = os.path.join(output_folder, output_filename) # 保存为JPG pix.save(output_path) print(f\"已保存: {output_path}\") # 关闭PDF文件 pdf_document.close() print(\"转换完成！\") except Exception as e: print(f\"转换过程中出错: {str(e)}\") # 使用示例 if __name__ == \"__main__\": # 输入PDF文件路径 input_pdf = pdf_file_path = \"First Aid Cases For The USMLE Step 1 (Tao Le, Richard Giovane) (Z-Library).pdf\" # 替换为你的PDF文件路径 # 输出文件夹路径 output_dir = \"pdf_pages_jpg\" # 转换为600DPI的JPG pdf_to_high_res_jpg(input_pdf, output_dir, dpi=600) ",
+  "wordCount" : "124",
+  "inLanguage": "en",
+  "datePublished": "2025-10-03T20:26:53Z",
+  "dateModified": "2025-12-04T10:18:33.065Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://juiceright.xyz/old/posts/9yflkrb4jw/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Juiceright",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://juiceright.xyz/" accesskey="h" title="Juiceright (Alt + H)">Juiceright</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://juiceright.xyz/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/archives/" title="Archives">
+                    <span>Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      python将PDF每一页导出为600DPI的超清JPG
+    </h1>
+    <div class="post-meta"><span title='2025-10-03 20:26:53 +0000 UTC'>October 3, 2025</span>&nbsp;·&nbsp;<span>1 min</span>
+
+</div>
+  </header> 
+  <div class="post-content"><pre tabindex="0"><code>import fitz  # PyMuPDF库
+import os
+
+def pdf_to_high_res_jpg(pdf_path, output_folder, dpi=600):
+    &#34;&#34;&#34;
+    将PDF文件的每一页转换为高分辨率JPG图片
+    
+    参数:
+        pdf_path (str): PDF文件路径
+        output_folder (str): 输出图片的文件夹
+        dpi (int): 图片分辨率，默认为600
+    &#34;&#34;&#34;
+    # 创建输出文件夹（如果不存在）
+    os.makedirs(output_folder, exist_ok=True)
+    
+    try:
+        # 打开PDF文件
+        pdf_document = fitz.open(pdf_path)
+        print(f&#34;成功打开PDF文件，共{len(pdf_document)}页&#34;)
+        
+        # 遍历每一页
+        for page_number in range(len(pdf_document)):
+            # 获取当前页
+            page = pdf_document[page_number]
+            
+            # 设置缩放因子，72DPI是默认值，要得到600DPI需要缩放600/72倍
+            zoom = dpi / 72
+            mat = fitz.Matrix(zoom, zoom)
+            
+            # 将页面转换为像素图
+            pix = page.get_pixmap(matrix=mat)
+            
+            # 生成输出文件名（例如：page_001.jpg）
+            output_filename = f&#34;page_{page_number + 1:03d}.jpg&#34;
+            output_path = os.path.join(output_folder, output_filename)
+            
+            # 保存为JPG
+            pix.save(output_path)
+            print(f&#34;已保存: {output_path}&#34;)
+        
+        # 关闭PDF文件
+        pdf_document.close()
+        print(&#34;转换完成！&#34;)
+        
+    except Exception as e:
+        print(f&#34;转换过程中出错: {str(e)}&#34;)
+
+# 使用示例
+if __name__ == &#34;__main__&#34;:
+    # 输入PDF文件路径
+    input_pdf =     pdf_file_path = &#34;First Aid Cases For The USMLE Step 1 (Tao Le, Richard Giovane) (Z-Library).pdf&#34;  # 替换为你的PDF文件路径
+
+    # 输出文件夹路径
+    output_dir = &#34;pdf_pages_jpg&#34;
+    
+    # 转换为600DPI的JPG
+    pdf_to_high_res_jpg(input_pdf, output_dir, dpi=600)
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://juiceright.xyz/tags/old/">Old</a></li>
+    </ul>
+  </footer><div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: 'Ov23liuWJuk8S1oC4VRp',
+    clientSecret: 'dd9a460fc89c99acdf580410cffacf5f1e9aa032',
+    repo: 'juiceright.github.io',
+    owner: 'juiceright',
+    admin: ['juiceright'],
+    id: decodeURI(location.pathname), 
+    distractionFreeMode: true 
+  });
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+      return;
+    }
+    gitalk.render('gitalk-container');
+  })();
+</script>
+
+</article>
+    </main>
+    
+
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://juiceright.xyz/">Juiceright</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+        
+        <div id="busuanzi_stats" style="display:none;"> ·  <span>👥 <span id="busuanzi_value_site_uv"></span></span> <span>|</span> <span>🌐 <span id="busuanzi_value_site_pv"></span></span> <span>|</span> <span>📖 <span id="busuanzi_value_page_pv"></span></span> </div> 
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a><script> let s = document.createElement('script'); s.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'; s.onload = () => document.getElementById('busuanzi_stats').style.display = 'inline-block'; document.head.appendChild(s); </script>
+
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>爬虫 on Juiceright</title>
+    <link>https://juiceright.xyz/tags/%E7%88%AC%E8%99%AB/</link>
+    <description>Recent content in 爬虫 on Juiceright</description>
+    <generator>Hugo -- 0.154.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 09 Dec 2025 09:10:43 +0000</lastBuildDate>
+    <atom:link href="https://juiceright.xyz/tags/%E7%88%AC%E8%99%AB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>问卷星自动填写脚本</title>
+      <link>https://juiceright.xyz/old/posts/trgcxiotbs/</link>
+      <pubDate>Sun, 23 Mar 2025 18:17:36 +0000</pubDate>
+      <guid>https://juiceright.xyz/old/posts/trgcxiotbs/</guid>
+      <description>&lt;p&gt;2025年3月23日测试批量填写80份正常。&lt;/p&gt;
+&lt;p&gt;需要模拟鼠标操作防止被识别机器人&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import re
+from playwright.async_api import Playwright, async_playwright
+#from playwright.sync_api import Playwright, sync_playwright, expect
+import random
+
+import asyncio
+import time
+def random_int(min=2, max=4):
+    random.seed(time.time())    
+    return str(random.randint(min, max))
+
+async def mouse_random_move(page):
+    # 模拟鼠标随机平滑移动
+    for i in range(5):
+        await page.mouse.move(random.randint(0, 1000), random.randint(0, 1000))
+        await asyncio.sleep(0.1)
+    # 模拟鼠标随机停留
+    #time.sleep(random.randint(0,1))
+    # 鼠标滚轮
+
+async def run(browser) -&amp;gt; None:
+    
+    context = await browser.new_context()
+    page = await context.new_page()
+    await page.goto(&amp;#34;https://www.wjx.cn/vm/Q0x3Wuq.aspx&amp;#34;)
+    await page.get_by_text(&amp;#34;男&amp;#34;).click()
+    await page.get_by_text(&amp;#34;大三&amp;#34;).click()
+    await page.get_by_text(&amp;#34;1000-&amp;#34;).click()
+    await page.locator(&amp;#34;div&amp;#34;).filter(has_text=re.compile(r&amp;#34;^全部来自家庭部分来自家庭，部分靠自己赚取全部靠自己赚取$&amp;#34;)).get_by_role(&amp;#34;link&amp;#34;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;div&amp;#34;).filter(has_text=re.compile(r&amp;#34;^300以下300-600600-10001000以上$&amp;#34;)).get_by_role(&amp;#34;link&amp;#34;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;div&amp;#34;).filter(has_text=re.compile(r&amp;#34;^无1-200200-500500以上$&amp;#34;)).get_by_role(&amp;#34;link&amp;#34;).nth(2).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;div&amp;#34;).filter(has_text=re.compile(r&amp;#34;^实体店网购$&amp;#34;)).get_by_role(&amp;#34;link&amp;#34;).first.click()
+    await page.locator(&amp;#34;div&amp;#34;).filter(has_text=re.compile(r&amp;#34;^100以下100-500500-10001000以上$&amp;#34;)).get_by_role(&amp;#34;link&amp;#34;).nth(3).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;div&amp;#34;).filter(has_text=re.compile(r&amp;#34;^无200以下200-500500-10001000以上$&amp;#34;)).get_by_role(&amp;#34;link&amp;#34;).nth(2).click()
+    await page.locator(&amp;#34;#div10&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).nth(2).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div11&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div12&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).first.click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div13&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div14&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).nth(2).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div15&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div16&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).nth(2).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div17&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;div:nth-child(2) &amp;gt; .jqcheckwrapper &amp;gt; .jqcheck&amp;#34;).first.click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;div:nth-child(5) &amp;gt; .jqcheckwrapper &amp;gt; .jqcheck&amp;#34;).first.click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;div:nth-child(7) &amp;gt; .jqcheckwrapper &amp;gt; .jqcheck&amp;#34;).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div19&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).nth(3).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div20&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div20&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).first.click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div21 &amp;gt; .ui-controlgroup &amp;gt; div:nth-child(2) &amp;gt; .jqcheckwrapper &amp;gt; .jqcheck&amp;#34;).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div21 &amp;gt; .ui-controlgroup &amp;gt; div:nth-child(4) &amp;gt; .jqcheckwrapper &amp;gt; .jqcheck&amp;#34;).click()
+    await page.get_by_text(&amp;#34;提交&amp;#34;).click()
+    await page.wait_for_function(&amp;#34;window.location.href !== &amp;#39;https://www.wjx.cn/vm/Q0x3Wuq.aspx&amp;#39;&amp;#34;)
+    await page.wait_for_timeout(3000)
+    await page.close()
+    await context.close()
+
+async def main() -&amp;gt; None:
+    async with async_playwright() as p:
+        browser = await  p.chromium.launch(headless=True)
+        tasks = []
+        for i in range(6):
+            tasks.append(run(browser))
+        titles=await asyncio.gather(*tasks)
+        for title in titles:  
+            print(title) 
+        await browser.close()
+        
+if __name__ == &amp;#34;__main__&amp;#34;:
+    asyncio.run(main())
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    <item>
+      <title>【爬虫】豆瓣Top250爬取</title>
+      <link>https://juiceright.xyz/old/posts/%E7%88%AC%E8%99%AB%E8%B1%86%E7%93%A3top250%E7%88%AC%E5%8F%96/</link>
+      <pubDate>Sun, 26 Mar 2023 23:44:33 +0000</pubDate>
+      <guid>https://juiceright.xyz/old/posts/%E7%88%AC%E8%99%AB%E8%B1%86%E7%93%A3top250%E7%88%AC%E5%8F%96/</guid>
+      <description>&lt;h1 id=&#34;豆瓣top250爬取&#34;&gt;豆瓣Top250爬取&lt;/h1&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E3%80%90%E7%88%AC%E8%99%AB%E3%80%91%E8%B1%86%E7%93%A3Top250%E7%88%AC%E5%8F%96/%E3%80%90%E7%88%AC%E8%99%AB%E3%80%91%E8%B1%86%E7%93%A3Top250%E7%88%AC%E5%8F%96-20251209171042492.jpg&#34;&gt;&lt;/p&gt;
+&lt;h5 id=&#34;这里是简单的代码&#34;&gt;这里是简单的代码&lt;/h5&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E3%80%90%E7%88%AC%E8%99%AB%E3%80%91%E8%B1%86%E7%93%A3Top250%E7%88%AC%E5%8F%96/%E3%80%90%E7%88%AC%E8%99%AB%E3%80%91%E8%B1%86%E7%93%A3Top250%E7%88%AC%E5%8F%96-20251209171042501.jpg&#34;&gt;&lt;/p&gt;
+&lt;h5 id=&#34;这里是不断修改ua的过程每次请求都会随机生成一个ua这样就可以绕过豆瓣的反爬虫机制了&#34;&gt;这里是不断修改UA的过程，每次请求都会随机生成一个UA，这样就可以绕过豆瓣的反爬虫机制了&lt;/h5&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E3%80%90%E7%88%AC%E8%99%AB%E3%80%91%E8%B1%86%E7%93%A3Top250%E7%88%AC%E5%8F%96/%E3%80%90%E7%88%AC%E8%99%AB%E3%80%91%E8%B1%86%E7%93%A3Top250%E7%88%AC%E5%8F%96-20251209171042510.jpg&#34;&gt;&lt;/p&gt;
+&lt;h5 id=&#34;这里是爬虫的结果&#34;&gt;这里是爬虫的结果&lt;/h5&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E3%80%90%E7%88%AC%E8%99%AB%E3%80%91%E8%B1%86%E7%93%A3Top250%E7%88%AC%E5%8F%96/%E3%80%90%E7%88%AC%E8%99%AB%E3%80%91%E8%B1%86%E7%93%A3Top250%E7%88%AC%E5%8F%96-20251209171042530.jpg&#34;&gt;&lt;/p&gt;
+&lt;h5 id=&#34;结果被豆瓣网站检测到了不过我们的爬虫已经圆满的完成了任务我们可以看到豆瓣网站的反爬虫机制是通过检测请求头中的user-agent来判断是否是爬虫所以我们可以通过修改请求头中的user-agent来绕过反爬虫机制&#34;&gt;结果被豆瓣网站检测到了，不过我们的爬虫已经圆满的完成了任务，我们可以看到豆瓣网站的反爬虫机制是通过检测请求头中的User-Agent来判断是否是爬虫，所以我们可以通过修改请求头中的User-Agent来绕过反爬虫机制。&lt;/h5&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E3%80%90%E7%88%AC%E8%99%AB%E3%80%91%E8%B1%86%E7%93%A3Top250%E7%88%AC%E5%8F%96/%E3%80%90%E7%88%AC%E8%99%AB%E3%80%91%E8%B1%86%E7%93%A3Top250%E7%88%AC%E5%8F%96-20251209171042537.jpg&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【爬虫】FitGirl-Repack的Scrapy爬虫代码</title>
+      <link>https://juiceright.xyz/old/posts/fitgirl-repack%E6%B8%B8%E6%88%8F%E7%BD%91%E7%AB%99scrapy%E7%88%AC%E8%99%AB%E4%BB%A3%E7%A0%81/</link>
+      <pubDate>Wed, 15 Mar 2023 15:53:25 +0000</pubDate>
+      <guid>https://juiceright.xyz/old/posts/fitgirl-repack%E6%B8%B8%E6%88%8F%E7%BD%91%E7%AB%99scrapy%E7%88%AC%E8%99%AB%E4%BB%A3%E7%A0%81/</guid>
+      <description>&lt;h2 id=&#34;今天花了一点时间写了一个fitgirl-repacks游戏网站的自动爬虫脚本&#34;&gt;今天花了一点时间，写了一个&lt;a href=&#34;https://fitgirl-repacks.site/&#34; title=&#34;FitGirl Repacks&#34;&gt;FitGirl Repacks&lt;/a&gt;游戏网站的自动爬虫脚本&lt;/h2&gt;
+&lt;p&gt;用的是scrapy的爬虫框架&lt;/p&gt;
+&lt;h4 id=&#34;itemspy-作用确定需要爬取的内容&#34;&gt;items.py 作用：确定需要爬取的内容&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import scrapy
+
+class Fg1Item(scrapy.Item):
+	# define the fields for your item here like:
+	# name = scrapy.Field()
+	tle = scrapy.Field()
+	info = scrapy.Field()
+	pass
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在这里，我选择爬取两样信息：title 和 info ，分别对应各个游戏的标题名称 和 下载地址&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&#34;fgpy-作用爬虫的逻辑结构&#34;&gt;FG.py 作用：爬虫的逻辑结构&lt;/h4&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import scrapy
+from FG1.items import Fg1Item
+
+class FgSpider(scrapy.Spider):
+	name = &amp;#34;FG&amp;#34;
+	allowed_domains = [&amp;#34;fitgirl-repacks.site&amp;#34;]
+	start_urls = [&amp;#34;http://fitgirl-repacks.site/&amp;#34;]
+
+	def parse(self, response):
+    	for i in range(1,350):
+       		yield scrapy.Request(&amp;#34;https://fitgirl-repacks.site/page/&amp;#34;+str(i)+&amp;#39;/&amp;#39;,callback=self.parse_page)
+    	pass
+	def parse_page(self, response):
+    	for each in response.xpath(&amp;#34;//article&amp;#34;):
+        	item=Fg1Item()
+        	item[&amp;#39;tle&amp;#39;]=each.xpath(&amp;#34;header/h1/a/text()&amp;#34;).extract()
+        	item[&amp;#39;info&amp;#39;]=each.xpath(&amp;#34;div/ul[1]&amp;#34;).extract()
+        	yield item
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;逻辑结构分为两层：&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

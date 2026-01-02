@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>生信 on Juiceright</title>
+    <link>https://juiceright.xyz/tags/%E7%94%9F%E4%BF%A1/</link>
+    <description>Recent content in 生信 on Juiceright</description>
+    <generator>Hugo -- 0.154.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 30 Dec 2025 13:36:58 +0000</lastBuildDate>
+    <atom:link href="https://juiceright.xyz/tags/%E7%94%9F%E4%BF%A1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>奇奇怪怪</title>
+      <link>https://juiceright.xyz/posts/2025/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/</link>
+      <pubDate>Tue, 30 Dec 2025 21:36:29 +0000</pubDate>
+      <guid>https://juiceright.xyz/posts/2025/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA-20251230213646341.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA-20251230213646354.jpg&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【分子对接】2. 利用pymol下载蛋白质 脚本</title>
+      <link>https://juiceright.xyz/old/posts/ysld_6qj2a/</link>
+      <pubDate>Wed, 26 Mar 2025 20:28:24 +0000</pubDate>
+      <guid>https://juiceright.xyz/old/posts/ysld_6qj2a/</guid>
+      <description>&lt;p&gt;下载蛋白质，去除水分子，加H，去除配体，去除副链&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
+# %%
+import pymol
+
+# %%
+# 使用 fetch 指令获取蛋白质结构，这里以 4FAA 为例
+pdb_id = &amp;#39;4FAA&amp;#39;
+pymol.cmd.fetch(pdb_id)
+
+# 去除水分子
+pymol.cmd.remove(&amp;#39;solvent&amp;#39;)
+
+# 加 H（氢原子）
+pymol.cmd.h_add()
+
+# 选择配体（这里假设配体残基名为 NAG）
+pymol.cmd.select(&amp;#39;ligand&amp;#39;, &amp;#39;resn NAG&amp;#39;)
+
+# 去除配体
+pymol.cmd.remove(&amp;#39;ligand&amp;#39;)
+
+# 显示链 A 的信息
+pymol.cmd.iterate(&amp;#39;chain A&amp;#39;, &amp;#39;print(resi, resn)&amp;#39;)
+
+# 去除副链（只保留主链）
+pymol.cmd.remove(&amp;#39;sidechain&amp;#39;)
+
+# 导出结果为 PDB 文件
+output_file = f&amp;#39;{pdb_id}.pymol.pdb&amp;#39;
+pymol.cmd.save(output_file)
+
+# 退出 PyMOL
+pymol.cmd.quit()
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    <item>
+      <title>【分子对接】1. 自动从pubchem下载小分子 脚本</title>
+      <link>https://juiceright.xyz/old/posts/qin3ksdr8z/</link>
+      <pubDate>Wed, 26 Mar 2025 20:25:40 +0000</pubDate>
+      <guid>https://juiceright.xyz/old/posts/qin3ksdr8z/</guid>
+      <description>&lt;p&gt;本代码用于从pubchem下载小分子(阿司匹林)，并且自动转换成pymol的pdb格式&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import pubchempy as pcp
+from pymol import cmd
+import os
+def download_sdf(compound_identifier, output_file):
+    try:
+        # 尝试根据标识符获取化合物
+        if isinstance(compound_identifier, int):
+            compound = pcp.Compound.from_cid(compound_identifier)
+        else:
+            results = pcp.get_compounds(compound_identifier, &amp;#39;name&amp;#39;)
+            if results:
+                compound = results[0]
+            else:
+                print(f&amp;#34;未找到与 {compound_identifier} 匹配的化合物。&amp;#34;)
+                return
+
+        # 下载 SDF 文件
+        sdf_content = compound.canonical_smiles
+        sdf = pcp.get_sdf(compound.cid)
+        with open(output_file, &amp;#39;w&amp;#39;) as file:
+            file.write(sdf)
+        print(f&amp;#34;SDF 文件已成功保存到 {output_file}&amp;#34;)
+    except Exception as e:
+        print(f&amp;#34;下载过程中出现错误: {e}&amp;#34;)
+
+
+if __name__ == &amp;#34;__main__&amp;#34;:
+    # 这里可以替换为你想要查询的化合物名称或 CID
+    compound_identifier = &amp;#34;aspirin&amp;#34;
+    output_file = compound_identifier + &amp;#34;.sdf&amp;#34;
+    download_sdf(compound_identifier, output_file)
+    # 使用 PyMOL 加载 SDF 文件并进行后续处理
+    cmd.load(output_file)
+    # 保存为 PDB 文件（可选）
+    cmd.save(compound_identifier + &amp;#34;.pdb&amp;#34;, state=0)
+    cmd.quit()
+    # 删除临时 SDF 文件（可选）
+    #os.remove(output_file)
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    <item>
+      <title>snakemake流程——SMR&#43;MR&#43;MAGMA分析</title>
+      <link>https://juiceright.xyz/old/posts/vw5dv077fn/</link>
+      <pubDate>Fri, 14 Mar 2025 20:46:52 +0000</pubDate>
+      <guid>https://juiceright.xyz/old/posts/vw5dv077fn/</guid>
+      <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
+# 定义染色体列表，包含 1 到 22 号染色体
+chromosomes = list(range(1, 23))
+
+# 获取组学暴露数据文件的名称
+(MRname,) = glob_wildcards(&amp;#34;../dataset/组学暴露数据/{file}.rds&amp;#34;)
+
+# 获取 SMR 数据文件的名称
+GTExname = glob_wildcards(&amp;#34;../dataset/SMR/{file}.besd&amp;#34;).file
+
+# 获取 GWAS 数据文件的名称
+GWASfilename = glob_wildcards(&amp;#34;../../SMR/input/{file}&amp;#34;).file
+
+# 定义 all 规则，用于指定整个流程的最终输出文件
+rule all:
+    input:
+        expand(&amp;#34;result/GTEx的{GTEx}之{file}.smr&amp;#34;, GTEx=GTExname, file=GWASfilename),
+        #expand(&amp;#34;result/MR的{file}之{MR}.csv&amp;#34;, MR=MRname, file=GWASfilename),
+        expand(&amp;#34;result/{file}.gsa.out.txt&amp;#34;,file=GWASfilename),
+        #expand(&amp;#34;result/Gene_disease_association/{file}.fusion_twas.txt&amp;#34;,file=GWASfilename),  #TWAS 若全部49个组织非常慢10小时
+        
+
+# 定义 trans 规则，用于将输入文件转换为输出文件
+rule trans:   #OK
+    input:
+        # 输入文件路径
+        &amp;#34;../../SMR/input/{file}&amp;#34;
+    output:
+        # 输出文件路径
+        &amp;#34;tmp/{file}.ma&amp;#34;,
+        &amp;#34;tmp/{file}.sumstats.gz&amp;#34;,
+        &amp;#34;tmp/{file}.mendelR.txt&amp;#34;
+    # 规则执行时使用的线程数
+    threads: 6
+    shell:
+        # 调用 R 脚本进行文件转换
+        &amp;#34;r -f tools/trans.R --args {wildcards.file}&amp;#34;    
+
+rule run_GTEx:  #OK
+    input:
+        &amp;#34;tmp/{file}.ma&amp;#34;,
+    output:
+        &amp;#34;result/GTEx的{GTEx}之{file}.smr&amp;#34;
+    threads: 5
+    shell:
+        &amp;#34;tools\\smr.exe --gwas-summary  {input}  --out  result/GTEx的{wildcards.GTEx}之{wildcards.file}  --bfile ../dataset/EUR --beqtl-summary ../dataset/SMR/{wildcards.GTEx} --maf 0.01 --thread-num 18 --diff-freq-prop 1.000000&amp;#34;
+
+rule run_MAGMA:  #OK
+    input:
+        &amp;#34;tmp/{file}.ma&amp;#34;,
+    output:
+        &amp;#34;result/{file}.gsa.out.txt&amp;#34;,
+    shell:
+        &amp;#34;r -f tools/run_MAGMA.R --args {wildcards.file}&amp;#34;
+        
+rule run_MR:  #OK
+    input:
+        &amp;#34;tmp/{file}.ma&amp;#34;,
+    output:
+        &amp;#34;result/MR的{file}之{MR}.csv&amp;#34;,
+    threads: 2
+    shell:
+        &amp;#34;r -f tools/run_MR.R --args {wildcards.file} {wildcards.MR}&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+  </channel>
+</rss>

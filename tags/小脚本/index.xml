@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>小脚本 on Juiceright</title>
+    <link>https://juiceright.xyz/tags/%E5%B0%8F%E8%84%9A%E6%9C%AC/</link>
+    <description>Recent content in 小脚本 on Juiceright</description>
+    <generator>Hugo -- 0.154.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 04 Dec 2025 10:18:33 +0000</lastBuildDate>
+    <atom:link href="https://juiceright.xyz/tags/%E5%B0%8F%E8%84%9A%E6%9C%AC/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ppt word快速转换PDF小脚本</title>
+      <link>https://juiceright.xyz/old/posts/vhulvqwmjm/</link>
+      <pubDate>Mon, 01 Sep 2025 00:11:31 +0000</pubDate>
+      <guid>https://juiceright.xyz/old/posts/vhulvqwmjm/</guid>
+      <description>&lt;h2 id=&#34;ppt-word快速转换pdf小脚本&#34;&gt;ppt word快速转换PDF小脚本&lt;/h2&gt;
+&lt;p&gt;这个vbs小脚本可以快速将同一目录下的ppt、pptx、doc、docx文件转换成PDF，即点即用，非常方便。&lt;/p&gt;
+&lt;h3 id=&#34;office----ppt-word快速转换pdf-officevbs-&#34;&gt;Office   （ ppt word快速转换PDF-Office.vbs ）&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-vbscript&#34; data-lang=&#34;vbscript&#34;&gt;On Error Resume Next
+MsgBox &amp;#34;Start converting PPT and Word files into PDF format. Please ensure Office or WPS is installed. Please wait...&amp;#34;, vbInformation, &amp;#34;Conversion Start&amp;#34;
+
+Const wdExportFormatPDF = 17
+Dim oWord, ppt, fso, isOffice, isWPS
+
+&amp;#39; 初始化变量
+Set fso = WScript.CreateObject(&amp;#34;Scripting.Filesystemobject&amp;#34;)
+isOffice = False
+isWPS = False
+
+Set oWord = WScript.CreateObject(&amp;#34;KWPS.Application&amp;#34;)
+Set ppt = CreateObject(&amp;#34;KWPP.application&amp;#34;)
+If IsObject(oWord) And IsObject(ppt) Then
+    isOffice = True
+Else
+    If IsObject(oWord) Then oWord.Quit
+    If IsObject(ppt) Then ppt.Quit
+    Set oWord = Nothing
+    Set ppt = Nothing
+    
+    Set oWord = WScript.CreateObject(&amp;#34;Word.Application&amp;#34;)
+    Set ppt = CreateObject(&amp;#34;PowerPoint.application&amp;#34;)
+    If IsObject(oWord) And IsObject(ppt) Then
+        isWPS = True
+    Else
+        &amp;#39; 两种办公软件都未安装
+        If IsObject(oWord) Then oWord.Quit
+        If IsObject(ppt) Then ppt.Quit
+        Set oWord = Nothing
+        Set ppt = Nothing
+        Set fso = Nothing
+        MsgBox &amp;#34;Failed to find Office or WPS. Please install one of them first.&amp;#34;, vbCritical, &amp;#34;Error&amp;#34;
+        WScript.Quit
+    End If
+End If
+
+&amp;#39; 开始处理文件夹
+ProcessFolder fso.GetFolder(&amp;#34;.&amp;#34;)
+
+&amp;#39; 清理对象
+If IsObject(oWord) Then
+    oWord.Quit
+    Set oWord = Nothing
+End If
+If IsObject(ppt) Then
+    ppt.Quit
+    Set ppt = Nothing
+End If
+Set fso = Nothing
+
+MsgBox &amp;#34;PPT and Word files have been successfully converted into PDF format!&amp;#34;, vbInformation, &amp;#34;Conversion Complete&amp;#34;
+
+Sub ProcessFolder(folder)
+    Dim ff, subFolder, pdfPath
+    
+    For Each ff In folder.Files
+        &amp;#39; 处理Word文件 (.doc, .docx) 且不是临时文件
+        If (LCase(Right(ff.Name, 4)) = &amp;#34;.doc&amp;#34; Or LCase(Right(ff.Name, 5)) = &amp;#34;.docx&amp;#34;) And Left(ff.Name, 1) &amp;lt;&amp;gt; &amp;#34;~&amp;#34; Then
+            pdfPath = Left(ff.Path, InStrRev(ff.Path, &amp;#34;.&amp;#34;)) &amp;amp; &amp;#34;pdf&amp;#34;
+            Set oDoc = oWord.Documents.Open(ff.Path)
+            oDoc.ExportAsFixedFormat pdfPath, wdExportFormatPDF
+            oDoc.Close
+            Set oDoc = Nothing
+        End If
+        
+        &amp;#39; 处理PowerPoint文件 (.ppt, .pptx) 且不是临时文件
+        If (LCase(Right(ff.Name, 4)) = &amp;#34;.ppt&amp;#34; Or LCase(Right(ff.Name, 5)) = &amp;#34;.pptx&amp;#34;) And Left(ff.Name, 1) &amp;lt;&amp;gt; &amp;#34;~&amp;#34; Then
+            pdfPath = Left(ff.Path, InStrRev(ff.Path, &amp;#34;.&amp;#34;)) &amp;amp; &amp;#34;pdf&amp;#34;
+            Set pptfile = ppt.Presentations.Open(ff.Path, False, False, False)
+            pptfile.SaveAs pdfPath, 32, False
+            pptfile.Close
+            Set pptfile = Nothing
+        End If
+    Next
+    
+    &amp;#39; 递归处理子文件夹
+    For Each subFolder In folder.SubFolders
+        ProcessFolder subFolder
+    Next
+End Sub
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;wps---ppt-word快速转换pdf-wpsvbs-&#34;&gt;WPS  ( ppt word快速转换PDF-WPS.vbs )&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-vbscript&#34; data-lang=&#34;vbscript&#34;&gt;On Error Resume Next
+    MsgBox &amp;#34;开始转换PPT和Word文件为PDF格式，请稍候...&amp;#34;
+    Const wdExportFormatPDF = 17
+    Set oWord = WScript.CreateObject(&amp;#34;KWPS.Application&amp;#34;)
+	Set ppt = CreateObject(&amp;#34;KWPP.application&amp;#34;)
+    Set fso = WScript.CreateObject(&amp;#34;Scripting.Filesystemobject&amp;#34;)
+    Set fds=fso.GetFolder(&amp;#34;.&amp;#34;)
+    Set ffs=fds.Files
+	
+    For Each ff In ffs
+    If (LCase(Right(ff.Name,4))=&amp;#34;.doc&amp;#34; Or LCase(Right(ff.Name,4))=&amp;#34;docx&amp;#34; ) And Left(ff.Name,1)&amp;lt;&amp;gt;&amp;#34;~&amp;#34; Then
+        Set oDoc=oWord.Documents.Open(ff.Path)
+        oDoc.ExportAsFixedFormat Left(ff.Path,InStrRev(ff.Path,&amp;#34;.&amp;#34;))&amp;amp;&amp;#34;pdf&amp;#34;,wdExportFormatPDF
+        oDoc.Close
+
+    End If
+	If (LCase(Right(ff.Name,4))=&amp;#34;.ppt&amp;#34; Or LCase(Right(ff.Name,4))=&amp;#34;pptx&amp;#34; ) And Left(ff.Name,1)&amp;lt;&amp;gt;&amp;#34;~&amp;#34; Then
+        Set pptfile = ppt.Presentations.Open(ff.Path,false,false,false)
+        pptfile.Saveas Left(ff.Path,InStrRev(ff.Path,&amp;#34;.&amp;#34;))&amp;amp;&amp;#34;pdf&amp;#34;,32,false
+		pptfile.Close
+    End If
+    Next
+    odoc.Close
+    oword.Quit
+	pptfile.Close
+	ppt.Quit
+    Set oDoc=Nothing
+    Set oWord =Nothing
+	Set pptfile = Nothing
+	Set ppt = Nothing
+	MsgBox &amp;#34;PPT和Word文件已成功转换为PDF格式！&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;合并-ppt-word快速转换pdf-合并vbs&#34;&gt;合并 （ppt word快速转换PDF-合并.vbs）&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-vbscript&#34; data-lang=&#34;vbscript&#34;&gt;On Error Resume Next
+MsgBox &amp;#34;开始转换PPT和Word文件为PDF格式，请稍候...&amp;#34;
+Const wdExportFormatPDF = 17
+Dim oWord, ppt, isWPS, isOffice
+
+&amp;#39; 尝试创建WPS对象
+Set oWord = WScript.CreateObject(&amp;#34;KWPS.Application&amp;#34;)
+Set ppt = CreateObject(&amp;#34;KWPP.Application&amp;#34;)
+
+&amp;#39; 检测是否是WPS环境
+If Not oWord Is Nothing And Not ppt Is Nothing Then
+    isWPS = True
+Else
+    &amp;#39; 尝试创建Office对象
+    Set oWord = WScript.CreateObject(&amp;#34;Word.Application&amp;#34;)
+    Set ppt = CreateObject(&amp;#34;PowerPoint.Application&amp;#34;)
+    If Not oWord Is Nothing And Not ppt Is Nothing Then
+        isOffice = True
+    Else
+        MsgBox &amp;#34;未检测到WPS或Office，请确保已安装其中一款办公软件！&amp;#34;
+        WScript.Quit
+    End If
+End If
+
+Set fso = WScript.CreateObject(&amp;#34;Scripting.FileSystemObject&amp;#34;)
+Set fds = fso.GetFolder(&amp;#34;.&amp;#34;)
+Set ffs = fds.Files
+
+For Each ff In ffs
+    &amp;#39; 处理Word文件
+    If (LCase(Right(ff.Name, 4)) = &amp;#34;.doc&amp;#34; Or LCase(Right(ff.Name, 4)) = &amp;#34;docx&amp;#34;) And Left(ff.Name, 1) &amp;lt;&amp;gt; &amp;#34;~&amp;#34; Then
+        Set oDoc = oWord.Documents.Open(ff.Path)
+        oDoc.ExportAsFixedFormat Left(ff.Path, InStrRev(ff.Path, &amp;#34;.&amp;#34;)) &amp;amp; &amp;#34;pdf&amp;#34;, wdExportFormatPDF
+        oDoc.Close
+        Set oDoc = Nothing
+    End If
+    
+    &amp;#39; 处理PPT文件
+    If (LCase(Right(ff.Name, 4)) = &amp;#34;.ppt&amp;#34; Or LCase(Right(ff.Name, 4)) = &amp;#34;pptx&amp;#34;) And Left(ff.Name, 1) &amp;lt;&amp;gt; &amp;#34;~&amp;#34; Then
+        Set pptfile = ppt.Presentations.Open(ff.Path, False, False, False)
+        pptfile.SaveAs Left(ff.Path, InStrRev(ff.Path, &amp;#34;.&amp;#34;)) &amp;amp; &amp;#34;pdf&amp;#34;, 32, False
+        pptfile.Close
+        Set pptfile = Nothing
+    End If
+Next
+
+&amp;#39; 清理对象
+If Not oWord Is Nothing Then
+    oWord.Quit
+    Set oWord = Nothing
+End If
+If Not ppt Is Nothing Then
+    ppt.Quit
+    Set ppt = Nothing
+End If
+
+MsgBox &amp;#34;PPT和Word文件已成功转换为PDF格式！&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    <item>
+      <title>问卷星自动填写脚本</title>
+      <link>https://juiceright.xyz/old/posts/trgcxiotbs/</link>
+      <pubDate>Sun, 23 Mar 2025 18:17:36 +0000</pubDate>
+      <guid>https://juiceright.xyz/old/posts/trgcxiotbs/</guid>
+      <description>&lt;p&gt;2025年3月23日测试批量填写80份正常。&lt;/p&gt;
+&lt;p&gt;需要模拟鼠标操作防止被识别机器人&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import re
+from playwright.async_api import Playwright, async_playwright
+#from playwright.sync_api import Playwright, sync_playwright, expect
+import random
+
+import asyncio
+import time
+def random_int(min=2, max=4):
+    random.seed(time.time())    
+    return str(random.randint(min, max))
+
+async def mouse_random_move(page):
+    # 模拟鼠标随机平滑移动
+    for i in range(5):
+        await page.mouse.move(random.randint(0, 1000), random.randint(0, 1000))
+        await asyncio.sleep(0.1)
+    # 模拟鼠标随机停留
+    #time.sleep(random.randint(0,1))
+    # 鼠标滚轮
+
+async def run(browser) -&amp;gt; None:
+    
+    context = await browser.new_context()
+    page = await context.new_page()
+    await page.goto(&amp;#34;https://www.wjx.cn/vm/Q0x3Wuq.aspx&amp;#34;)
+    await page.get_by_text(&amp;#34;男&amp;#34;).click()
+    await page.get_by_text(&amp;#34;大三&amp;#34;).click()
+    await page.get_by_text(&amp;#34;1000-&amp;#34;).click()
+    await page.locator(&amp;#34;div&amp;#34;).filter(has_text=re.compile(r&amp;#34;^全部来自家庭部分来自家庭，部分靠自己赚取全部靠自己赚取$&amp;#34;)).get_by_role(&amp;#34;link&amp;#34;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;div&amp;#34;).filter(has_text=re.compile(r&amp;#34;^300以下300-600600-10001000以上$&amp;#34;)).get_by_role(&amp;#34;link&amp;#34;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;div&amp;#34;).filter(has_text=re.compile(r&amp;#34;^无1-200200-500500以上$&amp;#34;)).get_by_role(&amp;#34;link&amp;#34;).nth(2).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;div&amp;#34;).filter(has_text=re.compile(r&amp;#34;^实体店网购$&amp;#34;)).get_by_role(&amp;#34;link&amp;#34;).first.click()
+    await page.locator(&amp;#34;div&amp;#34;).filter(has_text=re.compile(r&amp;#34;^100以下100-500500-10001000以上$&amp;#34;)).get_by_role(&amp;#34;link&amp;#34;).nth(3).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;div&amp;#34;).filter(has_text=re.compile(r&amp;#34;^无200以下200-500500-10001000以上$&amp;#34;)).get_by_role(&amp;#34;link&amp;#34;).nth(2).click()
+    await page.locator(&amp;#34;#div10&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).nth(2).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div11&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div12&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).first.click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div13&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div14&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).nth(2).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div15&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div16&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).nth(2).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div17&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;div:nth-child(2) &amp;gt; .jqcheckwrapper &amp;gt; .jqcheck&amp;#34;).first.click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;div:nth-child(5) &amp;gt; .jqcheckwrapper &amp;gt; .jqcheck&amp;#34;).first.click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;div:nth-child(7) &amp;gt; .jqcheckwrapper &amp;gt; .jqcheck&amp;#34;).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div19&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).nth(3).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div20&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).nth(1).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div20&amp;#34;).get_by_role(&amp;#34;link&amp;#34;).first.click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div21 &amp;gt; .ui-controlgroup &amp;gt; div:nth-child(2) &amp;gt; .jqcheckwrapper &amp;gt; .jqcheck&amp;#34;).click()
+    await mouse_random_move(page)
+    await page.locator(&amp;#34;#div21 &amp;gt; .ui-controlgroup &amp;gt; div:nth-child(4) &amp;gt; .jqcheckwrapper &amp;gt; .jqcheck&amp;#34;).click()
+    await page.get_by_text(&amp;#34;提交&amp;#34;).click()
+    await page.wait_for_function(&amp;#34;window.location.href !== &amp;#39;https://www.wjx.cn/vm/Q0x3Wuq.aspx&amp;#39;&amp;#34;)
+    await page.wait_for_timeout(3000)
+    await page.close()
+    await context.close()
+
+async def main() -&amp;gt; None:
+    async with async_playwright() as p:
+        browser = await  p.chromium.launch(headless=True)
+        tasks = []
+        for i in range(6):
+            tasks.append(run(browser))
+        titles=await asyncio.gather(*tasks)
+        for title in titles:  
+            print(title) 
+        await browser.close()
+        
+if __name__ == &amp;#34;__main__&amp;#34;:
+    asyncio.run(main())
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    <item>
+      <title>cmd 利用curl实现全网卡登录STU校园网</title>
+      <link>https://juiceright.xyz/old/posts/lq1iwgc7e1/</link>
+      <pubDate>Mon, 17 Mar 2025 12:38:48 +0000</pubDate>
+      <guid>https://juiceright.xyz/old/posts/lq1iwgc7e1/</guid>
+      <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
+@echo off
+for /f &amp;#34;tokens=*&amp;#34; %%i in (
+    &amp;#39;powershell -Command &amp;#34;Get-NetIPAddress | Where-Object {$_.AddressFamily -eq &amp;#39;IPv4&amp;#39; -and $_.IPAddress -ne &amp;#39;127.0.0.1&amp;#39;} | Select-Object -ExpandProperty IPAddress&amp;#34;&amp;#39;
+) do (
+    echo 发现有效IP: %%i
+    curl --data &amp;#34;opr=pwdLogin&amp;amp;userName=账号&amp;amp;pwd=密码&amp;amp;rememberPwd=1&amp;#34; http://1.1.1.2/ac_portal/login.php --interface %%i
+)
+pause
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    <item>
+      <title>EndNote/Zotero批量添加PubMed文献脚本</title>
+      <link>https://juiceright.xyz/old/posts/7uduxw77v6/</link>
+      <pubDate>Fri, 14 Mar 2025 21:10:48 +0000</pubDate>
+      <guid>https://juiceright.xyz/old/posts/7uduxw77v6/</guid>
+      <description>&lt;p&gt;代理使用8089端口，适配clash&lt;br&gt;
+使用：同目录下创建paper.txt，一行一个填写一个PMID&lt;br&gt;
+生成一个citation.nbib格式的文件&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
+# %%
+###预处理，先把文章全部复制到一个paper.txt文本中
+###先获取所有PMID: 后面的数字
+import re
+import pandas as pd
+import numpy as np
+
+proxies = {&amp;#34;http&amp;#34;: &amp;#34;http://127.0.0.1:8089&amp;#34;}
+
+pm=pd.read_csv(&amp;#39;paper.txt&amp;#39;,header=None)
+# to list
+pm=pm[0].tolist()
+
+
+# %%
+import requests
+from concurrent.futures import ThreadPoolExecutor
+
+def fetch_pmid(pmid):
+    max_retries = 300  # 设置最大重试次数
+    for attempt in range(max_retries):
+        url = &amp;#39;https://api.ncbi.nlm.nih.gov/lit/ctxp/v1/pubmed/?format=medline&amp;amp;id={}&amp;#39;.format(pmid)
+        print(url)
+        print(&amp;#34;-------requests start--------------&amp;#34;)
+        res = requests.get(url,proxies=proxies)
+        print(&amp;#34;-------requests end--------------&amp;#34;)
+        print(res)
+        if res.status_code == 200:
+            res.close()
+            return res.text + &amp;#34;\n&amp;#34;
+
+        else:
+            print(f&amp;#34;Request failed, retrying... (attempt {attempt + 1}/{max_retries})&amp;#34;)
+    
+    print(f&amp;#34;Failed to fetch PMID {pmid} after {max_retries} attempts.&amp;#34;)
+    return &amp;#34;&amp;#34;
+
+cita = []
+
+# 设置线程数，这里设置为4，你可以根据需要调整
+num_threads = 32
+
+with ThreadPoolExecutor(max_workers=num_threads) as executor:
+    # 使用多线程并行处理每个pmid
+    results = list(executor.map(fetch_pmid, pm))
+
+cita.extend(results)
+
+# 替换处理
+
+# %%
+cita = [y.replace(&amp;#34;\r&amp;#34;, &amp;#34;&amp;#34;) for y in cita]
+cita = [y + &amp;#34;\n&amp;#34; for y in cita]
+f=open(&amp;#34;citation.nbib&amp;#34;,&amp;#34;w&amp;#34;,encoding=&amp;#39;utf-8&amp;#39;)
+f.writelines(cita)
+f.close()
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    <item>
+      <title>使用Hyper-V配置网卡多个虚拟网卡</title>
+      <link>https://juiceright.xyz/old/posts/kbg4hlog6b/</link>
+      <pubDate>Fri, 14 Mar 2025 20:55:35 +0000</pubDate>
+      <guid>https://juiceright.xyz/old/posts/kbg4hlog6b/</guid>
+      <description>&lt;h2 id=&#34;配置-hyper-v&#34;&gt;配置 Hyper-V&lt;/h2&gt;
+&lt;p&gt;首先需要启用 Hyper-V，在 &lt;strong&gt;管理员 Powershell&lt;/strong&gt;输入以下命令：&lt;/p&gt;
+&lt;p&gt;然后重启电脑。&lt;/p&gt;
+&lt;h3 id=&#34;启用-hyper-v&#34;&gt;启用 Hyper-V&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;安装-hyper-v-虚拟交换机&#34;&gt;安装 Hyper-V 虚拟交换机&lt;/h3&gt;
+&lt;p&gt;在管理员 Powershell 输入以下命令。name 参数后面的 Ethernet-Virt 是虚拟交换机的名称，可以任取。 NetAdapterName 参数后面的 Ethernet 代表你要桥接的物理网卡的名称，中文版系统一般为 以太网，英文版为 Ethernet。注意 AllowManagementOS 需要为 $false，否则 Hyper-V 会创建一个和物理网卡一样 MAC 地址的虚拟网卡妨碍我们使用。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;New-VMSwitch -name Ethernet-Virt -AllowManagementOS $false  -NetAdapterName &amp;#34;以太网 2&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;向宿主机添加虚拟网卡&#34;&gt;向宿主机添加虚拟网卡&lt;/h3&gt;
+&lt;p&gt;在管理员 Powershell 输入以下命令。Switch 参数后面的 Ethernet-Virt 是虚拟交换机的名称。 Name 参数后面的 Ethernet-Virt-Main 是虚拟网卡的名称，可以任取。注意要有 ManagementOS 参数，代表向宿主机添加网卡而不是某个虚拟机。StaticMacAddress 后面的 e0-00-00-00-ca-01 是虚拟网卡的 MAC 地址，可以任取，但必须唯一并且是单播地址（不懂单播、多播地址的话就无脑e0开头，然后后面的数字随便换）。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &amp;#34;Ethernet-Virt-Main1&amp;#34; -StaticMacAddress 38:fd:cc:7c:94:c5
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &amp;#34;Ethernet-Virt-Main2&amp;#34; -StaticMacAddress b0:36:c6:fa:f4:df
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &amp;#34;Ethernet-Virt-Main3&amp;#34; -StaticMacAddress 90:53:84:3e:9b:12
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &amp;#34;Ethernet-Virt-Main4&amp;#34; -StaticMacAddress 5c:1f:4b:eb:62:ad
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &amp;#34;Ethernet-Virt-Main5&amp;#34; -StaticMacAddress 58:d3:b1:6b:f4:97
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &amp;#34;Ethernet-Virt-Main6&amp;#34; -StaticMacAddress 18:9c:1a:d5:ca:a8
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &amp;#34;Ethernet-Virt-Main7&amp;#34; -StaticMacAddress 54:7c:bd:16:ae:0a
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &amp;#34;Ethernet-Virt-Main8&amp;#34; -StaticMacAddress d0:7c:6b:78:13:2f
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &amp;#34;Ethernet-Virt-Main9&amp;#34; -StaticMacAddress a0:05:1c:48:0b:12
+Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &amp;#34;Ethernet-Virt-Main10&amp;#34; -StaticMacAddress ec:89:10:ac:20:97
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;使用结束删除虚拟交换机-confirm--a&#34;&gt;使用结束，删除虚拟交换机： Confirm : A&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Remove-VMSwitch -name Ethernet-Virt -Force -Confirm
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    <item>
+      <title>python 利用curl将全部网卡适配器登录STU校园网</title>
+      <link>https://juiceright.xyz/old/posts/byprsldhih/</link>
+      <pubDate>Fri, 14 Mar 2025 20:49:01 +0000</pubDate>
+      <guid>https://juiceright.xyz/old/posts/byprsldhih/</guid>
+      <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import netifaces
+import os
+# 获取所有网络接口
+interfaces = netifaces.interfaces()
+
+for iface in interfaces:
+    # 获取接口的地址信息
+    addresses = netifaces.ifaddresses(iface)
+    # 提取 IPv4 地址
+    if netifaces.AF_INET in addresses:
+        for addr_info in addresses[netifaces.AF_INET]:
+            ip = addr_info.get(&amp;#39;addr&amp;#39;)
+            if ip:
+                print(f&amp;#34;适配器 {iface} 的IP地址: {ip}&amp;#34;)
+                os.system(&amp;#39;curl --data &amp;#34;opr=pwdLogin&amp;amp;userName=账号&amp;amp;pwd=密码&amp;amp;rememberPwd=1&amp;#34; http://1.1.1.2/ac_portal/login.php  --interface &amp;#39; + ip)
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    <item>
+      <title>ECDSA实例</title>
+      <link>https://juiceright.xyz/old/posts/22bskm0nwq/</link>
+      <pubDate>Tue, 11 Mar 2025 01:05:02 +0000</pubDate>
+      <guid>https://juiceright.xyz/old/posts/22bskm0nwq/</guid>
+      <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
+import os
+import ecdsa
+
+# 生成私钥和公钥
+def generate_keys():
+    # 使用secp256k1曲线生成密钥对
+    sk = ecdsa.SigningKey.generate(curve=ecdsa.SECP256k1)
+    vk = sk.get_verifying_key()
+    return sk, vk
+
+# 对消息进行签名
+def sign_message(private_key, message):
+    return private_key.sign(message)
+
+# 验证签名
+def verify_signature(public_key, message, signature):
+    return public_key.verify(signature, message)
+
+# %%
+private_key, public_key = generate_keys()
+# 简单消息
+message = b&amp;#34;Hello, ECDSA!&amp;#34;
+
+# 签名消息
+signature = sign_message(private_key, message)
+print(f&amp;#34;Signature: {signature.hex()}&amp;#34;)
+
+
+# %% 
+sig=&amp;#39;adee313bebf78c1bd4a9719e0ad9aa871ff8195788ad2d7510f35e1ef0ce00a6cbfea518e4ea1716a729c7313a52da8b0c57ff0e0f97251ea604beef3890f699&amp;#39;
+message = b&amp;#34;Hello, ECDSA!&amp;#34;
+signature = bytes.fromhex(sig)
+print(verify_signature(public_key, message, signature))   #验证签名
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    <item>
+      <title>STU校园网自动登录脚本</title>
+      <link>https://juiceright.xyz/old/posts/htt13gbuie/</link>
+      <pubDate>Tue, 11 Mar 2025 00:52:49 +0000</pubDate>
+      <guid>https://juiceright.xyz/old/posts/htt13gbuie/</guid>
+      <description>&lt;p&gt;cmd, ???处分别改称用户名和校园网密码&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
+@ECHO OFF
+REM 启动延时变量
+setlocal enabledelayedexpansion
+:LoginCheck
+for /F %%i in ( &amp;#39;curl -I -m 10 -o /dev/null -s -w %%{http_code} www.baidu.com&amp;#39; ) do ( set http_code=%%i )
+if /i %http_code% neq 200 (
+	curl --data &amp;#34;opr=pwdLogin&amp;amp;userName=???&amp;amp;pwd=???&amp;amp;rememberPwd=1&amp;#34; http://1.1.1.2/ac_portal/login.php&amp;gt;result.txt	
+	set /p result=&amp;lt;result.txt
+	set result=!result:~11,4!
+	if !result! equ true (
+		echo Login Success
+	) else (
+		echo Login Failed, Try Again
+		choice /t 10 /d y /n &amp;gt;nul
+		goto LoginCheck
+	)
+	del result.txt
+)
+endlocal
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    <item>
+      <title>vbs脚本 快速将ppt word文档转换成pdf</title>
+      <link>https://juiceright.xyz/old/posts/92gfku-5zk/</link>
+      <pubDate>Tue, 11 Mar 2025 00:48:44 +0000</pubDate>
+      <guid>https://juiceright.xyz/old/posts/92gfku-5zk/</guid>
+      <description>&lt;p&gt;保存为vbs脚本，可以将同目录下的ppt、word转成PDF，非常方便&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;On Error Resume Next
+    Const wdExportFormatPDF = 17
+    Set oWord = WScript.CreateObject(&amp;#34;Word.Application&amp;#34;)
+	Set ppt = CreateObject(&amp;#34;PowerPoint.application&amp;#34;)
+    Set fso = WScript.CreateObject(&amp;#34;Scripting.Filesystemobject&amp;#34;)
+    Set fds=fso.GetFolder(&amp;#34;.&amp;#34;)
+    Set ffs=fds.Files
+	
+    For Each ff In ffs
+    If (LCase(Right(ff.Name,4))=&amp;#34;.doc&amp;#34; Or LCase(Right(ff.Name,4))=&amp;#34;docx&amp;#34; ) And Left(ff.Name,1)&amp;lt;&amp;gt;&amp;#34;~&amp;#34; Then
+        Set oDoc=oWord.Documents.Open(ff.Path)
+        odoc.ExportAsFixedFormat Left(ff.Path,InStrRev(ff.Path,&amp;#34;.&amp;#34;))&amp;amp;&amp;#34;pdf&amp;#34;,wdExportFormatPDF
+    End If
+	If (LCase(Right(ff.Name,4))=&amp;#34;.ppt&amp;#34; Or LCase(Right(ff.Name,4))=&amp;#34;pptx&amp;#34; ) And Left(ff.Name,1)&amp;lt;&amp;gt;&amp;#34;~&amp;#34; Then
+Set pptfile = ppt.Presentations.Open(ff.Path,false,false,false)
+pptfile.Saveas Left(ff.Path,InStrRev(ff.Path,&amp;#34;.&amp;#34;))&amp;amp;&amp;#34;pdf&amp;#34;,32,false
+End If
+    Next
+    odoc.Close
+    oword.Quit
+	pptfiles.Close
+	ppt.Quit
+    Set oDoc=Nothing
+    Set oWord =Nothing
+	Set pptfile = Nothing
+	Set ppt = Nothing
+	MsgBox &amp;#34;PPT和Word全部转换为PDF啦!&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    <item>
+      <title>雨课堂习题监控</title>
+      <link>https://juiceright.xyz/old/posts/pbdbfbga9g/</link>
+      <pubDate>Tue, 11 Mar 2025 00:41:06 +0000</pubDate>
+      <guid>https://juiceright.xyz/old/posts/pbdbfbga9g/</guid>
+      <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;原理：雨课堂每次切换PPT时url也会跟着改变。在检测到ppt切换后，获取ppt的图片，并且进行OCR检测，如果出现‘单选’、‘多选’、‘判断’、‘填空’、‘投票’等词汇，就认定该ppt是习题，就会发出警告提醒。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;使用前需要配置state.json保存登录记录。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import asyncio
+from playwright.async_api import async_playwright
+import requests
+import threading
+import winsound
+from plyer import notification
+import easyocr
+url=&amp;#34;&amp;#34;
+# 初始化 EasyOCR
+reader = easyocr.Reader([&amp;#39;ch_sim&amp;#39;, &amp;#39;en&amp;#39;])
+
+async def notice_ti(page):
+    # 尝试查找图片元素
+    elementimg = await page.query_selector_all(&amp;#39;//*[@id=&amp;#34;app&amp;#34;]/section/section[1]/section[2]/section/section/section/section[1]/section/div/section/section/img&amp;#39;)
+    if len(elementimg) == 0:
+        elementimg = await page.query_selector_all(&amp;#39;//*[@id=&amp;#34;app&amp;#34;]/section/section[1]/section[2]/section/section/section/section[1]/section/section/section/section/img&amp;#39;)
+
+    # 发送新页面通知
+    notification.notify(title=&amp;#39;新的一页&amp;#39;, message=&amp;#39;新的一页&amp;#39;, app_icon=None, timeout=0.5)
+
+    if elementimg:
+        # 获取图片地址
+        img_url = await elementimg[0].get_attribute(&amp;#39;src&amp;#39;)
+        # 直接下载图片
+        tmp = requests.get(img_url)
+        with open(&amp;#39;tmp.png&amp;#39;, &amp;#39;wb&amp;#39;) as f:
+            f.write(tmp.content)
+
+        # 使用 EasyOCR 识别图片文字
+        result = reader.readtext(&amp;#39;tmp.png&amp;#39;)
+        # 如果 result 中含有‘单选’、‘多选’、‘判断’、‘填空’、‘投票’、‘问答’、‘作业’、‘讨论’、‘实验’、‘课件’、‘课程’、‘提交’等关键词，就发送通知
+        keywords = [&amp;#39;单选&amp;#39;, &amp;#39;多选&amp;#39;, &amp;#39;判断&amp;#39;, &amp;#39;填空&amp;#39;, &amp;#39;投票&amp;#39;, &amp;#39;问答&amp;#39;, &amp;#39;作业&amp;#39;, &amp;#39;讨论&amp;#39;, &amp;#39;实验&amp;#39;, &amp;#39;提交&amp;#39;]
+        #keywords = [&amp;#39;电解&amp;#39;]
+        if any(x in str(result) for x in keywords):
+            print(img_url)
+            threading.Thread(target=lambda: winsound.Beep(440, 3000)).start()
+            notification.notify(title=&amp;#39;有题！&amp;#39;, message=&amp;#39;有题！&amp;#39;, app_icon=None, timeout=0.5)
+            # ai(result)
+            # clear_page()
+
+async def main():
+    async with async_playwright() as p:
+        # 配置浏览器选项
+        browser = await p.chromium.launch(headless=True)
+        context = await browser.new_context(storage_state=&amp;#39;state.json&amp;#39;)
+        page = await context.new_page()
+        # 打开指定页面
+        await page.goto(url)
+
+        current_url = page.url
+        while True:
+            # 等待 URL 变化
+            await page.wait_for_url(lambda url: url != current_url, timeout=10000000)
+            current_url = page.url
+            await notice_ti(page)
+            #await print(&amp;#34;已到达新页面&amp;#34;)
+
+if __name__ == &amp;#34;__main__&amp;#34;:
+    url=input(&amp;#34;请输入网址：&amp;#34;)
+    asyncio.run(main())
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+  </channel>
+</rss>

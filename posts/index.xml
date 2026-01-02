@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on Juiceright</title>
+    <link>https://juiceright.xyz/posts/</link>
+    <description>Recent content in Posts on Juiceright</description>
+    <generator>Hugo -- 0.154.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 02 Jan 2026 06:44:11 +0000</lastBuildDate>
+    <atom:link href="https://juiceright.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>html卡片模板</title>
+      <link>https://juiceright.xyz/posts/2026/html%E5%8D%A1%E7%89%87%E6%A8%A1%E6%9D%BF/</link>
+      <pubDate>Thu, 01 Jan 2026 19:00:03 +0000</pubDate>
+      <guid>https://juiceright.xyz/posts/2026/html%E5%8D%A1%E7%89%87%E6%A8%A1%E6%9D%BF/</guid>
+      <description>&lt;div class=&#34;card back-card&#34;&gt; &lt;div class=&#34;hd&#34;&gt; &lt;span class=&#34;tag&#34;&gt;卡片&lt;/span&gt; &lt;span class=&#34;tt&#34;&gt;{{Tittle}}&lt;/span&gt; &lt;/div&gt; &lt;div class=&#34;bd&#34;&gt; {{little Tittle}} &lt;div class=&#34;ans&#34;&gt;{{content}}&lt;/div&gt; &lt;/div&gt; &lt;div class=&#34;ft&#34;&gt; &lt;span class=&#34;avt&#34;&gt;📚&lt;/span&gt; &lt;span class=&#34;name&#34;&gt;Juiceright&lt;/span&gt; &lt;/div&gt; &lt;/div&gt; &lt;style&gt; /* 1. 无全局 * / body 样式，所有样式均绑定.card.back-card容器 */ /* 2. 容器自身样式 */ .card.back-card { width: 100%; max-width: 400px; background: #fff; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); padding: 20px; margin: 0 auto; /* 内部元素盒模型重置（仅作用于容器内所有子元素，非全局） */ &gt; * { margin: 0; padding: 0; box-sizing: border-box; } } /* 3. 容器内子元素样式（全局部化，无任何全局影响） */ .card.back-card .hd {margin-bottom: 16px;} .card.back-card .tag { display: inline-block; background: #ff2442; color: #fff; font-size: 12px; padding: 4px 8px; border-radius: 4px; margin-right: 8px; } .card.back-card .tt {font-size: 18px;font-weight: 600;color: #333;line-height: 1.4;} .card.back-card .bd {margin-bottom: 20px;} .card.back-card .ans {font-size: 15px;color: #333;line-height: 1.6;padding: 10px 0;} .card.back-card .ft {display: flex;align-items: center;} .card.back-card .avt {font-size: 20px;margin-right: 8px;} .card.back-card .name {font-size: 13px;color: #999;} &lt;/style&gt;</description>
+    </item>
+    <item>
+      <title>元旦</title>
+      <link>https://juiceright.xyz/posts/2026/%E5%85%83%E6%97%A6/</link>
+      <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://juiceright.xyz/posts/2026/%E5%85%83%E6%97%A6/</guid>
+      <description>&lt;h1 id=&#34;元旦开心&#34;&gt;元旦开心😊&lt;/h1&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202601/%E5%85%83%E6%97%A6/%E5%85%83%E6%97%A6-20260102144409620.jpg&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>奇奇怪怪</title>
+      <link>https://juiceright.xyz/posts/2025/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/</link>
+      <pubDate>Tue, 30 Dec 2025 21:36:29 +0000</pubDate>
+      <guid>https://juiceright.xyz/posts/2025/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA-20251230213646341.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA-20251230213646354.jpg&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>最近在听古风DJ</title>
+      <link>https://juiceright.xyz/posts/2025/%E6%9C%80%E8%BF%91%E5%9C%A8%E5%90%AC%E5%8F%A4%E9%A3%8Edj/</link>
+      <pubDate>Sat, 27 Dec 2025 23:42:19 +0000</pubDate>
+      <guid>https://juiceright.xyz/posts/2025/%E6%9C%80%E8%BF%91%E5%9C%A8%E5%90%AC%E5%8F%A4%E9%A3%8Edj/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E6%9C%80%E8%BF%91%E5%9C%A8%E5%90%AC%E5%8F%A4%E9%A3%8EDJ/%E6%9C%80%E8%BF%91%E5%9C%A8%E5%90%AC%E5%8F%A4%E9%A3%8EDJ-20251228005725037.jpg&#34;&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E6%9C%80%E8%BF%91%E5%9C%A8%E5%90%AC%E5%8F%A4%E9%A3%8EDJ/%E6%9C%80%E8%BF%91%E5%9C%A8%E5%90%AC%E5%8F%A4%E9%A3%8EDJ-20251228005725039.jpg&#34;&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E6%9C%80%E8%BF%91%E5%9C%A8%E5%90%AC%E5%8F%A4%E9%A3%8EDJ/%E6%9C%80%E8%BF%91%E5%9C%A8%E5%90%AC%E5%8F%A4%E9%A3%8EDJ-20251228005725040.jpg&#34;&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E6%9C%80%E8%BF%91%E5%9C%A8%E5%90%AC%E5%8F%A4%E9%A3%8EDJ/%E6%9C%80%E8%BF%91%E5%9C%A8%E5%90%AC%E5%8F%A4%E9%A3%8EDJ-20251228005725041.jpg&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>不蒜子计数</title>
+      <link>https://juiceright.xyz/posts/2025/%E4%B8%8D%E8%92%9C%E5%AD%90%E8%AE%A1%E6%95%B0/</link>
+      <pubDate>Fri, 26 Dec 2025 21:21:13 +0000</pubDate>
+      <guid>https://juiceright.xyz/posts/2025/%E4%B8%8D%E8%92%9C%E5%AD%90%E8%AE%A1%E6%95%B0/</guid>
+      <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
+&amp;lt;script async src=&amp;#34;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;
+
+&amp;lt;span id=&amp;#34;busuanzi_container_site_pv&amp;#34;&amp;gt;本站总访问量&amp;lt;span id=&amp;#34;busuanzi_value_site_pv&amp;#34;&amp;gt;&amp;lt;/span&amp;gt;次&amp;lt;/span&amp;gt;
+&amp;lt;span id=&amp;#34;busuanzi_container_site_uv&amp;#34;&amp;gt;本站总访客数&amp;lt;span id=&amp;#34;busuanzi_value_site_uv&amp;#34;&amp;gt;&amp;lt;/span&amp;gt;人&amp;lt;/span&amp;gt;
+&amp;lt;span id=&amp;#34;busuanzi_container_page_pv&amp;#34;&amp;gt;本文总阅读量&amp;lt;span id=&amp;#34;busuanzi_value_page_pv&amp;#34;&amp;gt;&amp;lt;/span&amp;gt;次&amp;lt;/span&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;div id=&#34;busuanzi_stats&#34; style=&#34;display:none;&#34;&gt; &lt;span&gt;👥 &lt;span id=&#34;busuanzi_value_site_uv&#34;&gt;&lt;/span&gt;&lt;/span&gt; &lt;span style=&#34;margin:0 10px;&#34;&gt;|&lt;/span&gt; &lt;span&gt;🌐 &lt;span id=&#34;busuanzi_value_site_pv&#34;&gt;&lt;/span&gt;&lt;/span&gt; &lt;span style=&#34;margin:0 10px;&#34;&gt;|&lt;/span&gt; &lt;span&gt;📖 &lt;span id=&#34;busuanzi_value_page_pv&#34;&gt;&lt;/span&gt;&lt;/span&gt; &lt;/div&gt; &lt;script&gt; let s = document.createElement(&#39;script&#39;); s.src = &#39;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&#39;; s.onload = () =&gt; document.getElementById(&#39;busuanzi_stats&#39;).style.display = &#39;inline-block&#39;; document.head.appendChild(s); &lt;/script&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;lt;div id=&amp;#34;busuanzi_stats&amp;#34; style=&amp;#34;display:none;&amp;#34;&amp;gt; &amp;lt;span&amp;gt;👥 &amp;lt;span id=&amp;#34;busuanzi_value_site_uv&amp;#34;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt; &amp;lt;span style=&amp;#34;margin:0 10px;&amp;#34;&amp;gt;|&amp;lt;/span&amp;gt; &amp;lt;span&amp;gt;🌐 &amp;lt;span id=&amp;#34;busuanzi_value_site_pv&amp;#34;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt; &amp;lt;span style=&amp;#34;margin:0 10px;&amp;#34;&amp;gt;|&amp;lt;/span&amp;gt; &amp;lt;span&amp;gt;📖 &amp;lt;span id=&amp;#34;busuanzi_value_page_pv&amp;#34;&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;script&amp;gt; let s = document.createElement(&amp;#39;script&amp;#39;); s.src = &amp;#39;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&amp;#39;; s.onload = () =&amp;gt; document.getElementById(&amp;#39;busuanzi_stats&amp;#39;).style.display = &amp;#39;inline-block&amp;#39;; document.head.appendChild(s); &amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    <item>
+      <title>大四期末考试</title>
+      <link>https://juiceright.xyz/posts/2025/%E5%A4%A7%E5%9B%9B%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95/</link>
+      <pubDate>Thu, 25 Dec 2025 22:39:29 +0000</pubDate>
+      <guid>https://juiceright.xyz/posts/2025/%E5%A4%A7%E5%9B%9B%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95/</guid>
+      <description>&lt;h1 id=&#34;劝人学医天打雷劈&#34;&gt;劝人学医，天打雷劈&lt;/h1&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E5%A4%A7%E5%9B%9B%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95/%E5%A4%A7%E5%9B%9B%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95-20251225224042028.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;太好了是我最爱的十一门考试&#34;&gt;太好了是我最爱的十一门考试🙂&lt;/h1&gt;</description>
+    </item>
+    <item>
+      <title>很多表情包</title>
+      <link>https://juiceright.xyz/posts/2025/%E5%BE%88%E5%A4%9A%E8%A1%A8%E6%83%85%E5%8C%85/</link>
+      <pubDate>Fri, 19 Dec 2025 12:10:18 +0000</pubDate>
+      <guid>https://juiceright.xyz/posts/2025/%E5%BE%88%E5%A4%9A%E8%A1%A8%E6%83%85%E5%8C%85/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E5%BE%88%E5%A4%9A%E8%A1%A8%E6%83%85%E5%8C%85/%E5%BE%88%E5%A4%9A%E8%A1%A8%E6%83%85%E5%8C%85-20251219121043695.jpg&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>听歌3</title>
+      <link>https://juiceright.xyz/posts/2025/%E5%90%AC%E6%AD%8C3/</link>
+      <pubDate>Tue, 09 Dec 2025 21:16:13 +0000</pubDate>
+      <guid>https://juiceright.xyz/posts/2025/%E5%90%AC%E6%AD%8C3/</guid>
+      <description>&lt;iframe frameborder=&#34;no&#34; border=&#34;0&#34; marginwidth=&#34;0&#34; marginheight=&#34;0&#34; width=330 height=86 src=&#34;https://music.163.com/outchain/player?type=2&amp;id=22766039&amp;auto=0&amp;height=66&#34;&gt;&lt;/iframe&gt;</description>
+    </item>
+    <item>
+      <title>妇产科见习好累</title>
+      <link>https://juiceright.xyz/posts/2025/%E5%A6%87%E4%BA%A7%E7%A7%91%E8%A7%81%E4%B9%A0%E5%A5%BD%E7%B4%AF/</link>
+      <pubDate>Tue, 09 Dec 2025 17:15:01 +0000</pubDate>
+      <guid>https://juiceright.xyz/posts/2025/%E5%A6%87%E4%BA%A7%E7%A7%91%E8%A7%81%E4%B9%A0%E5%A5%BD%E7%B4%AF/</guid>
+      <description>&lt;blockquote&gt;
+&lt;h1 id=&#34;妇产科见习好累&#34;&gt;妇产科见习好累&lt;/h1&gt;
+&lt;p&gt;累麻了&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    <item>
+      <title>大四期末20250721（转载学长资料）</title>
+      <link>https://juiceright.xyz/posts/2025/%E5%A4%A7%E5%9B%9B%E6%9C%9F%E6%9C%AB20250721%E8%BD%AC%E8%BD%BD%E5%AD%A6%E9%95%BF%E8%B5%84%E6%96%99/</link>
+      <pubDate>Thu, 04 Dec 2025 01:20:50 +0000</pubDate>
+      <guid>https://juiceright.xyz/posts/2025/%E5%A4%A7%E5%9B%9B%E6%9C%9F%E6%9C%AB20250721%E8%BD%AC%E8%BD%BD%E5%AD%A6%E9%95%BF%E8%B5%84%E6%96%99/</guid>
+      <description>&lt;h2 id=&#34;转载学长资料&#34;&gt;转载学长资料&lt;/h2&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E5%A4%A7%E5%9B%9B%E6%9C%9F%E6%9C%AB20250721%EF%BC%88%E8%BD%AC%E8%BD%BD%E5%AD%A6%E9%95%BF%E8%B5%84%E6%96%99%EF%BC%89/%E5%A4%A7%E5%9B%9B%E6%9C%9F%E6%9C%AB20250721%EF%BC%88%E8%BD%AC%E8%BD%BD%E5%AD%A6%E9%95%BF%E8%B5%84%E6%96%99%EF%BC%89-20251209171043821.pdf&#34;&gt;&lt;/p&gt;
+&lt;p&gt;下载&lt;a href=&#34;https://juiceright.xyz/images/202512/%E5%A4%A7%E5%9B%9B%E6%9C%9F%E6%9C%AB20250721%EF%BC%88%E8%BD%AC%E8%BD%BD%E5%AD%A6%E9%95%BF%E8%B5%84%E6%96%99%EF%BC%89/%E5%A4%A7%E5%9B%9B%E6%9C%9F%E6%9C%AB20250721%EF%BC%88%E8%BD%AC%E8%BD%BD%E5%AD%A6%E9%95%BF%E8%B5%84%E6%96%99%EF%BC%89-20251209171043821.pdf&#34;&gt;大四期末20250721.pdf&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>听歌2</title>
+      <link>https://juiceright.xyz/posts/2025/%E5%90%AC%E6%AD%8C2/</link>
+      <pubDate>Wed, 03 Dec 2025 02:30:56 +0000</pubDate>
+      <guid>https://juiceright.xyz/posts/2025/%E5%90%AC%E6%AD%8C2/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E5%90%AC%E6%AD%8C2/%E5%90%AC%E6%AD%8C2-20251209171043852.jpg&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Anki本地服务器</title>
+      <link>https://juiceright.xyz/posts/2025/anki%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Wed, 03 Dec 2025 00:11:03 +0000</pubDate>
+      <guid>https://juiceright.xyz/posts/2025/anki%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <description>&lt;h1 id=&#34;anki本地服务器&#34;&gt;Anki本地服务器&lt;/h1&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-cmd&#34; data-lang=&#34;cmd&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;@&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; off
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;setlocal&lt;/span&gt; enabledelayedexpansion
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;:&lt;span style=&#34;color:#75715e&#34;&gt;: --- 配置区域 ---&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SYNC_USER1=admin:1234&amp;#34;&lt;/span&gt;    :: 格式: “用户名:密码”
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SYNC_HOST=&amp;#34;&lt;/span&gt;                   :: 服务器局域网IP，留空则绑定所有接口
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SYNC_PORT=8080&amp;#34;&lt;/span&gt;               :: 监听端口
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SYNC_BASE=F:\SoftwareData\AnkiServer&amp;#34;&lt;/span&gt;  :: 数据存储目录
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;PROCESS_NAME=python.exe&amp;#34;&lt;/span&gt;      :: 进程名称
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;PROCESS_ARG=anki.syncserver&amp;#34;&lt;/span&gt;  :: 进程特征参数
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;:&lt;span style=&#34;color:#75715e&#34;&gt;: 显示配置信息&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; ==============================================
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; Anki 同步服务器配置
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; ==============================================
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 用户配置:    !SYNC_USER1!
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 服务器地址:  !SYNC_HOST!
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 监听端口:    !SYNC_PORT!
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 数据存储目录:!SYNC_BASE!
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; ==============================================
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;:&lt;span style=&#34;color:#75715e&#34;&gt;: 检测服务器状态：同时检查端口和进程信息&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SERVER_PID=&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;/f&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;tokens=5&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;%%&lt;/span&gt;a &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;netstat -ano ^| findstr /i &amp;#34;:!SYNC_PORT! LISTENING&amp;#34;&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;do&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    :&lt;span style=&#34;color:#75715e&#34;&gt;: 检查该PID是否为python进程且包含指定参数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;/f&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;delims=&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;%%&lt;/span&gt;b &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt; (&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;wmic process where &amp;#34;ProcessId=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;%%&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;a&amp;#34; get CommandLine /value ^| findstr /i &amp;#34;!PROCESS_NAME! !PROCESS_ARG!&amp;#34;&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;do&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;SERVER_PID=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;%%&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;a&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;:&lt;span style=&#34;color:#75715e&#34;&gt;: 如果找到匹配的进程PID&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;defined&lt;/span&gt; SERVER_PID (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 检测到Anki服务器已在运行（PID:!SERVER_PID!，端口:!SYNC_PORT!）
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 请选择操作:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt;  按下 C 键并回车 - 关闭服务器
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt;  按下其他键并回车 - 取消操作
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    :&lt;span style=&#34;color:#75715e&#34;&gt;: 读取用户输入&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;/p&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;CHOICE=请输入选择: &amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    :&lt;span style=&#34;color:#75715e&#34;&gt;: 判断用户输入是否为c或C&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;/i&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;!CHOICE!&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;equ&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;C&amp;#34;&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 正在关闭服务器...
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        :&lt;span style=&#34;color:#75715e&#34;&gt;: 杀死找到的服务器进程&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        taskkill /F /PID !SERVER_PID! &amp;gt;nul &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&amp;gt;&amp;amp;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; !errorlevel! &lt;span style=&#34;color:#f92672&#34;&gt;equ&lt;/span&gt; 0 (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 服务器已成功关闭（PID:!SERVER_PID!）
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ) &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 关闭服务器失败，请手动结束进程（PID:!SERVER_PID!）
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ) &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 已取消关闭操作，服务器继续运行
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;pause&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;goto&lt;/span&gt; end
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;:&lt;span style=&#34;color:#75715e&#34;&gt;: 启动服务器（未运行时）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 未检测到运行中的Anki服务器
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 正在启动 Anki 同步服务器...
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 服务器将在后台运行，关闭此窗口不影响服务
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; ==============================================
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;:&lt;span style=&#34;color:#75715e&#34;&gt;: 使用VBScript创建隐藏窗口启动服务器&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; Set objShell = CreateObject(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;WScript.Shell&amp;#34;&lt;/span&gt;) &amp;gt; temp.vbs
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; objShell.Run &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;cmd /c python -m anki.syncserver&amp;#34;&lt;/span&gt;, 0, False &amp;gt;&amp;gt; temp.vbs
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cscript //nologo temp.vbs
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;del&lt;/span&gt; temp.vbs
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 服务器已在后台启动（端口:!SYNC_PORT!）
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 可以关闭此窗口
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 再次运行本脚本将提供关闭选项
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; ==============================================
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;echo&lt;/span&gt; 3秒后自动关闭此窗口...
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;timeout /t 3 /nobreak &amp;gt;nul
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;goto&lt;/span&gt; end
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;:end
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;endlocal&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>3分钟通关，好像不太对</title>
+      <link>https://juiceright.xyz/posts/2025/3%E5%88%86%E9%92%9F%E9%80%9A%E5%85%B3%E5%A5%BD%E5%83%8F%E4%B8%8D%E5%A4%AA%E5%AF%B9/</link>
+      <pubDate>Thu, 14 Aug 2025 00:54:21 +0000</pubDate>
+      <guid>https://juiceright.xyz/posts/2025/3%E5%88%86%E9%92%9F%E9%80%9A%E5%85%B3%E5%A5%BD%E5%83%8F%E4%B8%8D%E5%A4%AA%E5%AF%B9/</guid>
+      <description>&lt;h1 id=&#34;3分钟通关好像不太对&#34;&gt;3分钟通关，好像不太对🤨🧐😦😫🥰&lt;/h1&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/3%E5%88%86%E9%92%9F%E9%80%9A%E5%85%B3%EF%BC%8C%E5%A5%BD%E5%83%8F%E4%B8%8D%E5%A4%AA%E5%AF%B9/3%E5%88%86%E9%92%9F%E9%80%9A%E5%85%B3%EF%BC%8C%E5%A5%BD%E5%83%8F%E4%B8%8D%E5%A4%AA%E5%AF%B9-20251228000103419.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/3%E5%88%86%E9%92%9F%E9%80%9A%E5%85%B3%EF%BC%8C%E5%A5%BD%E5%83%8F%E4%B8%8D%E5%A4%AA%E5%AF%B9/3%E5%88%86%E9%92%9F%E9%80%9A%E5%85%B3%EF%BC%8C%E5%A5%BD%E5%83%8F%E4%B8%8D%E5%A4%AA%E5%AF%B9-20251228000103419%201.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/3%E5%88%86%E9%92%9F%E9%80%9A%E5%85%B3%EF%BC%8C%E5%A5%BD%E5%83%8F%E4%B8%8D%E5%A4%AA%E5%AF%B9/3%E5%88%86%E9%92%9F%E9%80%9A%E5%85%B3%EF%BC%8C%E5%A5%BD%E5%83%8F%E4%B8%8D%E5%A4%AA%E5%AF%B9-20251228000103420.jpg&#34;&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>机器学习 on Juiceright</title>
+    <link>https://juiceright.xyz/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</link>
+    <description>Recent content in 机器学习 on Juiceright</description>
+    <generator>Hugo -- 0.154.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 09 Dec 2025 09:10:42 +0000</lastBuildDate>
+    <atom:link href="https://juiceright.xyz/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【机器学习】四层人工神经网络拟合二元二次函数</title>
+      <link>https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9B%9B%E5%B1%82%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%8B%9F%E5%90%88%E4%BA%8C%E5%85%83%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Wed, 29 Mar 2023 17:54:00 +0000</pubDate>
+      <guid>https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9B%9B%E5%B1%82%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%8B%9F%E5%90%88%E4%BA%8C%E5%85%83%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0/</guid>
+      <description>&lt;h1 id=&#34;四层人工神经网络拟合二元二次函数&#34;&gt;四层人工神经网络拟合二元二次函数&lt;/h1&gt;
+&lt;p&gt;如果想了解人工神经网络，请认真阅读每个字，字字珠玑。😂&lt;/p&gt;
+&lt;p&gt;核心代码:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;、、、、、、、、、、&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Net&lt;/span&gt;(nn&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Module):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;__init__&lt;/span&gt;(self):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        super(Net, self)&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;__init__&lt;/span&gt;()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;fc1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; nn&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Linear(&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;40&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;fc2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; nn&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Linear(&lt;span style=&#34;color:#ae81ff&#34;&gt;40&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;40&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;fc3 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;nn&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Linear(&lt;span style=&#34;color:#ae81ff&#34;&gt;40&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;24&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;fc4 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;nn&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Linear(&lt;span style=&#34;color:#ae81ff&#34;&gt;24&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;forward&lt;/span&gt;(self,x):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;fc4(t&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;relu(self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;fc3(t&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;relu(self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;fc2(t&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;relu(self&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;fc1(x)))))))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;train&lt;/span&gt;(epoch,model,opt,lossfn,tu,tc):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,epoch&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        tp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;model(tu)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        loss&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;lossfn(tp,tc)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        opt&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;zero_grad()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        loss&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;backward()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        opt&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;step()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;or&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            print(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;Epoch &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;%d&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;, Loss &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;%f&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; (i, float(loss)))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; model
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;f&lt;/span&gt;(x,x2):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; x&lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;x2
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;PATH &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;cyNN.pt&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cyNN&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;t&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;load(PATH)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cyNN&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;eval()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;opt&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;optim&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Adam(cyNN&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;parameters(),lr&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1e-7&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;、、、、、、、、、、&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;我们这个模型拟合的函数是：f(x,x2)=x^2+x2&lt;/p&gt;
+&lt;h4 id=&#34;最最重要的核心调用框架&#34;&gt;最最重要的核心调用框架&lt;/h4&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%91%E5%9B%9B%E5%B1%82%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%8B%9F%E5%90%88%E4%BA%8C%E5%85%83%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%91%E5%9B%9B%E5%B1%82%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%8B%9F%E5%90%88%E4%BA%8C%E5%85%83%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0-20251209171042423.jpg&#34;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;神经网络解释&#34;&gt;神经网络解释&lt;/h2&gt;
+&lt;p&gt;这是一个四层人工神经网络，拟合二元二次函数。&lt;/p&gt;
+&lt;p&gt;输入层有两个神经元，输出层有一个神经元，中间两层各有40个神经元，最后一层有24个神经元。激活函数使用的是ReLU，优化器使用的是Adam，学习率为1e-7，损失函数使用的是MSELoss。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;输入层：2个神经元  （表示两个自变量）
+隐藏层1：40个神经元
+隐藏层2：40个神经元
+隐藏层3：24个神经元
+输出层：1个神经元   （表示一个因变量）
+激活函数：ReLU （线性整流函数）
+优化器：Adam 
+学习率：1e-7 
+损失函数：MSELoss(即均方误差，也就是绝对误差的平方)
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;结构图&#34;&gt;结构图&lt;/h4&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%91%E5%9B%9B%E5%B1%82%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%8B%9F%E5%90%88%E4%BA%8C%E5%85%83%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%91%E5%9B%9B%E5%B1%82%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%8B%9F%E5%90%88%E4%BA%8C%E5%85%83%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0-20251209171042433.jpg&#34;&gt;&lt;br&gt;
+(一目了然这个属于是=。=）&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>【机器学习】可拟合任意线性函数的小玩意儿</title>
+      <link>https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8F%AF%E6%8B%9F%E5%90%88%E4%BB%BB%E6%84%8F%E7%BA%BF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%E5%84%BF/</link>
+      <pubDate>Mon, 27 Mar 2023 22:27:23 +0000</pubDate>
+      <guid>https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8F%AF%E6%8B%9F%E5%90%88%E4%BB%BB%E6%84%8F%E7%BA%BF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%E5%84%BF/</guid>
+      <description>&lt;h1 id=&#34;机器学习可拟合任意线性函数的小玩意儿&#34;&gt;【机器学习】可拟合任意线性函数的小玩意儿&lt;/h1&gt;
+&lt;h3 id=&#34;先上完整代码&#34;&gt;先上完整代码&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import torch as t
+import torch.nn as nn
+import torch.optim as optim
+
+def training_loop(n_epochs, optimizer, model,loss_fn, t_u, t_c):
+    for epoch in range(1, n_epochs + 1):
+        t_p = model(t_u)          #计算当前模型的预测值
+        loss = loss_fn(t_p, t_c)  #计算损失函数
+        optimizer.zero_grad()   
+        loss.backward()   #回溯累计损失
+        optimizer.step()
+        if epoch % 50 == 0:
+            print(&amp;#39;Epoch %d, Loss %f&amp;#39; % (epoch, float(loss)))
+    return model
+
+
+epoches=30000  #迭代次数 一般次数适中，为防止过度拟合不建议迭代次数过多
+num=50000  #随机生成的样本数 一般越多越好，看运行配置
+
+learning_rate=1e-4   #学习率（数值越大学得越快（但不一定准确），数值越小拟合越好（时间较长））建议取 1e-2 、1e-3、1e-4、1e-5
+
+x = t.randn(num, 1)
+def f(x):
+    return 30 * x + 10
+    #待拟合的式子为 y=30*x +10  可自行修改if you like。
+
+
+y = f(x)+ t.randn(num, 1)*10  #  后面的 t.randn(num, 1)*10 是偏离值，降低训练的精确性（给你的模型更多的挑战）
+linear_model = nn.Linear(1, 1)
+optimizer = optim.SGD(linear_model.parameters(), lr=learning_rate)
+training_loop(n_epochs=epoches,optimizer=optimizer,model=linear_model,loss_fn=nn.MSELoss(),t_u=x,t_c=y)
+print(&amp;#39;\n&amp;#39;)
+#print(linear_model.weight)
+#print(linear_model.bias)
+
+while(1):
+    x=float(input(&amp;#39;请输入想预测的x值：&amp;#39;))
+    tmp=float(linear_model(t.tensor([x]))[0])
+    print(&amp;#34;拟合值:&amp;#34;,tmp)
+    print(&amp;#34;真实值:&amp;#34;,f(x))
+    print(&amp;#34;相对误差:&amp;#34;,1-tmp/f(x))
+    print(&amp;#39;\n&amp;#39;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这个程序可以分为两个部分(生成训练数据、机器学习模型)，其中生成训练数据部分可有可无(因为在实际应用中，一般数据为人工导入，不是系统随机生成)。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

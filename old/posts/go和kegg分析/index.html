@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>GO和KEGG分析 | Juiceright</title>
+<meta name="keywords" content="old">
+<meta name="description" content="GO和KEGG分析
+功能富集分析对于解释转录组学数据至关重要。转录组鉴定了差异表达基因后，通常会进行GO或KEGG富集分析，识别这些差异基因的功能或参与调控的通路，来说明关键基因表达上调/或下调后可能会导致哪功能或通路被激活/或抑制，进而与表型进行联系。
+(其实就是用DEG结果的进行的分析)
+为什么要做GO和KEGG分析
+经过差异表达分析，我们得到了在对照组与实验组中差异表达的基因，说明改变的条件对这些基因的表达产生了影响，但是这样还不够，我们希望进一步知道具体是对哪些生物学功能/通路产生了影响，于是需要进行GO分析。
+GO、KEGG结果解读
+富集分析，看完这篇就够
+别搜啦！关于富集分析你想知道的这里都有！
+使用R包clusterProfiler进行GO/KEGG富集分析（有参/无参）
+输入数据格式
+一个表格，分别是Gene_Symbol和logFC，如下图所示：
+
+主要结果图
+
+
+library(&#34;clusterProfiler&#34;)
+library(&#34;enrichplot&#34;)
+library(&#34;ggplot2&#34;)
+library(&#34;org.Hs.eg.db&#34;) 
+library(&#34;GOplot&#34;)
+
+#转换ID
+rt=read.table(&#34;input.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T)
+genes=as.vector(rt[,1])
+entrezIDs &lt;- mget(genes, org.Hs.egSYMBOL2EG, ifnotfound=NA)    #找出基因对应的id
+entrezIDs &lt;- as.character(entrezIDs)
+out=cbind(rt,entrezID=entrezIDs)
+write.table(out,file=&#34;GO-id.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names=F)    #输出结果
+
+####GO分析####
+rt=read.table(&#34;GO-id.txt&#34;,sep=&#34;\t&#34;,header=T,check.names=F)           
+rt=rt[is.na(rt[,&#34;entrezID&#34;])==F,]                                
+gene=rt$entrezID
+
+#GO富集分析
+kk &lt;- enrichGO(gene = gene,OrgDb = org.Hs.eg.db, pvalueCutoff =0.05, qvalueCutoff = 0.05,ont=&#34;all&#34;,readable =T)
+write.table(kk,file=&#34;GO.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names = F) #
+
+#可视化
+##条形图
+pdf(file=&#34;GO-barplot.pdf&#34;,width = 10,height = 15)
+barplot(kk, drop = TRUE, showCategory =10,label_format=100,split=&#34;ONTOLOGY&#34;) &#43; facet_grid(ONTOLOGY~., scale=&#39;free&#39;)
+dev.off()
+
+##气泡图
+pdf(file=&#34;GO-bubble.pdf&#34;,width = 10,height = 15)
+dotplot(kk,showCategory = 10,label_format=100,split=&#34;ONTOLOGY&#34;) &#43; facet_grid(ONTOLOGY~., scale=&#39;free&#39;)
+dev.off()
+
+##圈图
+ego&lt;-read.table(&#34;GO.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T)
+go=data.frame(Category =&#34;ALL&#34;,ID = ego$ID,Term = ego$Description, Genes = gsub(&#34;/&#34;, &#34;, &#34;, ego$geneID), adj_pval = ego$pvalue)
+id.fc=rt
+genelist &lt;- data.frame(ID = id.fc$gene, logFC = id.fc$logFC)
+row.names(genelist)=genelist[,1]
+
+circ &lt;- circle_dat(go, genelist)
+termNum = 5                                     #限定term数目
+geneNum = nrow(genelist)                        #限定基因数目可以改为数字
+
+chord &lt;- chord_dat(circ, genelist[1:geneNum,], go$Term[1:termNum])
+pdf(file=&#34;GO_circ.pdf&#34;,width = 12,height = 11)
+GOChord(chord, 
+        space = 0.001,           #基因之间的间距
+        gene.order = &#39;logFC&#39;,    #按照logFC值对基因排序
+        gene.space = 0.25,       #基因名跟圆圈的相对距离
+        gene.size = 5,           #基因名字体大小 
+        border.size = 0.1,       #线条粗细
+        process.label = 9)       #term字体大小
+dev.off()
+
+####KEGG####
+rt=read.table(&#34;input.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T)    #读取文件
+genes=as.vector(rt[,1])
+entrezIDs &lt;- mget(genes, org.Hs.egSYMBOL2EG, ifnotfound=NA)    #找出基因对应的id
+entrezIDs &lt;- as.character(entrezIDs)
+out=cbind(rt,entrezID=entrezIDs)
+write.table(out,file=&#34;KEGG-id.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names=F)    #输出结果
+
+
+rt=read.table(&#34;KEGG-id.txt&#34;,sep=&#34;\t&#34;,header=T,check.names=F)       
+rt=rt[is.na(rt[,&#34;entrezID&#34;])==F,]                             
+gene=rt$entrezID
+#kegg分析
+kk &lt;- enrichKEGG(gene = gene,keyType = &#34;kegg&#34;,organism = &#34;hsa&#34;, pvalueCutoff =0.05, qvalueCutoff =0.05, pAdjustMethod = &#34;fdr&#34;)   
+write.table(kk,file=&#34;KEGG.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names = F)                         
+
+#可视化
+##条形图
+pdf(file=&#34;KEGG-barplot.pdf&#34;,width = 10,height = 13)
+barplot(kk, drop = TRUE, showCategory = 15,label_format=100)
+dev.off()
+
+##气泡图
+pdf(file=&#34;KEGG-bubble.pdf&#34;,width = 10,height = 13)
+dotplot(kk, showCategory = 15,label_format=100)
+dev.off()
+
+#圈图
+ego&lt;-read.table(&#34;KEGG.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T)
+go=data.frame(Category =&#34;ALL&#34;,ID = ego$ID,Term = ego$Description, Genes = gsub(&#34;/&#34;, &#34;, &#34;, ego$geneID), adj_pval = ego$p.adjust)
+id.fc=rt
+genelist &lt;- data.frame(ID = id.fc$entrezID, logFC = id.fc$logFC)
+row.names(genelist)=genelist[,1]
+row.names(rt)=rt[,3]
+
+circ &lt;- circle_dat(go, genelist)
+termNum = 5                                     #限定term数目
+geneNum = nrow(genelist)                        #限定基因数目可以改为数字
+
+chord &lt;- chord_dat(circ, genelist[1:geneNum,], go$Term[1:termNum])
+sameSample=intersect(row.names(chord), row.names(rt))
+rt=rt[sameSample,,drop=F]
+geneIDs=rt$gene
+row.names(chord)=geneIDs
+pdf(file=&#34;KEGG_circ.pdf&#34;,width = 12,height = 11)
+GOChord(chord, 
+        space = 0.001,           #基因之间的间距
+        gene.order = &#39;logFC&#39;,    #按照logFC值对基因排序
+        gene.space = 0.25,       #基因名跟圆圈的相对距离
+        gene.size = 5,           #基因名字体大小 
+        border.size = 0.1,       #线条粗细
+        process.label = 9)       #term字体大小
+dev.off()
+">
+<meta name="author" content="">
+<link rel="canonical" href="https://juiceright.xyz/old/posts/go%E5%92%8Ckegg%E5%88%86%E6%9E%90/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a?s=16">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a?s=32">
+<link rel="apple-touch-icon" href="https://juiceright.xyz/apple-touch-icon.png">
+<link rel="mask-icon" href="https://juiceright.xyz/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://juiceright.xyz/old/posts/go%E5%92%8Ckegg%E5%88%86%E6%9E%90/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://juiceright.xyz/old/posts/go%E5%92%8Ckegg%E5%88%86%E6%9E%90/">
+  <meta property="og:site_name" content="Juiceright">
+  <meta property="og:title" content="GO和KEGG分析">
+  <meta property="og:description" content="GO和KEGG分析 功能富集分析对于解释转录组学数据至关重要。转录组鉴定了差异表达基因后，通常会进行GO或KEGG富集分析，识别这些差异基因的功能或参与调控的通路，来说明关键基因表达上调/或下调后可能会导致哪功能或通路被激活/或抑制，进而与表型进行联系。
+(其实就是用DEG结果的进行的分析)
+为什么要做GO和KEGG分析 经过差异表达分析，我们得到了在对照组与实验组中差异表达的基因，说明改变的条件对这些基因的表达产生了影响，但是这样还不够，我们希望进一步知道具体是对哪些生物学功能/通路产生了影响，于是需要进行GO分析。
+GO、KEGG结果解读 富集分析，看完这篇就够
+别搜啦！关于富集分析你想知道的这里都有！
+使用R包clusterProfiler进行GO/KEGG富集分析（有参/无参）
+输入数据格式 一个表格，分别是Gene_Symbol和logFC，如下图所示：
+主要结果图 library(&#34;clusterProfiler&#34;) library(&#34;enrichplot&#34;) library(&#34;ggplot2&#34;) library(&#34;org.Hs.eg.db&#34;) library(&#34;GOplot&#34;) #转换ID rt=read.table(&#34;input.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T) genes=as.vector(rt[,1]) entrezIDs &lt;- mget(genes, org.Hs.egSYMBOL2EG, ifnotfound=NA) #找出基因对应的id entrezIDs &lt;- as.character(entrezIDs) out=cbind(rt,entrezID=entrezIDs) write.table(out,file=&#34;GO-id.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names=F) #输出结果 ####GO分析#### rt=read.table(&#34;GO-id.txt&#34;,sep=&#34;\t&#34;,header=T,check.names=F) rt=rt[is.na(rt[,&#34;entrezID&#34;])==F,] gene=rt$entrezID #GO富集分析 kk &lt;- enrichGO(gene = gene,OrgDb = org.Hs.eg.db, pvalueCutoff =0.05, qvalueCutoff = 0.05,ont=&#34;all&#34;,readable =T) write.table(kk,file=&#34;GO.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names = F) # #可视化 ##条形图 pdf(file=&#34;GO-barplot.pdf&#34;,width = 10,height = 15) barplot(kk, drop = TRUE, showCategory =10,label_format=100,split=&#34;ONTOLOGY&#34;) &#43; facet_grid(ONTOLOGY~., scale=&#39;free&#39;) dev.off() ##气泡图 pdf(file=&#34;GO-bubble.pdf&#34;,width = 10,height = 15) dotplot(kk,showCategory = 10,label_format=100,split=&#34;ONTOLOGY&#34;) &#43; facet_grid(ONTOLOGY~., scale=&#39;free&#39;) dev.off() ##圈图 ego&lt;-read.table(&#34;GO.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T) go=data.frame(Category =&#34;ALL&#34;,ID = ego$ID,Term = ego$Description, Genes = gsub(&#34;/&#34;, &#34;, &#34;, ego$geneID), adj_pval = ego$pvalue) id.fc=rt genelist &lt;- data.frame(ID = id.fc$gene, logFC = id.fc$logFC) row.names(genelist)=genelist[,1] circ &lt;- circle_dat(go, genelist) termNum = 5 #限定term数目 geneNum = nrow(genelist) #限定基因数目可以改为数字 chord &lt;- chord_dat(circ, genelist[1:geneNum,], go$Term[1:termNum]) pdf(file=&#34;GO_circ.pdf&#34;,width = 12,height = 11) GOChord(chord, space = 0.001, #基因之间的间距 gene.order = &#39;logFC&#39;, #按照logFC值对基因排序 gene.space = 0.25, #基因名跟圆圈的相对距离 gene.size = 5, #基因名字体大小 border.size = 0.1, #线条粗细 process.label = 9) #term字体大小 dev.off() ####KEGG#### rt=read.table(&#34;input.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T) #读取文件 genes=as.vector(rt[,1]) entrezIDs &lt;- mget(genes, org.Hs.egSYMBOL2EG, ifnotfound=NA) #找出基因对应的id entrezIDs &lt;- as.character(entrezIDs) out=cbind(rt,entrezID=entrezIDs) write.table(out,file=&#34;KEGG-id.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names=F) #输出结果 rt=read.table(&#34;KEGG-id.txt&#34;,sep=&#34;\t&#34;,header=T,check.names=F) rt=rt[is.na(rt[,&#34;entrezID&#34;])==F,] gene=rt$entrezID #kegg分析 kk &lt;- enrichKEGG(gene = gene,keyType = &#34;kegg&#34;,organism = &#34;hsa&#34;, pvalueCutoff =0.05, qvalueCutoff =0.05, pAdjustMethod = &#34;fdr&#34;) write.table(kk,file=&#34;KEGG.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names = F) #可视化 ##条形图 pdf(file=&#34;KEGG-barplot.pdf&#34;,width = 10,height = 13) barplot(kk, drop = TRUE, showCategory = 15,label_format=100) dev.off() ##气泡图 pdf(file=&#34;KEGG-bubble.pdf&#34;,width = 10,height = 13) dotplot(kk, showCategory = 15,label_format=100) dev.off() #圈图 ego&lt;-read.table(&#34;KEGG.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T) go=data.frame(Category =&#34;ALL&#34;,ID = ego$ID,Term = ego$Description, Genes = gsub(&#34;/&#34;, &#34;, &#34;, ego$geneID), adj_pval = ego$p.adjust) id.fc=rt genelist &lt;- data.frame(ID = id.fc$entrezID, logFC = id.fc$logFC) row.names(genelist)=genelist[,1] row.names(rt)=rt[,3] circ &lt;- circle_dat(go, genelist) termNum = 5 #限定term数目 geneNum = nrow(genelist) #限定基因数目可以改为数字 chord &lt;- chord_dat(circ, genelist[1:geneNum,], go$Term[1:termNum]) sameSample=intersect(row.names(chord), row.names(rt)) rt=rt[sameSample,,drop=F] geneIDs=rt$gene row.names(chord)=geneIDs pdf(file=&#34;KEGG_circ.pdf&#34;,width = 12,height = 11) GOChord(chord, space = 0.001, #基因之间的间距 gene.order = &#39;logFC&#39;, #按照logFC值对基因排序 gene.space = 0.25, #基因名跟圆圈的相对距离 gene.size = 5, #基因名字体大小 border.size = 0.1, #线条粗细 process.label = 9) #term字体大小 dev.off() ">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="old">
+    <meta property="article:published_time" content="2023-08-06T18:39:29+00:00">
+    <meta property="article:modified_time" content="2025-12-09T09:10:43+00:00">
+    <meta property="article:tag" content="Old">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GO和KEGG分析">
+<meta name="twitter:description" content="GO和KEGG分析
+功能富集分析对于解释转录组学数据至关重要。转录组鉴定了差异表达基因后，通常会进行GO或KEGG富集分析，识别这些差异基因的功能或参与调控的通路，来说明关键基因表达上调/或下调后可能会导致哪功能或通路被激活/或抑制，进而与表型进行联系。
+(其实就是用DEG结果的进行的分析)
+为什么要做GO和KEGG分析
+经过差异表达分析，我们得到了在对照组与实验组中差异表达的基因，说明改变的条件对这些基因的表达产生了影响，但是这样还不够，我们希望进一步知道具体是对哪些生物学功能/通路产生了影响，于是需要进行GO分析。
+GO、KEGG结果解读
+富集分析，看完这篇就够
+别搜啦！关于富集分析你想知道的这里都有！
+使用R包clusterProfiler进行GO/KEGG富集分析（有参/无参）
+输入数据格式
+一个表格，分别是Gene_Symbol和logFC，如下图所示：
+
+主要结果图
+
+
+library(&#34;clusterProfiler&#34;)
+library(&#34;enrichplot&#34;)
+library(&#34;ggplot2&#34;)
+library(&#34;org.Hs.eg.db&#34;) 
+library(&#34;GOplot&#34;)
+
+#转换ID
+rt=read.table(&#34;input.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T)
+genes=as.vector(rt[,1])
+entrezIDs &lt;- mget(genes, org.Hs.egSYMBOL2EG, ifnotfound=NA)    #找出基因对应的id
+entrezIDs &lt;- as.character(entrezIDs)
+out=cbind(rt,entrezID=entrezIDs)
+write.table(out,file=&#34;GO-id.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names=F)    #输出结果
+
+####GO分析####
+rt=read.table(&#34;GO-id.txt&#34;,sep=&#34;\t&#34;,header=T,check.names=F)           
+rt=rt[is.na(rt[,&#34;entrezID&#34;])==F,]                                
+gene=rt$entrezID
+
+#GO富集分析
+kk &lt;- enrichGO(gene = gene,OrgDb = org.Hs.eg.db, pvalueCutoff =0.05, qvalueCutoff = 0.05,ont=&#34;all&#34;,readable =T)
+write.table(kk,file=&#34;GO.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names = F) #
+
+#可视化
+##条形图
+pdf(file=&#34;GO-barplot.pdf&#34;,width = 10,height = 15)
+barplot(kk, drop = TRUE, showCategory =10,label_format=100,split=&#34;ONTOLOGY&#34;) &#43; facet_grid(ONTOLOGY~., scale=&#39;free&#39;)
+dev.off()
+
+##气泡图
+pdf(file=&#34;GO-bubble.pdf&#34;,width = 10,height = 15)
+dotplot(kk,showCategory = 10,label_format=100,split=&#34;ONTOLOGY&#34;) &#43; facet_grid(ONTOLOGY~., scale=&#39;free&#39;)
+dev.off()
+
+##圈图
+ego&lt;-read.table(&#34;GO.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T)
+go=data.frame(Category =&#34;ALL&#34;,ID = ego$ID,Term = ego$Description, Genes = gsub(&#34;/&#34;, &#34;, &#34;, ego$geneID), adj_pval = ego$pvalue)
+id.fc=rt
+genelist &lt;- data.frame(ID = id.fc$gene, logFC = id.fc$logFC)
+row.names(genelist)=genelist[,1]
+
+circ &lt;- circle_dat(go, genelist)
+termNum = 5                                     #限定term数目
+geneNum = nrow(genelist)                        #限定基因数目可以改为数字
+
+chord &lt;- chord_dat(circ, genelist[1:geneNum,], go$Term[1:termNum])
+pdf(file=&#34;GO_circ.pdf&#34;,width = 12,height = 11)
+GOChord(chord, 
+        space = 0.001,           #基因之间的间距
+        gene.order = &#39;logFC&#39;,    #按照logFC值对基因排序
+        gene.space = 0.25,       #基因名跟圆圈的相对距离
+        gene.size = 5,           #基因名字体大小 
+        border.size = 0.1,       #线条粗细
+        process.label = 9)       #term字体大小
+dev.off()
+
+####KEGG####
+rt=read.table(&#34;input.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T)    #读取文件
+genes=as.vector(rt[,1])
+entrezIDs &lt;- mget(genes, org.Hs.egSYMBOL2EG, ifnotfound=NA)    #找出基因对应的id
+entrezIDs &lt;- as.character(entrezIDs)
+out=cbind(rt,entrezID=entrezIDs)
+write.table(out,file=&#34;KEGG-id.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names=F)    #输出结果
+
+
+rt=read.table(&#34;KEGG-id.txt&#34;,sep=&#34;\t&#34;,header=T,check.names=F)       
+rt=rt[is.na(rt[,&#34;entrezID&#34;])==F,]                             
+gene=rt$entrezID
+#kegg分析
+kk &lt;- enrichKEGG(gene = gene,keyType = &#34;kegg&#34;,organism = &#34;hsa&#34;, pvalueCutoff =0.05, qvalueCutoff =0.05, pAdjustMethod = &#34;fdr&#34;)   
+write.table(kk,file=&#34;KEGG.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names = F)                         
+
+#可视化
+##条形图
+pdf(file=&#34;KEGG-barplot.pdf&#34;,width = 10,height = 13)
+barplot(kk, drop = TRUE, showCategory = 15,label_format=100)
+dev.off()
+
+##气泡图
+pdf(file=&#34;KEGG-bubble.pdf&#34;,width = 10,height = 13)
+dotplot(kk, showCategory = 15,label_format=100)
+dev.off()
+
+#圈图
+ego&lt;-read.table(&#34;KEGG.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T)
+go=data.frame(Category =&#34;ALL&#34;,ID = ego$ID,Term = ego$Description, Genes = gsub(&#34;/&#34;, &#34;, &#34;, ego$geneID), adj_pval = ego$p.adjust)
+id.fc=rt
+genelist &lt;- data.frame(ID = id.fc$entrezID, logFC = id.fc$logFC)
+row.names(genelist)=genelist[,1]
+row.names(rt)=rt[,3]
+
+circ &lt;- circle_dat(go, genelist)
+termNum = 5                                     #限定term数目
+geneNum = nrow(genelist)                        #限定基因数目可以改为数字
+
+chord &lt;- chord_dat(circ, genelist[1:geneNum,], go$Term[1:termNum])
+sameSample=intersect(row.names(chord), row.names(rt))
+rt=rt[sameSample,,drop=F]
+geneIDs=rt$gene
+row.names(chord)=geneIDs
+pdf(file=&#34;KEGG_circ.pdf&#34;,width = 12,height = 11)
+GOChord(chord, 
+        space = 0.001,           #基因之间的间距
+        gene.order = &#39;logFC&#39;,    #按照logFC值对基因排序
+        gene.space = 0.25,       #基因名跟圆圈的相对距离
+        gene.size = 5,           #基因名字体大小 
+        border.size = 0.1,       #线条粗细
+        process.label = 9)       #term字体大小
+dev.off()
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Olds",
+      "item": "https://juiceright.xyz/old/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "GO和KEGG分析",
+      "item": "https://juiceright.xyz/old/posts/go%E5%92%8Ckegg%E5%88%86%E6%9E%90/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "GO和KEGG分析",
+  "name": "GO和KEGG分析",
+  "description": "GO和KEGG分析 功能富集分析对于解释转录组学数据至关重要。转录组鉴定了差异表达基因后，通常会进行GO或KEGG富集分析，识别这些差异基因的功能或参与调控的通路，来说明关键基因表达上调/或下调后可能会导致哪功能或通路被激活/或抑制，进而与表型进行联系。\n(其实就是用DEG结果的进行的分析)\n为什么要做GO和KEGG分析 经过差异表达分析，我们得到了在对照组与实验组中差异表达的基因，说明改变的条件对这些基因的表达产生了影响，但是这样还不够，我们希望进一步知道具体是对哪些生物学功能/通路产生了影响，于是需要进行GO分析。\nGO、KEGG结果解读 富集分析，看完这篇就够\n别搜啦！关于富集分析你想知道的这里都有！\n使用R包clusterProfiler进行GO/KEGG富集分析（有参/无参）\n输入数据格式 一个表格，分别是Gene_Symbol和logFC，如下图所示：\n主要结果图 library(\u0026#34;clusterProfiler\u0026#34;) library(\u0026#34;enrichplot\u0026#34;) library(\u0026#34;ggplot2\u0026#34;) library(\u0026#34;org.Hs.eg.db\u0026#34;) library(\u0026#34;GOplot\u0026#34;) #转换ID rt=read.table(\u0026#34;input.txt\u0026#34;,sep=\u0026#34;\\t\u0026#34;,check.names=F,header=T) genes=as.vector(rt[,1]) entrezIDs \u0026lt;- mget(genes, org.Hs.egSYMBOL2EG, ifnotfound=NA) #找出基因对应的id entrezIDs \u0026lt;- as.character(entrezIDs) out=cbind(rt,entrezID=entrezIDs) write.table(out,file=\u0026#34;GO-id.txt\u0026#34;,sep=\u0026#34;\\t\u0026#34;,quote=F,row.names=F) #输出结果 ####GO分析#### rt=read.table(\u0026#34;GO-id.txt\u0026#34;,sep=\u0026#34;\\t\u0026#34;,header=T,check.names=F) rt=rt[is.na(rt[,\u0026#34;entrezID\u0026#34;])==F,] gene=rt$entrezID #GO富集分析 kk \u0026lt;- enrichGO(gene = gene,OrgDb = org.Hs.eg.db, pvalueCutoff =0.05, qvalueCutoff = 0.05,ont=\u0026#34;all\u0026#34;,readable =T) write.table(kk,file=\u0026#34;GO.txt\u0026#34;,sep=\u0026#34;\\t\u0026#34;,quote=F,row.names = F) # #可视化 ##条形图 pdf(file=\u0026#34;GO-barplot.pdf\u0026#34;,width = 10,height = 15) barplot(kk, drop = TRUE, showCategory =10,label_format=100,split=\u0026#34;ONTOLOGY\u0026#34;) + facet_grid(ONTOLOGY~., scale=\u0026#39;free\u0026#39;) dev.off() ##气泡图 pdf(file=\u0026#34;GO-bubble.pdf\u0026#34;,width = 10,height = 15) dotplot(kk,showCategory = 10,label_format=100,split=\u0026#34;ONTOLOGY\u0026#34;) + facet_grid(ONTOLOGY~., scale=\u0026#39;free\u0026#39;) dev.off() ##圈图 ego\u0026lt;-read.table(\u0026#34;GO.txt\u0026#34;,sep=\u0026#34;\\t\u0026#34;,check.names=F,header=T) go=data.frame(Category =\u0026#34;ALL\u0026#34;,ID = ego$ID,Term = ego$Description, Genes = gsub(\u0026#34;/\u0026#34;, \u0026#34;, \u0026#34;, ego$geneID), adj_pval = ego$pvalue) id.fc=rt genelist \u0026lt;- data.frame(ID = id.fc$gene, logFC = id.fc$logFC) row.names(genelist)=genelist[,1] circ \u0026lt;- circle_dat(go, genelist) termNum = 5 #限定term数目 geneNum = nrow(genelist) #限定基因数目可以改为数字 chord \u0026lt;- chord_dat(circ, genelist[1:geneNum,], go$Term[1:termNum]) pdf(file=\u0026#34;GO_circ.pdf\u0026#34;,width = 12,height = 11) GOChord(chord, space = 0.001, #基因之间的间距 gene.order = \u0026#39;logFC\u0026#39;, #按照logFC值对基因排序 gene.space = 0.25, #基因名跟圆圈的相对距离 gene.size = 5, #基因名字体大小 border.size = 0.1, #线条粗细 process.label = 9) #term字体大小 dev.off() ####KEGG#### rt=read.table(\u0026#34;input.txt\u0026#34;,sep=\u0026#34;\\t\u0026#34;,check.names=F,header=T) #读取文件 genes=as.vector(rt[,1]) entrezIDs \u0026lt;- mget(genes, org.Hs.egSYMBOL2EG, ifnotfound=NA) #找出基因对应的id entrezIDs \u0026lt;- as.character(entrezIDs) out=cbind(rt,entrezID=entrezIDs) write.table(out,file=\u0026#34;KEGG-id.txt\u0026#34;,sep=\u0026#34;\\t\u0026#34;,quote=F,row.names=F) #输出结果 rt=read.table(\u0026#34;KEGG-id.txt\u0026#34;,sep=\u0026#34;\\t\u0026#34;,header=T,check.names=F) rt=rt[is.na(rt[,\u0026#34;entrezID\u0026#34;])==F,] gene=rt$entrezID #kegg分析 kk \u0026lt;- enrichKEGG(gene = gene,keyType = \u0026#34;kegg\u0026#34;,organism = \u0026#34;hsa\u0026#34;, pvalueCutoff =0.05, qvalueCutoff =0.05, pAdjustMethod = \u0026#34;fdr\u0026#34;) write.table(kk,file=\u0026#34;KEGG.txt\u0026#34;,sep=\u0026#34;\\t\u0026#34;,quote=F,row.names = F) #可视化 ##条形图 pdf(file=\u0026#34;KEGG-barplot.pdf\u0026#34;,width = 10,height = 13) barplot(kk, drop = TRUE, showCategory = 15,label_format=100) dev.off() ##气泡图 pdf(file=\u0026#34;KEGG-bubble.pdf\u0026#34;,width = 10,height = 13) dotplot(kk, showCategory = 15,label_format=100) dev.off() #圈图 ego\u0026lt;-read.table(\u0026#34;KEGG.txt\u0026#34;,sep=\u0026#34;\\t\u0026#34;,check.names=F,header=T) go=data.frame(Category =\u0026#34;ALL\u0026#34;,ID = ego$ID,Term = ego$Description, Genes = gsub(\u0026#34;/\u0026#34;, \u0026#34;, \u0026#34;, ego$geneID), adj_pval = ego$p.adjust) id.fc=rt genelist \u0026lt;- data.frame(ID = id.fc$entrezID, logFC = id.fc$logFC) row.names(genelist)=genelist[,1] row.names(rt)=rt[,3] circ \u0026lt;- circle_dat(go, genelist) termNum = 5 #限定term数目 geneNum = nrow(genelist) #限定基因数目可以改为数字 chord \u0026lt;- chord_dat(circ, genelist[1:geneNum,], go$Term[1:termNum]) sameSample=intersect(row.names(chord), row.names(rt)) rt=rt[sameSample,,drop=F] geneIDs=rt$gene row.names(chord)=geneIDs pdf(file=\u0026#34;KEGG_circ.pdf\u0026#34;,width = 12,height = 11) GOChord(chord, space = 0.001, #基因之间的间距 gene.order = \u0026#39;logFC\u0026#39;, #按照logFC值对基因排序 gene.space = 0.25, #基因名跟圆圈的相对距离 gene.size = 5, #基因名字体大小 border.size = 0.1, #线条粗细 process.label = 9) #term字体大小 dev.off() ",
+  "keywords": [
+    "old"
+  ],
+  "articleBody": "GO和KEGG分析 功能富集分析对于解释转录组学数据至关重要。转录组鉴定了差异表达基因后，通常会进行GO或KEGG富集分析，识别这些差异基因的功能或参与调控的通路，来说明关键基因表达上调/或下调后可能会导致哪功能或通路被激活/或抑制，进而与表型进行联系。\n(其实就是用DEG结果的进行的分析)\n为什么要做GO和KEGG分析 经过差异表达分析，我们得到了在对照组与实验组中差异表达的基因，说明改变的条件对这些基因的表达产生了影响，但是这样还不够，我们希望进一步知道具体是对哪些生物学功能/通路产生了影响，于是需要进行GO分析。\nGO、KEGG结果解读 富集分析，看完这篇就够\n别搜啦！关于富集分析你想知道的这里都有！\n使用R包clusterProfiler进行GO/KEGG富集分析（有参/无参）\n输入数据格式 一个表格，分别是Gene_Symbol和logFC，如下图所示：\n主要结果图 library(\"clusterProfiler\") library(\"enrichplot\") library(\"ggplot2\") library(\"org.Hs.eg.db\") library(\"GOplot\") #转换ID rt=read.table(\"input.txt\",sep=\"\\t\",check.names=F,header=T) genes=as.vector(rt[,1]) entrezIDs \u003c- mget(genes, org.Hs.egSYMBOL2EG, ifnotfound=NA) #找出基因对应的id entrezIDs \u003c- as.character(entrezIDs) out=cbind(rt,entrezID=entrezIDs) write.table(out,file=\"GO-id.txt\",sep=\"\\t\",quote=F,row.names=F) #输出结果 ####GO分析#### rt=read.table(\"GO-id.txt\",sep=\"\\t\",header=T,check.names=F) rt=rt[is.na(rt[,\"entrezID\"])==F,] gene=rt$entrezID #GO富集分析 kk \u003c- enrichGO(gene = gene,OrgDb = org.Hs.eg.db, pvalueCutoff =0.05, qvalueCutoff = 0.05,ont=\"all\",readable =T) write.table(kk,file=\"GO.txt\",sep=\"\\t\",quote=F,row.names = F) # #可视化 ##条形图 pdf(file=\"GO-barplot.pdf\",width = 10,height = 15) barplot(kk, drop = TRUE, showCategory =10,label_format=100,split=\"ONTOLOGY\") + facet_grid(ONTOLOGY~., scale='free') dev.off() ##气泡图 pdf(file=\"GO-bubble.pdf\",width = 10,height = 15) dotplot(kk,showCategory = 10,label_format=100,split=\"ONTOLOGY\") + facet_grid(ONTOLOGY~., scale='free') dev.off() ##圈图 ego\u003c-read.table(\"GO.txt\",sep=\"\\t\",check.names=F,header=T) go=data.frame(Category =\"ALL\",ID = ego$ID,Term = ego$Description, Genes = gsub(\"/\", \", \", ego$geneID), adj_pval = ego$pvalue) id.fc=rt genelist \u003c- data.frame(ID = id.fc$gene, logFC = id.fc$logFC) row.names(genelist)=genelist[,1] circ \u003c- circle_dat(go, genelist) termNum = 5 #限定term数目 geneNum = nrow(genelist) #限定基因数目可以改为数字 chord \u003c- chord_dat(circ, genelist[1:geneNum,], go$Term[1:termNum]) pdf(file=\"GO_circ.pdf\",width = 12,height = 11) GOChord(chord, space = 0.001, #基因之间的间距 gene.order = 'logFC', #按照logFC值对基因排序 gene.space = 0.25, #基因名跟圆圈的相对距离 gene.size = 5, #基因名字体大小 border.size = 0.1, #线条粗细 process.label = 9) #term字体大小 dev.off() ####KEGG#### rt=read.table(\"input.txt\",sep=\"\\t\",check.names=F,header=T) #读取文件 genes=as.vector(rt[,1]) entrezIDs \u003c- mget(genes, org.Hs.egSYMBOL2EG, ifnotfound=NA) #找出基因对应的id entrezIDs \u003c- as.character(entrezIDs) out=cbind(rt,entrezID=entrezIDs) write.table(out,file=\"KEGG-id.txt\",sep=\"\\t\",quote=F,row.names=F) #输出结果 rt=read.table(\"KEGG-id.txt\",sep=\"\\t\",header=T,check.names=F) rt=rt[is.na(rt[,\"entrezID\"])==F,] gene=rt$entrezID #kegg分析 kk \u003c- enrichKEGG(gene = gene,keyType = \"kegg\",organism = \"hsa\", pvalueCutoff =0.05, qvalueCutoff =0.05, pAdjustMethod = \"fdr\") write.table(kk,file=\"KEGG.txt\",sep=\"\\t\",quote=F,row.names = F) #可视化 ##条形图 pdf(file=\"KEGG-barplot.pdf\",width = 10,height = 13) barplot(kk, drop = TRUE, showCategory = 15,label_format=100) dev.off() ##气泡图 pdf(file=\"KEGG-bubble.pdf\",width = 10,height = 13) dotplot(kk, showCategory = 15,label_format=100) dev.off() #圈图 ego\u003c-read.table(\"KEGG.txt\",sep=\"\\t\",check.names=F,header=T) go=data.frame(Category =\"ALL\",ID = ego$ID,Term = ego$Description, Genes = gsub(\"/\", \", \", ego$geneID), adj_pval = ego$p.adjust) id.fc=rt genelist \u003c- data.frame(ID = id.fc$entrezID, logFC = id.fc$logFC) row.names(genelist)=genelist[,1] row.names(rt)=rt[,3] circ \u003c- circle_dat(go, genelist) termNum = 5 #限定term数目 geneNum = nrow(genelist) #限定基因数目可以改为数字 chord \u003c- chord_dat(circ, genelist[1:geneNum,], go$Term[1:termNum]) sameSample=intersect(row.names(chord), row.names(rt)) rt=rt[sameSample,,drop=F] geneIDs=rt$gene row.names(chord)=geneIDs pdf(file=\"KEGG_circ.pdf\",width = 12,height = 11) GOChord(chord, space = 0.001, #基因之间的间距 gene.order = 'logFC', #按照logFC值对基因排序 gene.space = 0.25, #基因名跟圆圈的相对距离 gene.size = 5, #基因名字体大小 border.size = 0.1, #线条粗细 process.label = 9) #term字体大小 dev.off() ",
+  "wordCount" : "305",
+  "inLanguage": "en",
+  "datePublished": "2023-08-06T18:39:29Z",
+  "dateModified": "2025-12-09T09:10:43.603Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://juiceright.xyz/old/posts/go%E5%92%8Ckegg%E5%88%86%E6%9E%90/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Juiceright",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://juiceright.xyz/" accesskey="h" title="Juiceright (Alt + H)">Juiceright</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://juiceright.xyz/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/archives/" title="Archives">
+                    <span>Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      GO和KEGG分析
+    </h1>
+    <div class="post-meta"><span title='2023-08-06 18:39:29 +0000 UTC'>August 6, 2023</span>&nbsp;·&nbsp;<span>2 min</span>
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="go和kegg分析">GO和KEGG分析<a hidden class="anchor" aria-hidden="true" href="#go和kegg分析">#</a></h1>
+<p>功能富集分析对于解释转录组学数据至关重要。转录组鉴定了<strong>差异表达基因</strong>后，通常会进行GO或KEGG富集分析，识别这些差异基因的功能或参与调控的通路，来说明<strong>关键基因表达上调/或下调后可能会导致哪功能或通路被激活/或抑制</strong>，进而与表型进行联系。</p>
+<p>(其实就是用DEG结果的进行的分析)</p>
+<h1 id="为什么要做go和kegg分析">为什么要做GO和KEGG分析<a hidden class="anchor" aria-hidden="true" href="#为什么要做go和kegg分析">#</a></h1>
+<p>经过差异表达分析，我们得到了在对照组与实验组中差异表达的基因，说明改变的条件对这些基因的表达产生了影响，但是这样还不够，我们希望进一步知道具体是<strong>对哪些生物学功能/通路产生了影响</strong>，于是需要进行GO分析。</p>
+<h1 id="gokegg结果解读">GO、KEGG结果解读<a hidden class="anchor" aria-hidden="true" href="#gokegg结果解读">#</a></h1>
+<p><a href="https://zhuanlan.zhihu.com/p/581773111">富集分析，看完这篇就够</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/339046340">别搜啦！关于富集分析你想知道的这里都有！</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/561522453">使用R包clusterProfiler进行GO/KEGG富集分析（有参/无参）</a></p>
+<h1 id="输入数据格式">输入数据格式<a hidden class="anchor" aria-hidden="true" href="#输入数据格式">#</a></h1>
+<p>一个表格，分别是Gene_Symbol和logFC，如下图所示：</p>
+<p><img loading="lazy" src="/images/202512/GO%E5%92%8CKEGG%E5%88%86%E6%9E%90/GO%E5%92%8CKEGG%E5%88%86%E6%9E%90-20251209171043582.jpg"></p>
+<h1 id="主要结果图">主要结果图<a hidden class="anchor" aria-hidden="true" href="#主要结果图">#</a></h1>
+<p><img loading="lazy" src="/images/202512/GO%E5%92%8CKEGG%E5%88%86%E6%9E%90/GO%E5%92%8CKEGG%E5%88%86%E6%9E%90-20251209171043595.jpg"></p>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;clusterProfiler&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;enrichplot&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;ggplot2&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;org.Hs.eg.db&#34;</span>) 
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(<span style="color:#e6db74">&#34;GOplot&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#转换ID</span>
+</span></span><span style="display:flex;"><span>rt<span style="color:#f92672">=</span><span style="color:#a6e22e">read.table</span>(<span style="color:#e6db74">&#34;input.txt&#34;</span>,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\t&#34;</span>,check.names<span style="color:#f92672">=</span>F,header<span style="color:#f92672">=</span>T)
+</span></span><span style="display:flex;"><span>genes<span style="color:#f92672">=</span><span style="color:#a6e22e">as.vector</span>(rt[,<span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>entrezIDs <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">mget</span>(genes, org.Hs.egSYMBOL2EG, ifnotfound<span style="color:#f92672">=</span><span style="color:#66d9ef">NA</span>)    <span style="color:#75715e">#找出基因对应的id</span>
+</span></span><span style="display:flex;"><span>entrezIDs <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.character</span>(entrezIDs)
+</span></span><span style="display:flex;"><span>out<span style="color:#f92672">=</span><span style="color:#a6e22e">cbind</span>(rt,entrezID<span style="color:#f92672">=</span>entrezIDs)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">write.table</span>(out,file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;GO-id.txt&#34;</span>,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\t&#34;</span>,quote<span style="color:#f92672">=</span>F,row.names<span style="color:#f92672">=</span>F)    <span style="color:#75715e">#输出结果</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">####GO分析####</span>
+</span></span><span style="display:flex;"><span>rt<span style="color:#f92672">=</span><span style="color:#a6e22e">read.table</span>(<span style="color:#e6db74">&#34;GO-id.txt&#34;</span>,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\t&#34;</span>,header<span style="color:#f92672">=</span>T,check.names<span style="color:#f92672">=</span>F)           
+</span></span><span style="display:flex;"><span>rt<span style="color:#f92672">=</span>rt<span style="color:#a6e22e">[is.na</span>(rt[,<span style="color:#e6db74">&#34;entrezID&#34;</span>])<span style="color:#f92672">==</span>F,]                                
+</span></span><span style="display:flex;"><span>gene<span style="color:#f92672">=</span>rt<span style="color:#f92672">$</span>entrezID
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#GO富集分析</span>
+</span></span><span style="display:flex;"><span>kk <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">enrichGO</span>(gene <span style="color:#f92672">=</span> gene,OrgDb <span style="color:#f92672">=</span> org.Hs.eg.db, pvalueCutoff <span style="color:#f92672">=</span><span style="color:#ae81ff">0.05</span>, qvalueCutoff <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.05</span>,ont<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;all&#34;</span>,readable <span style="color:#f92672">=</span>T)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">write.table</span>(kk,file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;GO.txt&#34;</span>,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\t&#34;</span>,quote<span style="color:#f92672">=</span>F,row.names <span style="color:#f92672">=</span> F) <span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#可视化</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##条形图</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">pdf</span>(file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;GO-barplot.pdf&#34;</span>,width <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>,height <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">barplot</span>(kk, drop <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, showCategory <span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,label_format<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>,split<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ONTOLOGY&#34;</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">facet_grid</span>(ONTOLOGY<span style="color:#f92672">~</span>., scale<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;free&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dev.off</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##气泡图</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">pdf</span>(file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;GO-bubble.pdf&#34;</span>,width <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>,height <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dotplot</span>(kk,showCategory <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>,label_format<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>,split<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ONTOLOGY&#34;</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">facet_grid</span>(ONTOLOGY<span style="color:#f92672">~</span>., scale<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;free&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dev.off</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##圈图</span>
+</span></span><span style="display:flex;"><span>ego<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">read.table</span>(<span style="color:#e6db74">&#34;GO.txt&#34;</span>,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\t&#34;</span>,check.names<span style="color:#f92672">=</span>F,header<span style="color:#f92672">=</span>T)
+</span></span><span style="display:flex;"><span>go<span style="color:#f92672">=</span><span style="color:#a6e22e">data.frame</span>(Category <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ALL&#34;</span>,ID <span style="color:#f92672">=</span> ego<span style="color:#f92672">$</span>ID,Term <span style="color:#f92672">=</span> ego<span style="color:#f92672">$</span>Description, Genes <span style="color:#f92672">=</span> <span style="color:#a6e22e">gsub</span>(<span style="color:#e6db74">&#34;/&#34;</span>, <span style="color:#e6db74">&#34;, &#34;</span>, ego<span style="color:#f92672">$</span>geneID), adj_pval <span style="color:#f92672">=</span> ego<span style="color:#f92672">$</span>pvalue)
+</span></span><span style="display:flex;"><span>id.fc<span style="color:#f92672">=</span>rt
+</span></span><span style="display:flex;"><span>genelist <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(ID <span style="color:#f92672">=</span> id.fc<span style="color:#f92672">$</span>gene, logFC <span style="color:#f92672">=</span> id.fc<span style="color:#f92672">$</span>logFC)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">row.names</span>(genelist)<span style="color:#f92672">=</span>genelist[,<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>circ <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">circle_dat</span>(go, genelist)
+</span></span><span style="display:flex;"><span>termNum <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>                                     <span style="color:#75715e">#限定term数目</span>
+</span></span><span style="display:flex;"><span>geneNum <span style="color:#f92672">=</span> <span style="color:#a6e22e">nrow</span>(genelist)                        <span style="color:#75715e">#限定基因数目可以改为数字</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>chord <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">chord_dat</span>(circ, genelist[1<span style="color:#f92672">:</span>geneNum,], go<span style="color:#f92672">$</span>Term[1<span style="color:#f92672">:</span>termNum])
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">pdf</span>(file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;GO_circ.pdf&#34;</span>,width <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span>,height <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">GOChord</span>(chord, 
+</span></span><span style="display:flex;"><span>        space <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.001</span>,           <span style="color:#75715e">#基因之间的间距</span>
+</span></span><span style="display:flex;"><span>        gene.order <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;logFC&#39;</span>,    <span style="color:#75715e">#按照logFC值对基因排序</span>
+</span></span><span style="display:flex;"><span>        gene.space <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.25</span>,       <span style="color:#75715e">#基因名跟圆圈的相对距离</span>
+</span></span><span style="display:flex;"><span>        gene.size <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>,           <span style="color:#75715e">#基因名字体大小 </span>
+</span></span><span style="display:flex;"><span>        border.size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>,       <span style="color:#75715e">#线条粗细</span>
+</span></span><span style="display:flex;"><span>        process.label <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>)       <span style="color:#75715e">#term字体大小</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dev.off</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">####KEGG####</span>
+</span></span><span style="display:flex;"><span>rt<span style="color:#f92672">=</span><span style="color:#a6e22e">read.table</span>(<span style="color:#e6db74">&#34;input.txt&#34;</span>,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\t&#34;</span>,check.names<span style="color:#f92672">=</span>F,header<span style="color:#f92672">=</span>T)    <span style="color:#75715e">#读取文件</span>
+</span></span><span style="display:flex;"><span>genes<span style="color:#f92672">=</span><span style="color:#a6e22e">as.vector</span>(rt[,<span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>entrezIDs <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">mget</span>(genes, org.Hs.egSYMBOL2EG, ifnotfound<span style="color:#f92672">=</span><span style="color:#66d9ef">NA</span>)    <span style="color:#75715e">#找出基因对应的id</span>
+</span></span><span style="display:flex;"><span>entrezIDs <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.character</span>(entrezIDs)
+</span></span><span style="display:flex;"><span>out<span style="color:#f92672">=</span><span style="color:#a6e22e">cbind</span>(rt,entrezID<span style="color:#f92672">=</span>entrezIDs)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">write.table</span>(out,file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;KEGG-id.txt&#34;</span>,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\t&#34;</span>,quote<span style="color:#f92672">=</span>F,row.names<span style="color:#f92672">=</span>F)    <span style="color:#75715e">#输出结果</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rt<span style="color:#f92672">=</span><span style="color:#a6e22e">read.table</span>(<span style="color:#e6db74">&#34;KEGG-id.txt&#34;</span>,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\t&#34;</span>,header<span style="color:#f92672">=</span>T,check.names<span style="color:#f92672">=</span>F)       
+</span></span><span style="display:flex;"><span>rt<span style="color:#f92672">=</span>rt<span style="color:#a6e22e">[is.na</span>(rt[,<span style="color:#e6db74">&#34;entrezID&#34;</span>])<span style="color:#f92672">==</span>F,]                             
+</span></span><span style="display:flex;"><span>gene<span style="color:#f92672">=</span>rt<span style="color:#f92672">$</span>entrezID
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#kegg分析</span>
+</span></span><span style="display:flex;"><span>kk <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">enrichKEGG</span>(gene <span style="color:#f92672">=</span> gene,keyType <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;kegg&#34;</span>,organism <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hsa&#34;</span>, pvalueCutoff <span style="color:#f92672">=</span><span style="color:#ae81ff">0.05</span>, qvalueCutoff <span style="color:#f92672">=</span><span style="color:#ae81ff">0.05</span>, pAdjustMethod <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fdr&#34;</span>)   
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">write.table</span>(kk,file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;KEGG.txt&#34;</span>,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\t&#34;</span>,quote<span style="color:#f92672">=</span>F,row.names <span style="color:#f92672">=</span> F)                         
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#可视化</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##条形图</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">pdf</span>(file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;KEGG-barplot.pdf&#34;</span>,width <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>,height <span style="color:#f92672">=</span> <span style="color:#ae81ff">13</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">barplot</span>(kk, drop <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, showCategory <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>,label_format<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dev.off</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##气泡图</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">pdf</span>(file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;KEGG-bubble.pdf&#34;</span>,width <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>,height <span style="color:#f92672">=</span> <span style="color:#ae81ff">13</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dotplot</span>(kk, showCategory <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>,label_format<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dev.off</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#圈图</span>
+</span></span><span style="display:flex;"><span>ego<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">read.table</span>(<span style="color:#e6db74">&#34;KEGG.txt&#34;</span>,sep<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\t&#34;</span>,check.names<span style="color:#f92672">=</span>F,header<span style="color:#f92672">=</span>T)
+</span></span><span style="display:flex;"><span>go<span style="color:#f92672">=</span><span style="color:#a6e22e">data.frame</span>(Category <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ALL&#34;</span>,ID <span style="color:#f92672">=</span> ego<span style="color:#f92672">$</span>ID,Term <span style="color:#f92672">=</span> ego<span style="color:#f92672">$</span>Description, Genes <span style="color:#f92672">=</span> <span style="color:#a6e22e">gsub</span>(<span style="color:#e6db74">&#34;/&#34;</span>, <span style="color:#e6db74">&#34;, &#34;</span>, ego<span style="color:#f92672">$</span>geneID), adj_pval <span style="color:#f92672">=</span> ego<span style="color:#f92672">$</span>p.adjust)
+</span></span><span style="display:flex;"><span>id.fc<span style="color:#f92672">=</span>rt
+</span></span><span style="display:flex;"><span>genelist <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(ID <span style="color:#f92672">=</span> id.fc<span style="color:#f92672">$</span>entrezID, logFC <span style="color:#f92672">=</span> id.fc<span style="color:#f92672">$</span>logFC)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">row.names</span>(genelist)<span style="color:#f92672">=</span>genelist[,<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">row.names</span>(rt)<span style="color:#f92672">=</span>rt[,<span style="color:#ae81ff">3</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>circ <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">circle_dat</span>(go, genelist)
+</span></span><span style="display:flex;"><span>termNum <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>                                     <span style="color:#75715e">#限定term数目</span>
+</span></span><span style="display:flex;"><span>geneNum <span style="color:#f92672">=</span> <span style="color:#a6e22e">nrow</span>(genelist)                        <span style="color:#75715e">#限定基因数目可以改为数字</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>chord <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">chord_dat</span>(circ, genelist[1<span style="color:#f92672">:</span>geneNum,], go<span style="color:#f92672">$</span>Term[1<span style="color:#f92672">:</span>termNum])
+</span></span><span style="display:flex;"><span>sameSample<span style="color:#f92672">=</span><span style="color:#a6e22e">intersect</span>(<span style="color:#a6e22e">row.names</span>(chord), <span style="color:#a6e22e">row.names</span>(rt))
+</span></span><span style="display:flex;"><span>rt<span style="color:#f92672">=</span>rt[sameSample,,drop<span style="color:#f92672">=</span>F]
+</span></span><span style="display:flex;"><span>geneIDs<span style="color:#f92672">=</span>rt<span style="color:#f92672">$</span>gene
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">row.names</span>(chord)<span style="color:#f92672">=</span>geneIDs
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">pdf</span>(file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;KEGG_circ.pdf&#34;</span>,width <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span>,height <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">GOChord</span>(chord, 
+</span></span><span style="display:flex;"><span>        space <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.001</span>,           <span style="color:#75715e">#基因之间的间距</span>
+</span></span><span style="display:flex;"><span>        gene.order <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;logFC&#39;</span>,    <span style="color:#75715e">#按照logFC值对基因排序</span>
+</span></span><span style="display:flex;"><span>        gene.space <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.25</span>,       <span style="color:#75715e">#基因名跟圆圈的相对距离</span>
+</span></span><span style="display:flex;"><span>        gene.size <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>,           <span style="color:#75715e">#基因名字体大小 </span>
+</span></span><span style="display:flex;"><span>        border.size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>,       <span style="color:#75715e">#线条粗细</span>
+</span></span><span style="display:flex;"><span>        process.label <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>)       <span style="color:#75715e">#term字体大小</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dev.off</span>()
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://juiceright.xyz/tags/old/">Old</a></li>
+    </ul>
+  </footer><div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: 'Ov23liuWJuk8S1oC4VRp',
+    clientSecret: 'dd9a460fc89c99acdf580410cffacf5f1e9aa032',
+    repo: 'juiceright.github.io',
+    owner: 'juiceright',
+    admin: ['juiceright'],
+    id: decodeURI(location.pathname), 
+    distractionFreeMode: true 
+  });
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+      return;
+    }
+    gitalk.render('gitalk-container');
+  })();
+</script>
+
+</article>
+    </main>
+    
+
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://juiceright.xyz/">Juiceright</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+        
+        <div id="busuanzi_stats" style="display:none;"> ·  <span>👥 <span id="busuanzi_value_site_uv"></span></span> <span>|</span> <span>🌐 <span id="busuanzi_value_site_pv"></span></span> <span>|</span> <span>📖 <span id="busuanzi_value_page_pv"></span></span> </div> 
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a><script> let s = document.createElement('script'); s.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'; s.onload = () => document.getElementById('busuanzi_stats').style.display = 'inline-block'; document.head.appendChild(s); </script>
+
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

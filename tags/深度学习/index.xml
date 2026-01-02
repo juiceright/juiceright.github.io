@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>深度学习 on Juiceright</title>
+    <link>https://juiceright.xyz/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</link>
+    <description>Recent content in 深度学习 on Juiceright</description>
+    <generator>Hugo -- 0.154.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 09 Dec 2025 09:10:42 +0000</lastBuildDate>
+    <atom:link href="https://juiceright.xyz/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>【深度学习】手写数字图像识别分类（MNIST数据集）</title>
+      <link>https://juiceright.xyz/old/posts/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB%E5%88%86%E7%B1%BBmnist%E6%95%B0%E6%8D%AE%E9%9B%86/</link>
+      <pubDate>Sat, 01 Apr 2023 20:09:50 +0000</pubDate>
+      <guid>https://juiceright.xyz/old/posts/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB%E5%88%86%E7%B1%BBmnist%E6%95%B0%E6%8D%AE%E9%9B%86/</guid>
+      <description>&lt;h1 id=&#34;卷积神经网络&#34;&gt;卷积神经网络&lt;/h1&gt;
+&lt;h2 id=&#34;mnist介绍&#34;&gt;MNIST介绍&lt;/h2&gt;
+&lt;p&gt;MNIST 数据集可在 &lt;a href=&#34;http://yann.lecun.com/exdb/mnist/&#34;&gt;http://yann.lecun.com/exdb/mnist/&lt;/a&gt; 获取, 它包含了四个部分:&lt;/p&gt;
+&lt;p&gt;Training set images: train-images-idx3-ubyte.gz (9.9 MB, 解压后 47 MB, 包含 60,000 个样本)&lt;br&gt;
+Training set labels: train-labels-idx1-ubyte.gz (29 KB, 解压后 60 KB, 包含 60,000 个标签)&lt;br&gt;
+Test set images: t10k-images-idx3-ubyte.gz (1.6 MB, 解压后 7.8 MB, 包含 10,000 个样本)&lt;br&gt;
+Test set labels: t10k-labels-idx1-ubyte.gz (5KB, 解压后 10 KB, 包含 10,000 个标签)&lt;/p&gt;
+&lt;p&gt;MNIST 数据集来自美国国家标准与技术研究所, National Institute of Standards and Technology (NIST). 训练集 (training set) 由来自 250 个不同人手写的数字构成, 其中 50% 是高中学生, 50% 来自人口普查局 (the Census Bureau) 的工作人员. 测试集(test set) 也是同样比例的手写数字数据.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

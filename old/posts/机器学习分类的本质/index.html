@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>机器学习分类的本质 | Juiceright</title>
+<meta name="keywords" content="old">
+<meta name="description" content="机器学习分类的本质
+引入
+机器学习中，基本的任务可以分为三类：分类、回归和聚类。
+分类和回归的区别在于，分类的输出是离散的，而回归的输出是连续的。聚类的任务是将数据集中的样本分成若干个类别，每个类别称为一个簇，簇内的样本相似度较高，而簇间的样本相似度较低。其中，分类和回归的任务是有监督学习，而聚类的任务是无监督学习。
+分类问题
+本次主要介绍分类问题，它属于监督学习的范畴。
+分类的本质是学习一个分类函数，将输入空间映射到输出空间，即：$f: \mathcal{X} \rightarrow \mathcal{Y}$，其中，$\mathcal{X}$是输入空间，$\mathcal{Y}$是输出空间。
+一般来说，输入空间是由特征向量构成的，即：$\mathcal{X} = \mathbb{R}^n$，输出空间是离散的，即：$\mathcal{Y} = {c_1, c_2, \cdots, c_k}$，其中，$c_i$是类别标签。
+特征向量是由特征构成的，就是对样本的描述，是样本的某个属性。
+这里面就可以构建给出两个特征向量：
+（5.1，3.5，1.4，0.2）、（4.9，3，1.4，0.2）
+
+
+特征的选择对分类的性能有很大的影响，特征的选择应该具有以下几个特点：
+
+
+特征应该能够很好地区分不同类别的样本。
+
+
+特征应该具有可解释性，即：特征应该能够很好地解释样本的类别。
+
+
+特征应该具有鲁棒性。（泛化能力）
+
+
+特征应该具有可扩展性，能够很好地扩展到新的样本。
+
+
+特征应该具有可计算性。
+
+
+特征应该具有低维性。
+
+
+
+
+输出空间是离散的，即：$\mathcal{Y} = {c_1, c_2, \cdots, c_k}$，其中，$c_i$是类别标签。
+在我接触的的深度学习分类中，一般将输出空间定义为独热编码（One-Hot Encoding）的形式，即：$\mathcal{Y} = {[1, 0, \cdots, 0], [0, 1, \cdots, 0], \cdots, [0, 0, \cdots, 1]}$，其中，$[1, 0, \cdots, 0]$表示类别$c_1$，$[0, 1, \cdots, 0]$表示类别$c_2$，以此类推。
+
+
+独热编码是一种常用的编码方式，它将离散的类别标签转换为离散的向量，其中，向量的维度等于类别的个数，向量的值等于类别的索引。独热编码的好处是，它能够很好地表示类别之间的关系，而且它的值是离散的，不会产生类别之间的大小关系。
+
+
+通常机器学习中输出的结果一般不是只有0和1，而是在0~1之间的小数，这个小数表示样本属于某个类别的概率，即：$P(Y=c_i|X)$，其中，$c_i$是类别标签，$X$是特征向量。
+分类的方法
+分类的方法主要分为两类：生成方法和判别方法。
+生成方法
+生成方法是通过学习联合概率分布$P(X, Y)$来进行分类的，即：$P(Y|X) = \frac{P(X, Y)}{P(X)}$，其中，$P(Y|X)$是后验概率，$P(X)$是先验概率，$P(X, Y)$是联合概率分布。
+朴素贝叶斯
+朴素贝叶斯是一种生成方法，它假设特征之间相互独立，即：$P(X|Y) = \prod_{i=1}^n P(x_i|Y)$，其中，$x_i$是特征向量的第$i$个特征。">
+<meta name="author" content="">
+<link rel="canonical" href="https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E7%9A%84%E6%9C%AC%E8%B4%A8/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a?s=16">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a?s=32">
+<link rel="apple-touch-icon" href="https://juiceright.xyz/apple-touch-icon.png">
+<link rel="mask-icon" href="https://juiceright.xyz/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E7%9A%84%E6%9C%AC%E8%B4%A8/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E7%9A%84%E6%9C%AC%E8%B4%A8/">
+  <meta property="og:site_name" content="Juiceright">
+  <meta property="og:title" content="机器学习分类的本质">
+  <meta property="og:description" content="机器学习分类的本质 引入 机器学习中，基本的任务可以分为三类：分类、回归和聚类。
+分类和回归的区别在于，分类的输出是离散的，而回归的输出是连续的。聚类的任务是将数据集中的样本分成若干个类别，每个类别称为一个簇，簇内的样本相似度较高，而簇间的样本相似度较低。其中，分类和回归的任务是有监督学习，而聚类的任务是无监督学习。
+分类问题 本次主要介绍分类问题，它属于监督学习的范畴。
+分类的本质是学习一个分类函数，将输入空间映射到输出空间，即：$f: \mathcal{X} \rightarrow \mathcal{Y}$，其中，$\mathcal{X}$是输入空间，$\mathcal{Y}$是输出空间。
+一般来说，输入空间是由特征向量构成的，即：$\mathcal{X} = \mathbb{R}^n$，输出空间是离散的，即：$\mathcal{Y} = {c_1, c_2, \cdots, c_k}$，其中，$c_i$是类别标签。
+特征向量是由特征构成的，就是对样本的描述，是样本的某个属性。
+这里面就可以构建给出两个特征向量：
+（5.1，3.5，1.4，0.2）、（4.9，3，1.4，0.2）
+特征的选择对分类的性能有很大的影响，特征的选择应该具有以下几个特点：
+特征应该能够很好地区分不同类别的样本。
+特征应该具有可解释性，即：特征应该能够很好地解释样本的类别。
+特征应该具有鲁棒性。（泛化能力）
+特征应该具有可扩展性，能够很好地扩展到新的样本。
+特征应该具有可计算性。
+特征应该具有低维性。
+输出空间是离散的，即：$\mathcal{Y} = {c_1, c_2, \cdots, c_k}$，其中，$c_i$是类别标签。
+在我接触的的深度学习分类中，一般将输出空间定义为独热编码（One-Hot Encoding）的形式，即：$\mathcal{Y} = {[1, 0, \cdots, 0], [0, 1, \cdots, 0], \cdots, [0, 0, \cdots, 1]}$，其中，$[1, 0, \cdots, 0]$表示类别$c_1$，$[0, 1, \cdots, 0]$表示类别$c_2$，以此类推。
+独热编码是一种常用的编码方式，它将离散的类别标签转换为离散的向量，其中，向量的维度等于类别的个数，向量的值等于类别的索引。独热编码的好处是，它能够很好地表示类别之间的关系，而且它的值是离散的，不会产生类别之间的大小关系。
+通常机器学习中输出的结果一般不是只有0和1，而是在0~1之间的小数，这个小数表示样本属于某个类别的概率，即：$P(Y=c_i|X)$，其中，$c_i$是类别标签，$X$是特征向量。
+分类的方法 分类的方法主要分为两类：生成方法和判别方法。
+生成方法 生成方法是通过学习联合概率分布$P(X, Y)$来进行分类的，即：$P(Y|X) = \frac{P(X, Y)}{P(X)}$，其中，$P(Y|X)$是后验概率，$P(X)$是先验概率，$P(X, Y)$是联合概率分布。
+朴素贝叶斯 朴素贝叶斯是一种生成方法，它假设特征之间相互独立，即：$P(X|Y) = \prod_{i=1}^n P(x_i|Y)$，其中，$x_i$是特征向量的第$i$个特征。">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="old">
+    <meta property="article:published_time" content="2023-05-21T18:57:29+00:00">
+    <meta property="article:modified_time" content="2025-12-04T10:18:33+00:00">
+    <meta property="article:tag" content="Old">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习分类的本质">
+<meta name="twitter:description" content="机器学习分类的本质
+引入
+机器学习中，基本的任务可以分为三类：分类、回归和聚类。
+分类和回归的区别在于，分类的输出是离散的，而回归的输出是连续的。聚类的任务是将数据集中的样本分成若干个类别，每个类别称为一个簇，簇内的样本相似度较高，而簇间的样本相似度较低。其中，分类和回归的任务是有监督学习，而聚类的任务是无监督学习。
+分类问题
+本次主要介绍分类问题，它属于监督学习的范畴。
+分类的本质是学习一个分类函数，将输入空间映射到输出空间，即：$f: \mathcal{X} \rightarrow \mathcal{Y}$，其中，$\mathcal{X}$是输入空间，$\mathcal{Y}$是输出空间。
+一般来说，输入空间是由特征向量构成的，即：$\mathcal{X} = \mathbb{R}^n$，输出空间是离散的，即：$\mathcal{Y} = {c_1, c_2, \cdots, c_k}$，其中，$c_i$是类别标签。
+特征向量是由特征构成的，就是对样本的描述，是样本的某个属性。
+这里面就可以构建给出两个特征向量：
+（5.1，3.5，1.4，0.2）、（4.9，3，1.4，0.2）
+
+
+特征的选择对分类的性能有很大的影响，特征的选择应该具有以下几个特点：
+
+
+特征应该能够很好地区分不同类别的样本。
+
+
+特征应该具有可解释性，即：特征应该能够很好地解释样本的类别。
+
+
+特征应该具有鲁棒性。（泛化能力）
+
+
+特征应该具有可扩展性，能够很好地扩展到新的样本。
+
+
+特征应该具有可计算性。
+
+
+特征应该具有低维性。
+
+
+
+
+输出空间是离散的，即：$\mathcal{Y} = {c_1, c_2, \cdots, c_k}$，其中，$c_i$是类别标签。
+在我接触的的深度学习分类中，一般将输出空间定义为独热编码（One-Hot Encoding）的形式，即：$\mathcal{Y} = {[1, 0, \cdots, 0], [0, 1, \cdots, 0], \cdots, [0, 0, \cdots, 1]}$，其中，$[1, 0, \cdots, 0]$表示类别$c_1$，$[0, 1, \cdots, 0]$表示类别$c_2$，以此类推。
+
+
+独热编码是一种常用的编码方式，它将离散的类别标签转换为离散的向量，其中，向量的维度等于类别的个数，向量的值等于类别的索引。独热编码的好处是，它能够很好地表示类别之间的关系，而且它的值是离散的，不会产生类别之间的大小关系。
+
+
+通常机器学习中输出的结果一般不是只有0和1，而是在0~1之间的小数，这个小数表示样本属于某个类别的概率，即：$P(Y=c_i|X)$，其中，$c_i$是类别标签，$X$是特征向量。
+分类的方法
+分类的方法主要分为两类：生成方法和判别方法。
+生成方法
+生成方法是通过学习联合概率分布$P(X, Y)$来进行分类的，即：$P(Y|X) = \frac{P(X, Y)}{P(X)}$，其中，$P(Y|X)$是后验概率，$P(X)$是先验概率，$P(X, Y)$是联合概率分布。
+朴素贝叶斯
+朴素贝叶斯是一种生成方法，它假设特征之间相互独立，即：$P(X|Y) = \prod_{i=1}^n P(x_i|Y)$，其中，$x_i$是特征向量的第$i$个特征。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Olds",
+      "item": "https://juiceright.xyz/old/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "机器学习分类的本质",
+      "item": "https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E7%9A%84%E6%9C%AC%E8%B4%A8/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "机器学习分类的本质",
+  "name": "机器学习分类的本质",
+  "description": "机器学习分类的本质 引入 机器学习中，基本的任务可以分为三类：分类、回归和聚类。\n分类和回归的区别在于，分类的输出是离散的，而回归的输出是连续的。聚类的任务是将数据集中的样本分成若干个类别，每个类别称为一个簇，簇内的样本相似度较高，而簇间的样本相似度较低。其中，分类和回归的任务是有监督学习，而聚类的任务是无监督学习。\n分类问题 本次主要介绍分类问题，它属于监督学习的范畴。\n分类的本质是学习一个分类函数，将输入空间映射到输出空间，即：$f: \\mathcal{X} \\rightarrow \\mathcal{Y}$，其中，$\\mathcal{X}$是输入空间，$\\mathcal{Y}$是输出空间。\n一般来说，输入空间是由特征向量构成的，即：$\\mathcal{X} = \\mathbb{R}^n$，输出空间是离散的，即：$\\mathcal{Y} = {c_1, c_2, \\cdots, c_k}$，其中，$c_i$是类别标签。\n特征向量是由特征构成的，就是对样本的描述，是样本的某个属性。\n这里面就可以构建给出两个特征向量：\n（5.1，3.5，1.4，0.2）、（4.9，3，1.4，0.2）\n特征的选择对分类的性能有很大的影响，特征的选择应该具有以下几个特点：\n特征应该能够很好地区分不同类别的样本。\n特征应该具有可解释性，即：特征应该能够很好地解释样本的类别。\n特征应该具有鲁棒性。（泛化能力）\n特征应该具有可扩展性，能够很好地扩展到新的样本。\n特征应该具有可计算性。\n特征应该具有低维性。\n输出空间是离散的，即：$\\mathcal{Y} = {c_1, c_2, \\cdots, c_k}$，其中，$c_i$是类别标签。\n在我接触的的深度学习分类中，一般将输出空间定义为独热编码（One-Hot Encoding）的形式，即：$\\mathcal{Y} = {[1, 0, \\cdots, 0], [0, 1, \\cdots, 0], \\cdots, [0, 0, \\cdots, 1]}$，其中，$[1, 0, \\cdots, 0]$表示类别$c_1$，$[0, 1, \\cdots, 0]$表示类别$c_2$，以此类推。\n独热编码是一种常用的编码方式，它将离散的类别标签转换为离散的向量，其中，向量的维度等于类别的个数，向量的值等于类别的索引。独热编码的好处是，它能够很好地表示类别之间的关系，而且它的值是离散的，不会产生类别之间的大小关系。\n通常机器学习中输出的结果一般不是只有0和1，而是在0~1之间的小数，这个小数表示样本属于某个类别的概率，即：$P(Y=c_i|X)$，其中，$c_i$是类别标签，$X$是特征向量。\n分类的方法 分类的方法主要分为两类：生成方法和判别方法。\n生成方法 生成方法是通过学习联合概率分布$P(X, Y)$来进行分类的，即：$P(Y|X) = \\frac{P(X, Y)}{P(X)}$，其中，$P(Y|X)$是后验概率，$P(X)$是先验概率，$P(X, Y)$是联合概率分布。\n朴素贝叶斯 朴素贝叶斯是一种生成方法，它假设特征之间相互独立，即：$P(X|Y) = \\prod_{i=1}^n P(x_i|Y)$，其中，$x_i$是特征向量的第$i$个特征。\n",
+  "keywords": [
+    "old"
+  ],
+  "articleBody": "机器学习分类的本质 引入 机器学习中，基本的任务可以分为三类：分类、回归和聚类。\n分类和回归的区别在于，分类的输出是离散的，而回归的输出是连续的。聚类的任务是将数据集中的样本分成若干个类别，每个类别称为一个簇，簇内的样本相似度较高，而簇间的样本相似度较低。其中，分类和回归的任务是有监督学习，而聚类的任务是无监督学习。\n分类问题 本次主要介绍分类问题，它属于监督学习的范畴。\n分类的本质是学习一个分类函数，将输入空间映射到输出空间，即：$f: \\mathcal{X} \\rightarrow \\mathcal{Y}$，其中，$\\mathcal{X}$是输入空间，$\\mathcal{Y}$是输出空间。\n一般来说，输入空间是由特征向量构成的，即：$\\mathcal{X} = \\mathbb{R}^n$，输出空间是离散的，即：$\\mathcal{Y} = {c_1, c_2, \\cdots, c_k}$，其中，$c_i$是类别标签。\n特征向量是由特征构成的，就是对样本的描述，是样本的某个属性。\n这里面就可以构建给出两个特征向量：\n（5.1，3.5，1.4，0.2）、（4.9，3，1.4，0.2）\n特征的选择对分类的性能有很大的影响，特征的选择应该具有以下几个特点：\n特征应该能够很好地区分不同类别的样本。\n特征应该具有可解释性，即：特征应该能够很好地解释样本的类别。\n特征应该具有鲁棒性。（泛化能力）\n特征应该具有可扩展性，能够很好地扩展到新的样本。\n特征应该具有可计算性。\n特征应该具有低维性。\n输出空间是离散的，即：$\\mathcal{Y} = {c_1, c_2, \\cdots, c_k}$，其中，$c_i$是类别标签。\n在我接触的的深度学习分类中，一般将输出空间定义为独热编码（One-Hot Encoding）的形式，即：$\\mathcal{Y} = {[1, 0, \\cdots, 0], [0, 1, \\cdots, 0], \\cdots, [0, 0, \\cdots, 1]}$，其中，$[1, 0, \\cdots, 0]$表示类别$c_1$，$[0, 1, \\cdots, 0]$表示类别$c_2$，以此类推。\n独热编码是一种常用的编码方式，它将离散的类别标签转换为离散的向量，其中，向量的维度等于类别的个数，向量的值等于类别的索引。独热编码的好处是，它能够很好地表示类别之间的关系，而且它的值是离散的，不会产生类别之间的大小关系。\n通常机器学习中输出的结果一般不是只有0和1，而是在0~1之间的小数，这个小数表示样本属于某个类别的概率，即：$P(Y=c_i|X)$，其中，$c_i$是类别标签，$X$是特征向量。\n分类的方法 分类的方法主要分为两类：生成方法和判别方法。\n生成方法 生成方法是通过学习联合概率分布$P(X, Y)$来进行分类的，即：$P(Y|X) = \\frac{P(X, Y)}{P(X)}$，其中，$P(Y|X)$是后验概率，$P(X)$是先验概率，$P(X, Y)$是联合概率分布。\n朴素贝叶斯 朴素贝叶斯是一种生成方法，它假设特征之间相互独立，即：$P(X|Y) = \\prod_{i=1}^n P(x_i|Y)$，其中，$x_i$是特征向量的第$i$个特征。\n例子：假设有一个数据集，其中，每个样本有两个特征，分别是$x_1$和$x_2$，它们的取值都是离散的，分别是${a, b, c}$和${1, 2, 3}$，类别标签是${0, 1}$，那么，朴素贝叶斯的联合概率分布可以表示为：$P(X, Y) = P(x_1, x_2, Y) = P(x_1|Y)P(x_2|Y)P(Y)$，其中，$P(x_1|Y)$和$P(x_2|Y)$可以通过统计样本的频率来计算，$P(Y)$可以通过统计样本的频率来计算。\n朴素贝叶斯的优点是：它的学习和预测的效率都很高，而且它的结果具有很好的解释性。\n朴素贝叶斯的缺点是：它的假设过于简单，导致它的泛化能力不够强。\n高斯贝叶斯 高斯贝叶斯是一种生成方法，它假设特征的条件概率服从高斯分布，即：$P(X|Y) \\sim \\mathcal{N}(\\mu, \\sigma^2)$，其中，$\\mu$是均值，$\\sigma^2$是方差。然后，利用贝叶斯公式，计算后验概率，从而进行分类。\n例子：假设有一个数据集，其中，每个样本有两个特征，分别是$x_1$和$x_2$，它们的取值都是连续的，那么，高斯判别分析的条件概率可以表示为：$P(X|Y) = P(x_1, x_2|Y) = P(x_1|Y)P(x_2|Y)$，其中，$P(x_1|Y)$和$P(x_2|Y)$可以通过统计样本的均值和方差来计算。\n高斯判别分析的优点是：它的假设比较合理，而且它的泛化能力比较强。\n高斯判别分析的缺点是：它的计算量比较大，而且它的结果具有一定的误差。\n伯努利贝叶斯 伯努利贝叶斯是一种生成方法，它假设特征的条件概率服从伯努利分布，即：$P(X|Y) \\sim \\mathcal{B}(p)$，其中，$p$是概率。然后，利用贝叶斯公式，计算后验概率，从而进行分类。\n！大同小异！！ 朴素贝叶斯、高斯贝叶斯和伯努利贝叶斯都是生成方法，它们的区别在于它们对条件概率的分布的假设不同，朴素贝叶斯假设条件概率服从多项式分布，高斯贝叶斯假设条件概率服从高斯分布，伯努利贝叶斯假设条件概率服从伯努利分布。\n判别方法 判别方法是通过学习决策函数$f(X)$或者条件概率分布$P(Y|X)$来进行分类的，即：$Y = f(X)$或者$P(Y|X)$。\nK近邻 K近邻是一种判别方法，它的思想是：如果一个样本的近邻中大多数样本属于某个类别，那么该样本也属于该类别。K近邻的K是一个超参数，它决定了近邻的个数。K近邻的算法如下：\n计算测试样本与训练样本的距离: d = sqrt((x1-x2)^2 + (y1-y2)^2) (欧几里得距离，也可能使用其他距离：曼哈顿距离、切比雪夫距离等） 曼哈顿距离: d = |x1-x2| + |y1-y2|，切比雪夫距离: d = max(|x1-x2|, |y1-y2|)\n选取距离最近的K个训练样本: d1, d2, ..., dk\n统计K个训练样本中各个类别的数量: c1, c2, ..., ck\n选取数量最多的类别作为测试样本的类别\n决策树 决策树是一种判别方法，它的思想是：通过一系列的问题，将样本分到不同的类别中。决策树的算法如下：\n选择一个特征，将样本分成不同的类别 : $x_i \u003c t$，则为左子树，否则为右子树\n对每个类别，重复步骤1，直到所有的样本都被正确地分类 : $x_i \u003c t$，则为左子树，否则为右子树\n反复寻找，简化决策树\n例子：假设有一个数据集，其中，每个样本有两个特征，分别是$x_1$和$x_2$，它们的取值都是连续的，那么，决策树可以表示为：$x_1 \u003c t_1$，则为左子树，否则为右子树，其中，$t_1$可以通过决策树的算法计算得到。同理，对于左子树，可以继续选择一个特征，将样本分成不同的类别，直到所有的样本都被正确地分类。\n随机森林 随机森林是一种集成方法，它的思想是：通过多棵决策树，将样本分到不同的类别中。随机森林的算法如下：\n从样本集中随机选择k个样本，作为训练样本\n从特征集中随机选择m个特征，作为训练特征\n通过决策树的算法，训练一棵决策树\n重复1-3步骤，训练多棵决策树\n对于新的样本，通过多棵决策树进行分类，选择票数最多的类别作为测试样本的类别\n支持向量机 支持向量机是一种判别方法，它的思想是：找到一个超平面，使得它能够将不同类别的样本分开，而且它离两个类别的样本都有一定的距离。支持向量机的算法如下：\n选择一个核函数，将样本映射到高维空间: $x \\rightarrow \\phi(x)$ 核函数：线性函数、多项式函数、高斯核函数等\n在高维空间中找到一个超平面，使得它能够将不同类别的样本分开，而且它离两个类别的样本都有一定的距离: $w^T\\phi(x) + b = 0$\n将超平面映射回原始空间: $w^T\\phi(x) + b = 0 \\rightarrow w^Tx + b = 0$\n利用超平面对新的样本进行分类: $w^Tx + b \u003e 0$，则为正类，否则为负类\n例子：假设有一个数据集，其中，每个样本有两个特征，分别是$x_1$和$x_2$，它们的取值都是连续的，那么，支持向量机的超平面可以表示为：$w_1x_1 + w_2x_2 + b = 0$，其中，$w_1$和$w_2$可以通过支持向量机的算法计算得到，$b$可以通过统计样本的均值和方差来计算。大于0的样本属于正类，小于0的样本属于负类。\n神经网络 神经网络是一种判别方法，它的思想是：通过多层的神经元，将样本分到不同的类别中。神经网络的算法如下：\n初始化神经网络的权重和偏置: w和b\n通过前向传播计算每个神经元的输出: z = w * x + b和a = sigmoid(z),其中x是输入，a是输出\n通过反向传播计算每个神经元的梯度: dw和db\n通过梯度下降更新神经网络的权重和偏置: w = w - lr * dw和b = b - lr * db\n重复2-4步骤，直到收敛: loss = -y * log(a) - (1 - y) * log(1 - a)（二元交叉熵的损失函数，BCCE）\n例子：假设有一个数据集，其中，每个样本有两个特征，分别是$x_1$和$x_2$，它们的取值都是连续的，那么，神经网络的输出可以表示为：$a = sigmoid(w_1x_1 + w_2x_2 + b)$，其中，$w_1$和$w_2$可以通过神经网络的算法计算得到，$b$可以通过统计样本的均值和方差来计算。大于0.5的样本属于正类，小于0.5的样本属于负类。\n判别方法的共同点 判别方法的共同点是：它们都是通过一些参数，将样本分到不同的类别中。例如：k近邻通过选择k个最近的样本，将样本分到不同的类别中；决策树通过选择特征，将样本分到不同的类别中；随机森林通过选择特征和样本，将样本分到不同的类别中；支持向量机通过选择超平面，将样本分到不同的类别中；神经网络通过选择权重和偏置，将样本分到不同的类别中。\n",
+  "wordCount" : "254",
+  "inLanguage": "en",
+  "datePublished": "2023-05-21T18:57:29Z",
+  "dateModified": "2025-12-04T10:18:33.145Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E7%9A%84%E6%9C%AC%E8%B4%A8/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Juiceright",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://juiceright.xyz/" accesskey="h" title="Juiceright (Alt + H)">Juiceright</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://juiceright.xyz/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/archives/" title="Archives">
+                    <span>Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      机器学习分类的本质
+    </h1>
+    <div class="post-meta"><span title='2023-05-21 18:57:29 +0000 UTC'>May 21, 2023</span>&nbsp;·&nbsp;<span>2 min</span>
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="机器学习分类的本质">机器学习分类的本质<a hidden class="anchor" aria-hidden="true" href="#机器学习分类的本质">#</a></h1>
+<h2 id="引入">引入<a hidden class="anchor" aria-hidden="true" href="#引入">#</a></h2>
+<p>机器学习中，基本的任务可以分为三类：分类、回归和聚类。</p>
+<p>分类和回归的区别在于，分类的输出是离散的，而回归的输出是连续的。聚类的任务是将数据集中的样本分成若干个类别，每个类别称为一个簇，簇内的样本相似度较高，而簇间的样本相似度较低。其中，分类和回归的任务是有监督学习，而聚类的任务是无监督学习。</p>
+<h2 id="分类问题">分类问题<a hidden class="anchor" aria-hidden="true" href="#分类问题">#</a></h2>
+<p>本次主要介绍分类问题，它属于监督学习的范畴。</p>
+<p>分类的本质是学习一个分类函数，将输入空间映射到输出空间，即：$f: \mathcal{X} \rightarrow \mathcal{Y}$，其中，$\mathcal{X}$是输入空间，$\mathcal{Y}$是输出空间。</p>
+<p>一般来说，输入空间是由特征向量构成的，即：$\mathcal{X} = \mathbb{R}^n$，输出空间是离散的，即：$\mathcal{Y} = {c_1, c_2, \cdots, c_k}$，其中，$c_i$是类别标签。</p>
+<p>特征向量是由特征构成的，就是对样本的描述，是样本的某个属性。</p>
+<p>这里面就可以构建给出两个特征向量：</p>
+<p>（5.1，3.5，1.4，0.2）、（4.9，3，1.4，0.2）</p>
+<hr>
+<blockquote>
+<p>特征的选择对分类的性能有很大的影响，特征的选择应该具有以下几个特点：</p>
+<ol>
+<li>
+<p>特征应该能够很好地区分不同类别的样本。</p>
+</li>
+<li>
+<p>特征应该具有可解释性，即：特征应该能够很好地解释样本的类别。</p>
+</li>
+<li>
+<p>特征应该具有鲁棒性。（泛化能力）</p>
+</li>
+<li>
+<p>特征应该具有可扩展性，能够很好地扩展到新的样本。</p>
+</li>
+<li>
+<p>特征应该具有可计算性。</p>
+</li>
+<li>
+<p>特征应该具有低维性。</p>
+</li>
+</ol>
+</blockquote>
+<hr>
+<p>输出空间是离散的，即：$\mathcal{Y} = {c_1, c_2, \cdots, c_k}$，其中，$c_i$是类别标签。</p>
+<p>在我接触的的深度学习分类中，一般将输出空间定义为独热编码（One-Hot Encoding）的形式，即：$\mathcal{Y} = {[1, 0, \cdots, 0], [0, 1, \cdots, 0], \cdots, [0, 0, \cdots, 1]}$，其中，$[1, 0, \cdots, 0]$表示类别$c_1$，$[0, 1, \cdots, 0]$表示类别$c_2$，以此类推。</p>
+<hr>
+<blockquote>
+<p>独热编码是一种常用的编码方式，它将离散的类别标签转换为离散的向量，其中，向量的维度等于类别的个数，向量的值等于类别的索引。独热编码的好处是，它能够很好地表示类别之间的关系，而且它的值是离散的，不会产生类别之间的大小关系。</p>
+</blockquote>
+<hr>
+<p>通常机器学习中输出的结果一般不是只有0和1，而是在0~1之间的小数，这个小数表示样本属于某个类别的概率，即：$P(Y=c_i|X)$，其中，$c_i$是类别标签，$X$是特征向量。</p>
+<h2 id="分类的方法">分类的方法<a hidden class="anchor" aria-hidden="true" href="#分类的方法">#</a></h2>
+<p>分类的方法主要分为两类：生成方法和判别方法。</p>
+<h3 id="生成方法">生成方法<a hidden class="anchor" aria-hidden="true" href="#生成方法">#</a></h3>
+<p>生成方法是通过学习联合概率分布$P(X, Y)$来进行分类的，即：$P(Y|X) = \frac{P(X, Y)}{P(X)}$，其中，$P(Y|X)$是后验概率，$P(X)$是先验概率，$P(X, Y)$是联合概率分布。</p>
+<h4 id="朴素贝叶斯">朴素贝叶斯<a hidden class="anchor" aria-hidden="true" href="#朴素贝叶斯">#</a></h4>
+<p>朴素贝叶斯是一种生成方法，它假设特征之间相互独立，即：$P(X|Y) = \prod_{i=1}^n P(x_i|Y)$，其中，$x_i$是特征向量的第$i$个特征。</p>
+<p>例子：假设有一个数据集，其中，每个样本有两个特征，分别是$x_1$和$x_2$，它们的取值都是离散的，分别是${a, b, c}$和${1, 2, 3}$，类别标签是${0, 1}$，那么，朴素贝叶斯的联合概率分布可以表示为：$P(X, Y) = P(x_1, x_2, Y) = P(x_1|Y)P(x_2|Y)P(Y)$，其中，$P(x_1|Y)$和$P(x_2|Y)$可以通过统计样本的频率来计算，$P(Y)$可以通过统计样本的频率来计算。</p>
+<p>朴素贝叶斯的优点是：它的学习和预测的效率都很高，而且它的结果具有很好的解释性。<br>
+朴素贝叶斯的缺点是：它的假设过于简单，导致它的泛化能力不够强。</p>
+<h4 id="高斯贝叶斯">高斯贝叶斯<a hidden class="anchor" aria-hidden="true" href="#高斯贝叶斯">#</a></h4>
+<p>高斯贝叶斯是一种生成方法，它假设特征的条件概率服从高斯分布，即：$P(X|Y) \sim \mathcal{N}(\mu, \sigma^2)$，其中，$\mu$是均值，$\sigma^2$是方差。然后，利用贝叶斯公式，计算后验概率，从而进行分类。</p>
+<p>例子：假设有一个数据集，其中，每个样本有两个特征，分别是$x_1$和$x_2$，它们的取值都是连续的，那么，高斯判别分析的条件概率可以表示为：$P(X|Y) = P(x_1, x_2|Y) = P(x_1|Y)P(x_2|Y)$，其中，$P(x_1|Y)$和$P(x_2|Y)$可以通过统计样本的均值和方差来计算。</p>
+<p>高斯判别分析的优点是：它的假设比较合理，而且它的泛化能力比较强。<br>
+高斯判别分析的缺点是：它的计算量比较大，而且它的结果具有一定的误差。</p>
+<h4 id="伯努利贝叶斯">伯努利贝叶斯<a hidden class="anchor" aria-hidden="true" href="#伯努利贝叶斯">#</a></h4>
+<p>伯努利贝叶斯是一种生成方法，它假设特征的条件概率服从伯努利分布，即：$P(X|Y) \sim \mathcal{B}(p)$，其中，$p$是概率。然后，利用贝叶斯公式，计算后验概率，从而进行分类。</p>
+<hr>
+<h4 id="大同小异">！大同小异！！<a hidden class="anchor" aria-hidden="true" href="#大同小异">#</a></h4>
+<p>朴素贝叶斯、高斯贝叶斯和伯努利贝叶斯都是生成方法，它们的区别在于它们对条件概率的分布的假设不同，朴素贝叶斯假设条件概率服从多项式分布，高斯贝叶斯假设条件概率服从高斯分布，伯努利贝叶斯假设条件概率服从伯努利分布。</p>
+<hr>
+<h3 id="判别方法">判别方法<a hidden class="anchor" aria-hidden="true" href="#判别方法">#</a></h3>
+<p>判别方法是通过学习决策函数$f(X)$或者条件概率分布$P(Y|X)$来进行分类的，即：$Y = f(X)$或者$P(Y|X)$。</p>
+<h4 id="k近邻">K近邻<a hidden class="anchor" aria-hidden="true" href="#k近邻">#</a></h4>
+<p>K近邻是一种判别方法，它的思想是：如果一个样本的近邻中大多数样本属于某个类别，那么该样本也属于该类别。K近邻的K是一个超参数，它决定了近邻的个数。K近邻的算法如下：</p>
+<blockquote>
+<ol>
+<li>计算测试样本与训练样本的距离: <code>d = sqrt((x1-x2)^2 + (y1-y2)^2)</code> (欧几里得距离，也可能使用其他距离：曼哈顿距离、切比雪夫距离等）</li>
+</ol>
+</blockquote>
+<p>曼哈顿距离: <code>d = |x1-x2| + |y1-y2|</code>，切比雪夫距离: <code>d = max(|x1-x2|, |y1-y2|)</code></p>
+<blockquote>
+<ol start="2">
+<li>
+<p>选取距离最近的K个训练样本: <code>d1, d2, ..., dk</code></p>
+</li>
+<li>
+<p>统计K个训练样本中各个类别的数量: <code>c1, c2, ..., ck</code></p>
+</li>
+<li>
+<p>选取数量最多的类别作为测试样本的类别</p>
+</li>
+</ol>
+</blockquote>
+<h4 id="决策树">决策树<a hidden class="anchor" aria-hidden="true" href="#决策树">#</a></h4>
+<p>决策树是一种判别方法，它的思想是：通过一系列的问题，将样本分到不同的类别中。决策树的算法如下：</p>
+<blockquote>
+<ol>
+<li>
+<p>选择一个特征，将样本分成不同的类别 : $x_i &lt; t$，则为左子树，否则为右子树</p>
+</li>
+<li>
+<p>对每个类别，重复步骤1，直到所有的样本都被正确地分类 : $x_i &lt; t$，则为左子树，否则为右子树</p>
+</li>
+<li>
+<p>反复寻找，简化决策树</p>
+</li>
+</ol>
+</blockquote>
+<p>例子：假设有一个数据集，其中，每个样本有两个特征，分别是$x_1$和$x_2$，它们的取值都是连续的，那么，决策树可以表示为：$x_1 &lt; t_1$，则为左子树，否则为右子树，其中，$t_1$可以通过决策树的算法计算得到。同理，对于左子树，可以继续选择一个特征，将样本分成不同的类别，直到所有的样本都被正确地分类。</p>
+<h4 id="随机森林">随机森林<a hidden class="anchor" aria-hidden="true" href="#随机森林">#</a></h4>
+<p>随机森林是一种集成方法，它的思想是：通过多棵决策树，将样本分到不同的类别中。随机森林的算法如下：</p>
+<blockquote>
+<ol>
+<li>
+<p>从样本集中随机选择k个样本，作为训练样本</p>
+</li>
+<li>
+<p>从特征集中随机选择m个特征，作为训练特征</p>
+</li>
+<li>
+<p>通过决策树的算法，训练一棵决策树</p>
+</li>
+<li>
+<p>重复1-3步骤，训练多棵决策树</p>
+</li>
+<li>
+<p>对于新的样本，通过多棵决策树进行分类，选择票数最多的类别作为测试样本的类别</p>
+</li>
+</ol>
+</blockquote>
+<h4 id="支持向量机">支持向量机<a hidden class="anchor" aria-hidden="true" href="#支持向量机">#</a></h4>
+<p>支持向量机是一种判别方法，它的思想是：找到一个超平面，使得它能够将不同类别的样本分开，而且它离两个类别的样本都有一定的距离。支持向量机的算法如下：</p>
+<blockquote>
+<ol>
+<li>
+<p>选择一个核函数，将样本映射到高维空间: $x \rightarrow \phi(x)$ 核函数：线性函数、多项式函数、高斯核函数等</p>
+</li>
+<li>
+<p>在高维空间中找到一个超平面，使得它能够将不同类别的样本分开，而且它离两个类别的样本都有一定的距离: $w^T\phi(x) + b = 0$</p>
+</li>
+<li>
+<p>将超平面映射回原始空间: $w^T\phi(x) + b = 0 \rightarrow w^Tx + b = 0$</p>
+</li>
+<li>
+<p>利用超平面对新的样本进行分类: $w^Tx + b &gt; 0$，则为正类，否则为负类</p>
+</li>
+</ol>
+</blockquote>
+<p>例子：假设有一个数据集，其中，每个样本有两个特征，分别是$x_1$和$x_2$，它们的取值都是连续的，那么，支持向量机的超平面可以表示为：$w_1x_1 + w_2x_2 + b = 0$，其中，$w_1$和$w_2$可以通过支持向量机的算法计算得到，$b$可以通过统计样本的均值和方差来计算。大于0的样本属于正类，小于0的样本属于负类。</p>
+<h4 id="神经网络">神经网络<a hidden class="anchor" aria-hidden="true" href="#神经网络">#</a></h4>
+<p>神经网络是一种判别方法，它的思想是：通过多层的神经元，将样本分到不同的类别中。神经网络的算法如下：</p>
+<blockquote>
+<ol>
+<li>
+<p>初始化神经网络的权重和偏置: <code>w</code>和<code>b</code></p>
+</li>
+<li>
+<p>通过前向传播计算每个神经元的输出: <code>z = w * x + b</code>和<code>a = sigmoid(z)</code>,其中<code>x</code>是输入，<code>a</code>是输出</p>
+</li>
+<li>
+<p>通过反向传播计算每个神经元的梯度: <code>dw</code>和<code>db</code></p>
+</li>
+<li>
+<p>通过梯度下降更新神经网络的权重和偏置: <code>w = w - lr * dw</code>和<code>b = b - lr * db</code></p>
+</li>
+<li>
+<p>重复2-4步骤，直到收敛: <code>loss = -y * log(a) - (1 - y) * log(1 - a)</code>（二元交叉熵的损失函数，BCCE）</p>
+</li>
+</ol>
+</blockquote>
+<p>例子：假设有一个数据集，其中，每个样本有两个特征，分别是$x_1$和$x_2$，它们的取值都是连续的，那么，神经网络的输出可以表示为：$a = sigmoid(w_1x_1 + w_2x_2 + b)$，其中，$w_1$和$w_2$可以通过神经网络的算法计算得到，$b$可以通过统计样本的均值和方差来计算。大于0.5的样本属于正类，小于0.5的样本属于负类。</p>
+<h4 id="判别方法的共同点">判别方法的共同点<a hidden class="anchor" aria-hidden="true" href="#判别方法的共同点">#</a></h4>
+<p>判别方法的共同点是：它们都是通过一些参数，将样本分到不同的类别中。例如：k近邻通过选择k个最近的样本，将样本分到不同的类别中；决策树通过选择特征，将样本分到不同的类别中；随机森林通过选择特征和样本，将样本分到不同的类别中；支持向量机通过选择超平面，将样本分到不同的类别中；神经网络通过选择权重和偏置，将样本分到不同的类别中。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://juiceright.xyz/tags/old/">Old</a></li>
+    </ul>
+  </footer><div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: 'Ov23liuWJuk8S1oC4VRp',
+    clientSecret: 'dd9a460fc89c99acdf580410cffacf5f1e9aa032',
+    repo: 'juiceright.github.io',
+    owner: 'juiceright',
+    admin: ['juiceright'],
+    id: decodeURI(location.pathname), 
+    distractionFreeMode: true 
+  });
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+      return;
+    }
+    gitalk.render('gitalk-container');
+  })();
+</script>
+
+</article>
+    </main>
+    
+
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://juiceright.xyz/">Juiceright</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+        
+        <div id="busuanzi_stats" style="display:none;"> ·  <span>👥 <span id="busuanzi_value_site_uv"></span></span> <span>|</span> <span>🌐 <span id="busuanzi_value_site_pv"></span></span> <span>|</span> <span>📖 <span id="busuanzi_value_page_pv"></span></span> </div> 
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a><script> let s = document.createElement('script'); s.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'; s.onload = () => document.getElementById('busuanzi_stats').style.display = 'inline-block'; document.head.appendChild(s); </script>
+
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

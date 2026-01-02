@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>孟德尔随机化笔记（四）——药物靶点MR分析 | Juiceright</title>
+<meta name="keywords" content="old">
+<meta name="description" content="用于药物开发与效应预测的药物孟德尔随机化（Drug-MR）,基于靶蛋白的下游产物（biomarker），以靶蛋白编码基因附近的对biomarker有显著效应的SNP（pQTL或者eQTL）作为工具变量，以biomarker浓度作为暴露，以疾病作为结局，进行孟德尔随机化，以验证蛋白靶对于所研究疾病的影响。
+参考资料
+资料建议剔除连锁不平衡： R^2 = 0.60
+下面是分别用easyMR和MendelR包进行的分析代码
+library(easyMR)
+
+dat=get_drug_target_data(
+  id = &#34;ieu-b-110&#34;,　　　　#暴露GWAS ID
+  gene_name=&#34;HMGCR&#34;,      #药靶蛋白编码基因
+  kb=100,          #基因附近的SNP范围
+  clump_kb = 100,   #clump的范围
+  clump_local = FALSE,
+  r2=0.3,   #clump的r2阈值
+  pval=0.05,
+  MAF = 0.01,  #次等位基因频率 阈值
+  build = &#34;GRch38&#34;,
+  chr = NULL,
+  pos_start = NULL,
+  pos_end = NULL
+)
+
+
+drug_MR(
+  target_gene_data=dat,
+  outcome_id =&#34;finn-b-I9_AF&#34;,  #疾病GWAS ID
+  outcome_name=&#34;atrial fibrillation&#34;,
+  inhibitor = FALSE,
+  after_trans_inhibitor = FALSE,
+  pval = 0.05,
+  action = 2,
+  out_type = &#34;binary&#34;,
+  save_path=&#34;e:&#34;
+)
+library(MendelR)
+
+mr_common(
+  id_exposure = &#34;ieu-b-110&#34;,  #暴露GWAS ID
+  id_outcome = &#34;finn-b-I9_AF&#34;,  #疾病GWAS ID
+  p1 = 0.05,
+  p2 = 0.05,
+  write_csv = TRUE,
+  write_ppt = FALSE,
+  method_list = c(&#34;mr_ivw&#34;, &#34;mr_egger_regression&#34;, &#34;mr_weighted_median&#34;,
+    &#34;mr_weighted_mode&#34;),
+  rm_snps = NULL,
+  r2 = 0.3,  #clump的r2阈值
+  kb = 100,  #clump的范围
+  build_version = &#34;hg19&#34;,
+  gene = &#34;HMGCR&#34;,     #药靶蛋白编码基因
+  chr = NULL,
+  pos_start = NULL,
+  pos_end = NULL,
+  eaf_threshold = NULL,
+  run_presso = T,
+  gene_win = 100,   #基因附近的SNP范围
+  NbDistribution = 3000,
+  find_proxy = T,
+  local_clump = F,
+  r2_cal_mode = 1,
+  steiger = T,   #是否进行Steiger方向性检验
+  auto_ivw = T,
+  pop = &#34;EUR&#34;,
+  no_clump = F,
+  out_dir = NULL,
+  exposure_samplesize = NULL,
+  outcome_samplesize = NULL
+)
+">
+<meta name="author" content="">
+<link rel="canonical" href="https://juiceright.xyz/old/posts/%E5%AD%9F%E5%BE%B7%E5%B0%94%E9%9A%8F%E6%9C%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a?s=16">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a?s=32">
+<link rel="apple-touch-icon" href="https://juiceright.xyz/apple-touch-icon.png">
+<link rel="mask-icon" href="https://juiceright.xyz/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://juiceright.xyz/old/posts/%E5%AD%9F%E5%BE%B7%E5%B0%94%E9%9A%8F%E6%9C%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://juiceright.xyz/old/posts/%E5%AD%9F%E5%BE%B7%E5%B0%94%E9%9A%8F%E6%9C%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/">
+  <meta property="og:site_name" content="Juiceright">
+  <meta property="og:title" content="孟德尔随机化笔记（四）——药物靶点MR分析">
+  <meta property="og:description" content="用于药物开发与效应预测的药物孟德尔随机化（Drug-MR）,基于靶蛋白的下游产物（biomarker），以靶蛋白编码基因附近的对biomarker有显著效应的SNP（pQTL或者eQTL）作为工具变量，以biomarker浓度作为暴露，以疾病作为结局，进行孟德尔随机化，以验证蛋白靶对于所研究疾病的影响。
+参考资料
+资料建议剔除连锁不平衡： R^2 = 0.60
+下面是分别用easyMR和MendelR包进行的分析代码
+library(easyMR) dat=get_drug_target_data( id = &#34;ieu-b-110&#34;,　#暴露GWAS ID gene_name=&#34;HMGCR&#34;, #药靶蛋白编码基因 kb=100, #基因附近的SNP范围 clump_kb = 100, #clump的范围 clump_local = FALSE, r2=0.3, #clump的r2阈值 pval=0.05, MAF = 0.01, #次等位基因频率 阈值 build = &#34;GRch38&#34;, chr = NULL, pos_start = NULL, pos_end = NULL ) drug_MR( target_gene_data=dat, outcome_id =&#34;finn-b-I9_AF&#34;, #疾病GWAS ID outcome_name=&#34;atrial fibrillation&#34;, inhibitor = FALSE, after_trans_inhibitor = FALSE, pval = 0.05, action = 2, out_type = &#34;binary&#34;, save_path=&#34;e:&#34; ) library(MendelR) mr_common( id_exposure = &#34;ieu-b-110&#34;, #暴露GWAS ID id_outcome = &#34;finn-b-I9_AF&#34;, #疾病GWAS ID p1 = 0.05, p2 = 0.05, write_csv = TRUE, write_ppt = FALSE, method_list = c(&#34;mr_ivw&#34;, &#34;mr_egger_regression&#34;, &#34;mr_weighted_median&#34;, &#34;mr_weighted_mode&#34;), rm_snps = NULL, r2 = 0.3, #clump的r2阈值 kb = 100, #clump的范围 build_version = &#34;hg19&#34;, gene = &#34;HMGCR&#34;, #药靶蛋白编码基因 chr = NULL, pos_start = NULL, pos_end = NULL, eaf_threshold = NULL, run_presso = T, gene_win = 100, #基因附近的SNP范围 NbDistribution = 3000, find_proxy = T, local_clump = F, r2_cal_mode = 1, steiger = T, #是否进行Steiger方向性检验 auto_ivw = T, pop = &#34;EUR&#34;, no_clump = F, out_dir = NULL, exposure_samplesize = NULL, outcome_samplesize = NULL ) ">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="old">
+    <meta property="article:published_time" content="2023-08-05T05:13:50+00:00">
+    <meta property="article:modified_time" content="2025-12-04T10:18:33+00:00">
+    <meta property="article:tag" content="Old">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="孟德尔随机化笔记（四）——药物靶点MR分析">
+<meta name="twitter:description" content="用于药物开发与效应预测的药物孟德尔随机化（Drug-MR）,基于靶蛋白的下游产物（biomarker），以靶蛋白编码基因附近的对biomarker有显著效应的SNP（pQTL或者eQTL）作为工具变量，以biomarker浓度作为暴露，以疾病作为结局，进行孟德尔随机化，以验证蛋白靶对于所研究疾病的影响。
+参考资料
+资料建议剔除连锁不平衡： R^2 = 0.60
+下面是分别用easyMR和MendelR包进行的分析代码
+library(easyMR)
+
+dat=get_drug_target_data(
+  id = &#34;ieu-b-110&#34;,　　　　#暴露GWAS ID
+  gene_name=&#34;HMGCR&#34;,      #药靶蛋白编码基因
+  kb=100,          #基因附近的SNP范围
+  clump_kb = 100,   #clump的范围
+  clump_local = FALSE,
+  r2=0.3,   #clump的r2阈值
+  pval=0.05,
+  MAF = 0.01,  #次等位基因频率 阈值
+  build = &#34;GRch38&#34;,
+  chr = NULL,
+  pos_start = NULL,
+  pos_end = NULL
+)
+
+
+drug_MR(
+  target_gene_data=dat,
+  outcome_id =&#34;finn-b-I9_AF&#34;,  #疾病GWAS ID
+  outcome_name=&#34;atrial fibrillation&#34;,
+  inhibitor = FALSE,
+  after_trans_inhibitor = FALSE,
+  pval = 0.05,
+  action = 2,
+  out_type = &#34;binary&#34;,
+  save_path=&#34;e:&#34;
+)
+library(MendelR)
+
+mr_common(
+  id_exposure = &#34;ieu-b-110&#34;,  #暴露GWAS ID
+  id_outcome = &#34;finn-b-I9_AF&#34;,  #疾病GWAS ID
+  p1 = 0.05,
+  p2 = 0.05,
+  write_csv = TRUE,
+  write_ppt = FALSE,
+  method_list = c(&#34;mr_ivw&#34;, &#34;mr_egger_regression&#34;, &#34;mr_weighted_median&#34;,
+    &#34;mr_weighted_mode&#34;),
+  rm_snps = NULL,
+  r2 = 0.3,  #clump的r2阈值
+  kb = 100,  #clump的范围
+  build_version = &#34;hg19&#34;,
+  gene = &#34;HMGCR&#34;,     #药靶蛋白编码基因
+  chr = NULL,
+  pos_start = NULL,
+  pos_end = NULL,
+  eaf_threshold = NULL,
+  run_presso = T,
+  gene_win = 100,   #基因附近的SNP范围
+  NbDistribution = 3000,
+  find_proxy = T,
+  local_clump = F,
+  r2_cal_mode = 1,
+  steiger = T,   #是否进行Steiger方向性检验
+  auto_ivw = T,
+  pop = &#34;EUR&#34;,
+  no_clump = F,
+  out_dir = NULL,
+  exposure_samplesize = NULL,
+  outcome_samplesize = NULL
+)
+">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Olds",
+      "item": "https://juiceright.xyz/old/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "孟德尔随机化笔记（四）——药物靶点MR分析",
+      "item": "https://juiceright.xyz/old/posts/%E5%AD%9F%E5%BE%B7%E5%B0%94%E9%9A%8F%E6%9C%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "孟德尔随机化笔记（四）——药物靶点MR分析",
+  "name": "孟德尔随机化笔记（四）——药物靶点MR分析",
+  "description": "用于药物开发与效应预测的药物孟德尔随机化（Drug-MR）,基于靶蛋白的下游产物（biomarker），以靶蛋白编码基因附近的对biomarker有显著效应的SNP（pQTL或者eQTL）作为工具变量，以biomarker浓度作为暴露，以疾病作为结局，进行孟德尔随机化，以验证蛋白靶对于所研究疾病的影响。\n参考资料\n资料建议剔除连锁不平衡： R^2 = 0.60\n下面是分别用easyMR和MendelR包进行的分析代码\nlibrary(easyMR) dat=get_drug_target_data( id = \u0026#34;ieu-b-110\u0026#34;,　#暴露GWAS ID gene_name=\u0026#34;HMGCR\u0026#34;, #药靶蛋白编码基因 kb=100, #基因附近的SNP范围 clump_kb = 100, #clump的范围 clump_local = FALSE, r2=0.3, #clump的r2阈值 pval=0.05, MAF = 0.01, #次等位基因频率 阈值 build = \u0026#34;GRch38\u0026#34;, chr = NULL, pos_start = NULL, pos_end = NULL ) drug_MR( target_gene_data=dat, outcome_id =\u0026#34;finn-b-I9_AF\u0026#34;, #疾病GWAS ID outcome_name=\u0026#34;atrial fibrillation\u0026#34;, inhibitor = FALSE, after_trans_inhibitor = FALSE, pval = 0.05, action = 2, out_type = \u0026#34;binary\u0026#34;, save_path=\u0026#34;e:\u0026#34; ) library(MendelR) mr_common( id_exposure = \u0026#34;ieu-b-110\u0026#34;, #暴露GWAS ID id_outcome = \u0026#34;finn-b-I9_AF\u0026#34;, #疾病GWAS ID p1 = 0.05, p2 = 0.05, write_csv = TRUE, write_ppt = FALSE, method_list = c(\u0026#34;mr_ivw\u0026#34;, \u0026#34;mr_egger_regression\u0026#34;, \u0026#34;mr_weighted_median\u0026#34;, \u0026#34;mr_weighted_mode\u0026#34;), rm_snps = NULL, r2 = 0.3, #clump的r2阈值 kb = 100, #clump的范围 build_version = \u0026#34;hg19\u0026#34;, gene = \u0026#34;HMGCR\u0026#34;, #药靶蛋白编码基因 chr = NULL, pos_start = NULL, pos_end = NULL, eaf_threshold = NULL, run_presso = T, gene_win = 100, #基因附近的SNP范围 NbDistribution = 3000, find_proxy = T, local_clump = F, r2_cal_mode = 1, steiger = T, #是否进行Steiger方向性检验 auto_ivw = T, pop = \u0026#34;EUR\u0026#34;, no_clump = F, out_dir = NULL, exposure_samplesize = NULL, outcome_samplesize = NULL ) ",
+  "keywords": [
+    "old"
+  ],
+  "articleBody": "用于药物开发与效应预测的药物孟德尔随机化（Drug-MR）,基于靶蛋白的下游产物（biomarker），以靶蛋白编码基因附近的对biomarker有显著效应的SNP（pQTL或者eQTL）作为工具变量，以biomarker浓度作为暴露，以疾病作为结局，进行孟德尔随机化，以验证蛋白靶对于所研究疾病的影响。\n参考资料\n资料建议剔除连锁不平衡： R^2 = 0.60\n下面是分别用easyMR和MendelR包进行的分析代码\nlibrary(easyMR) dat=get_drug_target_data( id = \"ieu-b-110\",　#暴露GWAS ID gene_name=\"HMGCR\", #药靶蛋白编码基因 kb=100, #基因附近的SNP范围 clump_kb = 100, #clump的范围 clump_local = FALSE, r2=0.3, #clump的r2阈值 pval=0.05, MAF = 0.01, #次等位基因频率 阈值 build = \"GRch38\", chr = NULL, pos_start = NULL, pos_end = NULL ) drug_MR( target_gene_data=dat, outcome_id =\"finn-b-I9_AF\", #疾病GWAS ID outcome_name=\"atrial fibrillation\", inhibitor = FALSE, after_trans_inhibitor = FALSE, pval = 0.05, action = 2, out_type = \"binary\", save_path=\"e:\" ) library(MendelR) mr_common( id_exposure = \"ieu-b-110\", #暴露GWAS ID id_outcome = \"finn-b-I9_AF\", #疾病GWAS ID p1 = 0.05, p2 = 0.05, write_csv = TRUE, write_ppt = FALSE, method_list = c(\"mr_ivw\", \"mr_egger_regression\", \"mr_weighted_median\", \"mr_weighted_mode\"), rm_snps = NULL, r2 = 0.3, #clump的r2阈值 kb = 100, #clump的范围 build_version = \"hg19\", gene = \"HMGCR\", #药靶蛋白编码基因 chr = NULL, pos_start = NULL, pos_end = NULL, eaf_threshold = NULL, run_presso = T, gene_win = 100, #基因附近的SNP范围 NbDistribution = 3000, find_proxy = T, local_clump = F, r2_cal_mode = 1, steiger = T, #是否进行Steiger方向性检验 auto_ivw = T, pop = \"EUR\", no_clump = F, out_dir = NULL, exposure_samplesize = NULL, outcome_samplesize = NULL ) ",
+  "wordCount" : "173",
+  "inLanguage": "en",
+  "datePublished": "2023-08-05T05:13:50Z",
+  "dateModified": "2025-12-04T10:18:33.139Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://juiceright.xyz/old/posts/%E5%AD%9F%E5%BE%B7%E5%B0%94%E9%9A%8F%E6%9C%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Juiceright",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://juiceright.xyz/" accesskey="h" title="Juiceright (Alt + H)">Juiceright</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://juiceright.xyz/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/archives/" title="Archives">
+                    <span>Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://juiceright.xyz/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      孟德尔随机化笔记（四）——药物靶点MR分析
+    </h1>
+    <div class="post-meta"><span title='2023-08-05 05:13:50 +0000 UTC'>August 5, 2023</span>&nbsp;·&nbsp;<span>1 min</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>用于药物开发与效应预测的药物孟德尔随机化（Drug-MR）,基于靶蛋白的下游产物（biomarker），以靶蛋白编码基因附近的对biomarker有显著效应的SNP（pQTL或者eQTL）作为工具变量，以biomarker浓度作为暴露，以疾病作为结局，进行孟德尔随机化，以验证蛋白靶对于所研究疾病的影响。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/548337552">参考资料</a></p>
+<p>资料建议剔除连锁不平衡： R^2 = 0.60</p>
+<p>下面是分别用easyMR和MendelR包进行的分析代码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(easyMR)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dat<span style="color:#f92672">=</span><span style="color:#a6e22e">get_drug_target_data</span>(
+</span></span><span style="display:flex;"><span>  id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ieu-b-110&#34;</span>,　　　　<span style="color:#75715e">#暴露GWAS ID</span>
+</span></span><span style="display:flex;"><span>  gene_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;HMGCR&#34;</span>,      <span style="color:#75715e">#药靶蛋白编码基因</span>
+</span></span><span style="display:flex;"><span>  kb<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>,          <span style="color:#75715e">#基因附近的SNP范围</span>
+</span></span><span style="display:flex;"><span>  clump_kb <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>,   <span style="color:#75715e">#clump的范围</span>
+</span></span><span style="display:flex;"><span>  clump_local <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>,
+</span></span><span style="display:flex;"><span>  r2<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>,   <span style="color:#75715e">#clump的r2阈值</span>
+</span></span><span style="display:flex;"><span>  pval<span style="color:#f92672">=</span><span style="color:#ae81ff">0.05</span>,
+</span></span><span style="display:flex;"><span>  MAF <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.01</span>,  <span style="color:#75715e">#次等位基因频率 阈值</span>
+</span></span><span style="display:flex;"><span>  build <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;GRch38&#34;</span>,
+</span></span><span style="display:flex;"><span>  chr <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>  pos_start <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>  pos_end <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">drug_MR</span>(
+</span></span><span style="display:flex;"><span>  target_gene_data<span style="color:#f92672">=</span>dat,
+</span></span><span style="display:flex;"><span>  outcome_id <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;finn-b-I9_AF&#34;</span>,  <span style="color:#75715e">#疾病GWAS ID</span>
+</span></span><span style="display:flex;"><span>  outcome_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;atrial fibrillation&#34;</span>,
+</span></span><span style="display:flex;"><span>  inhibitor <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>,
+</span></span><span style="display:flex;"><span>  after_trans_inhibitor <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>,
+</span></span><span style="display:flex;"><span>  pval <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.05</span>,
+</span></span><span style="display:flex;"><span>  action <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>  out_type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;binary&#34;</span>,
+</span></span><span style="display:flex;"><span>  save_path<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;e:&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(MendelR)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">mr_common</span>(
+</span></span><span style="display:flex;"><span>  id_exposure <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ieu-b-110&#34;</span>,  <span style="color:#75715e">#暴露GWAS ID</span>
+</span></span><span style="display:flex;"><span>  id_outcome <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;finn-b-I9_AF&#34;</span>,  <span style="color:#75715e">#疾病GWAS ID</span>
+</span></span><span style="display:flex;"><span>  p1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.05</span>,
+</span></span><span style="display:flex;"><span>  p2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.05</span>,
+</span></span><span style="display:flex;"><span>  write_csv <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>,
+</span></span><span style="display:flex;"><span>  write_ppt <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>,
+</span></span><span style="display:flex;"><span>  method_list <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;mr_ivw&#34;</span>, <span style="color:#e6db74">&#34;mr_egger_regression&#34;</span>, <span style="color:#e6db74">&#34;mr_weighted_median&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;mr_weighted_mode&#34;</span>),
+</span></span><span style="display:flex;"><span>  rm_snps <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>  r2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.3</span>,  <span style="color:#75715e">#clump的r2阈值</span>
+</span></span><span style="display:flex;"><span>  kb <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>,  <span style="color:#75715e">#clump的范围</span>
+</span></span><span style="display:flex;"><span>  build_version <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hg19&#34;</span>,
+</span></span><span style="display:flex;"><span>  gene <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;HMGCR&#34;</span>,     <span style="color:#75715e">#药靶蛋白编码基因</span>
+</span></span><span style="display:flex;"><span>  chr <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>  pos_start <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>  pos_end <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>  eaf_threshold <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>  run_presso <span style="color:#f92672">=</span> T,
+</span></span><span style="display:flex;"><span>  gene_win <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>,   <span style="color:#75715e">#基因附近的SNP范围</span>
+</span></span><span style="display:flex;"><span>  NbDistribution <span style="color:#f92672">=</span> <span style="color:#ae81ff">3000</span>,
+</span></span><span style="display:flex;"><span>  find_proxy <span style="color:#f92672">=</span> T,
+</span></span><span style="display:flex;"><span>  local_clump <span style="color:#f92672">=</span> F,
+</span></span><span style="display:flex;"><span>  r2_cal_mode <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>  steiger <span style="color:#f92672">=</span> T,   <span style="color:#75715e">#是否进行Steiger方向性检验</span>
+</span></span><span style="display:flex;"><span>  auto_ivw <span style="color:#f92672">=</span> T,
+</span></span><span style="display:flex;"><span>  pop <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;EUR&#34;</span>,
+</span></span><span style="display:flex;"><span>  no_clump <span style="color:#f92672">=</span> F,
+</span></span><span style="display:flex;"><span>  out_dir <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>  exposure_samplesize <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>  outcome_samplesize <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://juiceright.xyz/tags/old/">Old</a></li>
+    </ul>
+  </footer><div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+  const gitalk = new Gitalk({
+    clientID: 'Ov23liuWJuk8S1oC4VRp',
+    clientSecret: 'dd9a460fc89c99acdf580410cffacf5f1e9aa032',
+    repo: 'juiceright.github.io',
+    owner: 'juiceright',
+    admin: ['juiceright'],
+    id: decodeURI(location.pathname), 
+    distractionFreeMode: true 
+  });
+  (function() {
+    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+      document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
+      return;
+    }
+    gitalk.render('gitalk-container');
+  })();
+</script>
+
+</article>
+    </main>
+    
+
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://juiceright.xyz/">Juiceright</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+        
+        <div id="busuanzi_stats" style="display:none;"> ·  <span>👥 <span id="busuanzi_value_site_uv"></span></span> <span>|</span> <span>🌐 <span id="busuanzi_value_site_pv"></span></span> <span>|</span> <span>📖 <span id="busuanzi_value_page_pv"></span></span> </div> 
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a><script> let s = document.createElement('script'); s.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js'; s.onload = () => document.getElementById('busuanzi_stats').style.display = 'inline-block'; document.head.appendChild(s); </script>
+
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
