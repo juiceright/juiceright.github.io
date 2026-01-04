@@ -2,7 +2,7 @@
 <html lang="en" dir="auto" data-theme="auto">
 
 <head>
-	<meta name="generator" content="Hugo 0.154.1"><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.154.2"><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -152,6 +152,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">vbs脚本 快速将ppt word文档转换成pdf
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>保存为vbs脚本，可以将同目录下的ppt、word转成PDF，非常方便
+On Error Resume Next Const wdExportFormatPDF = 17 Set oWord = WScript.CreateObject(&#34;Word.Application&#34;) Set ppt = CreateObject(&#34;PowerPoint.application&#34;) Set fso = WScript.CreateObject(&#34;Scripting.Filesystemobject&#34;) Set fds=fso.GetFolder(&#34;.&#34;) Set ffs=fds.Files For Each ff In ffs If (LCase(Right(ff.Name,4))=&#34;.doc&#34; Or LCase(Right(ff.Name,4))=&#34;docx&#34; ) And Left(ff.Name,1)&lt;&gt;&#34;~&#34; Then Set oDoc=oWord.Documents.Open(ff.Path) odoc.ExportAsFixedFormat Left(ff.Path,InStrRev(ff.Path,&#34;.&#34;))&amp;&#34;pdf&#34;,wdExportFormatPDF End If If (LCase(Right(ff.Name,4))=&#34;.ppt&#34; Or LCase(Right(ff.Name,4))=&#34;pptx&#34; ) And Left(ff.Name,1)&lt;&gt;&#34;~&#34; Then Set pptfile = ppt.Presentations.Open(ff.Path,false,false,false) pptfile.Saveas Left(ff.Path,InStrRev(ff.Path,&#34;.&#34;))&amp;&#34;pdf&#34;,32,false End If Next odoc.Close oword.Quit pptfiles.Close ppt.Quit Set oDoc=Nothing Set oWord =Nothing Set pptfile = Nothing Set ppt = Nothing MsgBox &#34;PPT和Word全部转换为PDF啦!&#34; </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-11 00:48:44 +0000 UTC'>March 11, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to vbs脚本 快速将ppt word文档转换成pdf" href="https://juiceright.xyz/old/posts/92gfku-5zk/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">雨课堂习题监控
     </h2>
   </header>
@@ -259,18 +272,6 @@ import asyncio from playwright.async_api import async_playwright import requests
   </div>
   <footer class="entry-footer"><span title='2025-03-10 13:27:39 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
   <a class="entry-link" aria-label="post link to LCA算法" href="https://juiceright.xyz/old/posts/5ipfk_eghq/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">匈牙利算法
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>#include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; bool ver[1001][1001],v[1001]; int d[1001],n,m,e; bool dfs(int x){ for(int i=1;i&lt;=m;i&#43;&#43;){ if(ver[x][i]&amp;&amp;!v[i]){ v[i]=1; if(!d[i]||dfs(d[i])){ d[i]=x;return 1; } } } return 0; } void init(){ cin&gt;&gt;n&gt;&gt;m&gt;&gt;e; for(int i=1;i&lt;=e;i&#43;&#43;){ int a,b; cin&gt;&gt;a&gt;&gt;b; if(b&gt;m||a&gt;n)continue; ver[a][b]=1; } int ans=0; for(int i=1;i&lt;=n;i&#43;&#43;){memset(v,0,sizeof(v)); ans&#43;=dfs(i); } cout&lt;&lt;ans; } int main(){ init(); } </p>
-  </div>
-  <footer class="entry-footer"><span title='2025-03-10 13:27:28 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 匈牙利算法" href="https://juiceright.xyz/old/posts/rnbllzkklq/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

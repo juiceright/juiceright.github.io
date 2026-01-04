@@ -2,7 +2,7 @@
 <html lang="en" dir="auto" data-theme="auto">
 
 <head>
-	<meta name="generator" content="Hugo 0.154.1"><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.154.2"><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -152,6 +152,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">【爬虫】FitGirl-Repack的Scrapy爬虫代码
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>今天花了一点时间，写了一个FitGirl Repacks游戏网站的自动爬虫脚本 用的是scrapy的爬虫框架
+items.py 作用：确定需要爬取的内容 import scrapy class Fg1Item(scrapy.Item): # define the fields for your item here like: # name = scrapy.Field() tle = scrapy.Field() info = scrapy.Field() pass 在这里，我选择爬取两样信息：title 和 info ，分别对应各个游戏的标题名称 和 下载地址
+FG.py 作用：爬虫的逻辑结构 import scrapy from FG1.items import Fg1Item class FgSpider(scrapy.Spider): name = &#34;FG&#34; allowed_domains = [&#34;fitgirl-repacks.site&#34;] start_urls = [&#34;http://fitgirl-repacks.site/&#34;] def parse(self, response): for i in range(1,350): yield scrapy.Request(&#34;https://fitgirl-repacks.site/page/&#34;&#43;str(i)&#43;&#39;/&#39;,callback=self.parse_page) pass def parse_page(self, response): for each in response.xpath(&#34;//article&#34;): item=Fg1Item() item[&#39;tle&#39;]=each.xpath(&#34;header/h1/a/text()&#34;).extract() item[&#39;info&#39;]=each.xpath(&#34;div/ul[1]&#34;).extract() yield item 逻辑结构分为两层：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2023-03-15 15:53:25 +0000 UTC'>March 15, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 【爬虫】FitGirl-Repack的Scrapy爬虫代码" href="https://juiceright.xyz/old/posts/fitgirl-repack%E6%B8%B8%E6%88%8F%E7%BD%91%E7%AB%99scrapy%E7%88%AC%E8%99%AB%E4%BB%A3%E7%A0%81/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">简单骑行
     </h2>
   </header>
@@ -268,23 +283,12 @@ $tag = urldecode($_POST[&#39;tag&#39;]); //获得POST参数，URL解码 if (strp
   <footer class="entry-footer"><span title='2019-07-12 13:53:00 +0000 UTC'>July 12, 2019</span>&nbsp;·&nbsp;<span>1 min</span></footer>
   <a class="entry-link" aria-label="post link to 进入金中，感觉很棒！" href="https://juiceright.xyz/old/posts/%E8%BF%9B%E5%85%A5%E9%87%91%E4%B8%AD%E6%84%9F%E8%A7%89%E5%BE%88%E6%A3%92/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">模考加油
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>模考加油。 愿自己取得胜利。 加油喝彩。 你可以。
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2019-05-02 17:41:00 +0000 UTC'>May 2, 2019</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 模考加油" href="https://juiceright.xyz/old/posts/%E6%A8%A1%E8%80%83%E5%8A%A0%E6%B2%B9/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="https://juiceright.xyz/page/7/">
       «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="https://juiceright.xyz/page/9/">Next&nbsp;&nbsp;»
     </a>
   </nav>
 </footer>

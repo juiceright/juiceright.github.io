@@ -2,7 +2,7 @@
 <html lang="en" dir="auto" data-theme="auto">
 
 <head>
-	<meta name="generator" content="Hugo 0.154.1"><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.154.2"><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -152,6 +152,20 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">问卷星自动填写脚本
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>2025年3月23日测试批量填写80份正常。
+需要模拟鼠标操作防止被识别机器人
+import re from playwright.async_api import Playwright, async_playwright #from playwright.sync_api import Playwright, sync_playwright, expect import random import asyncio import time def random_int(min=2, max=4): random.seed(time.time()) return str(random.randint(min, max)) async def mouse_random_move(page): # 模拟鼠标随机平滑移动 for i in range(5): await page.mouse.move(random.randint(0, 1000), random.randint(0, 1000)) await asyncio.sleep(0.1) # 模拟鼠标随机停留 #time.sleep(random.randint(0,1)) # 鼠标滚轮 async def run(browser) -&gt; None: context = await browser.new_context() page = await context.new_page() await page.goto(&#34;https://www.wjx.cn/vm/Q0x3Wuq.aspx&#34;) await page.get_by_text(&#34;男&#34;).click() await page.get_by_text(&#34;大三&#34;).click() await page.get_by_text(&#34;1000-&#34;).click() await page.locator(&#34;div&#34;).filter(has_text=re.compile(r&#34;^全部来自家庭部分来自家庭，部分靠自己赚取全部靠自己赚取$&#34;)).get_by_role(&#34;link&#34;).nth(1).click() await mouse_random_move(page) await page.locator(&#34;div&#34;).filter(has_text=re.compile(r&#34;^300以下300-600600-10001000以上$&#34;)).get_by_role(&#34;link&#34;).nth(1).click() await mouse_random_move(page) await page.locator(&#34;div&#34;).filter(has_text=re.compile(r&#34;^无1-200200-500500以上$&#34;)).get_by_role(&#34;link&#34;).nth(2).click() await mouse_random_move(page) await page.locator(&#34;div&#34;).filter(has_text=re.compile(r&#34;^实体店网购$&#34;)).get_by_role(&#34;link&#34;).first.click() await page.locator(&#34;div&#34;).filter(has_text=re.compile(r&#34;^100以下100-500500-10001000以上$&#34;)).get_by_role(&#34;link&#34;).nth(3).click() await mouse_random_move(page) await page.locator(&#34;div&#34;).filter(has_text=re.compile(r&#34;^无200以下200-500500-10001000以上$&#34;)).get_by_role(&#34;link&#34;).nth(2).click() await page.locator(&#34;#div10&#34;).get_by_role(&#34;link&#34;).nth(2).click() await mouse_random_move(page) await page.locator(&#34;#div11&#34;).get_by_role(&#34;link&#34;).nth(1).click() await mouse_random_move(page) await page.locator(&#34;#div12&#34;).get_by_role(&#34;link&#34;).first.click() await mouse_random_move(page) await page.locator(&#34;#div13&#34;).get_by_role(&#34;link&#34;).nth(1).click() await mouse_random_move(page) await page.locator(&#34;#div14&#34;).get_by_role(&#34;link&#34;).nth(2).click() await mouse_random_move(page) await page.locator(&#34;#div15&#34;).get_by_role(&#34;link&#34;).nth(1).click() await mouse_random_move(page) await page.locator(&#34;#div16&#34;).get_by_role(&#34;link&#34;).nth(2).click() await mouse_random_move(page) await page.locator(&#34;#div17&#34;).get_by_role(&#34;link&#34;).nth(1).click() await mouse_random_move(page) await page.locator(&#34;div:nth-child(2) &gt; .jqcheckwrapper &gt; .jqcheck&#34;).first.click() await mouse_random_move(page) await page.locator(&#34;div:nth-child(5) &gt; .jqcheckwrapper &gt; .jqcheck&#34;).first.click() await mouse_random_move(page) await page.locator(&#34;div:nth-child(7) &gt; .jqcheckwrapper &gt; .jqcheck&#34;).click() await mouse_random_move(page) await page.locator(&#34;#div19&#34;).get_by_role(&#34;link&#34;).nth(3).click() await mouse_random_move(page) await page.locator(&#34;#div20&#34;).get_by_role(&#34;link&#34;).nth(1).click() await mouse_random_move(page) await page.locator(&#34;#div20&#34;).get_by_role(&#34;link&#34;).first.click() await mouse_random_move(page) await page.locator(&#34;#div21 &gt; .ui-controlgroup &gt; div:nth-child(2) &gt; .jqcheckwrapper &gt; .jqcheck&#34;).click() await mouse_random_move(page) await page.locator(&#34;#div21 &gt; .ui-controlgroup &gt; div:nth-child(4) &gt; .jqcheckwrapper &gt; .jqcheck&#34;).click() await page.get_by_text(&#34;提交&#34;).click() await page.wait_for_function(&#34;window.location.href !== &#39;https://www.wjx.cn/vm/Q0x3Wuq.aspx&#39;&#34;) await page.wait_for_timeout(3000) await page.close() await context.close() async def main() -&gt; None: async with async_playwright() as p: browser = await p.chromium.launch(headless=True) tasks = [] for i in range(6): tasks.append(run(browser)) titles=await asyncio.gather(*tasks) for title in titles: print(title) await browser.close() if __name__ == &#34;__main__&#34;: asyncio.run(main()) </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-23 18:17:36 +0000 UTC'>March 23, 2025</span>&nbsp;·&nbsp;<span>2 min</span></footer>
+  <a class="entry-link" aria-label="post link to 问卷星自动填写脚本" href="https://juiceright.xyz/old/posts/trgcxiotbs/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">cmd 利用curl实现全网卡登录STU校园网
     </h2>
   </header>
@@ -265,19 +279,6 @@ import os url=&#34;https://sso.stu.edu.cn/login?service=http://localhost:8080&#3
   </div>
   <footer class="entry-footer"><span title='2025-03-11 00:52:49 +0000 UTC'>March 11, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
   <a class="entry-link" aria-label="post link to STU校园网自动登录脚本" href="https://juiceright.xyz/old/posts/htt13gbuie/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">vbs脚本 快速将ppt word文档转换成pdf
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>保存为vbs脚本，可以将同目录下的ppt、word转成PDF，非常方便
-On Error Resume Next Const wdExportFormatPDF = 17 Set oWord = WScript.CreateObject(&#34;Word.Application&#34;) Set ppt = CreateObject(&#34;PowerPoint.application&#34;) Set fso = WScript.CreateObject(&#34;Scripting.Filesystemobject&#34;) Set fds=fso.GetFolder(&#34;.&#34;) Set ffs=fds.Files For Each ff In ffs If (LCase(Right(ff.Name,4))=&#34;.doc&#34; Or LCase(Right(ff.Name,4))=&#34;docx&#34; ) And Left(ff.Name,1)&lt;&gt;&#34;~&#34; Then Set oDoc=oWord.Documents.Open(ff.Path) odoc.ExportAsFixedFormat Left(ff.Path,InStrRev(ff.Path,&#34;.&#34;))&amp;&#34;pdf&#34;,wdExportFormatPDF End If If (LCase(Right(ff.Name,4))=&#34;.ppt&#34; Or LCase(Right(ff.Name,4))=&#34;pptx&#34; ) And Left(ff.Name,1)&lt;&gt;&#34;~&#34; Then Set pptfile = ppt.Presentations.Open(ff.Path,false,false,false) pptfile.Saveas Left(ff.Path,InStrRev(ff.Path,&#34;.&#34;))&amp;&#34;pdf&#34;,32,false End If Next odoc.Close oword.Quit pptfiles.Close ppt.Quit Set oDoc=Nothing Set oWord =Nothing Set pptfile = Nothing Set ppt = Nothing MsgBox &#34;PPT和Word全部转换为PDF啦!&#34; </p>
-  </div>
-  <footer class="entry-footer"><span title='2025-03-11 00:48:44 +0000 UTC'>March 11, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to vbs脚本 快速将ppt word文档转换成pdf" href="https://juiceright.xyz/old/posts/92gfku-5zk/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
