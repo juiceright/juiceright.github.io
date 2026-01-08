@@ -2,7 +2,7 @@
 <html lang="en" dir="auto" data-theme="auto">
 
 <head>
-	<meta name="generator" content="Hugo 0.154.2"><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.154.3"><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -152,6 +152,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">STU校园网自动登录脚本
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>cmd, ???处分别改称用户名和校园网密码
+@ECHO OFF REM 启动延时变量 setlocal enabledelayedexpansion :LoginCheck for /F %%i in ( &#39;curl -I -m 10 -o /dev/null -s -w %%{http_code} www.baidu.com&#39; ) do ( set http_code=%%i ) if /i %http_code% neq 200 ( curl --data &#34;opr=pwdLogin&amp;userName=???&amp;pwd=???&amp;rememberPwd=1&#34; http://1.1.1.2/ac_portal/login.php&gt;result.txt	set /p result=&lt;result.txt set result=!result:~11,4! if !result! equ true ( echo Login Success ) else ( echo Login Failed, Try Again choice /t 10 /d y /n &gt;nul goto LoginCheck ) del result.txt ) endlocal </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-11 00:52:49 +0000 UTC'>March 11, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to STU校园网自动登录脚本" href="https://juiceright.xyz/old/posts/htt13gbuie/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">vbs脚本 快速将ppt word文档转换成pdf
     </h2>
   </header>
@@ -260,18 +273,6 @@ import asyncio from playwright.async_api import async_playwright import requests
   </div>
   <footer class="entry-footer"><span title='2025-03-10 13:27:52 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
   <a class="entry-link" aria-label="post link to Prim堆优化版" href="https://juiceright.xyz/old/posts/ibw-bmba9u/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">LCA算法
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>// luogu-judger-enable-o2 #include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int ver[2*500000],nex[2*500000],head[2*500000],d[2*500000],p[2*500000][23],tot; void add(int x,int y){ ver[&#43;&#43;tot]=y;nex[tot]=head[x];head[x]=tot; } int read(){ int x=0; char ch; while(ch&lt;&#39;0&#39;||ch&gt;&#39;9&#39;)ch=getchar(); while(ch&gt;&#39;0&#39;&amp;&amp;ch&lt;&#39;9&#39;){ x=x*10&#43;ch-&#39;0&#39;; ch=getchar(); } return x; } void dfs(int x,int fa){ d[x]=d[fa]&#43;1; p[x][0]=fa; for(int i=1;(1&lt;&lt;i)&lt;=d[x];i&#43;&#43;) p[x][i]=p[p[x][i-1]][i-1]; for(int i=head[x];i;i=nex[i]){ if(ver[i]!=fa) dfs(ver[i],x);	} } int lca(int a,int b){ if(d[a]&gt;d[b])swap(a,b); for(int i=20;i&gt;=0;i--) if(d[a]&lt;=d[b]-(1&lt;&lt;i)) b=p[b][i]; if(a==b) return a; for(int i=20;i&gt;=0;i--) if(p[a][i]==p[b][i])continue; else a=p[a][i],b=p[b][i]; return p[a][0]; } int main(){ int i,j,n,m,t,k,s; scanf(&#34;%d %d %d&#34;,&amp;n,&amp;m,&amp;s); for(int i=1;i&lt;n;i&#43;&#43;) { int a,b; scanf(&#34;%d %d&#34;,&amp;a,&amp;b); add(a,b); add(b,a); } dfs(s,0); for(i=1;i&lt;=m;i&#43;&#43;) { int a,b; scanf(&#34;%d %d&#34;,&amp;a,&amp;b); cout&lt;&lt;lca(a,b)&lt;&lt;endl; } } </p>
-  </div>
-  <footer class="entry-footer"><span title='2025-03-10 13:27:39 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to LCA算法" href="https://juiceright.xyz/old/posts/5ipfk_eghq/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
