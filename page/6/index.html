@@ -152,6 +152,18 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Prim算法
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> #include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; typedef int ll; ll d[5010],mp[5010][5010]; bool v[5010]; ll i,j,n,m,t,k; int main() { cin&gt;&gt;n&gt;&gt;m; memset(mp,0x3f,sizeof(mp)); memset(d,0x3f,sizeof(d)); memset(v,0,sizeof(v)); ll a,b,c; for(i=1; i&lt;=m; i&#43;&#43;) { cin&gt;&gt;a&gt;&gt;b&gt;&gt;c; mp[a][b]=min(mp[a][b],c); mp[b][a]=mp[a][b]; } d[1]=0; for(i=1; i&lt;n; i&#43;&#43;) { ll x=0; for(j=1; j&lt;=n; j&#43;&#43;) if(!v[j]&amp;&amp;(x==0||d[j]&lt;d[x]))x=j; v[x]=1; for(j=1; j&lt;=n; j&#43;&#43;) if(!v[j])d[j]=min(d[j],mp[x][j]); } ll ans=0; for(i=2; i&lt;=n; i&#43;&#43;) ans&#43;=d[i]; if(ans&gt;99999999)cout&lt;&lt;&#34;orz&#34;; else cout&lt;&lt;ans; } </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-10 13:28:15 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to Prim算法" href="https://juiceright.xyz/old/posts/f481dm04tj/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Prim堆优化版
     </h2>
   </header>
@@ -259,25 +271,6 @@
   </div>
   <footer class="entry-footer"><span title='2024-01-20 11:28:52 +0000 UTC'>January 20, 2024</span>&nbsp;·&nbsp;<span>2 min</span></footer>
   <a class="entry-link" aria-label="post link to Realising the full potential of MR-PHeWAS in cancer" href="https://juiceright.xyz/old/posts/%E7%AC%94%E8%AE%B0realising-the-full-potential-of-mr-phewas-in-cancer/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">GO和KEGG分析
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>GO和KEGG分析 功能富集分析对于解释转录组学数据至关重要。转录组鉴定了差异表达基因后，通常会进行GO或KEGG富集分析，识别这些差异基因的功能或参与调控的通路，来说明关键基因表达上调/或下调后可能会导致哪功能或通路被激活/或抑制，进而与表型进行联系。
-(其实就是用DEG结果的进行的分析)
-为什么要做GO和KEGG分析 经过差异表达分析，我们得到了在对照组与实验组中差异表达的基因，说明改变的条件对这些基因的表达产生了影响，但是这样还不够，我们希望进一步知道具体是对哪些生物学功能/通路产生了影响，于是需要进行GO分析。
-GO、KEGG结果解读 富集分析，看完这篇就够
-别搜啦！关于富集分析你想知道的这里都有！
-使用R包clusterProfiler进行GO/KEGG富集分析（有参/无参）
-输入数据格式 一个表格，分别是Gene_Symbol和logFC，如下图所示：
-主要结果图 library(&#34;clusterProfiler&#34;) library(&#34;enrichplot&#34;) library(&#34;ggplot2&#34;) library(&#34;org.Hs.eg.db&#34;) library(&#34;GOplot&#34;) #转换ID rt=read.table(&#34;input.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T) genes=as.vector(rt[,1]) entrezIDs &lt;- mget(genes, org.Hs.egSYMBOL2EG, ifnotfound=NA) #找出基因对应的id entrezIDs &lt;- as.character(entrezIDs) out=cbind(rt,entrezID=entrezIDs) write.table(out,file=&#34;GO-id.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names=F) #输出结果 ####GO分析#### rt=read.table(&#34;GO-id.txt&#34;,sep=&#34;\t&#34;,header=T,check.names=F) rt=rt[is.na(rt[,&#34;entrezID&#34;])==F,] gene=rt$entrezID #GO富集分析 kk &lt;- enrichGO(gene = gene,OrgDb = org.Hs.eg.db, pvalueCutoff =0.05, qvalueCutoff = 0.05,ont=&#34;all&#34;,readable =T) write.table(kk,file=&#34;GO.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names = F) # #可视化 ##条形图 pdf(file=&#34;GO-barplot.pdf&#34;,width = 10,height = 15) barplot(kk, drop = TRUE, showCategory =10,label_format=100,split=&#34;ONTOLOGY&#34;) &#43; facet_grid(ONTOLOGY~., scale=&#39;free&#39;) dev.off() ##气泡图 pdf(file=&#34;GO-bubble.pdf&#34;,width = 10,height = 15) dotplot(kk,showCategory = 10,label_format=100,split=&#34;ONTOLOGY&#34;) &#43; facet_grid(ONTOLOGY~., scale=&#39;free&#39;) dev.off() ##圈图 ego&lt;-read.table(&#34;GO.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T) go=data.frame(Category =&#34;ALL&#34;,ID = ego$ID,Term = ego$Description, Genes = gsub(&#34;/&#34;, &#34;, &#34;, ego$geneID), adj_pval = ego$pvalue) id.fc=rt genelist &lt;- data.frame(ID = id.fc$gene, logFC = id.fc$logFC) row.names(genelist)=genelist[,1] circ &lt;- circle_dat(go, genelist) termNum = 5 #限定term数目 geneNum = nrow(genelist) #限定基因数目可以改为数字 chord &lt;- chord_dat(circ, genelist[1:geneNum,], go$Term[1:termNum]) pdf(file=&#34;GO_circ.pdf&#34;,width = 12,height = 11) GOChord(chord, space = 0.001, #基因之间的间距 gene.order = &#39;logFC&#39;, #按照logFC值对基因排序 gene.space = 0.25, #基因名跟圆圈的相对距离 gene.size = 5, #基因名字体大小 border.size = 0.1, #线条粗细 process.label = 9) #term字体大小 dev.off() ####KEGG#### rt=read.table(&#34;input.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T) #读取文件 genes=as.vector(rt[,1]) entrezIDs &lt;- mget(genes, org.Hs.egSYMBOL2EG, ifnotfound=NA) #找出基因对应的id entrezIDs &lt;- as.character(entrezIDs) out=cbind(rt,entrezID=entrezIDs) write.table(out,file=&#34;KEGG-id.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names=F) #输出结果 rt=read.table(&#34;KEGG-id.txt&#34;,sep=&#34;\t&#34;,header=T,check.names=F) rt=rt[is.na(rt[,&#34;entrezID&#34;])==F,] gene=rt$entrezID #kegg分析 kk &lt;- enrichKEGG(gene = gene,keyType = &#34;kegg&#34;,organism = &#34;hsa&#34;, pvalueCutoff =0.05, qvalueCutoff =0.05, pAdjustMethod = &#34;fdr&#34;) write.table(kk,file=&#34;KEGG.txt&#34;,sep=&#34;\t&#34;,quote=F,row.names = F) #可视化 ##条形图 pdf(file=&#34;KEGG-barplot.pdf&#34;,width = 10,height = 13) barplot(kk, drop = TRUE, showCategory = 15,label_format=100) dev.off() ##气泡图 pdf(file=&#34;KEGG-bubble.pdf&#34;,width = 10,height = 13) dotplot(kk, showCategory = 15,label_format=100) dev.off() #圈图 ego&lt;-read.table(&#34;KEGG.txt&#34;,sep=&#34;\t&#34;,check.names=F,header=T) go=data.frame(Category =&#34;ALL&#34;,ID = ego$ID,Term = ego$Description, Genes = gsub(&#34;/&#34;, &#34;, &#34;, ego$geneID), adj_pval = ego$p.adjust) id.fc=rt genelist &lt;- data.frame(ID = id.fc$entrezID, logFC = id.fc$logFC) row.names(genelist)=genelist[,1] row.names(rt)=rt[,3] circ &lt;- circle_dat(go, genelist) termNum = 5 #限定term数目 geneNum = nrow(genelist) #限定基因数目可以改为数字 chord &lt;- chord_dat(circ, genelist[1:geneNum,], go$Term[1:termNum]) sameSample=intersect(row.names(chord), row.names(rt)) rt=rt[sameSample,,drop=F] geneIDs=rt$gene row.names(chord)=geneIDs pdf(file=&#34;KEGG_circ.pdf&#34;,width = 12,height = 11) GOChord(chord, space = 0.001, #基因之间的间距 gene.order = &#39;logFC&#39;, #按照logFC值对基因排序 gene.space = 0.25, #基因名跟圆圈的相对距离 gene.size = 5, #基因名字体大小 border.size = 0.1, #线条粗细 process.label = 9) #term字体大小 dev.off() </p>
-  </div>
-  <footer class="entry-footer"><span title='2023-08-06 18:39:29 +0000 UTC'>August 6, 2023</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to GO和KEGG分析" href="https://juiceright.xyz/old/posts/go%E5%92%8Ckegg%E5%88%86%E6%9E%90/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
