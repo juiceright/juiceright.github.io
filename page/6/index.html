@@ -168,6 +168,18 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">ST表
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> #include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int f[2000010][24],n; int get(int x,int y){ int k=log(y-x&#43;1)/log(2); return max(f[x][k],f[y-(1&lt;&lt;k)&#43;1][k]); } int main(){ int i,j,m,t,k; scanf(&#34;%d %d&#34;,&amp;n,&amp;m); for(i=1;i&lt;=n;i&#43;&#43;) scanf(&#34;%d&#34;,&amp;f[i][0]); int x=log(n)/log(2)&#43;1; for(int j=1;j&lt;x;j&#43;&#43;) for(int i=1;i&lt;=n-(1&lt;&lt;j)&#43;1;i&#43;&#43;) f[i][j]=max(f[i][j-1],f[i&#43;(1&lt;&lt;(j-1))][j-1]); while(m--){ int a,b; scanf(&#34;%d %d&#34;,&amp;a,&amp;b); printf(&#34;%d\n&#34;,get(a,b)); } } </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-10 13:28:40 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to ST表" href="https://juiceright.xyz/old/posts/6jfataceqh/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">SPFA算法
     </h2>
   </header>
@@ -272,18 +284,6 @@
   </div>
   <footer class="entry-footer"><span title='2025-03-10 13:25:58 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
   <a class="entry-link" aria-label="post link to 带lazy标记的zkw线段树" href="https://juiceright.xyz/old/posts/wwlgapb2j1/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">排序时间复杂度
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p> 排序方法 时间复杂度（平均） 时间复杂度（最坏) 时间复杂度（最好) 空间复杂度 稳定性 复杂性 直接插入排序 O(n2) O(n2) O(n) O(1) 稳定 简单 希尔排序 O(nlog2n) O(n2) O(n) O(1) 不稳定 较复杂 直接选择排序 O(n2) O(n2) O(n2) O(1) 不稳定 简单 堆排序 O(nlog2n) O(nlog2n) O(nlog2n) O(1) 不稳定 较复杂 冒泡排序 O(n2) O(n2) O(n) O(1) 稳定 简单 快速排序 O(nlog2n) O(n2) O(nlog2n) O(nlog2n) 不稳定 较复杂 归并排序 O(nlog2n) O(nlog2n) O(nlog2n) O(n) 稳定 较复杂 基数排序 O(d(n&#43;r)) O(d(n&#43;r)) O(d(n&#43;r)) O(n&#43;r) 稳定 较复杂 </p>
-  </div>
-  <footer class="entry-footer"><span title='2025-03-10 13:21:35 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 排序时间复杂度" href="https://juiceright.xyz/old/posts/3ilwt_ogfy/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

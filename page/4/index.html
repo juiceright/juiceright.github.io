@@ -168,6 +168,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">查看WebVPN的twfid
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>务必通过WebVPN访问本页面，直连访问将无法获取twfid
+http://juiceright-github-io-s.webvpn.stu.edu.cn:8118/post/lGBTFf1szi/
+查看 twfid Cookie 值 以下是源码，该工具仅在本地处理，不会上传任何数据。
+&lt;button onclick=&#34;checkTwfidCookie()&#34;&gt;查看 twfid Cookie 值&lt;/button&gt; &lt;p id=&#34;result&#34;&gt;&lt;/p&gt; &lt;script&gt; function checkTwfidCookie() { const cookies = document.cookie.split(&#39;; &#39;); for (let i = 0; i &lt; cookies.length; i&#43;&#43;) { const parts = cookies[i].split(&#39;=&#39;); if (parts[0] === &#39;TWFID&#39;) { document.getElementById(&#39;result&#39;).textContent = &#39;TWFID Cookie 的值为: &#39; &#43; parts[1]; return; } } document.getElementById(&#39;result&#39;).textContent = &#39;未找到 TWFID Cookie。&#39;; } &lt;/script&gt; </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-04-18 16:37:12 +0000 UTC'>April 18, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 查看WebVPN的twfid" href="https://juiceright.xyz/old/posts/lgbtff1szi/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">将问卷星每一道题目单独截图
     </h2>
   </header>
@@ -284,18 +299,6 @@ Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &#34;Ethernet-Vir
   </div>
   <footer class="entry-footer"><span title='2025-03-14 20:49:01 +0000 UTC'>March 14, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
   <a class="entry-link" aria-label="post link to python 利用curl将全部网卡适配器登录STU校园网" href="https://juiceright.xyz/old/posts/byprsldhih/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">snakemake流程——SMR&#43;MR&#43;MAGMA分析
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p> # 定义染色体列表，包含 1 到 22 号染色体 chromosomes = list(range(1, 23)) # 获取组学暴露数据文件的名称 (MRname,) = glob_wildcards(&#34;../dataset/组学暴露数据/{file}.rds&#34;) # 获取 SMR 数据文件的名称 GTExname = glob_wildcards(&#34;../dataset/SMR/{file}.besd&#34;).file # 获取 GWAS 数据文件的名称 GWASfilename = glob_wildcards(&#34;../../SMR/input/{file}&#34;).file # 定义 all 规则，用于指定整个流程的最终输出文件 rule all: input: expand(&#34;result/GTEx的{GTEx}之{file}.smr&#34;, GTEx=GTExname, file=GWASfilename), #expand(&#34;result/MR的{file}之{MR}.csv&#34;, MR=MRname, file=GWASfilename), expand(&#34;result/{file}.gsa.out.txt&#34;,file=GWASfilename), #expand(&#34;result/Gene_disease_association/{file}.fusion_twas.txt&#34;,file=GWASfilename), #TWAS 若全部49个组织非常慢10小时 # 定义 trans 规则，用于将输入文件转换为输出文件 rule trans: #OK input: # 输入文件路径 &#34;../../SMR/input/{file}&#34; output: # 输出文件路径 &#34;tmp/{file}.ma&#34;, &#34;tmp/{file}.sumstats.gz&#34;, &#34;tmp/{file}.mendelR.txt&#34; # 规则执行时使用的线程数 threads: 6 shell: # 调用 R 脚本进行文件转换 &#34;r -f tools/trans.R --args {wildcards.file}&#34; rule run_GTEx: #OK input: &#34;tmp/{file}.ma&#34;, output: &#34;result/GTEx的{GTEx}之{file}.smr&#34; threads: 5 shell: &#34;tools\\smr.exe --gwas-summary {input} --out result/GTEx的{wildcards.GTEx}之{wildcards.file} --bfile ../dataset/EUR --beqtl-summary ../dataset/SMR/{wildcards.GTEx} --maf 0.01 --thread-num 18 --diff-freq-prop 1.000000&#34; rule run_MAGMA: #OK input: &#34;tmp/{file}.ma&#34;, output: &#34;result/{file}.gsa.out.txt&#34;, shell: &#34;r -f tools/run_MAGMA.R --args {wildcards.file}&#34; rule run_MR: #OK input: &#34;tmp/{file}.ma&#34;, output: &#34;result/MR的{file}之{MR}.csv&#34;, threads: 2 shell: &#34;r -f tools/run_MR.R --args {wildcards.file} {wildcards.MR}&#34; </p>
-  </div>
-  <footer class="entry-footer"><span title='2025-03-14 20:46:52 +0000 UTC'>March 14, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to snakemake流程——SMR&#43;MR&#43;MAGMA分析" href="https://juiceright.xyz/old/posts/vw5dv077fn/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
