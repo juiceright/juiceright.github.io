@@ -168,6 +168,18 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">元旦
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>元旦开心😊 </p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-01 00:00:00 +0000 UTC'>January 1, 2026</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 元旦" href="https://juiceright.xyz/posts/2026/%E5%85%83%E6%97%A6/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">奇奇怪怪
     </h2>
   </header>
@@ -278,18 +290,6 @@
   </div>
   <footer class="entry-footer"><span title='2025-12-03 02:30:56 +0000 UTC'>December 3, 2025</span>&nbsp;·&nbsp;<span>0 min</span></footer>
   <a class="entry-link" aria-label="post link to 听歌2" href="https://juiceright.xyz/posts/2025/%E5%90%AC%E6%AD%8C2/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Anki本地服务器
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Anki本地服务器 @echo off setlocal enabledelayedexpansion :: --- 配置区域 --- set &#34;SYNC_USER1=admin:1234&#34; :: 格式: “用户名:密码” set &#34;SYNC_HOST=&#34; :: 服务器局域网IP，留空则绑定所有接口 set &#34;SYNC_PORT=8080&#34; :: 监听端口 set &#34;SYNC_BASE=F:\SoftwareData\AnkiServer&#34; :: 数据存储目录 set &#34;PROCESS_NAME=python.exe&#34; :: 进程名称 set &#34;PROCESS_ARG=anki.syncserver&#34; :: 进程特征参数 :: 显示配置信息 echo ============================================== echo Anki 同步服务器配置 echo ============================================== echo 用户配置: !SYNC_USER1! echo 服务器地址: !SYNC_HOST! echo 监听端口: !SYNC_PORT! echo 数据存储目录:!SYNC_BASE! echo ============================================== :: 检测服务器状态：同时检查端口和进程信息 set &#34;SERVER_PID=&#34; for /f &#34;tokens=5&#34; %%a in (&#39;netstat -ano ^| findstr /i &#34;:!SYNC_PORT! LISTENING&#34;&#39;) do ( :: 检查该PID是否为python进程且包含指定参数 for /f &#34;delims=&#34; %%b in (&#39;wmic process where &#34;ProcessId=%%a&#34; get CommandLine /value ^| findstr /i &#34;!PROCESS_NAME! !PROCESS_ARG!&#34;&#39;) do ( set &#34;SERVER_PID=%%a&#34; ) ) :: 如果找到匹配的进程PID if defined SERVER_PID ( echo 检测到Anki服务器已在运行（PID:!SERVER_PID!，端口:!SYNC_PORT!） echo. echo 请选择操作: echo 按下 C 键并回车 - 关闭服务器 echo 按下其他键并回车 - 取消操作 echo. :: 读取用户输入 set /p &#34;CHOICE=请输入选择: &#34; :: 判断用户输入是否为c或C if /i &#34;!CHOICE!&#34; equ &#34;C&#34; ( echo 正在关闭服务器... :: 杀死找到的服务器进程 taskkill /F /PID !SERVER_PID! &gt;nul 2&gt;&amp;1 if !errorlevel! equ 0 ( echo 服务器已成功关闭（PID:!SERVER_PID!） ) else ( echo 关闭服务器失败，请手动结束进程（PID:!SERVER_PID!） ) ) else ( echo 已取消关闭操作，服务器继续运行 ) pause goto end ) :: 启动服务器（未运行时） echo 未检测到运行中的Anki服务器 echo 正在启动 Anki 同步服务器... echo 服务器将在后台运行，关闭此窗口不影响服务 echo ============================================== :: 使用VBScript创建隐藏窗口启动服务器 echo Set objShell = CreateObject(&#34;WScript.Shell&#34;) &gt; temp.vbs echo objShell.Run &#34;cmd /c python -m anki.syncserver&#34;, 0, False &gt;&gt; temp.vbs cscript //nologo temp.vbs del temp.vbs echo 服务器已在后台启动（端口:!SYNC_PORT!） echo 可以关闭此窗口 echo 再次运行本脚本将提供关闭选项 echo ============================================== echo 3秒后自动关闭此窗口... timeout /t 3 /nobreak &gt;nul goto end :end endlocal </p>
-  </div>
-  <footer class="entry-footer"><span title='2025-12-03 00:11:03 +0000 UTC'>December 3, 2025</span>&nbsp;·&nbsp;<span>2 min</span></footer>
-  <a class="entry-link" aria-label="post link to Anki本地服务器" href="https://juiceright.xyz/posts/2025/anki%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

@@ -168,6 +168,18 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">3分钟通关，好像不太对
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>3分钟通关，好像不太对🤨🧐😦😫🥰 </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-08-14 00:54:21 +0000 UTC'>August 14, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 3分钟通关，好像不太对" href="https://juiceright.xyz/posts/2025/3%E5%88%86%E9%92%9F%E9%80%9A%E5%85%B3%E5%A5%BD%E5%83%8F%E4%B8%8D%E5%A4%AA%E5%AF%B9/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">考科目三（偶遇车祸版）
     </h2>
   </header>
@@ -282,21 +294,6 @@ import re from playwright.async_api import Playwright, async_playwright #from pl
   </div>
   <footer class="entry-footer"><span title='2025-03-17 12:38:48 +0000 UTC'>March 17, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
   <a class="entry-link" aria-label="post link to cmd 利用curl实现全网卡登录STU校园网" href="https://juiceright.xyz/old/posts/lq1iwgc7e1/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">EndNote/Zotero批量添加PubMed文献脚本
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>代理使用8089端口，适配clash
-使用：同目录下创建paper.txt，一行一个填写一个PMID
-生成一个citation.nbib格式的文件
-# %% ###预处理，先把文章全部复制到一个paper.txt文本中 ###先获取所有PMID: 后面的数字 import re import pandas as pd import numpy as np proxies = {&#34;http&#34;: &#34;http://127.0.0.1:8089&#34;} pm=pd.read_csv(&#39;paper.txt&#39;,header=None) # to list pm=pm[0].tolist() # %% import requests from concurrent.futures import ThreadPoolExecutor def fetch_pmid(pmid): max_retries = 300 # 设置最大重试次数 for attempt in range(max_retries): url = &#39;https://api.ncbi.nlm.nih.gov/lit/ctxp/v1/pubmed/?format=medline&amp;id={}&#39;.format(pmid) print(url) print(&#34;-------requests start--------------&#34;) res = requests.get(url,proxies=proxies) print(&#34;-------requests end--------------&#34;) print(res) if res.status_code == 200: res.close() return res.text &#43; &#34;\n&#34; else: print(f&#34;Request failed, retrying... (attempt {attempt &#43; 1}/{max_retries})&#34;) print(f&#34;Failed to fetch PMID {pmid} after {max_retries} attempts.&#34;) return &#34;&#34; cita = [] # 设置线程数，这里设置为4，你可以根据需要调整 num_threads = 32 with ThreadPoolExecutor(max_workers=num_threads) as executor: # 使用多线程并行处理每个pmid results = list(executor.map(fetch_pmid, pm)) cita.extend(results) # 替换处理 # %% cita = [y.replace(&#34;\r&#34;, &#34;&#34;) for y in cita] cita = [y &#43; &#34;\n&#34; for y in cita] f=open(&#34;citation.nbib&#34;,&#34;w&#34;,encoding=&#39;utf-8&#39;) f.writelines(cita) f.close() </p>
-  </div>
-  <footer class="entry-footer"><span title='2025-03-14 21:10:48 +0000 UTC'>March 14, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to EndNote/Zotero批量添加PubMed文献脚本" href="https://juiceright.xyz/old/posts/7uduxw77v6/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

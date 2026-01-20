@@ -168,6 +168,18 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">树状数组
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> #include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; long long c[500001]; long long i,j,n,m,t,k; long long lb(long long x) {return x&amp;(-x); } long long get(long long x) { long long ans=0; for(;x;x-=lb(x)) ans&#43;=c[x]; return ans; } void add(long long x,long long y){ for(long long i=x;i&lt;=n;i&#43;=lb(i)) c[i]&#43;=y; } int main(){ cin&gt;&gt;n&gt;&gt;m; for(i=1;i&lt;=n;i&#43;&#43;) {scanf(&#34;%lld&#34;,&amp;t); add(i,t); } while(m--){ cin&gt;&gt;t; if(t==1){ cin&gt;&gt;j&gt;&gt;k; add(j,k); } else { cin&gt;&gt;j&gt;&gt;k; cout&lt;&lt;get(k)-get(j-1)&lt;&lt;endl; } } } </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-10 13:26:42 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 树状数组" href="https://juiceright.xyz/old/posts/hl1binzfbh/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">kruskal算法（克鲁斯卡尔算法）
     </h2>
   </header>
@@ -331,24 +343,6 @@ R2值越接近1，表明模型的性能越好。
   </div>
   <footer class="entry-footer"><span title='2023-04-15 09:36:30 +0000 UTC'>April 15, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
   <a class="entry-link" aria-label="post link to 论文📃你好，论文📃再见。" href="https://juiceright.xyz/old/posts/%E8%AE%BA%E6%96%87%E4%BD%A0%E5%A5%BD%E8%AE%BA%E6%96%87%E5%86%8D%E8%A7%81/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">【深度学习】手写数字图像识别分类（MNIST数据集）
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>卷积神经网络 MNIST介绍 MNIST 数据集可在 http://yann.lecun.com/exdb/mnist/ 获取, 它包含了四个部分:
-Training set images: train-images-idx3-ubyte.gz (9.9 MB, 解压后 47 MB, 包含 60,000 个样本)
-Training set labels: train-labels-idx1-ubyte.gz (29 KB, 解压后 60 KB, 包含 60,000 个标签)
-Test set images: t10k-images-idx3-ubyte.gz (1.6 MB, 解压后 7.8 MB, 包含 10,000 个样本)
-Test set labels: t10k-labels-idx1-ubyte.gz (5KB, 解压后 10 KB, 包含 10,000 个标签)
-MNIST 数据集来自美国国家标准与技术研究所, National Institute of Standards and Technology (NIST). 训练集 (training set) 由来自 250 个不同人手写的数字构成, 其中 50% 是高中学生, 50% 来自人口普查局 (the Census Bureau) 的工作人员. 测试集(test set) 也是同样比例的手写数字数据.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2023-04-01 20:09:50 +0000 UTC'>April 1, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 【深度学习】手写数字图像识别分类（MNIST数据集）" href="https://juiceright.xyz/old/posts/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB%E5%88%86%E7%B1%BBmnist%E6%95%B0%E6%8D%AE%E9%9B%86/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
