@@ -6,8 +6,30 @@
     <description>Recent content in 日常 on Juiceright</description>
     <generator>Hugo -- 0.154.5</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 19 Jan 2026 19:24:08 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 20 Jan 2026 06:19:09 +0000</lastBuildDate>
     <atom:link href="https://juiceright.xyz/categories/%E6%97%A5%E5%B8%B8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>配置UV环境</title>
+      <link>https://juiceright.xyz/posts/2026/%E9%85%8D%E7%BD%AEuv%E7%8E%AF%E5%A2%83/</link>
+      <pubDate>Tue, 20 Jan 2026 14:17:09 +0000</pubDate>
+      <guid>https://juiceright.xyz/posts/2026/%E9%85%8D%E7%BD%AEuv%E7%8E%AF%E5%A2%83/</guid>
+      <description>&lt;h2 id=&#34;配置uv环境&#34;&gt;配置UV环境&lt;/h2&gt;
+&lt;p&gt;1、设置环境变量UV_INSTALL_DIR 为 F:\SoftwareData\uv&lt;/p&gt;
+&lt;p&gt;2、powershell运行&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
+[Environment]::SetEnvironmentVariable(&amp;#34;UV_INSTALL_DIR&amp;#34;, &amp;#34;F:\SoftwareData\uv&amp;#34;, &amp;#34;Machine&amp;#34;)
+[Environment]::SetEnvironmentVariable(&amp;#34;UV_CACHE_DIR&amp;#34;, &amp;#34;%UV_INSTALL_DIR%\cache&amp;#34;, &amp;#34;Machine&amp;#34;)
+[Environment]::SetEnvironmentVariable(&amp;#34;UV_PYTHON_BIN_DIR&amp;#34;, &amp;#34;%UV_INSTALL_DIR%&amp;#34;, &amp;#34;Machine&amp;#34;)
+[Environment]::SetEnvironmentVariable(&amp;#34;UV_PYTHON_INSTALL_DIR&amp;#34;, &amp;#34;%UV_INSTALL_DIR%\python&amp;#34;, &amp;#34;Machine&amp;#34;)
+[Environment]::SetEnvironmentVariable(&amp;#34;UV_TOOL_BIN_DIR&amp;#34;, &amp;#34;%UV_INSTALL_DIR%&amp;#34;, &amp;#34;Machine&amp;#34;)
+[Environment]::SetEnvironmentVariable(&amp;#34;UV_TOOL_DIR&amp;#34;, &amp;#34;%UV_INSTALL_DIR%\tool&amp;#34;, &amp;#34;Machine&amp;#34;)
+[Environment]::SetEnvironmentVariable(&amp;#34;UV_DEFAULT_INDEX&amp;#34;, &amp;#34;https://pypi.tuna.tsinghua.edu.cn/simple&amp;#34;, &amp;#34;Machine&amp;#34;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3、cmd 检查是否设置成功&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;uv cache dir 
+uv tool dir
+uv python dir
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
     <item>
       <title>纵有疾风起，人生不言弃</title>
       <link>https://juiceright.xyz/posts/2026/%E7%BA%B5%E6%9C%89%E7%96%BE%E9%A3%8E%E8%B5%B7%E4%BA%BA%E7%94%9F%E4%B8%8D%E8%A8%80%E5%BC%83/</link>

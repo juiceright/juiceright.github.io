@@ -158,6 +158,18 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">LCA算法
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>// luogu-judger-enable-o2 #include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int ver[2*500000],nex[2*500000],head[2*500000],d[2*500000],p[2*500000][23],tot; void add(int x,int y){ ver[&#43;&#43;tot]=y;nex[tot]=head[x];head[x]=tot; } int read(){ int x=0; char ch; while(ch&lt;&#39;0&#39;||ch&gt;&#39;9&#39;)ch=getchar(); while(ch&gt;&#39;0&#39;&amp;&amp;ch&lt;&#39;9&#39;){ x=x*10&#43;ch-&#39;0&#39;; ch=getchar(); } return x; } void dfs(int x,int fa){ d[x]=d[fa]&#43;1; p[x][0]=fa; for(int i=1;(1&lt;&lt;i)&lt;=d[x];i&#43;&#43;) p[x][i]=p[p[x][i-1]][i-1]; for(int i=head[x];i;i=nex[i]){ if(ver[i]!=fa) dfs(ver[i],x);	} } int lca(int a,int b){ if(d[a]&gt;d[b])swap(a,b); for(int i=20;i&gt;=0;i--) if(d[a]&lt;=d[b]-(1&lt;&lt;i)) b=p[b][i]; if(a==b) return a; for(int i=20;i&gt;=0;i--) if(p[a][i]==p[b][i])continue; else a=p[a][i],b=p[b][i]; return p[a][0]; } int main(){ int i,j,n,m,t,k,s; scanf(&#34;%d %d %d&#34;,&amp;n,&amp;m,&amp;s); for(int i=1;i&lt;n;i&#43;&#43;) { int a,b; scanf(&#34;%d %d&#34;,&amp;a,&amp;b); add(a,b); add(b,a); } dfs(s,0); for(i=1;i&lt;=m;i&#43;&#43;) { int a,b; scanf(&#34;%d %d&#34;,&amp;a,&amp;b); cout&lt;&lt;lca(a,b)&lt;&lt;endl; } } </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-10 13:27:39 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to LCA算法" href="https://juiceright.xyz/old/posts/5ipfk_eghq/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">匈牙利算法
     </h2>
   </header>
@@ -275,18 +287,6 @@ MNIST 数据集来自美国国家标准与技术研究所, National Institute of
   </div>
   <footer class="entry-footer"><span title='2023-03-27 22:27:23 +0000 UTC'>March 27, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
   <a class="entry-link" aria-label="post link to 【机器学习】可拟合任意线性函数的小玩意儿" href="https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%8F%AF%E6%8B%9F%E5%90%88%E4%BB%BB%E6%84%8F%E7%BA%BF%E6%80%A7%E5%87%BD%E6%95%B0%E7%9A%84%E5%B0%8F%E7%8E%A9%E6%84%8F%E5%84%BF/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">【爬虫】豆瓣Top250爬取
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>豆瓣Top250爬取 这里是简单的代码 这里是不断修改UA的过程，每次请求都会随机生成一个UA，这样就可以绕过豆瓣的反爬虫机制了 这里是爬虫的结果 结果被豆瓣网站检测到了，不过我们的爬虫已经圆满的完成了任务，我们可以看到豆瓣网站的反爬虫机制是通过检测请求头中的User-Agent来判断是否是爬虫，所以我们可以通过修改请求头中的User-Agent来绕过反爬虫机制。 </p>
-  </div>
-  <footer class="entry-footer"><span title='2023-03-26 23:44:33 +0000 UTC'>March 26, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 【爬虫】豆瓣Top250爬取" href="https://juiceright.xyz/old/posts/%E7%88%AC%E8%99%AB%E8%B1%86%E7%93%A3top250%E7%88%AC%E5%8F%96/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

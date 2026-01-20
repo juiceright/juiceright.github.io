@@ -158,6 +158,18 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">ECDSA实例
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> import os import ecdsa # 生成私钥和公钥 def generate_keys(): # 使用secp256k1曲线生成密钥对 sk = ecdsa.SigningKey.generate(curve=ecdsa.SECP256k1) vk = sk.get_verifying_key() return sk, vk # 对消息进行签名 def sign_message(private_key, message): return private_key.sign(message) # 验证签名 def verify_signature(public_key, message, signature): return public_key.verify(signature, message) # %% private_key, public_key = generate_keys() # 简单消息 message = b&#34;Hello, ECDSA!&#34; # 签名消息 signature = sign_message(private_key, message) print(f&#34;Signature: {signature.hex()}&#34;) # %% sig=&#39;adee313bebf78c1bd4a9719e0ad9aa871ff8195788ad2d7510f35e1ef0ce00a6cbfea518e4ea1716a729c7313a52da8b0c57ff0e0f97251ea604beef3890f699&#39; message = b&#34;Hello, ECDSA!&#34; signature = bytes.fromhex(sig) print(verify_signature(public_key, message, signature)) #验证签名 </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-11 01:05:02 +0000 UTC'>March 11, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to ECDSA实例" href="https://juiceright.xyz/old/posts/22bskm0nwq/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">汕头大学SSO 单点登录接入实例
     </h2>
   </header>
@@ -266,18 +278,6 @@ import asyncio from playwright.async_api import async_playwright import requests
   </div>
   <footer class="entry-footer"><span title='2025-03-10 13:27:52 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
   <a class="entry-link" aria-label="post link to Prim堆优化版" href="https://juiceright.xyz/old/posts/ibw-bmba9u/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">LCA算法
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>// luogu-judger-enable-o2 #include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; int ver[2*500000],nex[2*500000],head[2*500000],d[2*500000],p[2*500000][23],tot; void add(int x,int y){ ver[&#43;&#43;tot]=y;nex[tot]=head[x];head[x]=tot; } int read(){ int x=0; char ch; while(ch&lt;&#39;0&#39;||ch&gt;&#39;9&#39;)ch=getchar(); while(ch&gt;&#39;0&#39;&amp;&amp;ch&lt;&#39;9&#39;){ x=x*10&#43;ch-&#39;0&#39;; ch=getchar(); } return x; } void dfs(int x,int fa){ d[x]=d[fa]&#43;1; p[x][0]=fa; for(int i=1;(1&lt;&lt;i)&lt;=d[x];i&#43;&#43;) p[x][i]=p[p[x][i-1]][i-1]; for(int i=head[x];i;i=nex[i]){ if(ver[i]!=fa) dfs(ver[i],x);	} } int lca(int a,int b){ if(d[a]&gt;d[b])swap(a,b); for(int i=20;i&gt;=0;i--) if(d[a]&lt;=d[b]-(1&lt;&lt;i)) b=p[b][i]; if(a==b) return a; for(int i=20;i&gt;=0;i--) if(p[a][i]==p[b][i])continue; else a=p[a][i],b=p[b][i]; return p[a][0]; } int main(){ int i,j,n,m,t,k,s; scanf(&#34;%d %d %d&#34;,&amp;n,&amp;m,&amp;s); for(int i=1;i&lt;n;i&#43;&#43;) { int a,b; scanf(&#34;%d %d&#34;,&amp;a,&amp;b); add(a,b); add(b,a); } dfs(s,0); for(i=1;i&lt;=m;i&#43;&#43;) { int a,b; scanf(&#34;%d %d&#34;,&amp;a,&amp;b); cout&lt;&lt;lca(a,b)&lt;&lt;endl; } } </p>
-  </div>
-  <footer class="entry-footer"><span title='2025-03-10 13:27:39 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to LCA算法" href="https://juiceright.xyz/old/posts/5ipfk_eghq/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

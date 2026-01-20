@@ -168,6 +168,18 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">kruskal算法（克鲁斯卡尔算法）
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>#include&lt;bits/stdc&#43;&#43;.h&gt; #define ll long long using namespace std; ll fa[5010]; ll get(ll x) { return x==fa[x]?x:fa[x]=get(fa[x]); } void mrg(ll a,ll b) { fa[get(a)]=get(b); } struct pl{ ll x,y,z; bool operator&lt;(const pl &amp;a){ return z&lt;a.z; } }mp[200001]; int main() { ll i,j,n,m,t=0,k=0; cin&gt;&gt;n&gt;&gt;m; for(i=1;i&lt;=m;i&#43;&#43;) { cin&gt;&gt;mp[i].x&gt;&gt;mp[i].y&gt;&gt;mp[i].z; } sort(mp&#43;1,mp&#43;1&#43;m); for(i=1;i&lt;=n;i&#43;&#43;)fa[i]=i; for(i=1;i&lt;=m&amp;&amp;t&lt;n;i&#43;&#43;){ if(get(mp[i].x)!=get(mp[i].y))mrg(mp[i].x,mp[i].y),t&#43;&#43;,k&#43;=mp[i].z;	} if(t==n-1) cout&lt;&lt;k; else cout&lt;&lt;&#34;orz&#34;; } </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-10 13:26:19 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to kruskal算法（克鲁斯卡尔算法）" href="https://juiceright.xyz/old/posts/y1ekvamzmi/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">带lazy标记的zkw线段树
     </h2>
   </header>
@@ -337,24 +349,6 @@ MNIST 数据集来自美国国家标准与技术研究所, National Institute of
   </div>
   <footer class="entry-footer"><span title='2023-04-01 20:09:50 +0000 UTC'>April 1, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
   <a class="entry-link" aria-label="post link to 【深度学习】手写数字图像识别分类（MNIST数据集）" href="https://juiceright.xyz/old/posts/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB%E5%88%86%E7%B1%BBmnist%E6%95%B0%E6%8D%AE%E9%9B%86/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">【机器学习】四层人工神经网络拟合二元二次函数
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>四层人工神经网络拟合二元二次函数 如果想了解人工神经网络，请认真阅读每个字，字字珠玑。😂
-核心代码:
-、、、、、、、、、、 class Net(nn.Module): def __init__(self): super(Net, self).__init__() self.fc1 = nn.Linear(2, 40) self.fc2 = nn.Linear(40, 40) self.fc3 =nn.Linear(40, 24) self.fc4 =nn.Linear(24, 1) def forward(self,x): return self.fc4(t.relu(self.fc3(t.relu(self.fc2(t.relu(self.fc1(x))))))) def train(epoch,model,opt,lossfn,tu,tc): for i in range(1,epoch&#43;1): tp=model(tu) loss=lossfn(tp,tc) opt.zero_grad() loss.backward() opt.step() if i % 10 == 0 or i == 1: print(&#39;Epoch %d, Loss %f&#39; % (i, float(loss))) return model def f(x,x2): return x**2&#43;x2 PATH = &#34;cyNN.pt&#34; cyNN=t.load(PATH) cyNN.eval() opt=optim.Adam(cyNN.parameters(),lr=1e-7) 、、、、、、、、、、 我们这个模型拟合的函数是：f(x,x2)=x^2&#43;x2
-最最重要的核心调用框架 神经网络解释 这是一个四层人工神经网络，拟合二元二次函数。
-输入层有两个神经元，输出层有一个神经元，中间两层各有40个神经元，最后一层有24个神经元。激活函数使用的是ReLU，优化器使用的是Adam，学习率为1e-7，损失函数使用的是MSELoss。
-输入层：2个神经元 （表示两个自变量） 隐藏层1：40个神经元 隐藏层2：40个神经元 隐藏层3：24个神经元 输出层：1个神经元 （表示一个因变量） 激活函数：ReLU （线性整流函数） 优化器：Adam 学习率：1e-7 损失函数：MSELoss(即均方误差，也就是绝对误差的平方) 结构图 (一目了然这个属于是=。=）
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2023-03-29 17:54:00 +0000 UTC'>March 29, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 【机器学习】四层人工神经网络拟合二元二次函数" href="https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9B%9B%E5%B1%82%E4%BA%BA%E5%B7%A5%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%8B%9F%E5%90%88%E4%BA%8C%E5%85%83%E4%BA%8C%E6%AC%A1%E5%87%BD%E6%95%B0/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

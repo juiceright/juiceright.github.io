@@ -158,6 +158,21 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">配置UV环境
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>配置UV环境 1、设置环境变量UV_INSTALL_DIR 为 F:\SoftwareData\uv
+2、powershell运行
+[Environment]::SetEnvironmentVariable(&#34;UV_INSTALL_DIR&#34;, &#34;F:\SoftwareData\uv&#34;, &#34;Machine&#34;) [Environment]::SetEnvironmentVariable(&#34;UV_CACHE_DIR&#34;, &#34;%UV_INSTALL_DIR%\cache&#34;, &#34;Machine&#34;) [Environment]::SetEnvironmentVariable(&#34;UV_PYTHON_BIN_DIR&#34;, &#34;%UV_INSTALL_DIR%&#34;, &#34;Machine&#34;) [Environment]::SetEnvironmentVariable(&#34;UV_PYTHON_INSTALL_DIR&#34;, &#34;%UV_INSTALL_DIR%\python&#34;, &#34;Machine&#34;) [Environment]::SetEnvironmentVariable(&#34;UV_TOOL_BIN_DIR&#34;, &#34;%UV_INSTALL_DIR%&#34;, &#34;Machine&#34;) [Environment]::SetEnvironmentVariable(&#34;UV_TOOL_DIR&#34;, &#34;%UV_INSTALL_DIR%\tool&#34;, &#34;Machine&#34;) [Environment]::SetEnvironmentVariable(&#34;UV_DEFAULT_INDEX&#34;, &#34;https://pypi.tuna.tsinghua.edu.cn/simple&#34;, &#34;Machine&#34;) 3、cmd 检查是否设置成功
+uv cache dir uv tool dir uv python dir </p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-20 14:17:09 +0000 UTC'>January 20, 2026</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 配置UV环境" href="https://juiceright.xyz/posts/2026/%E9%85%8D%E7%BD%AEuv%E7%8E%AF%E5%A2%83/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">不蒜子计数
     </h2>
   </header>
@@ -273,18 +288,6 @@ Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &#34;Ethernet-Vir
   </div>
   <footer class="entry-footer"><span title='2025-03-11 09:55:00 +0000 UTC'>March 11, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
   <a class="entry-link" aria-label="post link to playwright自动登录STU WebVPN" href="https://juiceright.xyz/old/posts/st6eftek36/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">ECDSA实例
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p> import os import ecdsa # 生成私钥和公钥 def generate_keys(): # 使用secp256k1曲线生成密钥对 sk = ecdsa.SigningKey.generate(curve=ecdsa.SECP256k1) vk = sk.get_verifying_key() return sk, vk # 对消息进行签名 def sign_message(private_key, message): return private_key.sign(message) # 验证签名 def verify_signature(public_key, message, signature): return public_key.verify(signature, message) # %% private_key, public_key = generate_keys() # 简单消息 message = b&#34;Hello, ECDSA!&#34; # 签名消息 signature = sign_message(private_key, message) print(f&#34;Signature: {signature.hex()}&#34;) # %% sig=&#39;adee313bebf78c1bd4a9719e0ad9aa871ff8195788ad2d7510f35e1ef0ce00a6cbfea518e4ea1716a729c7313a52da8b0c57ff0e0f97251ea604beef3890f699&#39; message = b&#34;Hello, ECDSA!&#34; signature = bytes.fromhex(sig) print(verify_signature(public_key, message, signature)) #验证签名 </p>
-  </div>
-  <footer class="entry-footer"><span title='2025-03-11 01:05:02 +0000 UTC'>March 11, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to ECDSA实例" href="https://juiceright.xyz/old/posts/22bskm0nwq/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
