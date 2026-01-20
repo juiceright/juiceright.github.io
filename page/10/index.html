@@ -168,134 +168,35 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">今日听歌与小蛋糕
+    <h2 class="entry-hint-parent">进入金中，感觉很棒！
     </h2>
   </header>
   <div class="entry-content">
-    <p> 星のメリーゴーランド -instrumental- - Hirata Hironobu
-4.9元超好吃的小蛋糕 </p>
-  </div>
-  <footer class="entry-footer"><span title='2026-01-08 21:28:13 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 今日听歌与小蛋糕" href="https://juiceright.xyz/posts/2026/%E4%BB%8A%E6%97%A5%E5%90%AC%E6%AD%8C%E4%B8%8E%E5%B0%8F%E8%9B%8B%E7%B3%95/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">简单屏幕录制
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>开始录制\ 停止录制
-&lt;button id=&#34;startBtn&#34;&gt;开始录制&lt;/button&gt; &lt;button id=&#34;stopBtn&#34; style=&#34;display: none;&#34;&gt;停止录制&lt;/button&gt; &lt;script&gt;const e=document.getElementById(&#34;startBtn&#34;),t=document.getElementById(&#34;stopBtn&#34;);let a=null,i=null,o=[];const d={width:{ideal:3840,max:3840},height:{ideal:2160,max:2160},frameRate:{ideal:60,max:60},aspectRatio:16/9,resizeMode:&#34;crop-and-scale&#34;},n={sampleRate:{ideal:48e3},channelCount:{ideal:2},sampleSize:{ideal:16},echoCancellation:!1,noiseSuppression:!1,autoGainControl:!1,latency:{ideal:.02}},s={mimeType:[&#34;video/webm; codecs=h265,opus&#34;,&#34;video/webm; codecs=h264,opus&#34;,&#34;video/webm; codecs=vp9,opus&#34;,&#34;video/mp4; codecs=h265,aac&#34;].find(e=&gt;MediaRecorder.isTypeSupported(e))||&#34;video/webm&#34;,videoBitsPerSecond:104857600,audioBitsPerSecond:327680,videoKeyframeInterval:60},l=()=&gt;{a&amp;&amp;&#34;inactive&#34;!==a.state&amp;&amp;a.stop(),i&amp;&amp;i.getTracks().forEach(e=&gt;e.stop())};e.addEventListener(&#34;click&#34;,async()=&gt;{try{let l;try{l=await navigator.mediaDevices.getDisplayMedia({video:d,audio:n})}catch(e){l=await navigator.mediaDevices.getDisplayMedia({video:d,audio:!0})}i=l,i.getVideoTracks()[0].getSettings(),i.getAudioTracks()[0],a=new MediaRecorder(i,s),a.ondataavailable=e=&gt;{e.data.size&gt;0&amp;&amp;o.push(e.data)},a.onstop=()=&gt;{const i=new Blob(o,{type:a.mimeType||&#34;video/webm&#34;}),d=`4K60fps_HiResAudio_${(new Date).toISOString().replace(/[:T.]/g,&#34;_&#34;).slice(0,-1)}.webm`,n=document.createElement(&#34;a&#34;),s=URL.createObjectURL(i);n.href=s,n.download=d,document.body.appendChild(n),e.style.display=&#34;inline-block&#34;,t.style.display=&#34;none&#34;,setTimeout(()=&gt;{n.click(),document.body.removeChild(n),URL.revokeObjectURL(s)},100),o=[],e.textContent=&#34;再次录制&#34;},a.start(500),e.style.display=&#34;none&#34;,t.style.display=&#34;inline-block&#34;}catch(a){alert(`录屏启动失败：${a.message}`),e.style.display=&#34;inline-block&#34;,t.style.display=&#34;none&#34;}}),t.addEventListener(&#34;click&#34;,l),window.addEventListener(&#34;beforeunload&#34;,()=&gt;{l(),o=[]});&lt;/script&gt; </p>
-  </div>
-  <footer class="entry-footer"><span title='2026-01-05 02:44:22 +0000 UTC'>January 5, 2026</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 简单屏幕录制" href="https://juiceright.xyz/posts/2026/%E7%AE%80%E5%8D%95%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B6/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">html卡片模板
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p> 卡片 {{Tittle}} {{little Tittle}} {{content}} 📚 Juiceright </p>
-  </div>
-  <footer class="entry-footer"><span title='2026-01-01 19:00:03 +0000 UTC'>January 1, 2026</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to html卡片模板" href="https://juiceright.xyz/posts/2026/html%E5%8D%A1%E7%89%87%E6%A8%A1%E6%9D%BF/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">元旦
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>元旦开心😊 </p>
-  </div>
-  <footer class="entry-footer"><span title='2026-01-01 00:00:00 +0000 UTC'>January 1, 2026</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 元旦" href="https://juiceright.xyz/posts/2026/%E5%85%83%E6%97%A6/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">奇奇怪怪
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>
+    <p>进了金中，也就那样了，高兴！ 我很开心，但也有点悲伤。
+这次中考出题不行，平时成绩好的同学都不习惯中考题，最后以悲剧结尾。
+幸好我是保送，选择了金中，才避免了差1分潮实半费的遗憾。
 </p>
   </div>
-  <footer class="entry-footer"><span title='2025-12-30 21:36:29 +0000 UTC'>December 30, 2025</span>&nbsp;·&nbsp;<span>0 min</span></footer>
-  <a class="entry-link" aria-label="post link to 奇奇怪怪" href="https://juiceright.xyz/posts/2025/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/"></a>
+  <footer class="entry-footer"><span title='2019-07-12 13:53:00 +0000 UTC'>July 12, 2019</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 进入金中，感觉很棒！" href="https://juiceright.xyz/old/posts/%E8%BF%9B%E5%85%A5%E9%87%91%E4%B8%AD%E6%84%9F%E8%A7%89%E5%BE%88%E6%A3%92/"></a>
 </article>
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">最近在听古风DJ
+    <h2 class="entry-hint-parent">模考加油
     </h2>
   </header>
   <div class="entry-content">
-    <p>
+    <p>模考加油。 愿自己取得胜利。 加油喝彩。 你可以。
 </p>
   </div>
-  <footer class="entry-footer"><span title='2025-12-27 23:42:19 +0000 UTC'>December 27, 2025</span>&nbsp;·&nbsp;<span>0 min</span></footer>
-  <a class="entry-link" aria-label="post link to 最近在听古风DJ" href="https://juiceright.xyz/posts/2025/%E6%9C%80%E8%BF%91%E5%9C%A8%E5%90%AC%E5%8F%A4%E9%A3%8Edj/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">不蒜子计数
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p> &lt;script async src=&#34;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&#34;&gt;&lt;/script&gt; &lt;span id=&#34;busuanzi_container_site_pv&#34;&gt;本站总访问量&lt;span id=&#34;busuanzi_value_site_pv&#34;&gt;&lt;/span&gt;次&lt;/span&gt; &lt;span id=&#34;busuanzi_container_site_uv&#34;&gt;本站总访客数&lt;span id=&#34;busuanzi_value_site_uv&#34;&gt;&lt;/span&gt;人&lt;/span&gt; &lt;span id=&#34;busuanzi_container_page_pv&#34;&gt;本文总阅读量&lt;span id=&#34;busuanzi_value_page_pv&#34;&gt;&lt;/span&gt;次&lt;/span&gt; 👥 | 🌐 | 📖 &lt;div id=&#34;busuanzi_stats&#34; style=&#34;display:none;&#34;&gt; &lt;span&gt;👥 &lt;span id=&#34;busuanzi_value_site_uv&#34;&gt;&lt;/span&gt;&lt;/span&gt; &lt;span style=&#34;margin:0 10px;&#34;&gt;|&lt;/span&gt; &lt;span&gt;🌐 &lt;span id=&#34;busuanzi_value_site_pv&#34;&gt;&lt;/span&gt;&lt;/span&gt; &lt;span style=&#34;margin:0 10px;&#34;&gt;|&lt;/span&gt; &lt;span&gt;📖 &lt;span id=&#34;busuanzi_value_page_pv&#34;&gt;&lt;/span&gt;&lt;/span&gt; &lt;/div&gt; &lt;script&gt; let s = document.createElement(&#39;script&#39;); s.src = &#39;//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js&#39;; s.onload = () =&gt; document.getElementById(&#39;busuanzi_stats&#39;).style.display = &#39;inline-block&#39;; document.head.appendChild(s); &lt;/script&gt; </p>
-  </div>
-  <footer class="entry-footer"><span title='2025-12-26 21:21:13 +0000 UTC'>December 26, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 不蒜子计数" href="https://juiceright.xyz/posts/2025/%E4%B8%8D%E8%92%9C%E5%AD%90%E8%AE%A1%E6%95%B0/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">大四期末考试
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>劝人学医，天打雷劈 太好了是我最爱的十一门考试🙂</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-12-25 22:39:29 +0000 UTC'>December 25, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 大四期末考试" href="https://juiceright.xyz/posts/2025/%E5%A4%A7%E5%9B%9B%E6%9C%9F%E6%9C%AB%E8%80%83%E8%AF%95/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">很多表情包
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-12-19 12:10:18 +0000 UTC'>December 19, 2025</span>&nbsp;·&nbsp;<span>0 min</span></footer>
-  <a class="entry-link" aria-label="post link to 很多表情包" href="https://juiceright.xyz/posts/2025/%E5%BE%88%E5%A4%9A%E8%A1%A8%E6%83%85%E5%8C%85/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">听歌3
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p></p>
-  </div>
-  <footer class="entry-footer"><span title='2025-12-09 21:16:13 +0000 UTC'>December 9, 2025</span>&nbsp;·&nbsp;<span>0 min</span></footer>
-  <a class="entry-link" aria-label="post link to 听歌3" href="https://juiceright.xyz/posts/2025/%E5%90%AC%E6%AD%8C3/"></a>
+  <footer class="entry-footer"><span title='2019-05-02 17:41:00 +0000 UTC'>May 2, 2019</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 模考加油" href="https://juiceright.xyz/old/posts/%E6%A8%A1%E8%80%83%E5%8A%A0%E6%B2%B9/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
-    <a class="prev" href="https://juiceright.xyz/">
+    <a class="prev" href="https://juiceright.xyz/page/9/">
       «&nbsp;Prev&nbsp;
-    </a>
-    <a class="next" href="https://juiceright.xyz/page/3/">Next&nbsp;&nbsp;»
     </a>
   </nav>
 </footer>

@@ -173,6 +173,32 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">今日听歌与小蛋糕
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> 星のメリーゴーランド -instrumental- - Hirata Hironobu
+4.9元超好吃的小蛋糕 </p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-08 21:28:13 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 今日听歌与小蛋糕" href="https://juiceright.xyz/posts/2026/%E4%BB%8A%E6%97%A5%E5%90%AC%E6%AD%8C%E4%B8%8E%E5%B0%8F%E8%9B%8B%E7%B3%95/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">简单屏幕录制
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>开始录制\ 停止录制
+&lt;button id=&#34;startBtn&#34;&gt;开始录制&lt;/button&gt; &lt;button id=&#34;stopBtn&#34; style=&#34;display: none;&#34;&gt;停止录制&lt;/button&gt; &lt;script&gt;const e=document.getElementById(&#34;startBtn&#34;),t=document.getElementById(&#34;stopBtn&#34;);let a=null,i=null,o=[];const d={width:{ideal:3840,max:3840},height:{ideal:2160,max:2160},frameRate:{ideal:60,max:60},aspectRatio:16/9,resizeMode:&#34;crop-and-scale&#34;},n={sampleRate:{ideal:48e3},channelCount:{ideal:2},sampleSize:{ideal:16},echoCancellation:!1,noiseSuppression:!1,autoGainControl:!1,latency:{ideal:.02}},s={mimeType:[&#34;video/webm; codecs=h265,opus&#34;,&#34;video/webm; codecs=h264,opus&#34;,&#34;video/webm; codecs=vp9,opus&#34;,&#34;video/mp4; codecs=h265,aac&#34;].find(e=&gt;MediaRecorder.isTypeSupported(e))||&#34;video/webm&#34;,videoBitsPerSecond:104857600,audioBitsPerSecond:327680,videoKeyframeInterval:60},l=()=&gt;{a&amp;&amp;&#34;inactive&#34;!==a.state&amp;&amp;a.stop(),i&amp;&amp;i.getTracks().forEach(e=&gt;e.stop())};e.addEventListener(&#34;click&#34;,async()=&gt;{try{let l;try{l=await navigator.mediaDevices.getDisplayMedia({video:d,audio:n})}catch(e){l=await navigator.mediaDevices.getDisplayMedia({video:d,audio:!0})}i=l,i.getVideoTracks()[0].getSettings(),i.getAudioTracks()[0],a=new MediaRecorder(i,s),a.ondataavailable=e=&gt;{e.data.size&gt;0&amp;&amp;o.push(e.data)},a.onstop=()=&gt;{const i=new Blob(o,{type:a.mimeType||&#34;video/webm&#34;}),d=`4K60fps_HiResAudio_${(new Date).toISOString().replace(/[:T.]/g,&#34;_&#34;).slice(0,-1)}.webm`,n=document.createElement(&#34;a&#34;),s=URL.createObjectURL(i);n.href=s,n.download=d,document.body.appendChild(n),e.style.display=&#34;inline-block&#34;,t.style.display=&#34;none&#34;,setTimeout(()=&gt;{n.click(),document.body.removeChild(n),URL.revokeObjectURL(s)},100),o=[],e.textContent=&#34;再次录制&#34;},a.start(500),e.style.display=&#34;none&#34;,t.style.display=&#34;inline-block&#34;}catch(a){alert(`录屏启动失败：${a.message}`),e.style.display=&#34;inline-block&#34;,t.style.display=&#34;none&#34;}}),t.addEventListener(&#34;click&#34;,l),window.addEventListener(&#34;beforeunload&#34;,()=&gt;{l(),o=[]});&lt;/script&gt; </p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-05 02:44:22 +0000 UTC'>January 5, 2026</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 简单屏幕录制" href="https://juiceright.xyz/posts/2026/%E7%AE%80%E5%8D%95%E5%B1%8F%E5%B9%95%E5%BD%95%E5%88%B6/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">html卡片模板
     </h2>
   </header>
@@ -268,32 +294,6 @@
   </div>
   <footer class="entry-footer"><span title='2025-12-09 21:16:13 +0000 UTC'>December 9, 2025</span>&nbsp;·&nbsp;<span>0 min</span></footer>
   <a class="entry-link" aria-label="post link to 听歌3" href="https://juiceright.xyz/posts/2025/%E5%90%AC%E6%AD%8C3/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">妇产科见习好累
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p> 妇产科见习好累 累麻了
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-12-09 17:15:01 +0000 UTC'>December 9, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 妇产科见习好累" href="https://juiceright.xyz/posts/2025/%E5%A6%87%E4%BA%A7%E7%A7%91%E8%A7%81%E4%B9%A0%E5%A5%BD%E7%B4%AF/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">大四期末20250721（转载学长资料）
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>转载学长资料 下载大四期末20250721.pdf
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-12-04 01:20:50 +0000 UTC'>December 4, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 大四期末20250721（转载学长资料）" href="https://juiceright.xyz/posts/2025/%E5%A4%A7%E5%9B%9B%E6%9C%9F%E6%9C%AB20250721%E8%BD%AC%E8%BD%BD%E5%AD%A6%E9%95%BF%E8%B5%84%E6%96%99/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
