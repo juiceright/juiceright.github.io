@@ -168,6 +168,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">雨课堂习题监控
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>原理：雨课堂每次切换PPT时url也会跟着改变。在检测到ppt切换后，获取ppt的图片，并且进行OCR检测，如果出现‘单选’、‘多选’、‘判断’、‘填空’、‘投票’等词汇，就认定该ppt是习题，就会发出警告提醒。 使用前需要配置state.json保存登录记录。
+import asyncio from playwright.async_api import async_playwright import requests import threading import winsound from plyer import notification import easyocr url=&#34;&#34; # 初始化 EasyOCR reader = easyocr.Reader([&#39;ch_sim&#39;, &#39;en&#39;]) async def notice_ti(page): # 尝试查找图片元素 elementimg = await page.query_selector_all(&#39;//*[@id=&#34;app&#34;]/section/section[1]/section[2]/section/section/section/section[1]/section/div/section/section/img&#39;) if len(elementimg) == 0: elementimg = await page.query_selector_all(&#39;//*[@id=&#34;app&#34;]/section/section[1]/section[2]/section/section/section/section[1]/section/section/section/section/img&#39;) # 发送新页面通知 notification.notify(title=&#39;新的一页&#39;, message=&#39;新的一页&#39;, app_icon=None, timeout=0.5) if elementimg: # 获取图片地址 img_url = await elementimg[0].get_attribute(&#39;src&#39;) # 直接下载图片 tmp = requests.get(img_url) with open(&#39;tmp.png&#39;, &#39;wb&#39;) as f: f.write(tmp.content) # 使用 EasyOCR 识别图片文字 result = reader.readtext(&#39;tmp.png&#39;) # 如果 result 中含有‘单选’、‘多选’、‘判断’、‘填空’、‘投票’、‘问答’、‘作业’、‘讨论’、‘实验’、‘课件’、‘课程’、‘提交’等关键词，就发送通知 keywords = [&#39;单选&#39;, &#39;多选&#39;, &#39;判断&#39;, &#39;填空&#39;, &#39;投票&#39;, &#39;问答&#39;, &#39;作业&#39;, &#39;讨论&#39;, &#39;实验&#39;, &#39;提交&#39;] #keywords = [&#39;电解&#39;] if any(x in str(result) for x in keywords): print(img_url) threading.Thread(target=lambda: winsound.Beep(440, 3000)).start() notification.notify(title=&#39;有题！&#39;, message=&#39;有题！&#39;, app_icon=None, timeout=0.5) # ai(result) # clear_page() async def main(): async with async_playwright() as p: # 配置浏览器选项 browser = await p.chromium.launch(headless=True) context = await browser.new_context(storage_state=&#39;state.json&#39;) page = await context.new_page() # 打开指定页面 await page.goto(url) current_url = page.url while True: # 等待 URL 变化 await page.wait_for_url(lambda url: url != current_url, timeout=10000000) current_url = page.url await notice_ti(page) #await print(&#34;已到达新页面&#34;) if __name__ == &#34;__main__&#34;: url=input(&#34;请输入网址：&#34;) asyncio.run(main()) </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-11 00:41:06 +0000 UTC'>March 11, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 雨课堂习题监控" href="https://juiceright.xyz/old/posts/pbdbfbga9g/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">第二篇SCI！！！
     </h2>
   </header>
@@ -274,18 +287,6 @@
   </div>
   <footer class="entry-footer"><span title='2025-03-10 13:27:28 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
   <a class="entry-link" aria-label="post link to 匈牙利算法" href="https://juiceright.xyz/old/posts/rnbllzkklq/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">线段树
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>#include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; struct pl{ long long l,r,v,add,tim; #define l(x) tree[x].l #define r(x) tree[x].r #define v(x) tree[x].v #define add(x) tree[x].add }tree[4*100000]; long long a[100001]; void build(long long p,long long l,long long r){ l(p)=l;r(p)=r; if(l==r){ v(p)=a[l];return; } long long mid=(l&#43;r)&gt;&gt;1; build(p&lt;&lt;1,l,mid); build((p&lt;&lt;1)&#43;1,mid&#43;1,r); v(p)=v(p*2)&#43;v(p*2&#43;1); } void spread(long long p){ if(add(p)==0)return; v(p*2)&#43;=add(p)*(r(p*2)-l(p*2)&#43;1); v(p*2&#43;1)&#43;=add(p)*(r(p*2&#43;1)-l(p*2&#43;1)&#43;1); add(p*2)&#43;=add(p); add(p*2&#43;1)&#43;=add(p); add(p)=0; } void chg(long long p,long long l,long long r,long long d){ if(l&lt;=l(p)&amp;&amp;r&gt;=r(p)){ v(p)&#43;=d*(r(p)-l(p)&#43;1); add(p)&#43;=d; return; } spread(p); long long mid=(l(p)&#43;r(p))&gt;&gt;1; if(l&lt;=mid)chg(p*2,l,r,d); if(r&gt;mid)chg(p*2&#43;1,l,r,d); v(p)=v(p*2)&#43;v(p*2&#43;1); } long long ask(long long p,long long l,long long r){ if(l&lt;=l(p)&amp;&amp;r&gt;=r(p))return v(p); spread(p); long long mid=(l(p)&#43;r(p))&gt;&gt;1; long long ans=0; if(l&lt;=mid)ans&#43;=ask(p*2,l,r); if(r&gt;mid)ans&#43;=ask(p*2&#43;1,l,r); return ans; } int main(){ long long i,j,n,m,t,k; cin&gt;&gt;n&gt;&gt;m; for(i=1;i&lt;=n;i&#43;&#43;)cin&gt;&gt;a[i]; build(1,1,n); while(m--){ long long op,l,r,k; cin&gt;&gt;op&gt;&gt;l&gt;&gt;r; if(op==1){ cin&gt;&gt;k; chg(1,l,r,k); }else cout&lt;&lt;ask(1,l,r)&lt;&lt;endl;	} } </p>
-  </div>
-  <footer class="entry-footer"><span title='2025-03-10 13:26:55 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 线段树" href="https://juiceright.xyz/old/posts/cse8xfl8mp/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

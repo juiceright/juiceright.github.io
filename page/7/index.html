@@ -168,6 +168,18 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">线段树
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>#include&lt;bits/stdc&#43;&#43;.h&gt; using namespace std; struct pl{ long long l,r,v,add,tim; #define l(x) tree[x].l #define r(x) tree[x].r #define v(x) tree[x].v #define add(x) tree[x].add }tree[4*100000]; long long a[100001]; void build(long long p,long long l,long long r){ l(p)=l;r(p)=r; if(l==r){ v(p)=a[l];return; } long long mid=(l&#43;r)&gt;&gt;1; build(p&lt;&lt;1,l,mid); build((p&lt;&lt;1)&#43;1,mid&#43;1,r); v(p)=v(p*2)&#43;v(p*2&#43;1); } void spread(long long p){ if(add(p)==0)return; v(p*2)&#43;=add(p)*(r(p*2)-l(p*2)&#43;1); v(p*2&#43;1)&#43;=add(p)*(r(p*2&#43;1)-l(p*2&#43;1)&#43;1); add(p*2)&#43;=add(p); add(p*2&#43;1)&#43;=add(p); add(p)=0; } void chg(long long p,long long l,long long r,long long d){ if(l&lt;=l(p)&amp;&amp;r&gt;=r(p)){ v(p)&#43;=d*(r(p)-l(p)&#43;1); add(p)&#43;=d; return; } spread(p); long long mid=(l(p)&#43;r(p))&gt;&gt;1; if(l&lt;=mid)chg(p*2,l,r,d); if(r&gt;mid)chg(p*2&#43;1,l,r,d); v(p)=v(p*2)&#43;v(p*2&#43;1); } long long ask(long long p,long long l,long long r){ if(l&lt;=l(p)&amp;&amp;r&gt;=r(p))return v(p); spread(p); long long mid=(l(p)&#43;r(p))&gt;&gt;1; long long ans=0; if(l&lt;=mid)ans&#43;=ask(p*2,l,r); if(r&gt;mid)ans&#43;=ask(p*2&#43;1,l,r); return ans; } int main(){ long long i,j,n,m,t,k; cin&gt;&gt;n&gt;&gt;m; for(i=1;i&lt;=n;i&#43;&#43;)cin&gt;&gt;a[i]; build(1,1,n); while(m--){ long long op,l,r,k; cin&gt;&gt;op&gt;&gt;l&gt;&gt;r; if(op==1){ cin&gt;&gt;k; chg(1,l,r,k); }else cout&lt;&lt;ask(1,l,r)&lt;&lt;endl;	} } </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-10 13:26:55 +0000 UTC'>March 10, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 线段树" href="https://juiceright.xyz/old/posts/cse8xfl8mp/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">树状数组
     </h2>
   </header>
@@ -330,19 +342,6 @@ R2值越接近1，表明模型的性能越好。
   </div>
   <footer class="entry-footer"><span title='2023-05-21 18:57:29 +0000 UTC'>May 21, 2023</span>&nbsp;·&nbsp;<span>2 min</span></footer>
   <a class="entry-link" aria-label="post link to 机器学习分类的本质" href="https://juiceright.xyz/old/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E7%9A%84%E6%9C%AC%E8%B4%A8/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">论文📃你好，论文📃再见。
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>论文📃你好，论文📃再见。
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2023-04-15 09:36:30 +0000 UTC'>April 15, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 论文📃你好，论文📃再见。" href="https://juiceright.xyz/old/posts/%E8%AE%BA%E6%96%87%E4%BD%A0%E5%A5%BD%E8%AE%BA%E6%96%87%E5%86%8D%E8%A7%81/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

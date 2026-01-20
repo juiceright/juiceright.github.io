@@ -168,6 +168,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">听歌2
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-12-03 02:30:56 +0000 UTC'>December 3, 2025</span>&nbsp;·&nbsp;<span>0 min</span></footer>
+  <a class="entry-link" aria-label="post link to 听歌2" href="https://juiceright.xyz/posts/2025/%E5%90%AC%E6%AD%8C2/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Anki本地服务器
     </h2>
   </header>
@@ -276,19 +289,6 @@
   </div>
   <footer class="entry-footer"><span title='2025-10-03 20:26:53 +0000 UTC'>October 3, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
   <a class="entry-link" aria-label="post link to python将PDF每一页导出为600DPI的超清JPG" href="https://juiceright.xyz/old/posts/9yflkrb4jw/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">ppt word快速转换PDF小脚本
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>ppt word快速转换PDF小脚本 这个vbs小脚本可以快速将同一目录下的ppt、pptx、doc、docx文件转换成PDF，即点即用，非常方便。
-Office （ ppt word快速转换PDF-Office.vbs ） On Error Resume Next MsgBox &#34;Start converting PPT and Word files into PDF format. Please ensure Office or WPS is installed. Please wait...&#34;, vbInformation, &#34;Conversion Start&#34; Const wdExportFormatPDF = 17 Dim oWord, ppt, fso, isOffice, isWPS &#39; 初始化变量 Set fso = WScript.CreateObject(&#34;Scripting.Filesystemobject&#34;) isOffice = False isWPS = False Set oWord = WScript.CreateObject(&#34;KWPS.Application&#34;) Set ppt = CreateObject(&#34;KWPP.application&#34;) If IsObject(oWord) And IsObject(ppt) Then isOffice = True Else If IsObject(oWord) Then oWord.Quit If IsObject(ppt) Then ppt.Quit Set oWord = Nothing Set ppt = Nothing Set oWord = WScript.CreateObject(&#34;Word.Application&#34;) Set ppt = CreateObject(&#34;PowerPoint.application&#34;) If IsObject(oWord) And IsObject(ppt) Then isWPS = True Else &#39; 两种办公软件都未安装 If IsObject(oWord) Then oWord.Quit If IsObject(ppt) Then ppt.Quit Set oWord = Nothing Set ppt = Nothing Set fso = Nothing MsgBox &#34;Failed to find Office or WPS. Please install one of them first.&#34;, vbCritical, &#34;Error&#34; WScript.Quit End If End If &#39; 开始处理文件夹 ProcessFolder fso.GetFolder(&#34;.&#34;) &#39; 清理对象 If IsObject(oWord) Then oWord.Quit Set oWord = Nothing End If If IsObject(ppt) Then ppt.Quit Set ppt = Nothing End If Set fso = Nothing MsgBox &#34;PPT and Word files have been successfully converted into PDF format!&#34;, vbInformation, &#34;Conversion Complete&#34; Sub ProcessFolder(folder) Dim ff, subFolder, pdfPath For Each ff In folder.Files &#39; 处理Word文件 (.doc, .docx) 且不是临时文件 If (LCase(Right(ff.Name, 4)) = &#34;.doc&#34; Or LCase(Right(ff.Name, 5)) = &#34;.docx&#34;) And Left(ff.Name, 1) &lt;&gt; &#34;~&#34; Then pdfPath = Left(ff.Path, InStrRev(ff.Path, &#34;.&#34;)) &amp; &#34;pdf&#34; Set oDoc = oWord.Documents.Open(ff.Path) oDoc.ExportAsFixedFormat pdfPath, wdExportFormatPDF oDoc.Close Set oDoc = Nothing End If &#39; 处理PowerPoint文件 (.ppt, .pptx) 且不是临时文件 If (LCase(Right(ff.Name, 4)) = &#34;.ppt&#34; Or LCase(Right(ff.Name, 5)) = &#34;.pptx&#34;) And Left(ff.Name, 1) &lt;&gt; &#34;~&#34; Then pdfPath = Left(ff.Path, InStrRev(ff.Path, &#34;.&#34;)) &amp; &#34;pdf&#34; Set pptfile = ppt.Presentations.Open(ff.Path, False, False, False) pptfile.SaveAs pdfPath, 32, False pptfile.Close Set pptfile = Nothing End If Next &#39; 递归处理子文件夹 For Each subFolder In folder.SubFolders ProcessFolder subFolder Next End Sub WPS ( ppt word快速转换PDF-WPS.vbs ) On Error Resume Next MsgBox &#34;开始转换PPT和Word文件为PDF格式，请稍候...&#34; Const wdExportFormatPDF = 17 Set oWord = WScript.CreateObject(&#34;KWPS.Application&#34;) Set ppt = CreateObject(&#34;KWPP.application&#34;) Set fso = WScript.CreateObject(&#34;Scripting.Filesystemobject&#34;) Set fds=fso.GetFolder(&#34;.&#34;) Set ffs=fds.Files For Each ff In ffs If (LCase(Right(ff.Name,4))=&#34;.doc&#34; Or LCase(Right(ff.Name,4))=&#34;docx&#34; ) And Left(ff.Name,1)&lt;&gt;&#34;~&#34; Then Set oDoc=oWord.Documents.Open(ff.Path) oDoc.ExportAsFixedFormat Left(ff.Path,InStrRev(ff.Path,&#34;.&#34;))&amp;&#34;pdf&#34;,wdExportFormatPDF oDoc.Close End If If (LCase(Right(ff.Name,4))=&#34;.ppt&#34; Or LCase(Right(ff.Name,4))=&#34;pptx&#34; ) And Left(ff.Name,1)&lt;&gt;&#34;~&#34; Then Set pptfile = ppt.Presentations.Open(ff.Path,false,false,false) pptfile.Saveas Left(ff.Path,InStrRev(ff.Path,&#34;.&#34;))&amp;&#34;pdf&#34;,32,false pptfile.Close End If Next odoc.Close oword.Quit pptfile.Close ppt.Quit Set oDoc=Nothing Set oWord =Nothing Set pptfile = Nothing Set ppt = Nothing MsgBox &#34;PPT和Word文件已成功转换为PDF格式！&#34; 合并 （ppt word快速转换PDF-合并.vbs） On Error Resume Next MsgBox &#34;开始转换PPT和Word文件为PDF格式，请稍候...&#34; Const wdExportFormatPDF = 17 Dim oWord, ppt, isWPS, isOffice &#39; 尝试创建WPS对象 Set oWord = WScript.CreateObject(&#34;KWPS.Application&#34;) Set ppt = CreateObject(&#34;KWPP.Application&#34;) &#39; 检测是否是WPS环境 If Not oWord Is Nothing And Not ppt Is Nothing Then isWPS = True Else &#39; 尝试创建Office对象 Set oWord = WScript.CreateObject(&#34;Word.Application&#34;) Set ppt = CreateObject(&#34;PowerPoint.Application&#34;) If Not oWord Is Nothing And Not ppt Is Nothing Then isOffice = True Else MsgBox &#34;未检测到WPS或Office，请确保已安装其中一款办公软件！&#34; WScript.Quit End If End If Set fso = WScript.CreateObject(&#34;Scripting.FileSystemObject&#34;) Set fds = fso.GetFolder(&#34;.&#34;) Set ffs = fds.Files For Each ff In ffs &#39; 处理Word文件 If (LCase(Right(ff.Name, 4)) = &#34;.doc&#34; Or LCase(Right(ff.Name, 4)) = &#34;docx&#34;) And Left(ff.Name, 1) &lt;&gt; &#34;~&#34; Then Set oDoc = oWord.Documents.Open(ff.Path) oDoc.ExportAsFixedFormat Left(ff.Path, InStrRev(ff.Path, &#34;.&#34;)) &amp; &#34;pdf&#34;, wdExportFormatPDF oDoc.Close Set oDoc = Nothing End If &#39; 处理PPT文件 If (LCase(Right(ff.Name, 4)) = &#34;.ppt&#34; Or LCase(Right(ff.Name, 4)) = &#34;pptx&#34;) And Left(ff.Name, 1) &lt;&gt; &#34;~&#34; Then Set pptfile = ppt.Presentations.Open(ff.Path, False, False, False) pptfile.SaveAs Left(ff.Path, InStrRev(ff.Path, &#34;.&#34;)) &amp; &#34;pdf&#34;, 32, False pptfile.Close Set pptfile = Nothing End If Next &#39; 清理对象 If Not oWord Is Nothing Then oWord.Quit Set oWord = Nothing End If If Not ppt Is Nothing Then ppt.Quit Set ppt = Nothing End If MsgBox &#34;PPT和Word文件已成功转换为PDF格式！&#34; </p>
-  </div>
-  <footer class="entry-footer"><span title='2025-09-01 00:11:31 +0000 UTC'>September 1, 2025</span>&nbsp;·&nbsp;<span>3 min</span></footer>
-  <a class="entry-link" aria-label="post link to ppt word快速转换PDF小脚本" href="https://juiceright.xyz/old/posts/vhulvqwmjm/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
