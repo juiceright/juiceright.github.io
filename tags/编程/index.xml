@@ -6,7 +6,7 @@
     <description>Recent content in 编程 on Juiceright</description>
     <generator>Hugo -- 0.154.5</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 20 Jan 2026 06:19:09 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 20 Jan 2026 11:02:00 +0000</lastBuildDate>
     <atom:link href="https://juiceright.xyz/tags/%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>配置UV环境</title>
@@ -24,6 +24,17 @@
 [Environment]::SetEnvironmentVariable(&amp;#34;UV_TOOL_BIN_DIR&amp;#34;, &amp;#34;%UV_INSTALL_DIR%&amp;#34;, &amp;#34;Machine&amp;#34;)
 [Environment]::SetEnvironmentVariable(&amp;#34;UV_TOOL_DIR&amp;#34;, &amp;#34;%UV_INSTALL_DIR%\tool&amp;#34;, &amp;#34;Machine&amp;#34;)
 [Environment]::SetEnvironmentVariable(&amp;#34;UV_DEFAULT_INDEX&amp;#34;, &amp;#34;https://pypi.tuna.tsinghua.edu.cn/simple&amp;#34;, &amp;#34;Machine&amp;#34;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;2（替代）、cmd运行&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;@echo off
+set &amp;#34;UV_BASE_DIR=F:\SoftwareData\uv&amp;#34;
+setx UV_INSTALL_DIR &amp;#34;%UV_BASE_DIR%&amp;#34; /m
+setx UV_CACHE_DIR &amp;#34;%UV_BASE_DIR%\cache&amp;#34; /m
+setx UV_PYTHON_BIN_DIR &amp;#34;%UV_BASE_DIR%&amp;#34; /m
+setx UV_PYTHON_INSTALL_DIR &amp;#34;%UV_BASE_DIR%\python&amp;#34; /m
+setx UV_TOOL_BIN_DIR &amp;#34;%UV_BASE_DIR%&amp;#34; /m
+setx UV_TOOL_DIR &amp;#34;%UV_BASE_DIR%\tool&amp;#34; /m
+setx UV_DEFAULT_INDEX &amp;#34;https://pypi.tuna.tsinghua.edu.cn/simple&amp;#34; /m
+pause
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;3、cmd 检查是否设置成功&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;uv cache dir 
 uv tool dir

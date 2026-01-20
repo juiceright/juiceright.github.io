@@ -18,6 +18,17 @@
 [Environment]::SetEnvironmentVariable(&#34;UV_TOOL_BIN_DIR&#34;, &#34;%UV_INSTALL_DIR%&#34;, &#34;Machine&#34;)
 [Environment]::SetEnvironmentVariable(&#34;UV_TOOL_DIR&#34;, &#34;%UV_INSTALL_DIR%\tool&#34;, &#34;Machine&#34;)
 [Environment]::SetEnvironmentVariable(&#34;UV_DEFAULT_INDEX&#34;, &#34;https://pypi.tuna.tsinghua.edu.cn/simple&#34;, &#34;Machine&#34;)
+2（替代）、cmd运行
+@echo off
+set &#34;UV_BASE_DIR=F:\SoftwareData\uv&#34;
+setx UV_INSTALL_DIR &#34;%UV_BASE_DIR%&#34; /m
+setx UV_CACHE_DIR &#34;%UV_BASE_DIR%\cache&#34; /m
+setx UV_PYTHON_BIN_DIR &#34;%UV_BASE_DIR%&#34; /m
+setx UV_PYTHON_INSTALL_DIR &#34;%UV_BASE_DIR%\python&#34; /m
+setx UV_TOOL_BIN_DIR &#34;%UV_BASE_DIR%&#34; /m
+setx UV_TOOL_DIR &#34;%UV_BASE_DIR%\tool&#34; /m
+setx UV_DEFAULT_INDEX &#34;https://pypi.tuna.tsinghua.edu.cn/simple&#34; /m
+pause
 3、cmd 检查是否设置成功
 uv cache dir 
 uv tool dir
@@ -106,13 +117,14 @@ uv python dir
   <meta property="og:title" content="配置UV环境">
   <meta property="og:description" content="配置UV环境 1、设置环境变量UV_INSTALL_DIR 为 F:\SoftwareData\uv
 2、powershell运行
-[Environment]::SetEnvironmentVariable(&#34;UV_INSTALL_DIR&#34;, &#34;F:\SoftwareData\uv&#34;, &#34;Machine&#34;) [Environment]::SetEnvironmentVariable(&#34;UV_CACHE_DIR&#34;, &#34;%UV_INSTALL_DIR%\cache&#34;, &#34;Machine&#34;) [Environment]::SetEnvironmentVariable(&#34;UV_PYTHON_BIN_DIR&#34;, &#34;%UV_INSTALL_DIR%&#34;, &#34;Machine&#34;) [Environment]::SetEnvironmentVariable(&#34;UV_PYTHON_INSTALL_DIR&#34;, &#34;%UV_INSTALL_DIR%\python&#34;, &#34;Machine&#34;) [Environment]::SetEnvironmentVariable(&#34;UV_TOOL_BIN_DIR&#34;, &#34;%UV_INSTALL_DIR%&#34;, &#34;Machine&#34;) [Environment]::SetEnvironmentVariable(&#34;UV_TOOL_DIR&#34;, &#34;%UV_INSTALL_DIR%\tool&#34;, &#34;Machine&#34;) [Environment]::SetEnvironmentVariable(&#34;UV_DEFAULT_INDEX&#34;, &#34;https://pypi.tuna.tsinghua.edu.cn/simple&#34;, &#34;Machine&#34;) 3、cmd 检查是否设置成功
+[Environment]::SetEnvironmentVariable(&#34;UV_INSTALL_DIR&#34;, &#34;F:\SoftwareData\uv&#34;, &#34;Machine&#34;) [Environment]::SetEnvironmentVariable(&#34;UV_CACHE_DIR&#34;, &#34;%UV_INSTALL_DIR%\cache&#34;, &#34;Machine&#34;) [Environment]::SetEnvironmentVariable(&#34;UV_PYTHON_BIN_DIR&#34;, &#34;%UV_INSTALL_DIR%&#34;, &#34;Machine&#34;) [Environment]::SetEnvironmentVariable(&#34;UV_PYTHON_INSTALL_DIR&#34;, &#34;%UV_INSTALL_DIR%\python&#34;, &#34;Machine&#34;) [Environment]::SetEnvironmentVariable(&#34;UV_TOOL_BIN_DIR&#34;, &#34;%UV_INSTALL_DIR%&#34;, &#34;Machine&#34;) [Environment]::SetEnvironmentVariable(&#34;UV_TOOL_DIR&#34;, &#34;%UV_INSTALL_DIR%\tool&#34;, &#34;Machine&#34;) [Environment]::SetEnvironmentVariable(&#34;UV_DEFAULT_INDEX&#34;, &#34;https://pypi.tuna.tsinghua.edu.cn/simple&#34;, &#34;Machine&#34;) 2（替代）、cmd运行
+@echo off set &#34;UV_BASE_DIR=F:\SoftwareData\uv&#34; setx UV_INSTALL_DIR &#34;%UV_BASE_DIR%&#34; /m setx UV_CACHE_DIR &#34;%UV_BASE_DIR%\cache&#34; /m setx UV_PYTHON_BIN_DIR &#34;%UV_BASE_DIR%&#34; /m setx UV_PYTHON_INSTALL_DIR &#34;%UV_BASE_DIR%\python&#34; /m setx UV_TOOL_BIN_DIR &#34;%UV_BASE_DIR%&#34; /m setx UV_TOOL_DIR &#34;%UV_BASE_DIR%\tool&#34; /m setx UV_DEFAULT_INDEX &#34;https://pypi.tuna.tsinghua.edu.cn/simple&#34; /m pause 3、cmd 检查是否设置成功
 uv cache dir uv tool dir uv python dir ">
   <meta property="og:locale" content="en-us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-01-20T14:17:09+00:00">
-    <meta property="article:modified_time" content="2026-01-20T06:19:09+00:00">
+    <meta property="article:modified_time" content="2026-01-20T11:02:00+00:00">
     <meta property="article:tag" content="编程">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="配置UV环境">
@@ -127,6 +139,17 @@ uv cache dir uv tool dir uv python dir ">
 [Environment]::SetEnvironmentVariable(&#34;UV_TOOL_BIN_DIR&#34;, &#34;%UV_INSTALL_DIR%&#34;, &#34;Machine&#34;)
 [Environment]::SetEnvironmentVariable(&#34;UV_TOOL_DIR&#34;, &#34;%UV_INSTALL_DIR%\tool&#34;, &#34;Machine&#34;)
 [Environment]::SetEnvironmentVariable(&#34;UV_DEFAULT_INDEX&#34;, &#34;https://pypi.tuna.tsinghua.edu.cn/simple&#34;, &#34;Machine&#34;)
+2（替代）、cmd运行
+@echo off
+set &#34;UV_BASE_DIR=F:\SoftwareData\uv&#34;
+setx UV_INSTALL_DIR &#34;%UV_BASE_DIR%&#34; /m
+setx UV_CACHE_DIR &#34;%UV_BASE_DIR%\cache&#34; /m
+setx UV_PYTHON_BIN_DIR &#34;%UV_BASE_DIR%&#34; /m
+setx UV_PYTHON_INSTALL_DIR &#34;%UV_BASE_DIR%\python&#34; /m
+setx UV_TOOL_BIN_DIR &#34;%UV_BASE_DIR%&#34; /m
+setx UV_TOOL_DIR &#34;%UV_BASE_DIR%\tool&#34; /m
+setx UV_DEFAULT_INDEX &#34;https://pypi.tuna.tsinghua.edu.cn/simple&#34; /m
+pause
 3、cmd 检查是否设置成功
 uv cache dir 
 uv tool dir
@@ -160,15 +183,15 @@ uv python dir
   "@type": "BlogPosting",
   "headline": "配置UV环境",
   "name": "配置UV环境",
-  "description": "配置UV环境 1、设置环境变量UV_INSTALL_DIR 为 F:\\SoftwareData\\uv\n2、powershell运行\n[Environment]::SetEnvironmentVariable(\u0026#34;UV_INSTALL_DIR\u0026#34;, \u0026#34;F:\\SoftwareData\\uv\u0026#34;, \u0026#34;Machine\u0026#34;) [Environment]::SetEnvironmentVariable(\u0026#34;UV_CACHE_DIR\u0026#34;, \u0026#34;%UV_INSTALL_DIR%\\cache\u0026#34;, \u0026#34;Machine\u0026#34;) [Environment]::SetEnvironmentVariable(\u0026#34;UV_PYTHON_BIN_DIR\u0026#34;, \u0026#34;%UV_INSTALL_DIR%\u0026#34;, \u0026#34;Machine\u0026#34;) [Environment]::SetEnvironmentVariable(\u0026#34;UV_PYTHON_INSTALL_DIR\u0026#34;, \u0026#34;%UV_INSTALL_DIR%\\python\u0026#34;, \u0026#34;Machine\u0026#34;) [Environment]::SetEnvironmentVariable(\u0026#34;UV_TOOL_BIN_DIR\u0026#34;, \u0026#34;%UV_INSTALL_DIR%\u0026#34;, \u0026#34;Machine\u0026#34;) [Environment]::SetEnvironmentVariable(\u0026#34;UV_TOOL_DIR\u0026#34;, \u0026#34;%UV_INSTALL_DIR%\\tool\u0026#34;, \u0026#34;Machine\u0026#34;) [Environment]::SetEnvironmentVariable(\u0026#34;UV_DEFAULT_INDEX\u0026#34;, \u0026#34;https://pypi.tuna.tsinghua.edu.cn/simple\u0026#34;, \u0026#34;Machine\u0026#34;) 3、cmd 检查是否设置成功\nuv cache dir uv tool dir uv python dir ",
+  "description": "配置UV环境 1、设置环境变量UV_INSTALL_DIR 为 F:\\SoftwareData\\uv\n2、powershell运行\n[Environment]::SetEnvironmentVariable(\u0026#34;UV_INSTALL_DIR\u0026#34;, \u0026#34;F:\\SoftwareData\\uv\u0026#34;, \u0026#34;Machine\u0026#34;) [Environment]::SetEnvironmentVariable(\u0026#34;UV_CACHE_DIR\u0026#34;, \u0026#34;%UV_INSTALL_DIR%\\cache\u0026#34;, \u0026#34;Machine\u0026#34;) [Environment]::SetEnvironmentVariable(\u0026#34;UV_PYTHON_BIN_DIR\u0026#34;, \u0026#34;%UV_INSTALL_DIR%\u0026#34;, \u0026#34;Machine\u0026#34;) [Environment]::SetEnvironmentVariable(\u0026#34;UV_PYTHON_INSTALL_DIR\u0026#34;, \u0026#34;%UV_INSTALL_DIR%\\python\u0026#34;, \u0026#34;Machine\u0026#34;) [Environment]::SetEnvironmentVariable(\u0026#34;UV_TOOL_BIN_DIR\u0026#34;, \u0026#34;%UV_INSTALL_DIR%\u0026#34;, \u0026#34;Machine\u0026#34;) [Environment]::SetEnvironmentVariable(\u0026#34;UV_TOOL_DIR\u0026#34;, \u0026#34;%UV_INSTALL_DIR%\\tool\u0026#34;, \u0026#34;Machine\u0026#34;) [Environment]::SetEnvironmentVariable(\u0026#34;UV_DEFAULT_INDEX\u0026#34;, \u0026#34;https://pypi.tuna.tsinghua.edu.cn/simple\u0026#34;, \u0026#34;Machine\u0026#34;) 2（替代）、cmd运行\n@echo off set \u0026#34;UV_BASE_DIR=F:\\SoftwareData\\uv\u0026#34; setx UV_INSTALL_DIR \u0026#34;%UV_BASE_DIR%\u0026#34; /m setx UV_CACHE_DIR \u0026#34;%UV_BASE_DIR%\\cache\u0026#34; /m setx UV_PYTHON_BIN_DIR \u0026#34;%UV_BASE_DIR%\u0026#34; /m setx UV_PYTHON_INSTALL_DIR \u0026#34;%UV_BASE_DIR%\\python\u0026#34; /m setx UV_TOOL_BIN_DIR \u0026#34;%UV_BASE_DIR%\u0026#34; /m setx UV_TOOL_DIR \u0026#34;%UV_BASE_DIR%\\tool\u0026#34; /m setx UV_DEFAULT_INDEX \u0026#34;https://pypi.tuna.tsinghua.edu.cn/simple\u0026#34; /m pause 3、cmd 检查是否设置成功\nuv cache dir uv tool dir uv python dir ",
   "keywords": [
     "编程"
   ],
-  "articleBody": "配置UV环境 1、设置环境变量UV_INSTALL_DIR 为 F:\\SoftwareData\\uv\n2、powershell运行\n[Environment]::SetEnvironmentVariable(\"UV_INSTALL_DIR\", \"F:\\SoftwareData\\uv\", \"Machine\") [Environment]::SetEnvironmentVariable(\"UV_CACHE_DIR\", \"%UV_INSTALL_DIR%\\cache\", \"Machine\") [Environment]::SetEnvironmentVariable(\"UV_PYTHON_BIN_DIR\", \"%UV_INSTALL_DIR%\", \"Machine\") [Environment]::SetEnvironmentVariable(\"UV_PYTHON_INSTALL_DIR\", \"%UV_INSTALL_DIR%\\python\", \"Machine\") [Environment]::SetEnvironmentVariable(\"UV_TOOL_BIN_DIR\", \"%UV_INSTALL_DIR%\", \"Machine\") [Environment]::SetEnvironmentVariable(\"UV_TOOL_DIR\", \"%UV_INSTALL_DIR%\\tool\", \"Machine\") [Environment]::SetEnvironmentVariable(\"UV_DEFAULT_INDEX\", \"https://pypi.tuna.tsinghua.edu.cn/simple\", \"Machine\") 3、cmd 检查是否设置成功\nuv cache dir uv tool dir uv python dir ",
-  "wordCount" : "37",
+  "articleBody": "配置UV环境 1、设置环境变量UV_INSTALL_DIR 为 F:\\SoftwareData\\uv\n2、powershell运行\n[Environment]::SetEnvironmentVariable(\"UV_INSTALL_DIR\", \"F:\\SoftwareData\\uv\", \"Machine\") [Environment]::SetEnvironmentVariable(\"UV_CACHE_DIR\", \"%UV_INSTALL_DIR%\\cache\", \"Machine\") [Environment]::SetEnvironmentVariable(\"UV_PYTHON_BIN_DIR\", \"%UV_INSTALL_DIR%\", \"Machine\") [Environment]::SetEnvironmentVariable(\"UV_PYTHON_INSTALL_DIR\", \"%UV_INSTALL_DIR%\\python\", \"Machine\") [Environment]::SetEnvironmentVariable(\"UV_TOOL_BIN_DIR\", \"%UV_INSTALL_DIR%\", \"Machine\") [Environment]::SetEnvironmentVariable(\"UV_TOOL_DIR\", \"%UV_INSTALL_DIR%\\tool\", \"Machine\") [Environment]::SetEnvironmentVariable(\"UV_DEFAULT_INDEX\", \"https://pypi.tuna.tsinghua.edu.cn/simple\", \"Machine\") 2（替代）、cmd运行\n@echo off set \"UV_BASE_DIR=F:\\SoftwareData\\uv\" setx UV_INSTALL_DIR \"%UV_BASE_DIR%\" /m setx UV_CACHE_DIR \"%UV_BASE_DIR%\\cache\" /m setx UV_PYTHON_BIN_DIR \"%UV_BASE_DIR%\" /m setx UV_PYTHON_INSTALL_DIR \"%UV_BASE_DIR%\\python\" /m setx UV_TOOL_BIN_DIR \"%UV_BASE_DIR%\" /m setx UV_TOOL_DIR \"%UV_BASE_DIR%\\tool\" /m setx UV_DEFAULT_INDEX \"https://pypi.tuna.tsinghua.edu.cn/simple\" /m pause 3、cmd 检查是否设置成功\nuv cache dir uv tool dir uv python dir ",
+  "wordCount" : "71",
   "inLanguage": "en",
   "datePublished": "2026-01-20T14:17:09Z",
-  "dateModified": "2026-01-20T06:19:09.547Z",
+  "dateModified": "2026-01-20T11:02:00.75Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://juiceright.xyz/posts/2026/%E9%85%8D%E7%BD%AEuv%E7%8E%AF%E5%A2%83/"
@@ -259,6 +282,17 @@ uv python dir
 [Environment]::SetEnvironmentVariable(&#34;UV_TOOL_BIN_DIR&#34;, &#34;%UV_INSTALL_DIR%&#34;, &#34;Machine&#34;)
 [Environment]::SetEnvironmentVariable(&#34;UV_TOOL_DIR&#34;, &#34;%UV_INSTALL_DIR%\tool&#34;, &#34;Machine&#34;)
 [Environment]::SetEnvironmentVariable(&#34;UV_DEFAULT_INDEX&#34;, &#34;https://pypi.tuna.tsinghua.edu.cn/simple&#34;, &#34;Machine&#34;)
+</code></pre><p>2（替代）、cmd运行</p>
+<pre tabindex="0"><code>@echo off
+set &#34;UV_BASE_DIR=F:\SoftwareData\uv&#34;
+setx UV_INSTALL_DIR &#34;%UV_BASE_DIR%&#34; /m
+setx UV_CACHE_DIR &#34;%UV_BASE_DIR%\cache&#34; /m
+setx UV_PYTHON_BIN_DIR &#34;%UV_BASE_DIR%&#34; /m
+setx UV_PYTHON_INSTALL_DIR &#34;%UV_BASE_DIR%\python&#34; /m
+setx UV_TOOL_BIN_DIR &#34;%UV_BASE_DIR%&#34; /m
+setx UV_TOOL_DIR &#34;%UV_BASE_DIR%\tool&#34; /m
+setx UV_DEFAULT_INDEX &#34;https://pypi.tuna.tsinghua.edu.cn/simple&#34; /m
+pause
 </code></pre><p>3、cmd 检查是否设置成功</p>
 <pre tabindex="0"><code>uv cache dir 
 uv tool dir
