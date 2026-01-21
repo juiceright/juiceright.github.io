@@ -168,6 +168,18 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">简易python传文件收发端(带注释)
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>简易python传文件收发端 发送端.py # 导入模块 import socket # 创建tcp服务端socket tcp_server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # 绑定端口 tcp_server_socket.bind((&#34;&#34;, 114)) # 设置监听，把服务端socket由主动套接字改成被动套接字，只能接收客户端的连接请求 tcp_server_socket.listen(128) while True: # 接收客户端信息 client_socket, client_ip = tcp_server_socket.accept() print(&#34;客户端：&#34;, client_ip, &#34;连接&#34;) # 接收下载信息 try: file_name_data = client_socket.recv(65500) # 解码下载信息 file_name = file_name_data.decode() except : print(&#34;客户端已断开连接&#34;) continue try: # 数据传输 with open(&#34;/&#34; &#43; file_name, &#34;rb&#34;) as file: while True: # 读取文件数据 file_data = file.read(65500) # 数据长度不为0表示还有数据没有写入 if file_data: client_socket.send(file_data) # 数据为0表示传输完成 else: print(file_name, &#34;传输成功&#34;) break except Exception as e: print(&#34;客户端已断开连接&#34;) # 关闭客户端连接 client_socket.close() 发送端.py # 导入模块 import socket,time # 创建套接字 # 绑定端口 # tcp_client_socket.bind((&#34;&#34;, 8080)) while True: # 连接IP地址和端口 tcp_client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) tcp_client_socket.connect((input(&#34;请输入IP：\n&#34;), 114)) file_name = input(&#34;请输入要下载的文件：\n&#34;) time_start=time.time() # 文件名编码 tcp_client_socket.send(file_name.encode()) try: # 文件传输 with open(file_name, &#34;wb&#34;) as file: while True: # 接收数据 file_data = tcp_client_socket.recv(65500) # 数据长度不为0写入文件 if file_data: file.write(file_data) # 数据长度为0表示下载完成 else: break # 下载出现异常时捕获异常 except Exception as e: print(&#34;下载异常&#34;, e) # 无异常则下载成功 else: print(file_name, &#34;下载成功&#34;) time_end=time.time() print(&#39;总计&#39;,time_end-time_start,&#39;秒&#39;) # 关闭客户端 tcp_client_socket.close() </p>
+  </div>
+  <footer class="entry-footer"><span title='2023-03-20 23:45:23 +0000 UTC'>March 20, 2023</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 简易python传文件收发端(带注释)" href="https://juiceright.xyz/old/posts/%E7%AE%80%E6%98%93python%E4%BC%A0%E6%96%87%E4%BB%B6%E6%94%B6%E5%8F%91%E7%AB%AF/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">简单头像
     </h2>
   </header>
@@ -283,19 +295,6 @@ $tag = urldecode($_POST[&#39;tag&#39;]); //获得POST参数，URL解码 if (strp
   </div>
   <footer class="entry-footer"><span title='2019-08-26 11:37:00 +0000 UTC'>August 26, 2019</span>&nbsp;·&nbsp;<span>1 min</span></footer>
   <a class="entry-link" aria-label="post link to 有趣的OI游戏" href="https://juiceright.xyz/old/posts/%E6%9C%89%E8%B6%A3%E7%9A%84oi%E6%B8%B8%E6%88%8F/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">暑假将结束，新的生活将来到
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>暑假将结束，新的生活将来到 金中，我来了。
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2019-08-26 11:02:00 +0000 UTC'>August 26, 2019</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 暑假将结束，新的生活将来到" href="https://juiceright.xyz/old/posts/%E6%9A%91%E5%81%87%E5%B0%86%E7%BB%93%E6%9D%9F%E6%96%B0%E7%9A%84%E7%94%9F%E6%B4%BB%E5%B0%86%E6%9D%A5%E5%88%B0/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

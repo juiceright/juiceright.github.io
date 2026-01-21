@@ -168,6 +168,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">【分子对接】2. 利用pymol下载蛋白质 脚本
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>下载蛋白质，去除水分子，加H，去除配体，去除副链
+# %% import pymol # %% # 使用 fetch 指令获取蛋白质结构，这里以 4FAA 为例 pdb_id = &#39;4FAA&#39; pymol.cmd.fetch(pdb_id) # 去除水分子 pymol.cmd.remove(&#39;solvent&#39;) # 加 H（氢原子） pymol.cmd.h_add() # 选择配体（这里假设配体残基名为 NAG） pymol.cmd.select(&#39;ligand&#39;, &#39;resn NAG&#39;) # 去除配体 pymol.cmd.remove(&#39;ligand&#39;) # 显示链 A 的信息 pymol.cmd.iterate(&#39;chain A&#39;, &#39;print(resi, resn)&#39;) # 去除副链（只保留主链） pymol.cmd.remove(&#39;sidechain&#39;) # 导出结果为 PDB 文件 output_file = f&#39;{pdb_id}.pymol.pdb&#39; pymol.cmd.save(output_file) # 退出 PyMOL pymol.cmd.quit() </p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-26 20:28:24 +0000 UTC'>March 26, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
+  <a class="entry-link" aria-label="post link to 【分子对接】2. 利用pymol下载蛋白质 脚本" href="https://juiceright.xyz/old/posts/ysld_6qj2a/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">【分子对接】1. 自动从pubchem下载小分子 脚本
     </h2>
   </header>
@@ -282,19 +295,6 @@ Add-VMNetworkAdapter -Switch Ethernet-Virt -ManagementOS -Name &#34;Ethernet-Vir
   </div>
   <footer class="entry-footer"><span title='2025-03-11 01:05:02 +0000 UTC'>March 11, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
   <a class="entry-link" aria-label="post link to ECDSA实例" href="https://juiceright.xyz/old/posts/22bskm0nwq/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">汕头大学SSO 单点登录接入实例
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Single Sign On System
-import os url=&#34;https://sso.stu.edu.cn/login?service=http://localhost:8080&#34; os.system(&#39;start msedge &#34;&#39;&#43;url&#43;&#39;&#34;&#39;) import http.server import socketserver import urllib.parse import threading import requests import xml.etree.ElementTree as ET import warnings warnings.filterwarnings(&#34;ignore&#34;) # 定义全局变量存储ticket ticket = None username = None # 自定义请求处理类 class MyHandler(http.server.SimpleHTTPRequestHandler): def log_message(self, format, *args): pass # 重写方法，不执行任何操作 def do_GET(self): global ticket, httpd, username # 解析请求路径的参数 parsed_path = urllib.parse.urlparse(self.path) query_params = urllib.parse.parse_qs(parsed_path.query) # 检查是否存在ticket参数 if &#39;ticket&#39; in query_params: ticket = query_params[&#39;ticket&#39;][0] # 发送响应 self.send_response(200) self.end_headers() self.wfile.write(b&#34;Ticket received...&#34;) vurl=&#34;https://sso.stu.edu.cn/serviceValidate?service=http://localhost:8080&amp;ticket=&#34;&#43;ticket headers={&#39;Connection&#39;:&#39;close&#39;} requests.adapters.DEFAULT_RETRIES = 5 response = requests.get(vurl, headers=headers, verify=False) root = ET.fromstring(response.text) if root[0].tag.endswith(&#39;authenticationSuccess&#39;): print(&#39;Login success, you can close the browser now 登陆成功，您可以关闭浏览器了&#39;) print(&#39;username:&#39;, root[0][0].text) username = root[0][0].text response.close() threading.Thread(target=httpd.shutdown).start() else: print(&#39;Login failed, please try again 登陆失败，请重试&#39;) print(&#39;error:&#39;, root[0][0].text) # 关闭服务器 # 启动服务器 def run_server(): global httpd port = 8080 handler = MyHandler with socketserver.TCPServer((&#34;&#34;, port), handler) as httpd: print(f&#34;Verifying login at https://sso.stu.edu.cn/login?service=http://localhost:8080&#34;) httpd.serve_forever() run_server() Users =[&#39;用户名&#39;] if username in Users: print(&#39;Login success, welcome to use this script 登陆成功，欢迎使用本脚本&#39;) else: print(&#39;No permission to use this script 没有权限使用本脚本&#39;) os.system(&#39;pause&#39;) exit() </p>
-  </div>
-  <footer class="entry-footer"><span title='2025-03-11 01:00:18 +0000 UTC'>March 11, 2025</span>&nbsp;·&nbsp;<span>1 min</span></footer>
-  <a class="entry-link" aria-label="post link to 汕头大学SSO 单点登录接入实例" href="https://juiceright.xyz/old/posts/40qvh8raw6/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
