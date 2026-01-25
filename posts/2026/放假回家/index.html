@@ -5,50 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>【分子对接】1. 自动从pubchem下载小分子 脚本 | Juiceright</title>
-<meta name="keywords" content="生信, 编程, 分子对接, old">
-<meta name="description" content="本代码用于从pubchem下载小分子(阿司匹林)，并且自动转换成pymol的pdb格式
-import pubchempy as pcp
-from pymol import cmd
-import os
-def download_sdf(compound_identifier, output_file):
-    try:
-        # 尝试根据标识符获取化合物
-        if isinstance(compound_identifier, int):
-            compound = pcp.Compound.from_cid(compound_identifier)
-        else:
-            results = pcp.get_compounds(compound_identifier, &#39;name&#39;)
-            if results:
-                compound = results[0]
-            else:
-                print(f&#34;未找到与 {compound_identifier} 匹配的化合物。&#34;)
-                return
-
-        # 下载 SDF 文件
-        sdf_content = compound.canonical_smiles
-        sdf = pcp.get_sdf(compound.cid)
-        with open(output_file, &#39;w&#39;) as file:
-            file.write(sdf)
-        print(f&#34;SDF 文件已成功保存到 {output_file}&#34;)
-    except Exception as e:
-        print(f&#34;下载过程中出现错误: {e}&#34;)
-
-
-if __name__ == &#34;__main__&#34;:
-    # 这里可以替换为你想要查询的化合物名称或 CID
-    compound_identifier = &#34;aspirin&#34;
-    output_file = compound_identifier &#43; &#34;.sdf&#34;
-    download_sdf(compound_identifier, output_file)
-    # 使用 PyMOL 加载 SDF 文件并进行后续处理
-    cmd.load(output_file)
-    # 保存为 PDB 文件（可选）
-    cmd.save(compound_identifier &#43; &#34;.pdb&#34;, state=0)
-    cmd.quit()
-    # 删除临时 SDF 文件（可选）
-    #os.remove(output_file)
-">
+<title>放假回家！ | Juiceright</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
 <meta name="author" content="">
-<link rel="canonical" href="https://juiceright.xyz/old/posts/qin3ksdr8z/">
+<link rel="canonical" href="https://juiceright.xyz/posts/2026/%E6%94%BE%E5%81%87%E5%9B%9E%E5%AE%B6/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a">
 <link rel="icon" type="image/png" sizes="16x16" href="https://www.gravatar.com/avatar/09752f12a50276f5fd5065e3afe3462a?s=16">
@@ -57,7 +18,7 @@ if __name__ == &#34;__main__&#34;:
 <link rel="mask-icon" href="https://juiceright.xyz/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://juiceright.xyz/old/posts/qin3ksdr8z/">
+<link rel="alternate" hreflang="en" href="https://juiceright.xyz/posts/2026/%E6%94%BE%E5%81%87%E5%9B%9E%E5%AE%B6/">
 <noscript>
     <style>
         #theme-toggle,
@@ -125,62 +86,17 @@ if __name__ == &#34;__main__&#34;:
   gtag('js', new Date());
 
   gtag('config', 'G-VW0CXHVZ33');
-</script><meta property="og:url" content="https://juiceright.xyz/old/posts/qin3ksdr8z/">
+</script><meta property="og:url" content="https://juiceright.xyz/posts/2026/%E6%94%BE%E5%81%87%E5%9B%9E%E5%AE%B6/">
   <meta property="og:site_name" content="Juiceright">
-  <meta property="og:title" content="【分子对接】1. 自动从pubchem下载小分子 脚本">
-  <meta property="og:description" content="本代码用于从pubchem下载小分子(阿司匹林)，并且自动转换成pymol的pdb格式
-import pubchempy as pcp from pymol import cmd import os def download_sdf(compound_identifier, output_file): try: # 尝试根据标识符获取化合物 if isinstance(compound_identifier, int): compound = pcp.Compound.from_cid(compound_identifier) else: results = pcp.get_compounds(compound_identifier, &#39;name&#39;) if results: compound = results[0] else: print(f&#34;未找到与 {compound_identifier} 匹配的化合物。&#34;) return # 下载 SDF 文件 sdf_content = compound.canonical_smiles sdf = pcp.get_sdf(compound.cid) with open(output_file, &#39;w&#39;) as file: file.write(sdf) print(f&#34;SDF 文件已成功保存到 {output_file}&#34;) except Exception as e: print(f&#34;下载过程中出现错误: {e}&#34;) if __name__ == &#34;__main__&#34;: # 这里可以替换为你想要查询的化合物名称或 CID compound_identifier = &#34;aspirin&#34; output_file = compound_identifier &#43; &#34;.sdf&#34; download_sdf(compound_identifier, output_file) # 使用 PyMOL 加载 SDF 文件并进行后续处理 cmd.load(output_file) # 保存为 PDB 文件（可选） cmd.save(compound_identifier &#43; &#34;.pdb&#34;, state=0) cmd.quit() # 删除临时 SDF 文件（可选） #os.remove(output_file) ">
+  <meta property="og:title" content="放假回家！">
   <meta property="og:locale" content="en-us">
   <meta property="og:type" content="article">
-    <meta property="article:section" content="old">
-    <meta property="article:published_time" content="2025-03-26T20:25:40+00:00">
-    <meta property="article:modified_time" content="2026-01-23T12:23:53+00:00">
-    <meta property="article:tag" content="生信">
-    <meta property="article:tag" content="编程">
-    <meta property="article:tag" content="分子对接">
-    <meta property="article:tag" content="Old">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-01-25T22:13:34+00:00">
+    <meta property="article:modified_time" content="2026-01-25T14:13:44+00:00">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【分子对接】1. 自动从pubchem下载小分子 脚本">
-<meta name="twitter:description" content="本代码用于从pubchem下载小分子(阿司匹林)，并且自动转换成pymol的pdb格式
-import pubchempy as pcp
-from pymol import cmd
-import os
-def download_sdf(compound_identifier, output_file):
-    try:
-        # 尝试根据标识符获取化合物
-        if isinstance(compound_identifier, int):
-            compound = pcp.Compound.from_cid(compound_identifier)
-        else:
-            results = pcp.get_compounds(compound_identifier, &#39;name&#39;)
-            if results:
-                compound = results[0]
-            else:
-                print(f&#34;未找到与 {compound_identifier} 匹配的化合物。&#34;)
-                return
-
-        # 下载 SDF 文件
-        sdf_content = compound.canonical_smiles
-        sdf = pcp.get_sdf(compound.cid)
-        with open(output_file, &#39;w&#39;) as file:
-            file.write(sdf)
-        print(f&#34;SDF 文件已成功保存到 {output_file}&#34;)
-    except Exception as e:
-        print(f&#34;下载过程中出现错误: {e}&#34;)
-
-
-if __name__ == &#34;__main__&#34;:
-    # 这里可以替换为你想要查询的化合物名称或 CID
-    compound_identifier = &#34;aspirin&#34;
-    output_file = compound_identifier &#43; &#34;.sdf&#34;
-    download_sdf(compound_identifier, output_file)
-    # 使用 PyMOL 加载 SDF 文件并进行后续处理
-    cmd.load(output_file)
-    # 保存为 PDB 文件（可选）
-    cmd.save(compound_identifier &#43; &#34;.pdb&#34;, state=0)
-    cmd.quit()
-    # 删除临时 SDF 文件（可选）
-    #os.remove(output_file)
-">
+<meta name="twitter:title" content="放假回家！">
+<meta name="twitter:description" content="">
 
 
 <script type="application/ld+json">
@@ -191,14 +107,14 @@ if __name__ == &#34;__main__&#34;:
     {
       "@type": "ListItem",
       "position":  1 ,
-      "name": "Olds",
-      "item": "https://juiceright.xyz/old/"
+      "name": "Posts",
+      "item": "https://juiceright.xyz/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "【分子对接】1. 自动从pubchem下载小分子 脚本",
-      "item": "https://juiceright.xyz/old/posts/qin3ksdr8z/"
+      "name": "放假回家！",
+      "item": "https://juiceright.xyz/posts/2026/%E6%94%BE%E5%81%87%E5%9B%9E%E5%AE%B6/"
     }
   ]
 }
@@ -207,20 +123,20 @@ if __name__ == &#34;__main__&#34;:
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "【分子对接】1. 自动从pubchem下载小分子 脚本",
-  "name": "【分子对接】1. 自动从pubchem下载小分子 脚本",
-  "description": "本代码用于从pubchem下载小分子(阿司匹林)，并且自动转换成pymol的pdb格式\nimport pubchempy as pcp from pymol import cmd import os def download_sdf(compound_identifier, output_file): try: # 尝试根据标识符获取化合物 if isinstance(compound_identifier, int): compound = pcp.Compound.from_cid(compound_identifier) else: results = pcp.get_compounds(compound_identifier, \u0026#39;name\u0026#39;) if results: compound = results[0] else: print(f\u0026#34;未找到与 {compound_identifier} 匹配的化合物。\u0026#34;) return # 下载 SDF 文件 sdf_content = compound.canonical_smiles sdf = pcp.get_sdf(compound.cid) with open(output_file, \u0026#39;w\u0026#39;) as file: file.write(sdf) print(f\u0026#34;SDF 文件已成功保存到 {output_file}\u0026#34;) except Exception as e: print(f\u0026#34;下载过程中出现错误: {e}\u0026#34;) if __name__ == \u0026#34;__main__\u0026#34;: # 这里可以替换为你想要查询的化合物名称或 CID compound_identifier = \u0026#34;aspirin\u0026#34; output_file = compound_identifier + \u0026#34;.sdf\u0026#34; download_sdf(compound_identifier, output_file) # 使用 PyMOL 加载 SDF 文件并进行后续处理 cmd.load(output_file) # 保存为 PDB 文件（可选） cmd.save(compound_identifier + \u0026#34;.pdb\u0026#34;, state=0) cmd.quit() # 删除临时 SDF 文件（可选） #os.remove(output_file) ",
+  "headline": "放假回家！",
+  "name": "放假回家！",
+  "description": "\n",
   "keywords": [
-    "生信", "编程", "分子对接", "old"
+    
   ],
-  "articleBody": "本代码用于从pubchem下载小分子(阿司匹林)，并且自动转换成pymol的pdb格式\nimport pubchempy as pcp from pymol import cmd import os def download_sdf(compound_identifier, output_file): try: # 尝试根据标识符获取化合物 if isinstance(compound_identifier, int): compound = pcp.Compound.from_cid(compound_identifier) else: results = pcp.get_compounds(compound_identifier, 'name') if results: compound = results[0] else: print(f\"未找到与 {compound_identifier} 匹配的化合物。\") return # 下载 SDF 文件 sdf_content = compound.canonical_smiles sdf = pcp.get_sdf(compound.cid) with open(output_file, 'w') as file: file.write(sdf) print(f\"SDF 文件已成功保存到 {output_file}\") except Exception as e: print(f\"下载过程中出现错误: {e}\") if __name__ == \"__main__\": # 这里可以替换为你想要查询的化合物名称或 CID compound_identifier = \"aspirin\" output_file = compound_identifier + \".sdf\" download_sdf(compound_identifier, output_file) # 使用 PyMOL 加载 SDF 文件并进行后续处理 cmd.load(output_file) # 保存为 PDB 文件（可选） cmd.save(compound_identifier + \".pdb\", state=0) cmd.quit() # 删除临时 SDF 文件（可选） #os.remove(output_file) ",
-  "wordCount" : "101",
+  "articleBody": "\n",
+  "wordCount" : "0",
   "inLanguage": "en",
-  "datePublished": "2025-03-26T20:25:40Z",
-  "dateModified": "2026-01-23T12:23:53.182Z",
+  "datePublished": "2026-01-25T22:13:34Z",
+  "dateModified": "2026-01-25T14:13:44.991Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://juiceright.xyz/old/posts/qin3ksdr8z/"
+    "@id": "https://juiceright.xyz/posts/2026/%E6%94%BE%E5%81%87%E5%9B%9E%E5%AE%B6/"
   },
   "publisher": {
     "@type": "Organization",
@@ -291,61 +207,19 @@ if __name__ == &#34;__main__&#34;:
   <header class="post-header">
     
     <h1 class="post-title entry-hint-parent">
-      【分子对接】1. 自动从pubchem下载小分子 脚本
+      放假回家！
     </h1>
-    <div class="post-meta"><span title='2025-03-26 20:25:40 +0000 UTC'>March 26, 2025</span>&nbsp;·&nbsp;<span>1 min</span>
+    <div class="post-meta"><span title='2026-01-25 22:13:34 +0000 UTC'>January 25, 2026</span>&nbsp;·&nbsp;<span>0 min</span>
 
 </div>
   </header> 
-  <div class="post-content"><p>本代码用于从pubchem下载小分子(阿司匹林)，并且自动转换成pymol的pdb格式</p>
-<pre tabindex="0"><code>import pubchempy as pcp
-from pymol import cmd
-import os
-def download_sdf(compound_identifier, output_file):
-    try:
-        # 尝试根据标识符获取化合物
-        if isinstance(compound_identifier, int):
-            compound = pcp.Compound.from_cid(compound_identifier)
-        else:
-            results = pcp.get_compounds(compound_identifier, &#39;name&#39;)
-            if results:
-                compound = results[0]
-            else:
-                print(f&#34;未找到与 {compound_identifier} 匹配的化合物。&#34;)
-                return
+  <div class="post-content"><p><img loading="lazy" src="/images/202601/%E6%94%BE%E5%81%87%E5%9B%9E%E5%AE%B6%EF%BC%81/%E6%94%BE%E5%81%87%E5%9B%9E%E5%AE%B6%EF%BC%81-20260125221342970.jpg"></p>
 
-        # 下载 SDF 文件
-        sdf_content = compound.canonical_smiles
-        sdf = pcp.get_sdf(compound.cid)
-        with open(output_file, &#39;w&#39;) as file:
-            file.write(sdf)
-        print(f&#34;SDF 文件已成功保存到 {output_file}&#34;)
-    except Exception as e:
-        print(f&#34;下载过程中出现错误: {e}&#34;)
-
-
-if __name__ == &#34;__main__&#34;:
-    # 这里可以替换为你想要查询的化合物名称或 CID
-    compound_identifier = &#34;aspirin&#34;
-    output_file = compound_identifier + &#34;.sdf&#34;
-    download_sdf(compound_identifier, output_file)
-    # 使用 PyMOL 加载 SDF 文件并进行后续处理
-    cmd.load(output_file)
-    # 保存为 PDB 文件（可选）
-    cmd.save(compound_identifier + &#34;.pdb&#34;, state=0)
-    cmd.quit()
-    # 删除临时 SDF 文件（可选）
-    #os.remove(output_file)
-</code></pre>
 
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://juiceright.xyz/tags/%E7%94%9F%E4%BF%A1/">生信</a></li>
-      <li><a href="https://juiceright.xyz/tags/%E7%BC%96%E7%A8%8B/">编程</a></li>
-      <li><a href="https://juiceright.xyz/tags/%E5%88%86%E5%AD%90%E5%AF%B9%E6%8E%A5/">分子对接</a></li>
-      <li><a href="https://juiceright.xyz/tags/old/">Old</a></li>
     </ul>
   </footer><div id="gitalk-container"></div>
 <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
