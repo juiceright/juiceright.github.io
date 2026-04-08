@@ -2,25 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>生信 on Juiceright</title>
-    <link>https://juiceright.xyz/tags/%E7%94%9F%E4%BF%A1/</link>
+    <link>https://juiceright.github.io/tags/%E7%94%9F%E4%BF%A1/</link>
     <description>Recent content in 生信 on Juiceright</description>
-    <generator>Hugo -- 0.154.5</generator>
+    <generator>Hugo -- 0.160.0</generator>
     <language>en-us</language>
+    <managingEditor>cuiyu388@gmail.com (Juiceright)</managingEditor>
+    <webMaster>cuiyu388@gmail.com (Juiceright)</webMaster>
     <lastBuildDate>Fri, 23 Jan 2026 12:23:53 +0000</lastBuildDate>
-    <atom:link href="https://juiceright.xyz/tags/%E7%94%9F%E4%BF%A1/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://juiceright.github.io/tags/%E7%94%9F%E4%BF%A1/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>奇奇怪怪</title>
-      <link>https://juiceright.xyz/posts/2025/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/</link>
-      <pubDate>Tue, 30 Dec 2025 21:36:29 +0000</pubDate>
-      <guid>https://juiceright.xyz/posts/2025/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA-20251230213646341.jpg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.xyz/images/202512/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA-20251230213646354.jpg&#34;&gt;&lt;/p&gt;</description>
+      <link>https://juiceright.github.io/posts/2025/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/</link>
+      <pubDate>Tue, 30 Dec 2025 21:36:29 +0000</pubDate><author>cuiyu388@gmail.com (Juiceright)</author>
+      <guid>https://juiceright.github.io/posts/2025/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/</guid>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.github.io/images/202512/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA-20251230213646341.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://juiceright.github.io/images/202512/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA/%E5%A5%87%E5%A5%87%E6%80%AA%E6%80%AA-20251230213646354.jpg&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>【分子对接】2. 利用pymol下载蛋白质 脚本</title>
-      <link>https://juiceright.xyz/old/posts/ysld_6qj2a/</link>
-      <pubDate>Wed, 26 Mar 2025 20:28:24 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/ysld_6qj2a/</guid>
+      <link>https://juiceright.github.io/old/posts/ysld_6qj2a/</link>
+      <pubDate>Wed, 26 Mar 2025 20:28:24 +0000</pubDate><author>cuiyu388@gmail.com (Juiceright)</author>
+      <guid>https://juiceright.github.io/old/posts/ysld_6qj2a/</guid>
       <description>&lt;p&gt;下载蛋白质，去除水分子，加H，去除配体，去除副链&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 # %%
@@ -59,9 +61,9 @@ pymol.cmd.quit()
     </item>
     <item>
       <title>【分子对接】1. 自动从pubchem下载小分子 脚本</title>
-      <link>https://juiceright.xyz/old/posts/qin3ksdr8z/</link>
-      <pubDate>Wed, 26 Mar 2025 20:25:40 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/qin3ksdr8z/</guid>
+      <link>https://juiceright.github.io/old/posts/qin3ksdr8z/</link>
+      <pubDate>Wed, 26 Mar 2025 20:25:40 +0000</pubDate><author>cuiyu388@gmail.com (Juiceright)</author>
+      <guid>https://juiceright.github.io/old/posts/qin3ksdr8z/</guid>
       <description>&lt;p&gt;本代码用于从pubchem下载小分子(阿司匹林)，并且自动转换成pymol的pdb格式&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;import pubchempy as pcp
 from pymol import cmd
@@ -105,9 +107,9 @@ if __name__ == &amp;#34;__main__&amp;#34;:
     </item>
     <item>
       <title>snakemake流程——SMR&#43;MR&#43;MAGMA分析</title>
-      <link>https://juiceright.xyz/old/posts/vw5dv077fn/</link>
-      <pubDate>Fri, 14 Mar 2025 20:46:52 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/vw5dv077fn/</guid>
+      <link>https://juiceright.github.io/old/posts/vw5dv077fn/</link>
+      <pubDate>Fri, 14 Mar 2025 20:46:52 +0000</pubDate><author>cuiyu388@gmail.com (Juiceright)</author>
+      <guid>https://juiceright.github.io/old/posts/vw5dv077fn/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 # 定义染色体列表，包含 1 到 22 号染色体
 chromosomes = list(range(1, 23))

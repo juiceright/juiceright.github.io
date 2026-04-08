@@ -2,17 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>C&#43;&#43; on Juiceright</title>
-    <link>https://juiceright.xyz/tags/c&#43;&#43;/</link>
+    <link>https://juiceright.github.io/tags/c&#43;&#43;/</link>
     <description>Recent content in C&#43;&#43; on Juiceright</description>
-    <generator>Hugo -- 0.154.5</generator>
+    <generator>Hugo -- 0.160.0</generator>
     <language>en-us</language>
+    <managingEditor>cuiyu388@gmail.com (Juiceright)</managingEditor>
+    <webMaster>cuiyu388@gmail.com (Juiceright)</webMaster>
     <lastBuildDate>Fri, 23 Jan 2026 12:23:53 +0000</lastBuildDate>
-    <atom:link href="https://juiceright.xyz/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://juiceright.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>zkw线段树</title>
-      <link>https://juiceright.xyz/old/posts/uljgqekoo3/</link>
-      <pubDate>Mon, 10 Mar 2025 13:28:55 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/uljgqekoo3/</guid>
+      <link>https://juiceright.github.io/old/posts/uljgqekoo3/</link>
+      <pubDate>Mon, 10 Mar 2025 13:28:55 +0000</pubDate><author>cuiyu388@gmail.com (Juiceright)</author>
+      <guid>https://juiceright.github.io/old/posts/uljgqekoo3/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 #include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
@@ -63,9 +65,9 @@ while(q--){
     </item>
     <item>
       <title>ST表</title>
-      <link>https://juiceright.xyz/old/posts/6jfataceqh/</link>
-      <pubDate>Mon, 10 Mar 2025 13:28:40 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/6jfataceqh/</guid>
+      <link>https://juiceright.github.io/old/posts/6jfataceqh/</link>
+      <pubDate>Mon, 10 Mar 2025 13:28:40 +0000</pubDate><author>cuiyu388@gmail.com (Juiceright)</author>
+      <guid>https://juiceright.github.io/old/posts/6jfataceqh/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 #include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
@@ -96,9 +98,9 @@ int main(){
     </item>
     <item>
       <title>SPFA算法</title>
-      <link>https://juiceright.xyz/old/posts/ldovg2gc2p/</link>
-      <pubDate>Mon, 10 Mar 2025 13:28:27 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/ldovg2gc2p/</guid>
+      <link>https://juiceright.github.io/old/posts/ldovg2gc2p/</link>
+      <pubDate>Mon, 10 Mar 2025 13:28:27 +0000</pubDate><author>cuiyu388@gmail.com (Juiceright)</author>
+      <guid>https://juiceright.github.io/old/posts/ldovg2gc2p/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
 const long long   N=100010,M=200011;
@@ -154,9 +156,9 @@ cout&amp;lt;&amp;lt;d[i]&amp;lt;&amp;lt;&amp;#34; &amp;#34;;
     </item>
     <item>
       <title>Prim算法</title>
-      <link>https://juiceright.xyz/old/posts/f481dm04tj/</link>
-      <pubDate>Mon, 10 Mar 2025 13:28:15 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/f481dm04tj/</guid>
+      <link>https://juiceright.github.io/old/posts/f481dm04tj/</link>
+      <pubDate>Mon, 10 Mar 2025 13:28:15 +0000</pubDate><author>cuiyu388@gmail.com (Juiceright)</author>
+      <guid>https://juiceright.github.io/old/posts/f481dm04tj/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 #include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
@@ -210,9 +212,9 @@ int main() {
     </item>
     <item>
       <title>Prim堆优化版</title>
-      <link>https://juiceright.xyz/old/posts/ibw-bmba9u/</link>
-      <pubDate>Mon, 10 Mar 2025 13:27:52 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/ibw-bmba9u/</guid>
+      <link>https://juiceright.github.io/old/posts/ibw-bmba9u/</link>
+      <pubDate>Mon, 10 Mar 2025 13:27:52 +0000</pubDate><author>cuiyu388@gmail.com (Juiceright)</author>
+      <guid>https://juiceright.github.io/old/posts/ibw-bmba9u/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
 priority_queue&amp;lt;pair&amp;lt;long long,long long&amp;gt; &amp;gt;q;
@@ -272,9 +274,9 @@ work();
     </item>
     <item>
       <title>LCA算法</title>
-      <link>https://juiceright.xyz/old/posts/5ipfk_eghq/</link>
-      <pubDate>Mon, 10 Mar 2025 13:27:39 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/5ipfk_eghq/</guid>
+      <link>https://juiceright.github.io/old/posts/5ipfk_eghq/</link>
+      <pubDate>Mon, 10 Mar 2025 13:27:39 +0000</pubDate><author>cuiyu388@gmail.com (Juiceright)</author>
+      <guid>https://juiceright.github.io/old/posts/5ipfk_eghq/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// luogu-judger-enable-o2
 #include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
@@ -337,9 +339,9 @@ int main(){
     </item>
     <item>
       <title>匈牙利算法</title>
-      <link>https://juiceright.xyz/old/posts/rnbllzkklq/</link>
-      <pubDate>Mon, 10 Mar 2025 13:27:28 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/rnbllzkklq/</guid>
+      <link>https://juiceright.github.io/old/posts/rnbllzkklq/</link>
+      <pubDate>Mon, 10 Mar 2025 13:27:28 +0000</pubDate><author>cuiyu388@gmail.com (Juiceright)</author>
+      <guid>https://juiceright.github.io/old/posts/rnbllzkklq/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
 bool ver[1001][1001],v[1001];
@@ -379,9 +381,9 @@ init();
     </item>
     <item>
       <title>线段树</title>
-      <link>https://juiceright.xyz/old/posts/cse8xfl8mp/</link>
-      <pubDate>Mon, 10 Mar 2025 13:26:55 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/cse8xfl8mp/</guid>
+      <link>https://juiceright.github.io/old/posts/cse8xfl8mp/</link>
+      <pubDate>Mon, 10 Mar 2025 13:26:55 +0000</pubDate><author>cuiyu388@gmail.com (Juiceright)</author>
+      <guid>https://juiceright.github.io/old/posts/cse8xfl8mp/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
 struct pl{
@@ -449,9 +451,9 @@ while(m--){
     </item>
     <item>
       <title>树状数组</title>
-      <link>https://juiceright.xyz/old/posts/hl1binzfbh/</link>
-      <pubDate>Mon, 10 Mar 2025 13:26:42 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/hl1binzfbh/</guid>
+      <link>https://juiceright.github.io/old/posts/hl1binzfbh/</link>
+      <pubDate>Mon, 10 Mar 2025 13:26:42 +0000</pubDate><author>cuiyu388@gmail.com (Juiceright)</author>
+      <guid>https://juiceright.github.io/old/posts/hl1binzfbh/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 #include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
@@ -499,9 +501,9 @@ int main(){
     </item>
     <item>
       <title>kruskal算法（克鲁斯卡尔算法）</title>
-      <link>https://juiceright.xyz/old/posts/y1ekvamzmi/</link>
-      <pubDate>Mon, 10 Mar 2025 13:26:19 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/y1ekvamzmi/</guid>
+      <link>https://juiceright.github.io/old/posts/y1ekvamzmi/</link>
+      <pubDate>Mon, 10 Mar 2025 13:26:19 +0000</pubDate><author>cuiyu388@gmail.com (Juiceright)</author>
+      <guid>https://juiceright.github.io/old/posts/y1ekvamzmi/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#include&amp;lt;bits/stdc++.h&amp;gt;
 #define ll long long
 using namespace std;
@@ -538,9 +540,9 @@ else cout&amp;lt;&amp;lt;&amp;#34;orz&amp;#34;;
     </item>
     <item>
       <title>带lazy标记的zkw线段树</title>
-      <link>https://juiceright.xyz/old/posts/wwlgapb2j1/</link>
-      <pubDate>Mon, 10 Mar 2025 13:25:58 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/wwlgapb2j1/</guid>
+      <link>https://juiceright.github.io/old/posts/wwlgapb2j1/</link>
+      <pubDate>Mon, 10 Mar 2025 13:25:58 +0000</pubDate><author>cuiyu388@gmail.com (Juiceright)</author>
+      <guid>https://juiceright.github.io/old/posts/wwlgapb2j1/</guid>
       <description>&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
 #include&amp;lt;bits/stdc++.h&amp;gt;
 using namespace std;
@@ -599,9 +601,9 @@ while(q--){
     </item>
     <item>
       <title>排序时间复杂度</title>
-      <link>https://juiceright.xyz/old/posts/3ilwt_ogfy/</link>
-      <pubDate>Mon, 10 Mar 2025 13:21:35 +0000</pubDate>
-      <guid>https://juiceright.xyz/old/posts/3ilwt_ogfy/</guid>
+      <link>https://juiceright.github.io/old/posts/3ilwt_ogfy/</link>
+      <pubDate>Mon, 10 Mar 2025 13:21:35 +0000</pubDate><author>cuiyu388@gmail.com (Juiceright)</author>
+      <guid>https://juiceright.github.io/old/posts/3ilwt_ogfy/</guid>
       <description>&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;

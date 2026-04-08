@@ -2,17 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Categories on Juiceright</title>
-    <link>https://juiceright.xyz/categories/</link>
+    <link>https://juiceright.github.io/categories/</link>
     <description>Recent content in Categories on Juiceright</description>
-    <generator>Hugo -- 0.154.5</generator>
+    <generator>Hugo -- 0.160.0</generator>
     <language>en-us</language>
+    <managingEditor>cuiyu388@gmail.com (Juiceright)</managingEditor>
+    <webMaster>cuiyu388@gmail.com (Juiceright)</webMaster>
     <lastBuildDate>Sun, 25 Jan 2026 14:23:11 +0000</lastBuildDate>
-    <atom:link href="https://juiceright.xyz/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://juiceright.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>日常</title>
-      <link>https://juiceright.xyz/categories/%E6%97%A5%E5%B8%B8/</link>
-      <pubDate>Sat, 24 Jan 2026 22:19:07 +0000</pubDate>
-      <guid>https://juiceright.xyz/categories/%E6%97%A5%E5%B8%B8/</guid>
+      <link>https://juiceright.github.io/categories/%E6%97%A5%E5%B8%B8/</link>
+      <pubDate>Sat, 24 Jan 2026 22:19:07 +0000</pubDate><author>cuiyu388@gmail.com (Juiceright)</author>
+      <guid>https://juiceright.github.io/categories/%E6%97%A5%E5%B8%B8/</guid>
       <description></description>
     </item>
   </channel>
